@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[conan@notes:~/]]></title>
-  <link href="http://ConanChou.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: routine | conan@notes:~/]]></title>
+  <link href="http://ConanChou.github.com/blog/categories/routine/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
   <updated>2012-07-21T02:55:45-04:00</updated>
   <id>http://ConanChou.github.com/</id>
@@ -28,9 +28,9 @@
 
 <p>在配置里写描述时，我是写的“Open Source, Computer Science, Linux, Unix, Hack, Programming, Math, Python, Ruby, Lisp”。我没有放 Life，其实也是希望自己能够更多地专注于写有质量的文章。希望能够做到。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>conan@notes:~/ touch log</span></code></pre></td></tr></table></div></figure>
-
+<p><code>
+conan@notes:~/ touch log
+</code></p>
 ]]></content>
   </entry>
   
