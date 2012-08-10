@@ -15,6 +15,16 @@ published: false
 - 瓶頸在計算的調優
 - 瓶頸在數據讀寫的調優
 
+讓我嘛來看張先：
+
+![熱門編程語言速度對比](https://public.blu.livefilestore.com/y1pauSVpp8onRf0BIEWig2UQ0yvy0OYj-1bpinVGs6SqA4s4q2qZV1daZXxKrQXoG4ktnb0ddekeu2iTohP_PtyuQ/chart.png?psid=1 "熱門編程語言速度對比")
+
+調優之後我們的程序到底能跑多快？猜 V8 JavaScript 的很大膽。但是你還不夠大膽，事實上效果好的情況可以直逼 GCC C。也就是可以提升 20 多倍的速度。而這張圖測試的背景還是代碼本身已經優化過的基礎上。那在真實的生產生活中，這個數字可以是上三位數的。
+
+優化是沒有一針見血很徹底的方案的，因爲優化牽扯到程序從編寫到運行的方方面面。如果一個程序能夠很正常地運行，那說明沒有地方有問題；但是如果程序出錯了，就有可能不止一處有問題。同樣的道理，調優也是如此。因此，本系列會分很多篇，每一篇針對一個話題。
+
+- [代碼造影，定位癥結](#)
+
 在整理時我參考了大量 [PyCon 2012](https://us.pycon.org/2012/) 的精彩演講和相關的工具和網站，以一定程度上確保靠譜。
 
 整理和尋找知識系統和方法理論的時候，我使用了非常好用的 Mind Mapping 開源軟件 [FreeMind](http://freemind.sourceforge.net/wiki/index.php/Main_Page)，提高效率的 [tmux](http://tmux.sourceforge.net/) 和 [Vim](http://tmux.sourceforge.net/)。我題外話，推薦一下。

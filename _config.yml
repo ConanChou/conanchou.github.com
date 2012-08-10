@@ -58,7 +58,7 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.ht
 # ----------------------- #
 
 # Github repositories
-github_user: 
+github_user: ConanChou
 github_repo_count: 4
 github_show_profile_link: true
 github_skip_forks: true
@@ -85,7 +85,7 @@ pinboard_user:
 pinboard_count: 3
 
 # Delicious
-delicious_user: 
+delicious_user: ConanChou
 delicious_count: 3
 
 # Disqus Comments
