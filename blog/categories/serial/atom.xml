@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Serial | conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/blog/categories/serial/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2012-07-23T02:27:37-04:00</updated>
+  <updated>2012-08-19T02:48:54-04:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -14,24 +14,356 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Python 調優筆記·序]]></title>
-    <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/"/>
-    <updated>2012-07-23T01:19:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1</id>
-    <content type="html"><![CDATA[<p>以往我都以寫命令行下的 Python 腳本爲主。即使做項目也基本是做小規模 Web 類的。所以很少遇到效率太低受不了的情況，所以也鮮有調優的情況。當然，在寫代碼時就已經注意了一些效率問題，所以基本不需要很費心機地調優。可是幾個月前我做了兩個項目，一是一個機器學習引擎，用以學習在線讀者閱讀習慣；另一個是一個下 Chess 的 AI，用以人機對奕。<!-- more -->兩個系統都用 Python 構建。因爲這兩個項目都是 CPU intensive 的，真的是慢得可以。於是這逼得我不得不去研究下有關 Python
-的調優。而在機器學習的項目中，因爲當時自己的服務器實在很爛（只有256 MB 內存），所以得瘋狂得做服務器部署的優化才能讓它處理外部請求和部分邏輯。加上以往的服務器調優經驗，也算是積累了一些有用的東西。</p>
+    <title type="html"><![CDATA[Python 調優筆記·代碼造影]]></title>
+    <link href="http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/"/>
+    <updated>2012-07-25T00:14:00-04:00</updated>
+    <id>http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling</id>
+    <content type="html"><![CDATA[<p>在序中，我提到了熱門語言的運行速度比較，比較的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。</p>
 
-<p>上個禮拜一個朋友跟我討論 Python 以及 Django 網站的調優問題。我告訴了他一些我的經驗。雖然當時聊得很匆忙，可是我想這些信息是有用的，至少對我很有用。一方面我真的沒有具體地整理過，另一方面也是怕自己將來忘記。所以趁熱大鐵，打算整理成系列。在這個系列裏，我將會涉及到以下兩大類瓶頸的調優：</p>
+<p>Python 是自帶造影工具的，從 <a href="http://docs.python.org/library/profile.html">官方文檔</a> 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 cProfile 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 <a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">小腳本</a>。</p>
+
+<p>我們不妨先來運行一下該腳本：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>python pure_python_slow.py
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>運行結果是會生成這張圖片：</p>
+
+<p><img src="https://public.blu.livefilestore.com/y1pn9Ob0P_ELpnDR_BxhnQc9bjmo0F8y1gz4qudepNB2yt5xpJba35Q_fJmBdGT1TDqCszaOgh2-U_5WkHYh4ldTQ/fractal.png?psid=1" title="分形" alt="分形" /></p>
+
+<p>命令行下的運行結果輸出則是：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>Main took 0:00:17.247938
+</span><span class='line'>Total sum of elements <span class="o">(</span><span class="k">for </span>validation<span class="o">)</span>: 1148485
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>下面我們來用 cProfile 看看哪些地方用的時間比較長：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>python -m cProfile -o rep.prof pure_python_slow.py
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>用這種方法可以對整個腳本進行 profiling，然後把結果輸出到 <code>rep.prof</code> 中。當然對於一些較大的項目，這麼做是不恰當的，因爲一些大的項目往往有人機交互，所以使用這樣的方式來獲取運行時長顯然不可行。所以 <code>cProfile</code> 也提供了 function 方式的調用，也就是說可以在代碼裏使用它。而事實上官網的文檔就是這樣用的。使用 Django
+的同學可以試試<a href="http://djangosnippets.org/snippets/727/">這樣的代碼</a>。</p>
+
+<p>接着我們來分析一下所得的 profile，在與生成的 profile 文件同目錄下打開 Python 交互命令行：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">blockquote</span><span class="o">&gt;&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">pstats</span>
+</span><span class='line'><span class="n">p</span> <span class="o">=</span> <span class="n">pstats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span><span class="s">&#39;rep.prof&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">p</span><span class="o">.</span><span class="n">sort_stats</span><span class="p">(</span><span class="s">&#39;cumulative&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">print_stats</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'><span class="n">Sun</span> <span class="n">May</span> <span class="mi">13</span> <span class="mi">20</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">47</span> <span class="mi">2012</span>    <span class="n">rep</span><span class="o">.</span><span class="n">prof</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;&lt;/</span><span class="n">blockquote</span><span class="o">&gt;&lt;/</span><span class="n">blockquote</span><span class="o">&gt;&lt;/</span><span class="n">blockquote</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>     <span class="mi">52166198</span> <span class="n">function</span> <span class="n">calls</span> <span class="p">(</span><span class="mi">52166197</span> <span class="n">primitive</span> <span class="n">calls</span><span class="p">)</span> <span class="ow">in</span> <span class="mf">20.844</span> <span class="n">seconds</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="n">Ordered</span> <span class="n">by</span><span class="p">:</span> <span class="n">cumulative</span> <span class="n">time</span>
+</span><span class='line'>   <span class="n">List</span> <span class="n">reduced</span> <span class="kn">from</span> <span class="err">182</span> <span class="nn">to</span> <span class="err">10</span> <span class="nn">due</span> <span class="nn">to</span> <span class="nn">restriction</span> <span class="err">&lt;10&gt;&lt;/</span><span class="nn">p</span><span class="err">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="n">ncalls</span>  <span class="n">tottime</span>  <span class="n">percall</span>  <span class="n">cumtime</span>  <span class="n">percall</span> <span class="n">filename</span><span class="p">:</span><span class="n">lineno</span><span class="p">(</span><span class="n">function</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>    <span class="mi">1</span>    <span class="mf">0.026</span>    <span class="mf">0.026</span>   <span class="mf">20.844</span>   <span class="mf">20.844</span> <span class="n">pure_python_slow</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">module</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;)</span>
+</span><span class='line'>    <span class="mi">1</span>    <span class="mf">0.066</span>    <span class="mf">0.066</span>   <span class="mf">20.818</span>   <span class="mf">20.818</span> <span class="n">pure_python_slow</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">40</span><span class="p">(</span><span class="n">calc_pure_python</span><span class="p">)</span>
+</span><span class='line'>    <span class="mi">1</span>   <span class="mf">16.048</span>   <span class="mf">16.048</span>   <span class="mf">20.602</span>   <span class="mf">20.602</span> <span class="n">pure_python_slow</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">25</span><span class="p">(</span><span class="n">calculate_z_serial_purepython</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span> <span class="mi">51414419</span>    <span class="mf">3.588</span>    <span class="mf">0.000</span>    <span class="mf">3.588</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="nb">abs</span><span class="p">}</span>
+</span><span class='line'>   <span class="mi">250001</span>    <span class="mf">0.966</span>    <span class="mf">0.000</span>    <span class="mf">0.966</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="nb">range</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>    <span class="mi">1</span>    <span class="mf">0.035</span>    <span class="mf">0.035</span>    <span class="mf">0.136</span>    <span class="mf">0.136</span> <span class="n">pure_python_slow</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">8</span><span class="p">(</span><span class="n">show</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>   <span class="mi">250001</span>    <span class="mf">0.042</span>    <span class="mf">0.000</span>    <span class="mf">0.042</span>    <span class="mf">0.000</span> <span class="n">pure_python_slow</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">14</span><span class="p">(</span><span class="o">&lt;</span><span class="n">genexpr</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>    <span class="mi">1</span>    <span class="mf">0.018</span>    <span class="mf">0.018</span>    <span class="mf">0.038</span>    <span class="mf">0.038</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">PIL</span><span class="o">/</span><span class="n">Image</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">27</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">module</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;)</span>
+</span><span class='line'>  <span class="mi">3</span><span class="o">/</span><span class="mi">2</span>    <span class="mf">0.009</span>    <span class="mf">0.003</span>    <span class="mf">0.020</span>    <span class="mf">0.010</span> <span class="p">{</span><span class="nb">apply</span><span class="p">}</span>
+</span><span class='line'>    <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.019</span>    <span class="mf">0.019</span> <span class="p">{</span><span class="nb">__import__</span><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>這裏我們可以看出，加了 <code>cProfile</code> 原來的程序會運行得略慢一些。這也是意料之中的。</p>
+
+<p>下面我們來仔細看一下造影報告，也就是從第十一行開始的表格。
+表格第一行是總時間，第二行是 <code>calc_pure_python</code> 所用時間，而第三行是 <code>calculate_z_serial_purepython</code> 所用時間，以此類推。從以上的這個表格我們至少可以判斷：大部分時間都花在了 <code>calculate_z_serial_purepython</code> 上。</p>
+
+<p>可能這個表格並不是很直觀。那下面我再介紹一種更加直觀的方式 —— <code>runsnake</code>。我們回到命令行，用 <code>runsnake</code> 跑剛剛生成的造影文件（<code>rep.prof</code>）:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>runsnake res.prof
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>運行後你會看到這個窗口：</p>
+
+<p><img src="https://xiil8w.blu.livefilestore.com/y1p-S46t388afLR5WALVXfzfgc36A_zh3jlEMbbjm3ouwkI1KEl7CRTPE8OS9mmtW7MZBCkujoUHT19OkiolKb1Dvd37IW8WMd-/runsnake.png?psid=1" title="RunSnake 運行結果" alt="RunSnake 運行結果" /></p>
+
+<p>現在顯而易見了吧， <code>calculate_z_serial_purepython</code> 就是花時間最多的。可是到底是什麼使得它花這麼久，還是不能從上圖中找到原因。很顯然不是因爲 <code>&lt;abs&gt;</code> 和 <code>&lt;range&gt;</code>。于是我们定位到这个 function：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function calculate_z_serial_purepython  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">calculate_z_serial_purepython</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="s">&quot;&quot;&quot;Pure python with complex datatype, iterating over list of q and z&quot;&quot;&quot;</span>
+</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)):</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="c"># print out some progress info since it is so slow...</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&quot;</span><span class="si">%0.2f%%</span><span class="s"> complete&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mf">2.0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">iteration</span>
+</span><span class='line'>            <span class="k">break</span>
+</span><span class='line'><span class="k">return</span> <span class="n">output</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>有經驗的 Python 程序員可能已經知道問題出在哪裏了，但是我先賣個關子。當然目的是爲了介紹下面的一個造影工具 —— <code>kernprof.py</code>，line profiling，行造影工具。</p>
+
+<p>相比之下，使用 <code>kernprof.py</code> 略麻煩一點。你得在需要做“行造影”的 function 前面加一個 decorator <code>@profile</code>，然后运行：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>kernprof.py -l -v pure_python_slow_lineprof.py&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;...略去部分無關輸出&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Main took 0:03:38.140994
+</span><span class='line'>Total sum of elements <span class="o">(</span><span class="k">for </span>validation<span class="o">)</span>: 1148485
+</span><span class='line'>Wrote profile results to pure_python_slow_lineprof.py.lprof
+</span><span class='line'>Timer unit: 1e-06 s&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;File: pure_python_slow_lineprof.py
+</span><span class='line'>Function: calculate_z_serial_purepython at line 24
+</span><span class='line'>Total <span class="nb">time</span>: 112.149 s&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;24                                           @profile
+</span><span class='line'>25                                           def calculate_z_serial_purepython<span class="o">(</span>q, maxiter, z<span class="o">)</span>:
+</span><span class='line'>26                                               <span class="s2">&quot;&quot;&quot;Pure python with complex datatype, iterating over list of q and z&quot;&quot;&quot;</span>
+</span><span class='line'>27         1         1193   1193.0      0.0      <span class="nv">output</span> <span class="o">=</span> <span class="o">[</span>0<span class="o">]</span> * len<span class="o">(</span>q<span class="o">)</span>
+</span><span class='line'>28    250001       158612      0.6      0.1      <span class="k">for </span>i in range<span class="o">(</span>len<span class="o">(</span>q<span class="o">))</span>:
+</span><span class='line'>29    250000       178444      0.7      0.2          <span class="k">if </span>i % <span class="nv">1000</span> <span class="o">==</span> 0:
+</span><span class='line'>30                                                       <span class="c"># print out some progress info since it is so slow...</span>
+</span><span class='line'>31       250         5943     23.8      0.0              print <span class="s2">&quot;%0.2f%% complete&quot;</span> % <span class="o">(</span>1.0/len<span class="o">(</span>q<span class="o">)</span> * i * 100<span class="o">)</span>
+</span><span class='line'>32  51464485     31971119      0.6     28.5          <span class="k">for </span>iteration in range<span class="o">(</span>maxiter<span class="o">)</span>:
+</span><span class='line'>33  51414419     40896082      0.8     36.5              z<span class="o">[</span>i<span class="o">]</span> <span class="o">=</span> z<span class="o">[</span>i<span class="o">]</span>*z<span class="o">[</span>i<span class="o">]</span> + q<span class="o">[</span>i<span class="o">]</span>
+</span><span class='line'>34  51414419     38095052      0.7     34.0              <span class="k">if </span>abs<span class="o">(</span>z<span class="o">[</span>i<span class="o">])</span> &amp;gt; 2.0:
+</span><span class='line'>35    199934       128641      0.6      0.1                  output<span class="o">[</span>i<span class="o">]</span> <span class="o">=</span> iteration
+</span><span class='line'>36    199934       714362      3.6      0.6                  <span class="nb">break</span>
+</span><span class='line'>37         1            4      4.0      0.0      <span class="k">return </span>output
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>這裏我爲了不弄亂之前的文件裏的代碼，就直接另存爲了 <code>pure_python_slow_lineprof.py</code>。</p>
+
+<p>如果你剛剛也跟我一起運行的話，你可能會首先注意到，運行速度非常之慢。所以我分享一則小技巧，就是想辦法讓運行的腳本縮小運行 scope。比方說你在做一個 1TB 數據的分析，在做優化的時候可以將目標數據減少到 1GB 之類的，數據量的減小不會對我們的行造影結果產生影響。在我們的這個例子裏，我們可以在運行的命令行末加上 <code>300 300</code>，這樣腳本就只會算一個 300*300 的分形圖，計算量相對要小很多。</p>
+
+<p>那結果的最重要部分自然是表格部分了，這個表格裏我們可以看到對應代碼行的運行時間。因爲這個代碼相對很簡單，所以我們可以立刻看出是哪裏的問題了。重點在第 32、33、34 行。</p>
+
+<p>這三行裏就有兩個小問題。</p>
 
 <ul>
-<li>瓶頸在計算的調優</li>
-<li>瓶頸在數據讀寫的調優</li>
+<li>首先是 32 行，在 Python 3.x 之前，<code>range()</code> 和 <code>xrange()</code> 還是有區別的。前者會在內存中真的生成 <code>list</code>，而後者只是返回一個類似的 object。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
+<li>33、34 行一直在直接從 <code>list</code> 裏查詢數據，而查詢時間複雜度是 O(n)，所以這樣做勢必會消耗更多時間。</li>
 </ul>
 
 
-<p>在整理時我參考了大量 <a href="https://us.pycon.org/2012/">PyCon 2012</a> 的精彩演講和相關的工具和網站，以一定程度上確保靠譜。</p>
+<p>所以通過分析，我們知道就以上的第一點而言，我們即使改用成 <code>xrange()</code>，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：</p>
 
-<p>整理和尋找知識系統和方法理論的時候，我使用了非常好用的 Mind Mapping 開源軟件 <a href="http://freemind.sourceforge.net/wiki/index.php/Main_Page">FreeMind</a>，提高效率的 <a href="http://tmux.sourceforge.net/">tmux</a> 和 <a href="http://tmux.sourceforge.net/">Vim</a>。我題外話，推薦一下。</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">calculate_z_serial_purepython</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="s">&quot;&quot;&quot;Pure python with complex datatype, iterating over list of q and z&quot;&quot;&quot;</span>
+</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)):</span>
+</span><span class='line'>    <span class="n">zi</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>    <span class="n">qi</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="c"># print out some progress info since it is so slow...</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&quot;</span><span class="si">%0.2f%%</span><span class="s"> complete&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
+</span><span class='line'>        <span class="c">#z[i] = z[i]*z[i] + q[i]</span>
+</span><span class='line'>        <span class="n">zi</span> <span class="o">=</span> <span class="n">zi</span> <span class="o">*</span> <span class="n">zi</span> <span class="o">+</span> <span class="n">qi</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">zi</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mf">2.0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">iteration</span>
+</span><span class='line'>            <span class="k">break</span>
+</span><span class='line'><span class="k">return</span> <span class="n">output</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>修改後我們再運行一遍行造影：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>File: pure_python_improved_lineprof.py
+</span><span class='line'>Function: calculate_z_serial_purepython at line 24
+</span><span class='line'>Total <span class="nb">time</span>: 110.898 s&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents&lt;/h1&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;24                                           @profile
+</span><span class='line'>25                                           def calculate_z_serial_purepython<span class="o">(</span>q, maxiter, z<span class="o">)</span>:
+</span><span class='line'>26                                               <span class="s2">&quot;&quot;&quot;Pure python with complex datatype, iterating over list of q and z&quot;&quot;&quot;</span>
+</span><span class='line'>27         1         1180   1180.0      0.0      <span class="nv">output</span> <span class="o">=</span> <span class="o">[</span>0<span class="o">]</span> * len<span class="o">(</span>q<span class="o">)</span>
+</span><span class='line'>28    250001       162404      0.6      0.1      <span class="k">for </span>i in range<span class="o">(</span>len<span class="o">(</span>q<span class="o">))</span>:
+</span><span class='line'>29    250000       161958      0.6      0.1          <span class="nv">zi</span> <span class="o">=</span> z<span class="o">[</span>i<span class="o">]</span>
+</span><span class='line'>30    250000       155260      0.6      0.1          <span class="nv">qi</span> <span class="o">=</span> q<span class="o">[</span>i<span class="o">]</span>
+</span><span class='line'>31    250000       173665      0.7      0.2          <span class="k">if </span>i % <span class="nv">1000</span> <span class="o">==</span> 0:
+</span><span class='line'>32                                                       <span class="c"># print out some progress info since it is so slow...</span>
+</span><span class='line'>33       250         5647     22.6      0.0              print <span class="s2">&quot;%0.2f%% complete&quot;</span> % <span class="o">(</span>1.0/len<span class="o">(</span>q<span class="o">)</span> * i * 100<span class="o">)</span>
+</span><span class='line'>34  51464485     31790147      0.6     28.7          <span class="k">for </span>iteration in xrange<span class="o">(</span>maxiter<span class="o">)</span>:
+</span><span class='line'>35                                                       <span class="c">#z[i] = z[i]*z[i] + q[i]</span>
+</span><span class='line'>36  51414419     37946710      0.7     34.2              <span class="nv">zi</span> <span class="o">=</span> zi * zi + qi
+</span><span class='line'>37  51414419     40239095      0.8     36.3              <span class="k">if </span>abs<span class="o">(</span>zi<span class="o">)</span> &amp;gt; 2.0:
+</span><span class='line'>38    199934       138030      0.7      0.1                  output<span class="o">[</span>i<span class="o">]</span> <span class="o">=</span> iteration
+</span><span class='line'>39    199934       123589      0.6      0.1                  <span class="nb">break</span>
+</span><span class='line'>40         1            4      4.0      0.0      <span class="k">return </span>output
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>看似沒有多大提升？確實，就每行時間上來看確實沒有多大提升，但是從總時間看，有了差不多兩秒的提升。而且如果我把行造影去掉，裸跑的話，速度的提升更加顯著一些（大約 6 秒）。有人說這樣的提升要不要都也無所謂，其實不然。我剛剛說到 scope，如果放大 scope，原先兩秒的優勢可能會被放大到 20 分鐘甚至更多。</p>
+
+<p>大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，<code>cProfile</code> 可用於造影模塊的運行，<code>RunSnake</code> 可以幫助可視化造影結果，而 <code>kernprof.py</code> 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。</p>
+
+<p>最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章我會談一談優化「運行機制」。</p>
 ]]></content>
   </entry>
   
