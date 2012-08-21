@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[conan@notes:~/]]></title>
+  <link href="http://ConanChou.github.com/atom.xml" rel="self"/>
+  <link href="http://ConanChou.github.com/"/>
+  <updated>2012-07-23T02:27:37-04:00</updated>
+  <id>http://ConanChou.github.com/</id>
+  <author>
+    <name><![CDATA[Conan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Python 調優筆記·序]]></title>
+    <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/"/>
+    <updated>2012-07-23T01:19:00-04:00</updated>
+    <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1</id>
+    <content type="html"><![CDATA[<p>以往我都以寫命令行下的 Python 腳本爲主。即使做項目也基本是做小規模 Web 類的。所以很少遇到效率太低受不了的情況，所以也鮮有調優的情況。當然，在寫代碼時就已經注意了一些效率問題，所以基本不需要很費心機地調優。可是幾個月前我做了兩個項目，一是一個機器學習引擎，用以學習在線讀者閱讀習慣；另一個是一個下 Chess 的 AI，用以人機對奕。<!-- more -->兩個系統都用 Python 構建。因爲這兩個項目都是 CPU intensive 的，真的是慢得可以。於是這逼得我不得不去研究下有關 Python
+的調優。而在機器學習的項目中，因爲當時自己的服務器實在很爛（只有256 MB 內存），所以得瘋狂得做服務器部署的優化才能讓它處理外部請求和部分邏輯。加上以往的服務器調優經驗，也算是積累了一些有用的東西。</p>
+
+<p>上個禮拜一個朋友跟我討論 Python 以及 Django 網站的調優問題。我告訴了他一些我的經驗。雖然當時聊得很匆忙，可是我想這些信息是有用的，至少對我很有用。一方面我真的沒有具體地整理過，另一方面也是怕自己將來忘記。所以趁熱大鐵，打算整理成系列。在這個系列裏，我將會涉及到以下兩大類瓶頸的調優：</p>
+
+<ul>
+<li>瓶頸在計算的調優</li>
+<li>瓶頸在數據讀寫的調優</li>
+</ul>
+
+
+<p>在整理時我參考了大量 <a href="https://us.pycon.org/2012/">PyCon 2012</a> 的精彩演講和相關的工具和網站，以一定程度上確保靠譜。</p>
+
+<p>整理和尋找知識系統和方法理論的時候，我使用了非常好用的 Mind Mapping 開源軟件 <a href="http://freemind.sourceforge.net/wiki/index.php/Main_Page">FreeMind</a>，提高效率的 <a href="http://tmux.sourceforge.net/">tmux</a> 和 <a href="http://tmux.sourceforge.net/">Vim</a>。我題外話，推薦一下。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[touch log]]></title>
+    <link href="http://ConanChou.github.com/blog/routine/2012/07/21/touch-log/"/>
+    <updated>2012-07-21T02:05:00-04:00</updated>
+    <id>http://ConanChou.github.com/blog/routine/2012/07/21/touch-log</id>
+    <content type="html"><![CDATA[<p>大半年前就在 HN 上看到一篇文章说 <a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">像黑客一样写博客</a> 的文章。看到标题的时候，我还以为肯定是一篇无聊的炫耀文。可是我错了。文章是 GitHub 的联合创始人 Tom Preston-Werner 写的。他在文中推荐了一种新的写作博客的方式。其实说穿了就是拿 Ruby 世界的 <code>make</code>，<code>rake</code> 来生成基于 markdown 的静态网页，然后将这些网页再部署到 GitHub。</p>
+
+<!-- more -->
+
+
+<p>这看似有点吃饱了撑着，但是仔细想想，确实有不少好处。首先，这样的方案是完全免费的。其次，虽然免费，但不代表 QoS 就差，事实上正好相反。相比较 WordPress 这样的博客平台，它对服务器的要求更低、反应更快。不奇怪嘛，它是纯静态的。再来，写的文稿可以在 Git 中得到版本控制。你不再受网络、环境的影响。想什么时候写就什么写，想在哪里写就在哪里写，因为 Git
+是分布式的。这让写作变得随心所欲。还有就是书写形式是用 markdown，简单快捷。不过据说如果文章变多的时候编译时间会很长。但对于程序员来说这应该是可以忍受的。我们经常遇到一编译就是小半天的情况不是吗。</p>
+
+<p>当时看完后就想换博客。可是那会儿有些忙、加之我还是花钱买的服务器，不用多亏啊，于是就没行动。之后有些空的时候，我便架起来一个，迟迟没有写。毕竟还在用着现在的那个 <a href="http://conanblog.me">conanblog.me</a>。后来的今天，或者说最近的这个礼拜，特别想写一些技术相关记录性的文档。而之前在 <a href="https://github.com/ConanChou/Unix-as-IDE--Chinese-">Unix as IDE Chinese</a> 项目的时候就有非常好的用 markdown 以及 Git
+处理文案的经历，就特别想继续这样的方式。于是决定将来凡是技术相关的文章就在<a href="http://conanchou.github.com">本站</a>写，旧博客会使用到服务器到期。到期之前我会最终把文章备份被转移到这边。</p>
+
+<p>在配置里写描述时，我是写的“Open Source, Computer Science, Linux, Unix, Hack, Programming, Math, Python, Ruby, Lisp”。我没有放 Life，其实也是希望自己能够更多地专注于写有质量的文章。希望能够做到。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>conan@notes:~/ touch log</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+</feed>
