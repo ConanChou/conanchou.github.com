@@ -28,6 +28,10 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!--MathJax CDN-->
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
   
   <script type="text/javascript">
@@ -106,73 +110,71 @@
 
 <p>Octopress 的運行機制很簡單，就是用類似 <code>make</code> 的 <code>rake</code> 將寫好的 <code>markdown</code> 文件轉化成 HTML 文件，皮膚什麼的都也一併生成好，然後再把生成好的一堆靜態文件 <code>push</code> 到 Github 或其他類似的地方。我想不能推送的話應該是可以從 Rakefile 裏找到答案。果不其然：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">mkdir</span> <span class="n">deploy_dir</span>
-</span><span class='line'><span class="n">cd</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">deploy_dir</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="nb">system</span> <span class="s2">&quot;git init&quot;</span>
-</span><span class='line'>  <span class="nb">system</span> <span class="s2">&quot;echo &#39;My Octopress Page is coming soon &amp;hellip;&#39; &gt; index.html&quot;</span>
-</span><span class='line'>  <span class="nb">system</span> <span class="s2">&quot;git add .&quot;</span>
-</span><span class='line'>  <span class="nb">system</span> <span class="s2">&quot;git commit -m </span><span class="se">\&quot;</span><span class="s2">Octopress init</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="nb">system</span> <span class="s2">&quot;git branch -m gh-pages&quot;</span> <span class="k">unless</span> <span class="n">branch</span> <span class="o">==</span> <span class="s1">&#39;master&#39;</span>
-</span><span class='line'>  <span class="nb">system</span> <span class="s2">&quot;git remote add origin </span><span class="si">#{</span><span class="n">repo_url</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="n">rakefile</span> <span class="o">=</span> <span class="no">IO</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">rakefile</span><span class="o">.</span><span class="n">sub!</span><span class="p">(</span><span class="sr">/deploy_branch(\s*)=(\s*)([&quot;&#39;])[\w-]*[&quot;&#39;]/</span><span class="p">,</span> <span class="s2">&quot;deploy_branch</span><span class="se">\\</span><span class="s2">1=</span><span class="se">\\</span><span class="s2">2</span><span class="se">\\</span><span class="s2">3</span><span class="si">#{</span><span class="n">branch</span><span class="si">}</span><span class="se">\\</span><span class="s2">3&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">rakefile</span><span class="o">.</span><span class="n">sub!</span><span class="p">(</span><span class="sr">/deploy_default(\s*)=(\s*)([&quot;&#39;])[\w-]*[&quot;&#39;]/</span><span class="p">,</span> <span class="s2">&quot;deploy_default</span><span class="se">\\</span><span class="s2">1=</span><span class="se">\\</span><span class="s2">2</span><span class="se">\\</span><span class="s2">3push</span><span class="se">\\</span><span class="s2">3&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">f</span><span class="o">.</span><span class="n">write</span> <span class="n">rakefile</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">mkdir</span> <span class="n">deploy_dir</span>
+</span><span class="line"><span class="n">cd</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">deploy_dir</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">do</span>
+</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git init&quot;</span>
+</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;echo &#39;My Octopress Page is coming soon &amp;hellip;&#39; &gt; index.html&quot;</span>
+</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git add .&quot;</span>
+</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git commit -m </span><span class="se">\&quot;</span><span class="s2">Octopress init</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git branch -m gh-pages&quot;</span> <span class="k">unless</span> <span class="n">branch</span> <span class="o">==</span> <span class="s1">&#39;master&#39;</span>
+</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git remote add origin </span><span class="si">#{</span><span class="n">repo_url</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class="line">  <span class="n">rakefile</span> <span class="o">=</span> <span class="no">IO</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span>
+</span><span class="line">  <span class="n">rakefile</span><span class="o">.</span><span class="n">sub!</span><span class="p">(</span><span class="sr">/deploy_branch(\s*)=(\s*)([&quot;&#39;])[\w-]*[&quot;&#39;]/</span><span class="p">,</span> <span class="s2">&quot;deploy_branch</span><span class="se">\\</span><span class="s2">1=</span><span class="se">\\</span><span class="s2">2</span><span class="se">\\</span><span class="s2">3</span><span class="si">#{</span><span class="n">branch</span><span class="si">}</span><span class="se">\\</span><span class="s2">3&quot;</span><span class="p">)</span>
+</span><span class="line">  <span class="n">rakefile</span><span class="o">.</span><span class="n">sub!</span><span class="p">(</span><span class="sr">/deploy_default(\s*)=(\s*)([&quot;&#39;])[\w-]*[&quot;&#39;]/</span><span class="p">,</span> <span class="s2">&quot;deploy_default</span><span class="se">\\</span><span class="s2">1=</span><span class="se">\\</span><span class="s2">2</span><span class="se">\\</span><span class="s2">3push</span><span class="se">\\</span><span class="s2">3&quot;</span><span class="p">)</span>
+</span><span class="line">  <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+</span><span class="line">    <span class="n">f</span><span class="o">.</span><span class="n">write</span> <span class="n">rakefile</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>很顯然，這個 <code>deploy_dir</code> 也是一個單獨的 git 目錄。追溯其根源，也就是默認設置，就是 「_deploy」 目錄。而這個目錄是被 「.gitignore」 排除的。這就難怪爲什麼單純的 <code>clone</code> 沒法工作了。于是完整的 <code>clone</code> 过程如下（包含註解）：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>;: go to the dir you want to put your octopress repo
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd</span> ~/Documents
-</span><span class='line'><span class="nv">$ </span>;: clone repo from your exists octopress repo
-</span><span class='line'><span class="nv">$ </span>git clone git@github.com:ConanChou/conanchou.github.com.git octopress
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>octopress
-</span><span class='line'><span class="nv">$ </span>;: get the <span class="nb">source </span>branch
-</span><span class='line'><span class="nv">$ </span>git checkout -d origin/source <span class="nb">source</span>
-</span><span class='line'><span class="nv">$ </span>;: add original octopress repo to remote <span class="k">for </span>updates
-</span><span class='line'><span class="nv">$ </span>git remote add octopress https://github.com/imathis/octopress.git
-</span><span class='line'><span class="nv">$ </span>;: clone the master branch to _deploy dir
-</span><span class='line'><span class="nv">$ </span>git clone git@github.com:ConanChou/conanchou.github.com.git _deploy
-</span><span class='line'><span class="nv">$ </span>;: install bundles
-</span><span class='line'><span class="nv">$ </span>gem install bundler
-</span><span class='line'><span class="nv">$ </span>bundle install
-</span><span class='line'><span class="nv">$ </span>rake install
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>;: go to the dir you want to put your octopress repo
+</span><span class="line"><span class="nv">$ </span><span class="nb">cd</span> ~/Documents
+</span><span class="line"><span class="nv">$ </span>;: clone repo from your exists octopress repo
+</span><span class="line"><span class="nv">$ </span>git clone git@github.com:ConanChou/conanchou.github.com.git octopress
+</span><span class="line"><span class="nv">$ </span><span class="nb">cd </span>octopress
+</span><span class="line"><span class="nv">$ </span>;: get the <span class="nb">source </span>branch
+</span><span class="line"><span class="nv">$ </span>git checkout -d origin/source <span class="nb">source</span>
+</span><span class="line"><span class="nv">$ </span>;: add original octopress repo to remote <span class="k">for </span>updates
+</span><span class="line"><span class="nv">$ </span>git remote add octopress https://github.com/imathis/octopress.git
+</span><span class="line"><span class="nv">$ </span>;: clone the master branch to _deploy dir
+</span><span class="line"><span class="nv">$ </span>git clone git@github.com:ConanChou/conanchou.github.com.git _deploy
+</span><span class="line"><span class="nv">$ </span>;: install bundles
+</span><span class="line"><span class="nv">$ </span>gem install bundler
+</span><span class="line"><span class="nv">$ </span>bundle install
+</span><span class="line"><span class="nv">$ </span>rake install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Happy hacking!</p>
 </div>
@@ -202,7 +204,7 @@
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/hack/'>Hack</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+    <a class='category' href='/categories/hack/'>Hack</a>, <a class='category' href='/categories/octopress/'>Octopress</a>
   
 </span>
 
