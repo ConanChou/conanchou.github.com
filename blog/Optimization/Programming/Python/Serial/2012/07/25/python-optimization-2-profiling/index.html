@@ -1,207 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[conan@notes:~/]]></title>
-  <link href="http://ConanChou.github.com/atom.xml" rel="self"/>
-  <link href="http://ConanChou.github.com/"/>
-  <updated>2012-08-22T01:37:37-04:00</updated>
-  <id>http://ConanChou.github.com/</id>
-  <author>
-    <name><![CDATA[Conan]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Python 調優筆記·代碼造影 - conan@notes:~/</title>
+  <meta name="author" content="Conan">
 
   
-  <entry>
-    <title type="html"><![CDATA[用 Python 的「神奇方法」元編程]]></title>
-    <link href="http://ConanChou.github.com/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/"/>
-    <updated>2012-08-21T22:41:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods</id>
-    <content type="html"><![CDATA[<p>在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。</p>
-
-<p>什麼是「神奇方法」？其實是我亂翻譯的，英文中大家叫它們「Magic Methods」。我沒有在靜態語言中聽到過這個概念，只在 Python、PHP 這類動態語言中聽到。這是一類比較特殊的方法（Method/Function），是隨語言本身所故有的，在程序中無聲無息地起到作用。它們的命名方式都很特別，比如在 Python 中就是用<code>__</code>開頭用<code>__</code>結尾的方法，而在 PHP
-中則是類似地用<code>__</code>開頭的方法。<!--more-->說他們默默無聞一點不假，因爲正常編程的過程中較少的跟它們打交道，就連官方的文檔都只是用只言片語描述了下，以示存在。然而它們非常重要。幸好有一些熱心人做了<a href="http://www.rafekettler.com/magicmethods.html">一份較爲詳細的文檔</a>可作參考。</p>
-
-<p>「元編程」的概念並不新鮮，簡單而廣義地說就是語言本身可以在運行時被修改或可以增量編譯，那麼我們就可以使用該語言進行元編程。而要實現上述功能，語言本身就需要有反射或者泛型編程的語言特性。這術語聽起來很嚇人，但其實說具體如何實踐就不嚇人了。根據維基百科，實現元編程可以有三種方法。一是語言本身暴露一些本身運行時的 API，然後我們可以通過對調教 API
-來實現元編程。二是語言本身可以動態地執行一些本身是程序方法的字符串表達式。而第三種可能略有爭議，就是撤徹底底用一種可以形容別的語言的系統來生成目標語言。而元編程的目的嘛，自然是更加簡單優美地解決問題啦。元編程這話題本來就博大精深，我可不敢說我很明白，希望觀者掂量着看這些文字吧。</p>
-
-<p>下面就進入正題。我不會在下文中概括所有有關 Python 的元編程方法，而是通過一個我最近遇到的實例來說明兩件事：元編程跟原子彈都姓 Yuan，它們都很強大；Python 的動態和優美賦予其元編程的能力。</p>
-
-<p>前不久我因工作，需要寫一個腳本來訪問某私有 API，並把內容全部按照 json 結構錄入到數據庫中。接口大致上是這樣的類型：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>http://abc.com/jsonrest/api/4.10/search_getRelatedVideos?x=aaa&y=bbb
-</span><span class='line'>http://abc.com/jsonrest/api/4.10/search_getRelatedArticles?x=aaa&y=bbb
-</span><span class='line'>http://abc.com/jsonrest/api/4.10/search_getRelatedTopics?x=aaa&y=bbb</span></code></pre></td></tr></table></div></figure>
-
-
-<p>問題就在於，我要如何做才能簡單而優美地寫一個 API wrapper。這個 wrapper 要可以做到這樣：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">related_articles</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedArticles</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
-</span><span class='line'><span class="n">related_topics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedTopics</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>而且最好我都不需要一個一個地去實現相應的方法，因爲一旦需要呼叫新的 API，我又必须再添加一個個新的方法。所以我最好可以隨意地寫，wrapper 則幫我生成新方法：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># 假设 `calculate_getUnrelatedMusic()` 是個新 API 呼叫方法</span>
-</span><span class='line'><span class="n">unrelated_musics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">calculate_getUnrelatedMusic</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">ccc</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其實說到這裏，我想很多老 Python 程序員應該是想到我要用的「神奇方法」了。沒錯，就是 <code>__getattr__(self, name)</code>。Python 會在找不到所呼叫的 attribute 的時候來調用這個方法。這不正是我想要的嘛，我只要截獲這個方法的邏輯就可以動態生成 API 調用方法了。所以解決方案一下子變得很簡單：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">ABCAPI</span><span class="p">:</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;ABC API wrapper&quot;&quot;&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># 初始化，很常規</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accesskey</span><span class="p">,</span> <span class="n">sharedsecret</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="s">&#39;abc.com&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;4.10&#39;</span><span class="p">):</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">accesskey</span> <span class="o">=</span> <span class="n">accesskey</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sharedsecret</span> <span class="o">=</span> <span class="n">sharedsecret</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># 這個方法是今天的主角。局部變量 name 就是我們上面所提到的 `search_getRelatedArticles`</span>
-</span><span class='line'>    <span class="c"># 之類的方法名。而方法裏的那些參數都會被 `**params` 拿進來。這種寫法有關閉包，不在本文</span>
-</span><span class='line'>    <span class="c"># 討論範疇裏。</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-</span><span class='line'>        <span class="sd">&quot;&quot;&quot;Get API Call&quot;&quot;&quot;</span>
-</span><span class='line'>        <span class="c"># 進了方法先判斷下方法名是不是`__`開頭，只要是就拋異常，這樣 `__getattr__()` 就不會</span>
-</span><span class='line'>        <span class="c"># 失去原有的行爲模式，即保護私有變量或方法。</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="n">name</span>
-</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>            <span class="k">def</span> <span class="nf">caller</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-</span><span class='line'>                <span class="c"># 构建 API URL 的所有东西都在这儿了，这需要按照一定规律把这些材料组建成合法 URL</span>
-</span><span class='line'>                <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_api_url</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="c"># 呼叫刚刚构建好的 URL 并返回结果</span>
-</span><span class='line'>                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">caller</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">#...</span>
-</span><span class='line'>    <span class="c"># other utility methods for building the api url and calling the api</span>
-</span><span class='line'>    <span class="c">#...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>以上就是我认为很优美的解决方案，短小精悍。然而这种用法并没有在我上文提到的那個有關「神奇方法」的文檔裏提及。所以在參考的時候請開動腦筋，不要侷限在作者的框框裏。你可以拿它們來做很多意想不到的事情。</p>
-
-<p>那最後我的這種實現方式到底屬於上文提到的哪種元編程實現方式呢？留作思考題吧～</p>
-]]></content>
-  </entry>
+  <meta name="description" content="在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。 &hellip;">
   
-  <entry>
-    <title type="html"><![CDATA[簡單粗暴解決 Zsh Home 和 End 按鍵問題]]></title>
-    <link href="http://ConanChou.github.com/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/"/>
-    <updated>2012-08-20T22:21:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem</id>
-    <content type="html"><![CDATA[<p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don&#8217;t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。<!--more--></p>
 
-<p>半年前我加入了 <code>Zsh</code> 的用戶陣營，一番配置後倒也用着挺爽。前幾天又去折騰 <code>.zshrc</code> 文件，更爽了，可是 <code>Home</code> 和 <code>End</code> 鍵工作得不正常了，就像這樣：</p>
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>H
-</span><span class='line'>git push origin <span class="nb">source</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>按完 <code>Home</code> 鍵就在我的命令裏加了一個 H 還換行，我居然就這樣「settle」了一段時間。今天實在忍不住，找解決方案。網上的解決方案很多，也有很成熟的，比如用 <code>autoload zkbd</code>
-來問答式生成按鍵和含義對應表的，可我嫌麻煩。更大部分的解決方案只是放一堆配置文件代碼，而事實上這些代碼在不同環境下是不一樣的。所以換句話說這些代碼只是治標不治本，答者沒有授問者以漁。</p>
-
-<p>問題的本身在 <code>bindkey</code> 上。也就是說只要找到對應的按鍵和 <code>Zsh</code> 內的含義接口就可以解決問題。而含義接口就是 <code>beginning-of-line</code> 和 <code>end-of-line</code>。所以只需要找到我們的按鍵碼是什麼就可以了。下面這個小技巧可能鮮爲人知，就是利用 <code>cat</code> 來查看按鍵碼。很簡單，在命令行下直接 <code>cat</code> + 回車，然後接着按你想知道按鍵碼的按鍵，在我的例子裏就是 <code>Home</code> 鍵：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cat
-</span><span class='line'>^<span class="o">[</span>OH
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>接着我又得到了 <code>End</code> 鍵的按鍵碼。最後在 <code>.zshrc</code> 裏添加兩行代碼：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>bindkey <span class="s2">&quot;^[OH&quot;</span> beginning-of-line
-</span><span class='line'>bindkey <span class="s2">&quot;^[OF&quot;</span> end-of-line
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>問題解決，簡單粗暴，但直截了當。Don&#8217;t settle. Happy hacking.</p>
-]]></content>
-  </entry>
   
-  <entry>
-    <title type="html"><![CDATA[關於編程，對我最有用的建議]]></title>
-    <link href="http://ConanChou.github.com/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/"/>
-    <updated>2012-08-20T15:58:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got</id>
-    <content type="html"><![CDATA[<p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">&#8220;The Best Programming Advice I Ever Got&#8221;</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。<!--more--></p>
+  <link rel="canonical" href="http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="conan@notes:~/" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
-<ul>
-<li><p>「寫更少的代碼。」不要覺得寫很多代碼來修補一個 bug 是一件很光榮的事情，有時問題的關鍵只是多餘的一行代碼，刪除即可。寫更多的代碼只會增加維護成本。可以少寫代碼就少寫。</p></li>
-<li><p>「在動手修改代碼前，先仔細理解報錯。」這一點看起來是廢話，但是我自己也好、別人也好，都多多少少犯過這樣的錯誤。原因很簡單，因爲人們寫代碼的時候很多是在壓力下完成的，比如要在下班前完成某個功能，或者在這禮拜前完成教授佈置的編程作業。所以經常就有人在沒有理解報錯的情況下枉自猜測着 debug。結果是反而浪費了很多時間在無用地猜測和推理上。這種現象在新手身上尤爲顯著，這裏的新手跟你寫程序的時間沒有關係，我雖然寫了10年程序，但對 Lisp 這門語言來說我仍然是新手。</p></li>
-<li><p>「讀多於寫，只讀高質量的書籍，一直更新知識庫。」程序員，尤其是老程序員，會傾向與專攻一項技術。當知識水平滿足了現在的工作需求的時候，一些人可能會停止繼續學習。這樣的程序員往往會遇到以下的情況：比如他是 C++ 程序員，兩年後再看別人新寫的 C++  代碼，可能會很不能理解。因爲他們的知識體系老化了。技術也是隨着摩爾定律一起發展的。所以當你完成了四年的大學，你已經有一半的知識快要淘汰。所以，繼續學習，學習更好更新的知識。</p></li>
-<li><p>「學習新的知識，要從更小的切入點進入。」學習新的知識對於程序員來說可以說是家常便飯，可是學得效果是好是壞往往因人而異。導致這種差異的原因有很多，但是我認爲這一點非常關鍵。很多人在學習一個新技術或編程語言的時候偏向於廣泛地學習。事實上這並無助於你對知識的掌握和理解；相反，如果縮小切入點，你能夠學得更好。比如不是學習 JavaScript 一整本厚厚的書，而是學習 JavaScript 的語義學。這樣學習的知識相對少，但是足夠深入；深入之後逐漸會使你學到更廣泛的其他相關知識。這樣你自然能比別人學得好。這也就能解釋爲什麼有些人能夠在短短幾年內成長爲某領域的專家。</p></li>
-<li><p>「以後別碰別人的代碼。」必須在此聲明，<strong>這不是個好建議；相反，你應該更加積極地團隊合作，讓權利鬥爭、包幹領域和理讓得體去見鬼</strong>。事實上這個建議是作者早年在一個大企業裏做的時候某個上司給他的。因爲他私自修改了別人的代碼而帶來了很多人際關係上的麻煩。我覺得這個很大程度上跟企業文化有關係。我相信程序員們都是或多或少有 Hacker 情懷的，所以自由開放的工作環境才是適合我們的。遇到這樣的公司，無論薪資怎樣，都請跳槽吧，這樣的企業不值得你在那裏浪費青春。</p></li>
-<li><p>「debug 前先深入思考。」這一點跟上面的第二點很像。但是作者在文章中提到了在腦中建立模型，深入地理解 bug，這往往不僅可以讓你很快能夠解決局部的 bug，你甚至還能預見更高層次的 bug。</p></li>
-<li><p>「你要重構代碼，你要 TDD」。代碼重構的目的就在於最大程度地使代碼能夠被重用，要做到這一點，最佳方式是銘記「一個 function 只做一件事，並且把這件事做好」。重構後的代碼通常更加短小便於理解，而且小巧的 function debug 起來也更加方便。其二就是你要貫徹 TDD (Test Driven Design/Development)。筆者一度是 TDD 的反對者，因爲我覺得它太麻煩，浪費了太多時間。而事實上，TDD
-恰好可以幫助你節省很多時間。此話怎講？當系統越來越複雜時，任何一個模塊的小變動都有可能引起系統其他部分出錯，那這個時候你可能就需要深入到各個可能出錯的地方尋找癥結。但是如果之前你是一直做 Test 的，那任何新加的模塊或是修改的模塊，只要跑了 Test Suite 你就知道哪兒有問題，而不是等到 release 了，等用戶來給你反饋哪兒哪兒有問題。</p></li>
-<li><p>「重用之前先確保代碼能用」。其實我認爲這是「不要過早重構」的另一種說法。首先你代碼還不能滿足功用的時候你是不知道哪些東西是要擴展的哪些是要重用的。其次如果過早重構很可能讓你一直停滯不前。</p></li>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33556525-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">conan@notes:~/</a></h1>
+  
+    <h2>notes about hack</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:ConanChou.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
 </ul>
 
-
-<p>我在總結的時候就已經對以上的好多條深有共鳴了，這些確確實實對我的工作很有幫助。如果還沒有共鳴那恐怕也只是時間問題吧。</p>
-
-<p>最後我也來分享一下對我一直有深遠影響的建議：「70% 思考，30% 做」。</p>
-]]></content>
-  </entry>
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
   
-  <entry>
-    <title type="html"><![CDATA[Python 調優筆記·代碼造影]]></title>
-    <link href="http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/"/>
-    <updated>2012-07-25T00:14:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling</id>
-    <content type="html"><![CDATA[<p>在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。<!-- more --></p>
+  <header>
+    
+      <h1 class="entry-title">Python 調優筆記·代碼造影</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-25T00:14:00-04:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。<!-- more --></p>
 
 <p>Python 是自帶造影工具的，從 <a href="http://docs.python.org/library/profile.html">官方文檔</a> 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 cProfile 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 <a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">小腳本</a>。</p>
 
@@ -498,67 +399,222 @@
 <p>大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，<code>cProfile</code> 可用於造影模塊的運行，<code>RunSnake</code> 可以幫助可視化造影結果，而 <code>kernprof.py</code> 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。</p>
 
 <p>最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章我會談一談優化「運行機制」。</p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[Python 調優筆記·序]]></title>
-    <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/"/>
-    <updated>2012-07-23T01:19:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1</id>
-    <content type="html"><![CDATA[<p>以往我都以寫命令行下的 Python 腳本爲主。即使做項目也基本是做小規模 Web 類的。所以很少遇到效率太低受不了的情況，所以也鮮有調優的需要。當然，在寫代碼時就已經注意了一些效率問題，所以基本不需要很費心機地調優。可是幾個月前我做了兩個項目，一是一個機器學習引擎，用以學習在線讀者閱讀習慣；另一個是一個下 Chess 的 AI，用以人機對奕。<!-- more -->兩個系統都用 Python 構建。因爲這兩個項目都是 CPU intensive 的，真的是慢的可以。於是這逼得我不得不去研究下有關 Python
-的調優。而在機器學習的項目中，因爲當時自己的服務器實在很爛（只有256 MB 內存），所以得瘋狂得做服務器部署的優化才能讓它處理外部請求和部分邏輯。加上以往的服務器調優經驗，也算是積累了一些有用的東西。</p>
 
-<p>上個禮拜一個朋友跟我討論 Python 以及 Django 網站的調優問題。我告訴了他一些我的經驗。雖然當時聊得很匆忙，可是我想這些信息是有用的，至少對我很有用。一方面我真的沒有具體地整理過，另一方面也是怕自己將來忘記。所以趁熱打鐵，打算整理成系列。在這個系列裏，我將會涉及到以下兩大類瓶頸的調優：</p>
+<span class="byline author vcard">Posted by <span class="fn">Conan</span></span>
 
-<ul>
-<li>瓶頸在計算的調優</li>
-<li>瓶頸在數據讀寫的調優</li>
-</ul>
+      
 
 
-<p>讓我們來看張圖先：</p>
-
-<p><img src="https://public.blu.livefilestore.com/y1pauSVpp8onRf0BIEWig2UQ0yvy0OYj-1bpinVGs6SqA4s4q2qZV1daZXxKrQXoG4ktnb0ddekeu2iTohP_PtyuQ/chart.png?psid=1" title="熱門編程語言速度對比" alt="熱門編程語言速度對比" /></p>
-
-<p>調優之後我們的程序到底能跑多快？猜 V8 JavaScript 的很大膽。但是你還不夠大膽，事實上效果好的情況可以直逼 GCC C。也就是可以提升 20 多倍的速度。而這張圖測試的背景是代碼本身已經優化過的基礎上。那在真實的生產生活中，這個數字可以是上三位數的。</p>
-
-<p>優化是沒有一針見血很徹底的方案的，因爲優化牽扯到程序從編寫到運行的方方面面。有句話說：如果一個程序能夠很正常地運行，那說明沒有地方有問題；但是如果程序出錯了，就有可能不止一處有問題。同樣的道理，調優也是如此。因此，本系列會分很多篇，每一篇針對一個話題。</p>
-
-<ul>
-<li><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/" title="
-Python 調優筆記·代碼造影">代碼造影，定位癥結</a></li>
-</ul>
 
 
-<p>在整理時我參考了大量資料，以一定程度上確保靠譜。</p>
 
-<p>整理和尋找知識系統和方法理論的時候，我使用了非常好用的 Mind Mapping 開源軟件 <a href="http://freemind.sourceforge.net/wiki/index.php/Main_Page">FreeMind</a>，提高效率的 <a href="http://tmux.sourceforge.net/">tmux</a> 和 <a href="http://tmux.sourceforge.net/">Vim</a>。題外話，推薦一下。</p>
-]]></content>
-  </entry>
+
+
+
   
-  <entry>
-    <title type="html"><![CDATA[touch log]]></title>
-    <link href="http://ConanChou.github.com/blog/routine/2012/07/21/touch-log/"/>
-    <updated>2012-07-21T02:05:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/routine/2012/07/21/touch-log</id>
-    <content type="html"><![CDATA[<p>大半年前就在 HN 上看到一篇文章说 <a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">像黑客一样写博客</a> 的文章。看到标题的时候，我还以为肯定是一篇无聊的炫耀文。可是我错了。文章是 GitHub 的联合创始人 Tom Preston-Werner 写的。他在文中推荐了一种新的写作博客的方式。其实说穿了就是拿 Ruby 世界的 <code>make</code>，<code>rake</code> 来生成基于 markdown 的静态网页，然后将这些网页再部署到 GitHub。</p>
-
-<!-- more -->
 
 
-<p>这看似有点吃饱了撑着，但是仔细想想，确实有不少好处。首先，这样的方案是完全免费的。其次，虽然免费，但不代表 QoS 就差，事实上正好相反。相比较 WordPress 这样的博客平台，它对服务器的要求更低、反应更快。不奇怪嘛，它是纯静态的。再来，写的文稿可以在 Git 中得到版本控制。你不再受网络、环境的影响。想什么时候写就什么写，想在哪里写就在哪里写，因为 Git
-是分布式的。这让写作变得随心所欲。还有就是书写形式是用 markdown，简单快捷。不过据说如果文章变多的时候编译时间会很长。但对于程序员来说这应该是可以忍受的。我们经常遇到一编译就是小半天的情况不是吗。</p>
+<time datetime="2012-07-25T00:14:00-04:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time>
+      
 
-<p>当时看完后就想换博客。可是那会儿有些忙、加之我还是花钱买的服务器，不用多亏啊，于是就没行动。之后有些空的时候，我便架起来一个，迟迟没有写。毕竟还在用着现在的那个 <a href="http://conanblog.me">conanblog.me</a>。后来的今天，或者说最近的这个礼拜，特别想写一些技术相关记录性的文档。而之前在 <a href="https://github.com/ConanChou/Unix-as-IDE--Chinese-">Unix as IDE Chinese</a> 项目的时候就有非常好的用 markdown 以及 Git
-处理文案的经历，就特别想继续这样的方式。于是决定将来凡是技术相关的文章就在<a href="http://conanchou.github.com">本站</a>写，旧博客会使用到服务器到期。到期之前我会最终把文章备份被转移到这边。</p>
-
-<p>在配置里写描述时，我是写的“Open Source, Computer Science, Linux, Unix, Hack, Programming, Math, Python, Ruby, Lisp”。我没有放 Life，其实也是希望自己能够更多地专注于写有质量的文章。希望能够做到。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>conan@notes:~/ touch log</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
+<span class="categories">
   
-</feed>
+    <a class='category' href='/blog/categories/optimization/'>Optimization</a>, <a class='category' href='/blog/categories/programming/'>Programming</a>, <a class='category' href='/blog/categories/python/'>Python</a>, <a class='category' href='/blog/categories/serial/'>Serial</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/" data-via="ConanChou" data-counturl="http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/" title="Previous Post: Python 調優筆記·序">&laquo; Python 調優筆記·序</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/" title="Next Post: 關於編程，對我最有用的建議">關於編程，對我最有用的建議 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/">用 Python 的「神奇方法」元編程</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/">簡單粗暴解決 Zsh Home 和 End 按鍵問題</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/">關於編程，對我最有用的建議</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">Python 調優筆記·代碼造影</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/">Python 調優筆記·序</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/ConanChou">@ConanChou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'ConanChou',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("ConanChou", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/ConanChou" class="twitter-follow-button" data-show-count="true">Follow @ConanChou</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/ConanChou?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/ConanChou">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/102737685811403816436?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Conan -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'conannotes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/';
+        var disqus_url = 'http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
