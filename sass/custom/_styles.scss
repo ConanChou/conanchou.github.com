@@ -1,2 +1,33 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+@import "custom/coderay";
+@import "custom/keys";
+p, li {
+  code {
+    background: $code-bg;
+    font-size: 13px;
+  }
+  pre code { font-size: 12pt !important; background: none; border: none; }
+}
+
+pre, .highlight, .gist-highlight {
+  &::-webkit-scrollbar { height: .7em; background: $solar-scroll-bg; }
+}
+
+.CodeRay {
+  background: $code-bg;
+  border: none;
+  pre {
+    margin-bottom: 2.1em;
+  }
+}
+
+.CodeRay pre, .CodeRay .highlight,.CodeRay .gist-highlight {
+  background-color: $code-bg;
+  color: black;
+  border: 1px solid silver;
+  &::-webkit-scrollbar { height: .7em; background: rgba(black, .1); }
+  &::-webkit-scrollbar-thumb:horizontal { background: rgba(black, .10); -webkit-border-radius: 4px; border-radius: 4px }
+}
+
+span.CodeRay { font-size: 13px; padding: 0 }

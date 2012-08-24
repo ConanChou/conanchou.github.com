@@ -32,8 +32,14 @@ source: source
 destination: public
 plugins: plugins
 code_dir: downloads/code
-category_dir: blog/categories
-markdown: rdiscount
+category_dir: categories
+#markdown: rdiscount
+markdown: kramdown
+kramdown:
+  use_coderay: true
+  coderay:
+    coderay_line_numbers:
+    coderay_css: class
 pygments: false # default python pygments have been replaced by pygments.rb
 
 paginate: 10          # Posts per page on the blog index
