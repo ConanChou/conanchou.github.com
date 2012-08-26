@@ -4,7 +4,7 @@
   <title><![CDATA[conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2012-08-24T01:54:11-04:00</updated>
+  <updated>2012-08-26T02:51:54-04:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,120 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python 調優筆記·無經驗主義調優]]></title>
+    <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/"/>
+    <updated>2012-08-26T00:10:00-04:00</updated>
+    <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling</id>
+    <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「無經驗主義調優」，當然這裏只指代碼級別的調優。<!--more--></p>
+
+<p>我們要做的第一步就是學會使用代碼造影，上次我們討論的幾個工具並不是你每次每個都要使用，但是先做大範圍的模塊造影，再做有針對性的行造影是造影的常規步驟。</p>
+
+<p>經過上面的第一步，我們會得到一組有問題的代碼。能直接解決的可以直接解決，不能直接找到原因的就是下面我重點要講的了。因爲 Python 是相對很高級的語言，很多底層細節會被隱藏掉，這從某種程度上加大了找出癥結的難度。換句話說，只要能夠摸清楚某行有問題的代碼到底怎麼執行的，那基本也就能夠推導出問題所在了。所以「無經驗主義調優」的問題就被簡化爲「如何弄懂代碼到底幹什麼」的問題。</p>
+
+<p>爲此去讀長篇的文檔當然算是一個辦法，很學院派，但是並不是很高效。另一條路就是「Disassembling」，有 C 背景的同學多半是聽過這個詞的。說白了，就是把程序執行時在內存裏的每一步操作都打印出來，以供分析。（如果對此不瞭解的同學可以到我翻譯的開源文集<a href="http://www.conanblog.me/Unix-as-IDE-CN/html/compiling.html#id3">相關章節</a>學習）其實 Python 也可以 Disassembling，不過這和 C 的有些區別。因爲我們知道 Python 在運行時，其機制和 Java 是類似的，都是從源碼到字節碼，即
+bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛擬機裏運行。所以 Python 裏面的 Disassembling 其實是字節碼層面的。下面用到的工具就來自 Python 自帶的 <code><span class="CodeRay">dis</span></code>。</p>
+
+<p>我們繼續之前的<a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">代碼例子</a>，只是假設我們現在還不知道「慢」的原因。目前的狀況是我們知道了瓶頸在 <code><span class="CodeRay">calculate_z_serial_purepython()</span></code> 裏，並且通過行造影，我們知道 <code><span class="CodeRay">z[i] = z[i]*z[i] +q[i]</span></code> 花了很多时间。现在我们来 Disassembling：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pure_python_slow</span>
+</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">dis</span>
+</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="n">pure_python_slow</span><span class="o">.</span><span class="n">calculate_z_serial_purepython</span><span class="p">)</span>
+</span><span class="line"><span class="c"># 前略</span>
+</span><span class="line">
+</span><span class="line"> <span class="mi">32</span>     <span class="o">&gt;&gt;</span>   <span class="mi">90</span> <span class="n">SETUP_LOOP</span>              <span class="mi">86</span> <span class="p">(</span><span class="n">to</span> <span class="mi">179</span><span class="p">)</span>
+</span><span class="line">             <span class="mi">93</span> <span class="n">LOAD_GLOBAL</span>              <span class="mi">1</span> <span class="p">(</span><span class="nb">range</span><span class="p">)</span>
+</span><span class="line">             <span class="mi">96</span> <span class="n">LOAD_FAST</span>                <span class="mi">1</span> <span class="p">(</span><span class="n">maxiter</span><span class="p">)</span>
+</span><span class="line">             <span class="mi">99</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span>
+</span><span class="line">            <span class="mi">102</span> <span class="n">GET_ITER</span>
+</span><span class="line">        <span class="o">&gt;&gt;</span>  <span class="mi">103</span> <span class="n">FOR_ITER</span>                <span class="mi">72</span> <span class="p">(</span><span class="n">to</span> <span class="mi">178</span><span class="p">)</span>
+</span><span class="line">            <span class="mi">106</span> <span class="n">STORE_FAST</span>               <span class="mi">5</span> <span class="p">(</span><span class="n">iteration</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"> <span class="mi">33</span>         <span class="mi">109</span> <span class="n">LOAD_FAST</span>                <span class="mi">2</span> <span class="p">(</span><span class="n">z</span><span class="p">)</span>   <span class="c"># 載入 z</span>
+</span><span class="line">            <span class="mi">112</span> <span class="n">LOAD_FAST</span>                <span class="mi">4</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>   <span class="c"># 載入 i</span>
+</span><span class="line">            <span class="mi">115</span> <span class="n">BINARY_SUBSCR</span>                    <span class="c"># 獲得 z[i] 的值</span>
+</span><span class="line">            <span class="mi">116</span> <span class="n">LOAD_FAST</span>                <span class="mi">2</span> <span class="p">(</span><span class="n">z</span><span class="p">)</span>   <span class="c"># 載入 z</span>
+</span><span class="line">            <span class="mi">119</span> <span class="n">LOAD_FAST</span>                <span class="mi">4</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>   <span class="c"># 載入 i</span>
+</span><span class="line">            <span class="mi">122</span> <span class="n">BINARY_SUBSCR</span>                    <span class="c"># 獲得 z[i] 的值</span>
+</span><span class="line">            <span class="mi">123</span> <span class="n">BINARY_MULTIPLY</span>                  <span class="c"># 計算 z[i]*z[i]</span>
+</span><span class="line">            <span class="mi">124</span> <span class="n">LOAD_FAST</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">q</span><span class="p">)</span>   <span class="c"># 載入 q</span>
+</span><span class="line">            <span class="mi">127</span> <span class="n">LOAD_FAST</span>                <span class="mi">4</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>   <span class="c"># 載入 i</span>
+</span><span class="line">            <span class="mi">130</span> <span class="n">BINARY_SUBSCR</span>                    <span class="c"># 獲得 q[i] 的值</span>
+</span><span class="line">            <span class="mi">131</span> <span class="n">BINARY_ADD</span>                       <span class="c"># 計算 z[i]*z[i]+q[i]</span>
+</span><span class="line">            <span class="mi">132</span> <span class="n">LOAD_FAST</span>                <span class="mi">2</span> <span class="p">(</span><span class="n">z</span><span class="p">)</span>   <span class="c"># 載入 z</span>
+</span><span class="line">            <span class="mi">135</span> <span class="n">LOAD_FAST</span>                <span class="mi">4</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>   <span class="c"># 載入 i</span>
+</span><span class="line">            <span class="mi">138</span> <span class="n">STORE_SUBSCR</span>                     <span class="c"># 保存剛剛的計算結果進 z[i]</span>
+</span><span class="line">
+</span><span class="line"> <span class="mi">34</span>         <span class="mi">139</span> <span class="n">LOAD_GLOBAL</span>              <span class="mi">2</span> <span class="p">(</span><span class="nb">abs</span><span class="p">)</span> <span class="c"># 載入 abs 方法</span>
+</span><span class="line">            <span class="mi">142</span> <span class="n">LOAD_FAST</span>                <span class="mi">2</span> <span class="p">(</span><span class="n">z</span><span class="p">)</span>   <span class="c"># 載入 z</span>
+</span><span class="line">            <span class="mi">145</span> <span class="n">LOAD_FAST</span>                <span class="mi">4</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>   <span class="c"># 載入 i</span>
+</span><span class="line">            <span class="mi">148</span> <span class="n">BINARY_SUBSCR</span>                    <span class="c"># 獲得 z[i]</span>
+</span><span class="line">            <span class="mi">149</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span>       <span class="c"># 執行 abs 方法</span>
+</span><span class="line">            <span class="mi">152</span> <span class="n">LOAD_CONST</span>               <span class="mi">6</span> <span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="c"># 載入 2.0</span>
+</span><span class="line">            <span class="mi">155</span> <span class="n">COMPARE_OP</span>               <span class="mi">4</span> <span class="p">(</span><span class="o">&gt;</span><span class="p">)</span>   <span class="c"># 將 abd 的執行結果和 2.0 比較</span>
+</span><span class="line">            <span class="mi">158</span> <span class="n">POP_JUMP_IF_FALSE</span>      <span class="mi">103</span>       <span class="c"># 根據結果跳到 103</span>
+</span><span class="line">
+</span><span class="line"><span class="c"># 後略</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>因爲我們已經將我們的注意力定在了這幾行，所以我略去了前後無關的內容。後面的註釋是我加的，說實話光是註釋就加得累死我了，那問題看來也很顯然了吧。太多重複調用了，非常不科學。</p>
+
+<p>這裏對輸出的每一列的內容做一個介紹，以便理解，從左往右：</p>
+
+<ol>
+  <li>對應源碼的行號</li>
+  <li>當前指令用 <code>--&gt;</code> 表示，上面的例子中沒有</li>
+  <li>有標記的指令用 <code>&gt;&gt;</code> 表示</li>
+  <li>指令地址</li>
+  <li>指令名</li>
+  <li>指令傳入參數</li>
+  <li>解析參數後對應原程序裏的變量名、常量、分支目標和比較符號</li>
+</ol>
+
+<p>至於指令名的具體含義，請參考<a href="http://docs.python.org/library/dis.html#python-bytecode-instructions">官方文檔</a>。</p>
+
+<p>以上便是「無經驗主義調優」。我想我必須強調，「過早優化」沒有好處。所以，use it wisely.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用另一臺計算機寫 Octopress]]></title>
