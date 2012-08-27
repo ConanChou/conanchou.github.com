@@ -22,8 +22,7 @@ categories: [Python, Optimization, Serial, Programming]
 
 優化是沒有一針見血很徹底的方案的，因爲優化牽扯到程序從編寫到運行的方方面面。有句話說：如果一個程序能夠很正常地運行，那說明沒有地方有問題；但是如果程序出錯了，就有可能不止一處有問題。同樣的道理，調優也是如此。因此，本系列會分很多篇，每一篇針對一個話題。
 
-- [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ "
-Python 調優筆記·代碼造影")
+{% render_partial documentation/_partials/Python_optimization_serial_TOC.markdown %}
 
 在整理時我參考了大量資料，以一定程度上確保靠譜。
 

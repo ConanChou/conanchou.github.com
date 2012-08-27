@@ -195,3 +195,5 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，`cProfile` 可用於造影模塊的運行，`RunSnake` 可以幫助可視化造影結果，而 `kernprof.py` 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。
 
 最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章我會談一談優化「運行機制」。
+
+{% render_partial documentation/_partials/Python_optimization_serial_TOC.markdown %}
