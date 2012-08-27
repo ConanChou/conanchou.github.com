@@ -14,13 +14,15 @@ categories: [Python, Optimization, Serial, Programming]
 
 $$O(1)>O(\log n)>O(n\log n)>O(n^2)>O(n^3)>O(n^k)>O(k^n)>O(n!)$$
 
-## `dict`{:lang="python"} > `list`{:lang="python"}
+### `dict`{:lang="python"} > `list`{:lang="python"}
 
 `dict`{:lang="python"} 的數據結構是 Hash Table，查找的時間複雜度 是$$O(1)$$；而 `list`{:lang="python"} 的數據結構是 Array，查找的時間複雜度是 $$O(n)$$。
 
-## `dict[]`{:lang="python"} > `dict.get()`{:lang="python"}
+### `dict[]`{:lang="python"} > `dict.get()`{:lang="python"}
 
-http://wiki.python.org/moin/PythonSpeed/PerformanceTips?highlight=%28%28PythonSpeed%7CPerformanceTips%29%29
-http://www.ibm.com/developerworks/cn/linux/l-cn-python-optim/index.html?ca=drs#ibm-pcon
+
+<http://wiki.python.org/moin/PythonSpeed/PerformanceTips?highlight=%28%28PythonSpeed%7CPerformanceTips%29%29>
+
+<http://www.ibm.com/developerworks/cn/linux/l-cn-python-optim/index.html?ca=drs#ibm-pcon>
 
 {% render_partial documentation/_partials/Python_optimization_serial_TOC.markdown %}
