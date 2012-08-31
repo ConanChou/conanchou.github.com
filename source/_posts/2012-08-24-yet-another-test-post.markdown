@@ -32,3 +32,12 @@ end
 `std::cout << "Hello World";`{:lang="c++"}
 
 $$R_{ab} - {\textstyle 1 \over 2}R\,g_{ab} + \Lambda\ g_{ab} = \kappa\, T_{ab}$$
+
+{% pullquote left %}
+Surround your paragraph with the pull quote tags. Then when you come to
+the text you want to pull, {" surround it like this "} and that's all there is to it.
+{% endpullquote %}
+
+{% pullquote left %}
+Surround your paragraph with the pull quote tags. Then when you come to the text you want to pull, \{" surround it like this "\ and that's all there is to it.}
+{% endpullquote %}

@@ -29,10 +29,12 @@ $$O(1)>O(\log n)>O(n\log n)>O(n^2)>O(n^3)>O(n^k)>O(k^n)>O(n!)$$
 前者與生俱來的 `|`(union)、`&`(intersection) 和 `-`(difference) 運算就比 `list` 的迭代式效率高。所以涉及到 `list` 的這三種運算，最佳方案是轉成 `set` 再用相應的 `set` 運算符計算，最後再轉到 `list`。例如：
 
 {% codeblock lang:python %}
-list(set(list_a) | set(list_b))
+list(set(listA) | set(listB))
 {% endcodeblock %}
 
 ### `str.join()` > `str + str`
+
+Python 字符串都是不可變的類型，任何類似改變字符串的操作其實都得拷貝原字符串。
 
 ### 內置函數 > 正則表達式
 
