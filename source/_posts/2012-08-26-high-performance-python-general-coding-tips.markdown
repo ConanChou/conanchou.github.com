@@ -20,6 +20,26 @@ $$O(1)>O(\log n)>O(n\log n)>O(n^2)>O(n^3)>O(n^k)>O(k^n)>O(n!)$$
 
 ### `dict[]`{:lang="python"} > `dict.get()`{:lang="python"}
 
+前者叫直接獲取，如果 `key` 超出了範圍會報錯；而後者是通過 `dict` 的方法調用，如果超出 `key` 範圍，它會將默認值賦給剛剛查詢的 `key`。顯然 `get()` 做了很多事情，慢一些是預料之中的。
+
+這裏插一句題外話。有時候你確實需要類似 `get()` 所提供的效果，即這種容錯性，有些程序員傾向於用 `try...except...` 和 `dict[]` 來實現。在以前，這兩者在運行速度上區別還比較大，新版本的 Python 在這兩種方案下表現得比較一致，只有 10% 的性能差異。所以在這種情況下用 `dict.get()` 其實是個不錯的選擇。
+
+### `set` > `list`
+
+前者與生俱來的 `|`(union)、`&`(intersection) 和 `-`(difference) 運算就比 `list` 的迭代式效率高。所以涉及到 `list` 的這三種運算，最佳方案是轉成 `set` 再用相應的 `set` 運算符計算，最後再轉到 `list`。例如：
+
+{% codeblock lang:python %}
+list(set(list_a) | set(list_b))
+{% endcodeblock %}
+
+### `str.join()` > `str + str`
+
+### 內置函數 > 正則表達式
+
+### 局部變量做緩存
+
+###
+
 
 <http://wiki.python.org/moin/PythonSpeed/PerformanceTips?highlight=%28%28PythonSpeed%7CPerformanceTips%29%29>
 
