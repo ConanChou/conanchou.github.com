@@ -28,6 +28,10 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!--MathJax CDN-->
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
   
   <script type="text/javascript">
@@ -114,98 +118,94 @@
 
 <p>前不久我因工作，需要寫一個腳本來訪問某私有 API，並把內容全部按照 json 結構錄入到數據庫中。接口大致上是這樣的類型：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>http://abc.com/jsonrest/api/4.10/search_getRelatedVideos?x=aaa&y=bbb
-</span><span class='line'>http://abc.com/jsonrest/api/4.10/search_getRelatedArticles?x=aaa&y=bbb
-</span><span class='line'>http://abc.com/jsonrest/api/4.10/search_getRelatedTopics?x=aaa&y=bbb</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">http://abc.com/jsonrest/api/4.10/search_getRelatedVideos?x=aaa&amp;y=bbb
+</span><span class="line">http://abc.com/jsonrest/api/4.10/search_getRelatedArticles?x=aaa&amp;y=bbb
+</span><span class="line">http://abc.com/jsonrest/api/4.10/search_getRelatedTopics?x=aaa&amp;y=bbb</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>問題就在於，我要如何做才能簡單而優美地寫一個 API wrapper。這個 wrapper 要可以做到這樣：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">related_articles</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedArticles</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
-</span><span class='line'><span class="n">related_topics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedTopics</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">related_articles</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedArticles</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
+</span><span class="line"><span class="n">related_topics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedTopics</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>而且最好我都不需要一個一個地去實現相應的方法，因爲一旦需要呼叫新的 API，我又必须再添加一個個新的方法。所以我最好可以隨意地寫，wrapper 則幫我生成新方法：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># 假设 `calculate_getUnrelatedMusic()` 是個新 API 呼叫方法</span>
-</span><span class='line'><span class="n">unrelated_musics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">calculate_getUnrelatedMusic</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">ccc</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># 假设 `calculate_getUnrelatedMusic()` 是個新 API 呼叫方法</span>
+</span><span class="line"><span class="n">unrelated_musics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">calculate_getUnrelatedMusic</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">ccc</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>其實說到這裏，我想很多老 Python 程序員應該是想到我要用的「神奇方法」了。沒錯，就是 <code>__getattr__(self, name)</code>。Python 會在找不到所呼叫的 attribute 的時候來調用這個方法。這不正是我想要的嘛，我只要截獲這個方法的邏輯就可以動態生成 API 調用方法了。所以解決方案一下子變得很簡單：</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">ABCAPI</span><span class="p">:</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;ABC API wrapper&quot;&quot;&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># 初始化，很常規</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accesskey</span><span class="p">,</span> <span class="n">sharedsecret</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="s">&#39;abc.com&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;4.10&#39;</span><span class="p">):</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">accesskey</span> <span class="o">=</span> <span class="n">accesskey</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sharedsecret</span> <span class="o">=</span> <span class="n">sharedsecret</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
-</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c"># 這個方法是今天的主角。局部變量 name 就是我們上面所提到的 `search_getRelatedArticles`</span>
-</span><span class='line'>    <span class="c"># 之類的方法名。而方法裏的那些參數都會被 `**params` 拿進來。這種寫法有關閉包，不在本文</span>
-</span><span class='line'>    <span class="c"># 討論範疇裏。</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-</span><span class='line'>        <span class="sd">&quot;&quot;&quot;Get API Call&quot;&quot;&quot;</span>
-</span><span class='line'>        <span class="c"># 進了方法先判斷下方法名是不是`__`開頭，只要是就拋異常，這樣 `__getattr__()` 就不會</span>
-</span><span class='line'>        <span class="c"># 失去原有的行爲模式，即保護私有變量或方法。</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="n">name</span>
-</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>            <span class="k">def</span> <span class="nf">caller</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-</span><span class='line'>                <span class="c"># 构建 API URL 的所有东西都在这儿了，这需要按照一定规律把这些材料组建成合法 URL</span>
-</span><span class='line'>                <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_api_url</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="c"># 呼叫刚刚构建好的 URL 并返回结果</span>
-</span><span class='line'>                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-</span><span class='line'>            <span class="k">return</span> <span class="n">caller</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c">#...</span>
-</span><span class='line'>    <span class="c"># other utility methods for building the api url and calling the api</span>
-</span><span class='line'>    <span class="c">#...</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">ABCAPI</span><span class="p">:</span>
+</span><span class="line">    <span class="sd">&quot;&quot;&quot;ABC API wrapper&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line">    <span class="c"># 初始化，很常規</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accesskey</span><span class="p">,</span> <span class="n">sharedsecret</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="s">&#39;abc.com&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;4.10&#39;</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">accesskey</span> <span class="o">=</span> <span class="n">accesskey</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">sharedsecret</span> <span class="o">=</span> <span class="n">sharedsecret</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+</span><span class="line">
+</span><span class="line">    <span class="c"># 這個方法是今天的主角。局部變量 name 就是我們上面所提到的 `search_getRelatedArticles`</span>
+</span><span class="line">    <span class="c"># 之類的方法名。而方法裏的那些參數都會被 `**params` 拿進來。這種寫法有關閉包，不在本文</span>
+</span><span class="line">    <span class="c"># 討論範疇裏。</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span><span class="line">        <span class="sd">&quot;&quot;&quot;Get API Call&quot;&quot;&quot;</span>
+</span><span class="line">        <span class="c"># 進了方法先判斷下方法名是不是`__`開頭，只要是就拋異常，這樣 `__getattr__()` 就不會</span>
+</span><span class="line">        <span class="c"># 失去原有的行爲模式，即保護私有變量或方法。</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">):</span>
+</span><span class="line">            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="n">name</span>
+</span><span class="line">        <span class="k">else</span><span class="p">:</span>
+</span><span class="line">            <span class="k">def</span> <span class="nf">caller</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+</span><span class="line">                <span class="c"># 构建 API URL 的所有东西都在这儿了，这需要按照一定规律把这些材料组建成合法 URL</span>
+</span><span class="line">                <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_api_url</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">                <span class="c"># 呼叫刚刚构建好的 URL 并返回结果</span>
+</span><span class="line">                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span><span class="line">            <span class="k">return</span> <span class="n">caller</span>
+</span><span class="line">
+</span><span class="line">    <span class="c">#...</span>
+</span><span class="line">    <span class="c"># other utility methods for building the api url and calling the api</span>
+</span><span class="line">    <span class="c">#...</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>以上就是我认为很优美的解决方案，短小精悍。然而这种用法并没有在我上文提到的那個有關「神奇方法」的文檔裏提及。所以在參考的時候請開動腦筋，不要侷限在作者的框框裏。你可以拿它們來做很多意想不到的事情。</p>
 
@@ -237,7 +237,7 @@
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/programming/'>Programming</a>, <a class='category' href='/blog/categories/python/'>Python</a>
+    <a class='category' href='/categories/programming/'>Programming</a>, <a class='category' href='/categories/python/'>Python</a>
   
 </span>
 
@@ -260,6 +260,8 @@
         <a class="basic-alignment left" href="/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/" title="Previous Post: 簡單粗暴解決 Zsh Home 和 End 按鍵問題">&laquo; 簡單粗暴解決 Zsh Home 和 End 按鍵問題</a>
       
       
+        <a class="basic-alignment right" href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/" title="Next Post: 用另一臺計算機寫 Octopress">用另一臺計算機寫 Octopress &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -279,6 +281,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">Python 調優筆記·理性主義調優</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/">用另一臺計算機寫 Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/">用 Python 的「神奇方法」元編程</a>
       </li>
     
@@ -288,14 +298,6 @@
     
       <li class="post">
         <a href="/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/">關於編程，對我最有用的建議</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">Python 調優筆記·代碼造影</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/">Python 調優筆記·序</a>
       </li>
     
   </ul>

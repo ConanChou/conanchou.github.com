@@ -9,7 +9,7 @@
   <meta name="author" content="Conan">
 
   
-  <meta name="description" content="在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。 什麼是「神奇方法」？其實是我亂翻譯的，英文中大家叫它們「Magic Methods」。我沒有在靜態語言中聽到過這個概念，只在 Python、PHP 這類動態語言中聽到。這是一類比較特殊的方法（Method/ &hellip;">
+  <meta name="description" content="上次我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -28,6 +28,10 @@
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!--MathJax CDN-->
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
   
   <script type="text/javascript">
@@ -76,6 +80,84 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">Python 調優筆記·理性主義調優</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-26T00:10:00-04:00" pubdate data-updated="true">Aug 26<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「理性主義調優」，當然這裏只指代碼級別的調優。（理性主義相對於經驗主義，是兩個相對的哲學流派。）</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/">用另一臺計算機寫 Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-23T23:26:00-04:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch <code>clone</code> 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -147,7 +229,7 @@
   </header>
 
 
-  <div class="entry-content"><p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don&#8217;t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。</div>
+  <div class="entry-content"><p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don’t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。</div>
   
   
     <footer>
@@ -186,7 +268,7 @@
   </header>
 
 
-  <div class="entry-content"><p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">&#8220;The Best Programming Advice I Ever Got&#8221;</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。</div>
+  <div class="entry-content"><p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">“The Best Programming Advice I Ever Got”</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。</div>
   
   
     <footer>
@@ -329,6 +411,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">Python 調優筆記·理性主義調優</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/">用另一臺計算機寫 Octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/">用 Python 的「神奇方法」元編程</a>
       </li>
     
@@ -338,14 +428,6 @@
     
       <li class="post">
         <a href="/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/">關於編程，對我最有用的建議</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">Python 調優筆記·代碼造影</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/">Python 調優筆記·序</a>
       </li>
     
   </ul>
