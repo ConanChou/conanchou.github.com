@@ -4,7 +4,7 @@
   <title><![CDATA[conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2012-08-26T02:51:54-04:00</updated>
+  <updated>2012-09-01T17:29:24-04:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -14,15 +14,15 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Python 調優筆記·無經驗主義調優]]></title>
+    <title type="html"><![CDATA[Python 調優筆記·理性主義調優]]></title>
     <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/"/>
     <updated>2012-08-26T00:10:00-04:00</updated>
     <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling</id>
-    <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「無經驗主義調優」，當然這裏只指代碼級別的調優。<!--more--></p>
+    <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「理性主義調優」，當然這裏只指代碼級別的調優。（理性主義相對於經驗主義，是兩個相對的哲學流派。）<!--more--></p>
 
 <p>我們要做的第一步就是學會使用代碼造影，上次我們討論的幾個工具並不是你每次每個都要使用，但是先做大範圍的模塊造影，再做有針對性的行造影是造影的常規步驟。</p>
 
-<p>經過上面的第一步，我們會得到一組有問題的代碼。能直接解決的可以直接解決，不能直接找到原因的就是下面我重點要講的了。因爲 Python 是相對很高級的語言，很多底層細節會被隱藏掉，這從某種程度上加大了找出癥結的難度。換句話說，只要能夠摸清楚某行有問題的代碼到底怎麼執行的，那基本也就能夠推導出問題所在了。所以「無經驗主義調優」的問題就被簡化爲「如何弄懂代碼到底幹什麼」的問題。</p>
+<p>經過上面的第一步，我們會得到一組有問題的代碼。能直接解決的可以直接解決，不能直接找到原因的就是下面我重點要講的了。因爲 Python 是相對很高級的語言，很多底層細節會被隱藏掉，這從某種程度上加大了找出癥結的難度。換句話說，只要能夠摸清楚某行有問題的代碼到底怎麼執行的，那基本也就能夠推導出問題所在了。所以「理性主義調優」的問題就被簡化爲「如何弄懂代碼到底幹什麼」的問題。</p>
 
 <p>爲此去讀長篇的文檔當然算是一個辦法，很學院派，但是並不是很高效。另一條路就是「Disassembling」，有 C 背景的同學多半是聽過這個詞的。說白了，就是把程序執行時在內存裏的每一步操作都打印出來，以供分析。（如果對此不瞭解的同學可以到我翻譯的開源文集<a href="http://www.conanblog.me/Unix-as-IDE-CN/html/compiling.html#id3">相關章節</a>學習）其實 Python 也可以 Disassembling，不過這和 C 的有些區別。因爲我們知道 Python 在運行時，其機制和 Java 是類似的，都是從源碼到字節碼，即
 bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛擬機裏運行。所以 Python 裏面的 Disassembling 其實是字節碼層面的。下面用到的工具就來自 Python 自帶的 <code><span class="CodeRay">dis</span></code>。</p>
@@ -123,7 +123,19 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 <p>至於指令名的具體含義，請參考<a href="http://docs.python.org/library/dis.html#python-bytecode-instructions">官方文檔</a>。</p>
 
-<p>以上便是「無經驗主義調優」。我想我必須強調，「過早優化」沒有好處。所以，use it wisely.</p>
+<p>以上便是「理性主義調優」。我想我必須強調，「過早優化」沒有好處。所以，use it wisely.</p>
+
+<hr />
+
+<p>本文是『Python 調優筆記』系列中的一篇，其它文章還有：</p>
+
+<ul>
+  <li><a href="http://localhost:4000/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/" title="Python 調優筆記·序">序，一切的開始</a></li>
+  <li><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/" title=" Python 調優筆記·代碼造影">代碼造影，定位癥結</a></li>
+  <li><a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/" title="Python 調優筆記·理性主義調優">理性主義調優，一切從根本出發</a></li>
+  <li><a href="localhost" title="Python 調優筆記·經驗主義調優">經驗主義調優，站在巨人的肩膀上</a></li>
+</ul>
+
 ]]></content>
   </entry>
   
@@ -191,7 +203,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 </span><span class="line"><span class="nv">$ </span>git clone git@github.com:ConanChou/conanchou.github.com.git octopress
 </span><span class="line"><span class="nv">$ </span><span class="nb">cd </span>octopress
 </span><span class="line"><span class="nv">$ </span>;: get the <span class="nb">source </span>branch
-</span><span class="line"><span class="nv">$ </span>git checkout -d origin/source <span class="nb">source</span>
+</span><span class="line"><span class="nv">$ </span>git checkout -b origin/source <span class="nb">source</span>
 </span><span class="line"><span class="nv">$ </span>;: add original octopress repo to remote <span class="k">for </span>updates
 </span><span class="line"><span class="nv">$ </span>git remote add octopress https://github.com/imathis/octopress.git
 </span><span class="line"><span class="nv">$ </span>;: clone the master branch to _deploy dir
@@ -689,6 +701,18 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 <p>大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，<code>cProfile</code> 可用於造影模塊的運行，<code>RunSnake</code> 可以幫助可視化造影結果，而 <code>kernprof.py</code> 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。</p>
 
 <p>最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章我會談一談優化「運行機制」。</p>
+
+<hr />
+
+<p>本文是『Python 調優筆記』系列中的一篇，其它文章還有：</p>
+
+<ul>
+  <li><a href="http://localhost:4000/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/" title="Python 調優筆記·序">序，一切的開始</a></li>
+  <li><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/" title=" Python 調優筆記·代碼造影">代碼造影，定位癥結</a></li>
+  <li><a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/" title="Python 調優筆記·理性主義調優">理性主義調優，一切從根本出發</a></li>
+  <li><a href="localhost" title="Python 調優筆記·經驗主義調優">經驗主義調優，站在巨人的肩膀上</a></li>
+</ul>
+
 ]]></content>
   </entry>
   
@@ -715,9 +739,15 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 <p>優化是沒有一針見血很徹底的方案的，因爲優化牽扯到程序從編寫到運行的方方面面。有句話說：如果一個程序能夠很正常地運行，那說明沒有地方有問題；但是如果程序出錯了，就有可能不止一處有問題。同樣的道理，調優也是如此。因此，本系列會分很多篇，每一篇針對一個話題。</p>
 
+<hr />
+
+<p>本文是『Python 調優筆記』系列中的一篇，其它文章還有：</p>
+
 <ul>
-  <li><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/" title="
-Python 調優筆記·代碼造影">代碼造影，定位癥結</a></li>
+  <li><a href="http://localhost:4000/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/" title="Python 調優筆記·序">序，一切的開始</a></li>
+  <li><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/" title=" Python 調優筆記·代碼造影">代碼造影，定位癥結</a></li>
+  <li><a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/" title="Python 調優筆記·理性主義調優">理性主義調優，一切從根本出發</a></li>
+  <li><a href="localhost" title="Python 調優筆記·經驗主義調優">經驗主義調優，站在巨人的肩膀上</a></li>
 </ul>
 
 <p>在整理時我參考了大量資料，以一定程度上確保靠譜。</p>
