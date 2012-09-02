@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/categories/programming/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2012-09-01T17:42:12-04:00</updated>
+  <updated>2012-09-02T04:27:23-04:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -135,7 +135,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 - [序，一切的開始](http://localhost:4000/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/ "Python 調優筆記·序")
 - [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ " Python 調優筆記·代碼造影")
 - [理性主義調優，一切從根本出發](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/ "Python 調優筆記·理性主義調優")
-- [經驗主義調優，站在巨人的肩膀上](localhost "Python 調優筆記·經驗主義調優")
+- [經驗主義調優，站在巨人的肩膀上](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/ "Python 調優筆記·經驗主義調優")
 </p>
 ]]></content>
   </entry>
@@ -463,7 +463,7 @@ def __getattr__(self, name):
 <p>這三行裏就有兩個小問題。</p>
 
 <ul>
-  <li>首先是 32 行，在 Python 3.x 之前，<code>range()</code> 和 <code>xrange()</code> 還是有區別的。前者會在內存中真的生成 <code>list</code>，而後者只是返回一個類似的 object。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
+  <li>首先是 32 行，在 Python 3.x 之前，<code>range()</code> 和 <code>xrange()</code> 還是有區別的。前者會在內存中真的生成 <code>list</code>，而後者只是返回一個類似的 object （我們會在<a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/">第四篇</a>中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
   <li>33、34 行一直在直接從 <code>list</code> 裏查詢數據，而查詢時間複雜度是 O(n)，所以這樣做勢必會消耗更多時間。</li>
 </ul>
 
@@ -556,7 +556,7 @@ def __getattr__(self, name):
 
 <p>大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，<code>cProfile</code> 可用於造影模塊的運行，<code>RunSnake</code> 可以幫助可視化造影結果，而 <code>kernprof.py</code> 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。</p>
 
-<p>最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章我會談一談優化「運行機制」。</p>
+<p>最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章裏我會談一談優化「運行機制」。</p>
 
 <p>
 ***
@@ -566,7 +566,7 @@ def __getattr__(self, name):
 - [序，一切的開始](http://localhost:4000/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/ "Python 調優筆記·序")
 - [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ " Python 調優筆記·代碼造影")
 - [理性主義調優，一切從根本出發](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/ "Python 調優筆記·理性主義調優")
-- [經驗主義調優，站在巨人的肩膀上](localhost "Python 調優筆記·經驗主義調優")
+- [經驗主義調優，站在巨人的肩膀上](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/ "Python 調優筆記·經驗主義調優")
 </p>
 ]]></content>
   </entry>
@@ -602,7 +602,7 @@ def __getattr__(self, name):
 - [序，一切的開始](http://localhost:4000/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/ "Python 調優筆記·序")
 - [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ " Python 調優筆記·代碼造影")
 - [理性主義調優，一切從根本出發](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/ "Python 調優筆記·理性主義調優")
-- [經驗主義調優，站在巨人的肩膀上](localhost "Python 調優筆記·經驗主義調優")
+- [經驗主義調優，站在巨人的肩膀上](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/ "Python 調優筆記·經驗主義調優")
 </p>
 
 <p>在整理時我參考了大量資料，以一定程度上確保靠譜。</p>
