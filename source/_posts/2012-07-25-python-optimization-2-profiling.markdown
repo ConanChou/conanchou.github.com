@@ -8,7 +8,7 @@ categories: [Optimization, Programming, Python, Serial]
 
 在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。<!-- more -->
 
-Python 是自帶造影工具的，從 [官方文檔](http://docs.python.org/library/profile.html) 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 cProfile 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 [小腳本](https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py)。
+Python 是自帶造影工具的，從 [官方文檔](http://docs.python.org/library/profile.html) 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 `cProfile`{:lang="python"} 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 [小腳本](https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py)。
 
 我們不妨先來運行一下該腳本：
 
@@ -33,7 +33,7 @@ Total sum of elements (for validation): 1148485
 $ python -m cProfile -o rep.prof pure_python_slow.py
 {% endcodeblock %}
 
-用這種方法可以對整個腳本進行 profiling，然後把結果輸出到 `rep.prof` 中。當然對於一些較大的項目，這麼做是不恰當的，因爲一些大的項目往往有人機交互，所以使用這樣的方式來獲取運行時長顯然不可行。所以 `cProfile` 也提供了 function 方式的調用，也就是說可以在代碼裏使用它。而事實上官網的文檔就是這樣用的。使用 Django
+用這種方法可以對整個腳本進行 profiling，然後把結果輸出到 `rep.prof`{:lang="python"} 中。當然對於一些較大的項目，這麼做是不恰當的，因爲一些大的項目往往有人機交互，所以使用這樣的方式來獲取運行時長顯然不可行。所以 `cProfile`{:lang="python"} 也提供了 function 方式的調用，也就是說可以在代碼裏使用它。而事實上官網的文檔就是這樣用的。使用 Django
 的同學可以試試[這樣的代碼](http://djangosnippets.org/snippets/727/)。
 
 接着我們來分析一下所得的 profile，在與生成的 profile 文件同目錄下打開 Python 交互命令行：
@@ -63,12 +63,12 @@ Sun May 13 20:12:47 2012    rep.prof
 
 {% endcodeblock %}
 
-這裏我們可以看出，加了 `cProfile` 原來的程序會運行得略慢一些。這也是意料之中的。
+這裏我們可以看出，加了 `cProfile`{:lang="python"} 原來的程序會運行得略慢一些。這也是意料之中的。
 
 下面我們來仔細看一下造影報告，也就是從第十一行開始的表格。
-表格第一行是總時間，第二行是 `calc_pure_python` 所用時間，而第三行是 `calculate_z_serial_purepython` 所用時間，以此類推。從以上的這個表格我們至少可以判斷：大部分時間都花在了 `calculate_z_serial_purepython` 上。
+表格第一行是總時間，第二行是 `calc_pure_python`{:lang="python"} 所用時間，而第三行是 `calculate_z_serial_purepython`{:lang="python"} 所用時間，以此類推。從以上的這個表格我們至少可以判斷：大部分時間都花在了 `calculate_z_serial_purepython`{:lang="python"} 上。
 
-可能這個表格並不是很直觀。那下面我再介紹一種更加直觀的方式 —— `runsnake`。我們回到命令行，用 `runsnake` 跑剛剛生成的造影文件（`rep.prof`）:
+可能這個表格並不是很直觀。那下面我再介紹一種更加直觀的方式 —— `runsnake`{:lang="sh"}。我們回到命令行，用 `runsnake`{:lang="sh"} 跑剛剛生成的造影文件（`rep.prof`{:lang="python"}）:
 
 {% codeblock lang:sh %}
 $ runsnake res.prof
@@ -78,7 +78,7 @@ $ runsnake res.prof
 
 ![RunSnake 運行結果](https://xiil8w.blu.livefilestore.com/y1p-S46t388afLR5WALVXfzfgc36A_zh3jlEMbbjm3ouwkI1KEl7CRTPE8OS9mmtW7MZBCkujoUHT19OkiolKb1Dvd37IW8WMd-/runsnake.png?psid=1 "RunSnake 運行結果")
 
-現在顯而易見了吧， `calculate_z_serial_purepython` 就是花時間最多的。可是到底是什麼使得它花這麼久，還是不能從上圖中找到原因。很顯然不是因爲 `<abs>` 和 `<range>`。于是我们定位到这个 function：
+現在顯而易見了吧， `calculate_z_serial_purepython`{:lang="python"} 就是花時間最多的。可是到底是什麼使得它花這麼久，還是不能從上圖中找到原因。很顯然不是因爲 `<abs>` 和 `<range>`。于是我们定位到这个 function：
 
 {% codeblock function calculate_z_serial_purepython lang:python %}
 def calculate_z_serial_purepython(q, maxiter, z):
@@ -98,7 +98,7 @@ def calculate_z_serial_purepython(q, maxiter, z):
 
 有經驗的 Python 程序員可能已經知道問題出在哪裏了，但是我先賣個關子。當然目的是爲了介紹下面的一個造影工具 —— `kernprof.py`，line profiling，行造影工具。
 
-相比之下，使用 `kernprof.py` 略麻煩一點。你得在需要做“行造影”的 function 前面加一個 decorator `@profile`，然后运行：
+相比之下，使用 `kernprof.py` 略麻煩一點。你得在需要做“行造影”的 function 前面加一個 decorator `@profile`{:lang="python"}，然后运行：
 
 {% codeblock lang:sh %}
 $ kernprof.py -l -v pure_python_slow_lineprof.py
@@ -138,10 +138,10 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 
 這三行裏就有兩個小問題。
 
-- 首先是 32 行，在 Python 3.x 之前，`range()` 和 `xrange()` 還是有區別的。前者會在內存中真的生成 `list`，而後者只是返回一個類似的 object。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。
-- 33、34 行一直在直接從 `list` 裏查詢數據，而查詢時間複雜度是 O(n)，所以這樣做勢必會消耗更多時間。
+- 首先是 32 行，在 Python 3.x 之前，`range()`{:lang="python"} 和 `xrange()`{:lang="python"} 還是有區別的。前者會在內存中真的生成 `list`{:lang="python"}，而後者只是返回一個類似的 object （我們會在[第四篇](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/)中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。
+- 33、34 行一直在直接從 `list`{:lang="python"} 裏查詢數據，而查詢時間複雜度是 O(n)，所以這樣做勢必會消耗更多時間。
 
-所以通過分析，我們知道就以上的第一點而言，我們即使改用成 `xrange()`，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：
+所以通過分析，我們知道就以上的第一點而言，我們即使改用成 `xrange()`{:lang="python"}，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：
 
 {% codeblock lang:python %}
 def calculate_z_serial_purepython(q, maxiter, z):
@@ -192,8 +192,8 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 
 看似沒有多大提升？確實，就每行時間上來看確實沒有多大提升，但是從總時間看，有了差不多兩秒的提升。而且如果我把行造影去掉，裸跑的話，速度的提升更加顯著一些（大約 6 秒）。有人說這樣的提升要不要都也無所謂，其實不然。我剛剛說到 scope，如果放大 scope，原先兩秒的優勢可能會被放大到 20 分鐘甚至更多。
 
-大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，`cProfile` 可用於造影模塊的運行，`RunSnake` 可以幫助可視化造影結果，而 `kernprof.py` 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。
+大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，`cProfile`{:lang="python"} 可用於造影模塊的運行，`RunSnake`{:lang="sh"} 可以幫助可視化造影結果，而 `kernprof.py` 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。
 
-最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章我會談一談優化「運行機制」。
+最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章裏我會談一談優化「運行機制」。
 
 {% render_partial documentation/_partials/Python_optimization_serial_TOC.markdown %}

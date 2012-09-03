@@ -33,15 +33,20 @@ end
 ``` bash
 $ ;: go to the dir you want to put your octopress repo
 $ cd ~/Documents
+
 $ ;: clone repo from your exists octopress repo
 $ git clone git@github.com:ConanChou/conanchou.github.com.git octopress
 $ cd octopress
+
 $ ;: get the source branch
-$ git checkout -d origin/source source
+$ git checkout -b source origin/source 
+
 $ ;: add original octopress repo to remote for updates
 $ git remote add octopress https://github.com/imathis/octopress.git 
+
 $ ;: clone the master branch to _deploy dir
 $ git clone git@github.com:ConanChou/conanchou.github.com.git _deploy
+
 $ ;: install bundles
 $ gem install bundler
 $ bundle install
