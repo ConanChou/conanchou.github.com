@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Optimization | conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/categories/optimization/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2012-09-03T00:44:13-04:00</updated>
+  <updated>2012-09-03T17:36:49-04:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -679,7 +679,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 <ul>
   <li>首先是 32 行，在 Python 3.x 之前，<code><span class="CodeRay"><span class="predefined">range</span>()</span></code> 和 <code><span class="CodeRay"><span class="predefined">xrange</span>()</span></code> 還是有區別的。前者會在內存中真的生成 <code><span class="CodeRay"><span class="predefined">list</span></span></code>，而後者只是返回一個類似的 object （我們會在<a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/">第四篇</a>中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
-  <li>33、34 行一直在直接從 <code><span class="CodeRay"><span class="predefined">list</span></span></code> 裏查詢數據，而查詢時間複雜度是 O(n)，所以這樣做勢必會消耗更多時間。</li>
+  <li>33、34 行一直在直接從 <code><span class="CodeRay"><span class="predefined">list</span></span></code> 裏查詢數據，而雖然查詢時間複雜度是 <script type="math/tex">O(1)</script>，但是代碼一遍又一遍地 <code><span class="CodeRay">get</span></code> 和 <code><span class="CodeRay"><span class="predefined">set</span></span></code>，這樣做勢必會消耗更多時間。</li>
 </ul>
 
 <p>所以通過分析，我們知道就以上的第一點而言，我們即使改用成 <code><span class="CodeRay"><span class="predefined">xrange</span>()</span></code>，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：</p>
