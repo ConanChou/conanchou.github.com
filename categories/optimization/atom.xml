@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Optimization | conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/categories/optimization/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2012-09-03T17:36:49-04:00</updated>
+  <updated>2013-02-18T05:25:40-05:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·經驗主義調優]]></title>
-    <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/"/>
+    <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/"/>
     <updated>2012-08-26T14:56:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips</id>
+    <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">上一次我們聊了「理性主義」</a>，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。<!--more--></p>
 
 <p>在列舉各種「術」之前，先說「道」（術指具體做事的方法，道指做事的原理）。領悟了道之後才能在不同情況下做出正確的選擇。一般而言，調優無非在兩方面做優化：時間複雜度和空間複雜度。有時候時間和空間會互相矛盾，而這個時候就不得不在它們中做取捨。不同的應用取捨的決定因素是不一樣的。不過就目前而言，因爲空間越來越廉價，時間越來越寶貴，大部分時候人們會偏向與用空間換時間。當然也有兩者不矛盾的時候，這個時候肯定是綜合複雜度越小越好。除了空間、時間複雜度的取捨之外，還有一個可讀性的問題，實際上有時候爲了優化代碼，可讀性會下降不少。所以這個也是個要權衡的方面。</p>

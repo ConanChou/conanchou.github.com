@@ -48,16 +48,22 @@
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/
+            http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/
         </loc>
         <lastmod>2012-09-03T00:29:29-04:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://ConanChou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/
+        </loc>
+        <lastmod>2013-02-18T05:24:10-05:00</lastmod>
+    </url>
+    <url>
         <loc>http://ConanChou.github.com/</loc>
-        <lastmod>2012-09-03T17:35:26-04:00</lastmod>
+        <lastmod>2013-02-18T05:24:10-05:00</lastmod>
     </url>
     <url>
         <loc>http://ConanChou.github.com/blog/archives/</loc>
-        <lastmod>2012-09-03T17:35:26-04:00</lastmod>
+        <lastmod>2013-02-18T05:24:10-05:00</lastmod>
     </url>
 </urlset>
