@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Arch | conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/categories/arch/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2013-02-18T05:25:40-05:00</updated>
+  <updated>2013-02-18T05:29:02-05:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -236,8 +236,8 @@ $ speaker-test -c 2
 <p>沒問題的話你應該可以聽到一些噪音。當然你也可以通過官網的方法測試：</p>
 
 <p><code>bash
-wget http://www.freespecialeffects.co.uk/soundfx/sirens/police_s.wav
-aplay police_s.wav
+$ wget http://www.freespecialeffects.co.uk/soundfx/sirens/police_s.wav
+$ aplay police_s.wav
 </code></p>
 
 <p>如果遇到這樣的報錯：</p>
