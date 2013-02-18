@@ -6,6 +6,8 @@ comments: true
 categories: [Raspberry-Pi, Hack, Arch, Linux, Go]
 ---
 
+原文地址：[http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/](http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/)
+
 [Raspberry Pi](http://www.raspberrypi.org/) 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於[種種原因](http://www.conanblog.me/life/where-are-we/)，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差。<!--more-->
 
 ## 硬件
