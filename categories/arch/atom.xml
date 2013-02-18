@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Arch | conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/categories/arch/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2013-02-18T05:40:12-05:00</updated>
+  <updated>2013-02-18T14:02:23-05:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -18,9 +18,9 @@
     <link href="http://ConanChou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/"/>
     <updated>2013-02-17T17:11:00-05:00</updated>
     <id>http://ConanChou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi</id>
-    <content type="html"><![CDATA[<p>原文地址：<a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/</a></p>
+    <content type="html"><![CDATA[<p>Tl;dr. 原文地址：<a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/</a></p>
 
-<p><a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差。<!--more--></p>
+<p><a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
 
 <h2 id="section">硬件</h2>
 
@@ -351,10 +351,15 @@ $ cp 8192cu.ko /lib/modules/$(uname -r)/kernel/net/wireless
 $ depmod -a
 $ insmod 8192cu.ko
 $ install -p -m 644 ~/RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622/8192cu.ko /lib/modules/($uname -r)/kernel/drivers/net/wireless/
-$ reboot
 </code></p>
 
-<p>重新登錄後先看看驱动模块能不能用，如果有問題就再回到之前的部分仔細走一遍：</p>
+<p>驅動裝完後我們還得看看有沒有衝突的驅動，用<code>mkinitcpio -M</code>查看。如果发现列表里有<code>rtl8192cu</code>，我們得禁用它才能保證新的驅動正常工作：</p>
+
+<p><code>bash
+$ echo "blacklist rtl8192cu" &gt; /etc/modprobe.d/blacklist-rtl8192cu.conf
+</code></p>
+
+<p>重啓並登錄後先看看驱动模块能不能用，如果有問題就再回到之前的部分仔細走一遍：</p>
 
 <p><code>bash
 $ sudo su

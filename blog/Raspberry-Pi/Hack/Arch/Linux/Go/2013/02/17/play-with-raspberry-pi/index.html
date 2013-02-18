@@ -9,7 +9,7 @@
   <meta name="author" content="Conan">
 
   
-  <meta name="description" content="原文地址：http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/ Raspberry Pi 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay &hellip;">
+  <meta name="description" content="Tl;dr. 原文地址：http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/ Raspberry Pi 剛剛在 HN 上紅起來的時候，我就果斷通過 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,9 +106,9 @@
   </header>
 
 
-<div class="entry-content"><p>原文地址：<a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/</a></p>
+<div class="entry-content"><p>Tl;dr. 原文地址：<a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/</a></p>
 
-<p><a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差。<!--more--></p>
+<p><a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
 
 <h2 id="section">硬件</h2>
 
@@ -518,15 +518,19 @@
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-<span class="line-number">5</span>
 </pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>cp 8192cu.ko /lib/modules/<span class="k">$(</span>uname -r<span class="k">)</span>/kernel/net/wireless
 </span><span class="line"><span class="nv">$ </span>depmod -a
 </span><span class="line"><span class="nv">$ </span>insmod 8192cu.ko
 </span><span class="line"><span class="nv">$ </span>install -p -m 644 ~/RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622/8192cu.ko /lib/modules/<span class="o">(</span><span class="nv">$uname</span> -r<span class="o">)</span>/kernel/drivers/net/wireless/
-</span><span class="line"><span class="nv">$ </span>reboot
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>重新登錄後先看看驱动模块能不能用，如果有問題就再回到之前的部分仔細走一遍：</p>
+<p>驅動裝完後我們還得看看有沒有衝突的驅動，用<code>mkinitcpio -M</code>查看。如果发现列表里有<code>rtl8192cu</code>，我們得禁用它才能保證新的驅動正常工作：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">&quot;blacklist rtl8192cu&quot;</span> &gt; /etc/modprobe.d/blacklist-rtl8192cu.conf
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>重啓並登錄後先看看驱动模块能不能用，如果有問題就再回到之前的部分仔細走一遍：</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
