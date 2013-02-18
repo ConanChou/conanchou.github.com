@@ -6,9 +6,9 @@ comments: true
 categories: [Raspberry-Pi, Hack, Arch, Linux, Go]
 ---
 
-原文地址：[http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/](http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/)
+Tl;dr. 原文地址：[http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/](http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/)
 
-[Raspberry Pi](http://www.raspberrypi.org/) 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於[種種原因](http://www.conanblog.me/life/where-are-we/)，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差。<!--more-->
+[Raspberry Pi](http://www.raspberrypi.org/) 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於[種種原因](http://www.conanblog.me/life/where-are-we/)，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more-->
 
 ## 硬件
 
@@ -340,10 +340,15 @@ $ cp 8192cu.ko /lib/modules/$(uname -r)/kernel/net/wireless
 $ depmod -a
 $ insmod 8192cu.ko
 $ install -p -m 644 ~/RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622/8192cu.ko /lib/modules/($uname -r)/kernel/drivers/net/wireless/
-$ reboot
 ```
 
-重新登錄後先看看驱动模块能不能用，如果有問題就再回到之前的部分仔細走一遍：
+驅動裝完後我們還得看看有沒有衝突的驅動，用`mkinitcpio -M`查看。如果发现列表里有`rtl8192cu`，我們得禁用它才能保證新的驅動正常工作：
+
+```bash
+$ echo "blacklist rtl8192cu" > /etc/modprobe.d/blacklist-rtl8192cu.conf
+```
+
+重啓並登錄後先看看驱动模块能不能用，如果有問題就再回到之前的部分仔細走一遍：
 
 ```bash
 $ sudo su
