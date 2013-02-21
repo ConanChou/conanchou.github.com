@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/categories/linux/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2013-02-18T14:02:23-05:00</updated>
+  <updated>2013-02-20T23:45:14-05:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Raspberry Pi 下載盒]]></title>
+    <link href="http://ConanChou.github.com/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
+    <updated>2013-02-20T17:03:00-05:00</updated>
+    <id>http://ConanChou.github.com/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
+    <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more--></p>
+
+<h2 id="section">環境搭建</h2>
+
+<p>OS 環境就跟上一篇日誌說的一樣，應用程序我隨便挑了個 Transmission。它有 daemon 模式跑，有簡單好用的 Web UI，最主要的是它也支持 Private Tracker（在國外下載東西還是這種類型的比較安全）：</p>
+
+<p><code>bash
+$ sudo su
+$ pacman -S transmission-cli
+</code></p>
+
+<p>daemon 模式執行：</p>
+
+<p><code>bash
+$ cp /usr/lib/systemd/system/transmission.service /etc/systemd/system/
+$ cp /usr/lib/tmpfiles.d/transmission.conf /etc/tmpfiles.d/
+$ groupadd transmission
+$ gpasswd -a conan transmission
+</code></p>
+
+<p>修改<code>/etc/tmpfiles.d/transmission.conf</code>，將<code>user</code>和<code>group</code>替換成我們剛剛設置的‘conan’和‘transmission’。接着啓用剛剛的配置：</p>
+
+<p><code>bash
+$ systemd-tmpfiles --create transmission.conf
+$ systemctl daemon-reload
+</code></p>
+
+<p>別忘了把<code>/run/transmission</code>的權限設置成<code>777</code>：</p>
+
+<p><code>bash
+$ chmod 777 /run/transmission
+</code></p>
+
+<p>硬件方面，我不可能往我4GB的小SD卡裏面存儲，所以我用了一塊自供電的外接硬盤。將它<code>mount</code>起來，其方法很多，可以手動mount也可以修改<code>/etc/fstab</code>自動化mount。這個示例裏我就從簡，手動添加了（因爲這塊硬盤是NTFS的，之後我需要格式化一下，所以只是暫時使用）：</p>
+
+<p><code>bash
+$ mkdir /mnt/disk500
+$ mount /dev/sda1 /mnt/disk500
+</code></p>
+
+<p>將<code>disk500</code>裏的「Downloads」軟連接到<code>~/Downloads</code>：</p>
+
+<p><code>bash
+$ ln -s /mnt/disk500/Downloads/ ~/Downloads
+</code></p>
+
+<h2 id="section-1">使用情況</h2>
+
+<p>這樣就可以通過<a href="http://127.0.0.1:9091">http://127.0.0.1:9091</a>來管理下載了。下面是效果圖。</p>
+
+<p><img src="http://conanchou.github.com/images/20130220/WebUI.png" alt="Web UI" title="Web UI" /></p>
+
+<p><img src="http://conanchou.github.com/images/20130220/peers.png" alt="Peers" title="Peers" /></p>
+
+<p>速度還不錯吧，再來看一下內存和CPU使用情況：</p>
+
+<p><img src="http://conanchou.github.com/images/20130220/top.png" alt="top" title="top" /></p>
+
+<p>可以發現，其實 Transmission 內存使用並沒有很嚇人，反而是 NTFS 用掉了很多CPU資源，這也是爲什麼我上面說到要格式化這塊硬盤的原因。</p>
+
+<p>最後我持續關注了下載速度，遇到了我之前也遇到過的一個問題，就是速度時上時下的，波動特別大。我之前用 Transmission 就會這樣，還時不時斷網，後來換了別的 BT 客戶端就沒這樣過，所以我想這應該是 Transmission 某些設置的問題。我也嘗試去找一些解決方案，可是基本都不是很有效。求高人答疑解惑。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi + Arch + WiFi + Sound + Go 簡記]]></title>
