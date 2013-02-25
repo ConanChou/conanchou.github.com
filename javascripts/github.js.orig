@@ -13,15 +13,25 @@ var github = (function(){
   return {
     showRepos: function(options){
       $.ajax({
+<<<<<<< HEAD
+          url: "https://api.github.com/users/"+options.user+"/repos?callback=?"
+=======
           url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?"
+>>>>>>> 4790b939807be4d9abcc567f02773ff24b99320d
         , type: 'jsonp'
         , error: function (err) { $(options.target + ' li.loading').addClass('error').text("Error loading feed"); }
         , success: function(data) {
           var repos = [];
           if (!data || !data.data) { return; }
           for (var i = 0; i < data.data.length; i++) {
+<<<<<<< HEAD
+            var currentRepo = data.data[i];
+            if (options.skip_forks && currentRepo.fork) { continue; }
+            repos.push(currentRepo);
+=======
             if (options.skip_forks && data.data[i].fork) { continue; }
             repos.push(data.data[i]);
+>>>>>>> 4790b939807be4d9abcc567f02773ff24b99320d
           }
           if (options.count) { repos.splice(options.count); }
           render(options.target, repos);
