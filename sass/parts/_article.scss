@@ -56,13 +56,13 @@ article{
 		}
 		h2{
 			font-weight: 300;
-			border-bottom: 1px solid $color-gray04;
+			border-top: 1px dashed $color-gray04;
 			position: relative;
 			&:before{
 				content: "";
 				position: absolute;
-				bottom: -2px;
-				border-bottom: 1px solid $color-gray05;
+				top: 0.5px;
+				border-top: 1px dashed $color-gray05;
 				width: 100%;
 			}
 		}
@@ -110,10 +110,10 @@ article{
 			&:before{
 				content: "\f040";
 				color: $color-gray03;
-				font: 1.3em $font-icon;
-				line-height: 1.6em;
+				font: 1em $font-icon;
 				position: absolute;
-				left: 0;
+				left: 5px;
+                top: 8px;
 			}
 		}
 		.video-container{
