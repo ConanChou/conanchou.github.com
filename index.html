@@ -1,96 +1,105 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>conan@notes:~/</title>
-  <meta name="author" content="Conan">
+	<meta charset="utf-8">
+	<title>conan@notes:~/</title>
+	<meta name="author" content="Conan">
 
-  
-  <meta name="description" content="上一篇日誌我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。">
-  
+	
+	<meta name="description" content="Feb 20th, 2013 Arch, BitTorrent, Linux, Raspberry-Pi Raspberry Pi 下載盒 上一篇日誌我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄 &hellip;">
+	
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
-  <link rel="canonical" href="http://ConanChou.github.com/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="conan@notes:~/" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+	<link href="/atom.xml" rel="alternate" title="conan@notes:~/" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://ConanChou.github.com/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<!--MathJax CDN-->
-<script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-33556525-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
 
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">conan@notes:~/</a></h1>
-  
-    <h2>notes about hack</h2>
-  
-</hgroup>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		document.write("<img src='http://www.gravatar.com/avatar/" + MD5("conanchou1412@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;'");
+	</script>
+</div>
+<h1><a href="/">conan@notes:~/</a></h1>
+<p class="subtitle">notes about hack</p>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
 </ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:ConanChou.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
 </nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/">Raspberry Pi 下載盒</a></h1>
-    
-    
-      <p class="meta">
-        
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/102737685811403816436?rel=author" title="Google+">Google+</a>
+		
+		
+		<a class="twitter" href="http://twitter.com/ConanChou" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/ConanChou" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		<a class="delicious" href="http://delicious.com/ConanChou" title="Delicious">Delicious</a>
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+<div id="banner" class="inner">
+	<div class="container">
+		<ul class="feed"></ul>
+	</div>
+	<small><a href="http://twitter.com/ConanChou">ConanChou</a> @ <a href="http://twitter.com">Twitter</a></small>
+	<div class="loading">Loading...</div>
+</div>
+<script src="/javascripts/twitter.js"></script>
+<script type="text/javascript">
+	(function($){
+		$('#banner').getTwitterFeed('ConanChou', 4, false);
+	})(jQuery);
+</script>
+
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+<div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -102,34 +111,29 @@
   
 
 
-<time datetime="2013-02-20T17:03:00-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
+<time datetime="2013-02-20T17:03:00-05:00" data-updated="true" itemprop="datePublished">Feb 20<span>th</span>, 2013</time></div>
+		<div class="tags">
 
 
-  <div class="entry-content"><p><a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/">Read on &rarr;</a>
-    </footer>
-  
+	<a class='category' href='/categories/arch/'>Arch</a>, <a class='category' href='/categories/bittorrent/'>BitTorrent</a>, <a class='category' href='/categories/linux/'>Linux</a>, <a class='category' href='/categories/raspberry-pi/'>Raspberry-Pi</a>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">Raspberry Pi + Arch + WiFi + Sound + Go 簡記</a></h1>
-    
-    
-      <p class="meta">
-        
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/" itemprop="url">Raspberry Pi 下載盒</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。
+		
+		<a href="/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -141,36 +145,31 @@
   
 
 
-<time datetime="2013-02-17T17:11:00-05:00" pubdate data-updated="true">Feb 17<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
+<time datetime="2013-02-17T17:11:00-05:00" data-updated="true" itemprop="datePublished">Feb 17<span>th</span>, 2013</time></div>
+		<div class="tags">
 
 
-  <div class="entry-content"><p>Tl;dr. 原文地址：<a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/</a></p>
-
-<p><a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">Read on &rarr;</a>
-    </footer>
-  
+	<a class='category' href='/categories/arch/'>Arch</a>, <a class='category' href='/categories/go/'>Go</a>, <a class='category' href='/categories/hack/'>Hack</a>, <a class='category' href='/categories/linux/'>Linux</a>, <a class='category' href='/categories/raspberry-pi/'>Raspberry-Pi</a>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">Python 調優筆記·經驗主義調優</a></h1>
-    
-    
-      <p class="meta">
-        
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/" itemprop="url">Raspberry Pi + Arch + WiFi + Sound + Go 簡記</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Tl;dr. 原文地址：<a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/</a></p>
+
+<p><a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。
+		
+		<a href="/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -182,34 +181,29 @@
   
 
 
-<time datetime="2012-08-26T14:56:00-04:00" pubdate data-updated="true">Aug 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
+<time datetime="2012-08-26T14:56:00-04:00" data-updated="true" itemprop="datePublished">Aug 26<span>th</span>, 2012</time></div>
+		<div class="tags">
 
 
-  <div class="entry-content"><p><a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">上一次我們聊了「理性主義」</a>，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">Read on &rarr;</a>
-    </footer>
-  
+	<a class='category' href='/categories/optimization/'>Optimization</a>, <a class='category' href='/categories/programming/'>Programming</a>, <a class='category' href='/categories/python/'>Python</a>, <a class='category' href='/categories/serial/'>Serial</a>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">Python 調優筆記·理性主義調優</a></h1>
-    
-    
-      <p class="meta">
-        
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/" itemprop="url">Python 調優筆記·經驗主義調優</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">上一次我們聊了「理性主義」</a>，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。
+		
+		<a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -221,34 +215,29 @@
   
 
 
-<time datetime="2012-08-26T00:10:00-04:00" pubdate data-updated="true">Aug 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
+<time datetime="2012-08-26T00:10:00-04:00" data-updated="true" itemprop="datePublished">Aug 26<span>th</span>, 2012</time></div>
+		<div class="tags">
 
 
-  <div class="entry-content"><p><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「理性主義調優」，當然這裏只指代碼級別的調優。（理性主義相對於經驗主義，是兩個相對的哲學流派。）</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">Read on &rarr;</a>
-    </footer>
-  
+	<a class='category' href='/categories/optimization/'>Optimization</a>, <a class='category' href='/categories/programming/'>Programming</a>, <a class='category' href='/categories/python/'>Python</a>, <a class='category' href='/categories/serial/'>Serial</a>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/">用另一臺計算機寫 Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/" itemprop="url">Python 調優筆記·理性主義調優</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「理性主義調優」，當然這裏只指代碼級別的調優。（理性主義相對於經驗主義，是兩個相對的哲學流派。）
+		
+		<a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -260,34 +249,29 @@
   
 
 
-<time datetime="2012-08-23T23:26:00-04:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
+<time datetime="2012-08-23T23:26:00-04:00" data-updated="true" itemprop="datePublished">Aug 23<span>rd</span>, 2012</time></div>
+		<div class="tags">
 
 
-  <div class="entry-content"><p>用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch <code>clone</code> 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/">Read on &rarr;</a>
-    </footer>
-  
+	<a class='category' href='/categories/hack/'>Hack</a>, <a class='category' href='/categories/octopress/'>Octopress</a>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/">用 Python 的「神奇方法」元編程</a></h1>
-    
-    
-      <p class="meta">
-        
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/" itemprop="url">用另一臺計算機寫 Octopress</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch <code>clone</code> 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。
+		
+		<a href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -299,37 +283,32 @@
   
 
 
-<time datetime="2012-08-21T22:41:00-04:00" pubdate data-updated="true">Aug 21<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
+<time datetime="2012-08-21T22:41:00-04:00" data-updated="true" itemprop="datePublished">Aug 21<span>st</span>, 2012</time></div>
+		<div class="tags">
 
 
-  <div class="entry-content"><p>在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。</p>
+	<a class='category' href='/categories/programming/'>Programming</a>, <a class='category' href='/categories/python/'>Python</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/" itemprop="url">用 Python 的「神奇方法」元編程</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。</p>
 
 <p>什麼是「神奇方法」？其實是我亂翻譯的，英文中大家叫它們「Magic Methods」。我沒有在靜態語言中聽到過這個概念，只在 Python、PHP 這類動態語言中聽到。這是一類比較特殊的方法（Method/Function），是隨語言本身所故有的，在程序中無聲無息地起到作用。它們的命名方式都很特別，比如在 Python 中就是用<code>__</code>開頭用<code>__</code>結尾的方法，而在 PHP
-中則是類似地用<code>__</code>開頭的方法。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/">Read on &rarr;</a>
-    </footer>
-  
+中則是類似地用<code>__</code>開頭的方法。
+		
+		<a href="/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/">簡單粗暴解決 Zsh Home 和 End 按鍵問題</a></h1>
-    
-    
-      <p class="meta">
-        
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -341,256 +320,150 @@
   
 
 
-<time datetime="2012-08-20T22:21:00-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
+<time datetime="2012-08-20T22:21:00-04:00" data-updated="true" itemprop="datePublished">Aug 20<span>th</span>, 2012</time></div>
+		<div class="tags">
 
 
-  <div class="entry-content"><p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don’t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/">Read on &rarr;</a>
-    </footer>
-  
+	<a class='category' href='/categories/hack/'>Hack</a>, <a class='category' href='/categories/linux/'>Linux</a>, <a class='category' href='/categories/unix/'>Unix</a>, <a class='category' href='/categories/zsh/'>Zsh</a>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/">關於編程，對我最有用的建議</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-20T15:58:00-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">“The Best Programming Advice I Ever Got”</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">Python 調優筆記·代碼造影</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-25T00:14:00-04:00" pubdate data-updated="true">Jul 25<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/">Python 調優筆記·序</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-23T01:19:00-04:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>以往我都以寫命令行下的 Python 腳本爲主。即使做項目也基本是做小規模 Web 類的。所以很少遇到效率太低受不了的情況，所以也鮮有調優的需要。當然，在寫代碼時就已經注意了一些效率問題，所以基本不需要很費心機地調優。可是幾個月前我做了兩個項目，一是一個機器學習引擎，用以學習在線讀者閱讀習慣；另一個是一個下 Chess 的 AI，用以人機對奕。</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/">Raspberry Pi 下載盒</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">Raspberry Pi + Arch + WiFi + Sound + Go 簡記</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">Python 調優筆記·經驗主義調優</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">Python 調優筆記·理性主義調優</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/">用另一臺計算機寫 Octopress</a>
-      </li>
-    
-  </ul>
-</section>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/" itemprop="url">簡單粗暴解決 Zsh Home 和 End 按鍵問題</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don’t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。
+		
+		<a href="/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/" class="more-link">Read on &rarr;</a>
+	</div>
 
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/ConanChou">@ConanChou</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'ConanChou',
-            count: 4,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
+</article>
 
 
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("ConanChou", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/ConanChou" class="twitter-follow-button" data-show-count="true">Follow @ConanChou</a>
-  
-</section>
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
-<section>
-  <h1>On Delicious</h1>
-  <div id="delicious"></div>
-  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/ConanChou?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
-  <p><a href="http://delicious.com/ConanChou">My Delicious Bookmarks &raquo;</a></p>
-</section>
 
 
-<section class="googleplus">
-  <h1>
-    <a href="https://plus.google.com/102737685811403816436?rel=author">
-      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
-      Google+
-    </a>
-  </h1>
-</section>
+
 
 
 
   
-</aside>
 
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Conan -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
+
+<time datetime="2012-08-20T15:58:00-04:00" data-updated="true" itemprop="datePublished">Aug 20<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/categories/programming/'>Programming</a>, <a class='category' href='/categories/zen/'>Zen</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/" itemprop="url">關於編程，對我最有用的建議</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">“The Best Programming Advice I Ever Got”</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。
+		
+		<a href="/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-25T00:14:00-04:00" data-updated="true" itemprop="datePublished">Jul 25<span>th</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/categories/optimization/'>Optimization</a>, <a class='category' href='/categories/programming/'>Programming</a>, <a class='category' href='/categories/python/'>Python</a>, <a class='category' href='/categories/serial/'>Serial</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/" itemprop="url">Python 調優筆記·代碼造影</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。
+		
+		<a href="/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-23T01:19:00-04:00" data-updated="true" itemprop="datePublished">Jul 23<span>rd</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/categories/optimization/'>Optimization</a>, <a class='category' href='/categories/programming/'>Programming</a>, <a class='category' href='/categories/python/'>Python</a>, <a class='category' href='/categories/serial/'>Serial</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/" itemprop="url">Python 調優筆記·序</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>以往我都以寫命令行下的 Python 腳本爲主。即使做項目也基本是做小規模 Web 類的。所以很少遇到效率太低受不了的情況，所以也鮮有調優的需要。當然，在寫代碼時就已經注意了一些效率問題，所以基本不需要很費心機地調優。可是幾個月前我做了兩個項目，一是一個機器學習引擎，用以學習在線讀者閱讀習慣；另一個是一個下 Chess 的 AI，用以人機對奕。
+		
+		<a href="/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+</div>
+<nav id="pagenavi">
+    
+    
+        <a href="/blog/page/2/" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2013
+
+    Conan
+
 
 </footer>
-  
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
 
 <script type="text/javascript">
       var disqus_shortname = 'conannotes';
@@ -607,31 +480,21 @@
 
 
 
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-33556525-1']);
+		_gaq.push(['_trackPageview']);
 
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 
-
-
+		</div>
+	</div>
 </body>
 </html>
