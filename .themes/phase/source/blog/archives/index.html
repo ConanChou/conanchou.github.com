@@ -1,0 +1,16 @@
+---
+layout: default
+title: Archives
+---
+
+<header id="archive-header">
+	<h1 class="alignleft">Archives</h1>
+	<form action="{{ site.simple_search }}" class="search alignright" method="get">
+		<input type="text" name="q" results="0" placeholder="Search">
+		<input type="hidden" name="q" value="site:{{ site.url | shorthand_url }}">
+	</form>
+</header>
+
+{% for post in site.posts reverse %}
+	{% include archive_post.html %}
+{% endfor %}
