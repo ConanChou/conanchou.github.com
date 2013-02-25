@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Optimization | conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/categories/optimization/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2013-02-25T03:38:09-05:00</updated>
+  <updated>2013-02-25T13:49:16-05:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -26,35 +26,35 @@
 
 <script type="math/tex; mode=display">O(1)>O(\log n)>O(n\log n)>O(n^2)>O(n^3)>O(n^k)>O(k^n)>O(n!)</script>
 
-<p>在 Python 中，對 <code><span class="CodeRay"><span class="predefined">list</span></span></code>、<code><span class="CodeRay">collections.deque</span></code>、<code><span class="CodeRay"><span class="predefined">set</span></span></code>、<code><span class="CodeRay"><span class="predefined">dict</span></span></code> 的各種操作的時間複雜度可以在<a href="http://wiki.python.org/moin/TimeComplexity">這裏找到</a>。</p>
+<p>在 Python 中，對 <code lang="python">list</code>、<code lang="python">collections.deque</code>、<code lang="python">set</code>、<code lang="python">dict</code> 的各種操作的時間複雜度可以在<a href="http://wiki.python.org/moin/TimeComplexity">這裏找到</a>。</p>
 
 <p>下面我就羅列各種「前人的經驗」。其實記住就可以，不過我還是用簡短的描述大致解釋一下原因,便於更加深刻地理解 Python 內部。有興趣的話其實可以用<a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">「理性主義」的分析方法</a>來看看下面的這些「經驗」。</p>
 
 <ul>
   <li>
-    <h3 id="dictlangpython--listlangpython"><code><span class="CodeRay"><span class="predefined">dict</span></span></code> &gt; <code><span class="CodeRay"><span class="predefined">list</span></span></code></h3>
+    <h3 id="dictlangpython--listlangpython"><code lang="python">dict</code> &gt; <code lang="python">list</code></h3>
   </li>
 </ul>
 
-<p><code><span class="CodeRay"><span class="predefined">dict</span></span></code> 的數據結構是 Hash Table，查找的時間複雜度 是<script type="math/tex">O(1)</script>；而 <code><span class="CodeRay"><span class="predefined">list</span></span></code> 的數據結構是 Array，查找的時間複雜度是 <script type="math/tex">O(n)</script>。</p>
+<p><code lang="python">dict</code> 的數據結構是 Hash Table，查找的時間複雜度 是<script type="math/tex">O(1)</script>；而 <code lang="python">list</code> 的數據結構是 Array，查找的時間複雜度是 <script type="math/tex">O(n)</script>。</p>
 
 <ul>
   <li>
-    <h3 id="dictlangpython--dictgetlangpython"><code><span class="CodeRay"><span class="predefined">dict</span>[]</span></code> &gt; <code><span class="CodeRay"><span class="predefined">dict</span>.get()</span></code></h3>
+    <h3 id="dictlangpython--dictgetlangpython"><code lang="python">dict[]</code> &gt; <code lang="python">dict.get()</code></h3>
   </li>
 </ul>
 
-<p>前者叫「直接獲取」，如果 <code><span class="CodeRay">key</span></code> 超出了範圍會報錯；而後者是通過 <code><span class="CodeRay"><span class="predefined">dict</span></span></code> 的方法調用，如果超出 <code><span class="CodeRay">key</span></code> 範圍，它會將默認值賦給剛剛查詢的 <code><span class="CodeRay">key</span></code>。顯然 <code><span class="CodeRay">get()</span></code> 做了很多事情，慢一些是預料之中的。</p>
+<p>前者叫「直接獲取」，如果 <code lang="python">key</code> 超出了範圍會報錯；而後者是通過 <code lang="python">dict</code> 的方法調用，如果超出 <code lang="python">key</code> 範圍，它會將默認值賦給剛剛查詢的 <code lang="python">key</code>。顯然 <code lang="python">get()</code> 做了很多事情，慢一些是預料之中的。</p>
 
-<p>這裏插一句題外話。有時候你確實需要類似 <code><span class="CodeRay">get()</span></code> 所提供的效果，即這種容錯性，有些程序員傾向於用 <code><span class="CodeRay"><span class="keyword">try</span>...<span class="keyword">except</span>...</span></code> 和 <code><span class="CodeRay"><span class="predefined">dict</span>[]</span></code> 來實現。在以前，這兩者在運行速度上區別還比較大，新版本的 Python 在這兩種方案下表現得比較一致，只有 10% 的性能差異。所以在這種情況下用 <code><span class="CodeRay"><span class="predefined">dict</span>.get()</span></code> 其實是個不錯的選擇。</p>
+<p>這裏插一句題外話。有時候你確實需要類似 <code lang="python">get()</code> 所提供的效果，即這種容錯性，有些程序員傾向於用 <code lang="python">try...except...</code> 和 <code lang="python">dict[]</code> 來實現。在以前，這兩者在運行速度上區別還比較大，新版本的 Python 在這兩種方案下表現得比較一致，只有 10% 的性能差異。所以在這種情況下用 <code lang="python">dict.get()</code> 其實是個不錯的選擇。</p>
 
 <ul>
   <li>
-    <h3 id="setlangpython--listlangpython"><code><span class="CodeRay"><span class="predefined">set</span></span></code> &gt; <code><span class="CodeRay"><span class="predefined">list</span></span></code></h3>
+    <h3 id="setlangpython--listlangpython"><code lang="python">set</code> &gt; <code lang="python">list</code></h3>
   </li>
 </ul>
 
-<p>前者與生俱來的 <code><span class="CodeRay">|</span></code> (union)、<code><span class="CodeRay">&amp;</span></code> (intersection) 和 <code><span class="CodeRay">-</span></code> (difference) 運算就比 <code><span class="CodeRay"><span class="predefined">list</span></span></code> 的迭代式效率高。所以涉及到 <code><span class="CodeRay"><span class="predefined">list</span></span></code> 的這三種運算，最佳方案是轉成 <code><span class="CodeRay"><span class="predefined">set</span></span></code> 再用相應的 <code><span class="CodeRay"><span class="predefined">set</span></span></code> 運算符計算，最後再轉到 <code><span class="CodeRay"><span class="predefined">list</span></span></code>。例如：</p>
+<p>前者與生俱來的 <code lang="python">|</code> (union)、<code lang="python">&amp;</code> (intersection) 和 <code lang="python">-</code> (difference) 運算就比 <code lang="python">list</code> 的迭代式效率高。所以涉及到 <code lang="python">list</code> 的這三種運算，最佳方案是轉成 <code lang="python">set</code> 再用相應的 <code lang="python">set</code> 運算符計算，最後再轉到 <code lang="python">list</code>。例如：</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">list_a</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">list_b</span><span class="p">))</span>
@@ -62,7 +62,7 @@
 
 <ul>
   <li>
-    <h3 id="strjoinlangpython--str--str--strlangpython"><code><span class="CodeRay"><span class="predefined">str</span>.join()</span></code> &gt; <code><span class="CodeRay"><span class="predefined">str</span> + <span class="predefined">str</span> + <span class="predefined">str</span></span></code></h3>
+    <h3 id="strjoinlangpython--str--str--strlangpython"><code lang="python">str.join()</code> &gt; <code lang="python">str + str + str</code></h3>
   </li>
 </ul>
 
@@ -70,11 +70,11 @@
 
 <ul>
   <li>
-    <h3 id="langpython--str--str--strlangpython">字符串格式化 <code><span class="CodeRay">%</span></code> &gt; <code><span class="CodeRay"><span class="predefined">str</span> + <span class="predefined">str</span> + <span class="predefined">str</span></span></code></h3>
+    <h3 id="langpython--str--str--strlangpython">字符串格式化 <code lang="python">%</code> &gt; <code lang="python">str + str + str</code></h3>
   </li>
 </ul>
 
-<p>寫習慣了 PHP 的話很容易就愛後一種方式，但是跟上面一條說的原因差不多，用格式化 <code><span class="CodeRay">%</span></code> 的方式要高效一些。</p>
+<p>寫習慣了 PHP 的話很容易就愛後一種方式，但是跟上面一條說的原因差不多，用格式化 <code lang="python">%</code> 的方式要高效一些。</p>
 
 <ul>
   <li>
@@ -90,29 +90,29 @@
 
 <ul>
   <li>
-    <h3 id="sortlangpython--">自帶 <code><span class="CodeRay">sort</span></code> &gt; 自寫排序算法</h3>
+    <h3 id="sortlangpython--">自帶 <code lang="python">sort</code> &gt; 自寫排序算法</h3>
   </li>
 </ul>
 
-<p>如果你不確定你自己寫的算法真的優於 Python 內置的 <code><span class="CodeRay">sort</span></code> 方法，那還是使用內置的。因爲 Python 的 <code><span class="CodeRay">sort</span></code> 其實會因爲不同的數據類型、甚至根據數據的長度，選擇最優的排序方式。有興趣的話可以去看一看 CPython 有關 <code><span class="CodeRay">sort</span></code> 的源碼。</p>
+<p>如果你不確定你自己寫的算法真的優於 Python 內置的 <code lang="python">sort</code> 方法，那還是使用內置的。因爲 Python 的 <code lang="python">sort</code> 其實會因爲不同的數據類型、甚至根據數據的長度，選擇最優的排序方式。有興趣的話可以去看一看 CPython 有關 <code lang="python">sort</code> 的源碼。</p>
 
-<p>其實大多數自帶函數的效率都比較高，甚至 <code><span class="CodeRay">add()</span></code> 都要比 <code><span class="CodeRay">+</span></code> 快。所以儘量使用 Python 自帶的函數。</p>
+<p>其實大多數自帶函數的效率都比較高，甚至 <code lang="python">add()</code> 都要比 <code lang="python">+</code> 快。所以儘量使用 Python 自帶的函數。</p>
 
 <ul>
   <li>
-    <h3 id="listlangpython-comprehensions--"><code><span class="CodeRay"><span class="predefined">list</span></span></code> comprehensions &gt; 循環</h3>
+    <h3 id="listlangpython-comprehensions--"><code lang="python">list</code> comprehensions &gt; 循環</h3>
   </li>
 </ul>
 
-<p><code><span class="CodeRay"><span class="predefined">list</span></span></code> comprehensions 的運行是 CPython 的底層層面的，而一般的循環是在 VM 裏面跑的。很顯然前者要更優。</p>
+<p><code lang="python">list</code> comprehensions 的運行是 CPython 的底層層面的，而一般的循環是在 VM 裏面跑的。很顯然前者要更優。</p>
 
 <ul>
   <li>
-    <h3 id="maplangpython--"><code><span class="CodeRay"><span class="predefined">map</span></span></code> &gt; 循環</h3>
+    <h3 id="maplangpython--"><code lang="python">map</code> &gt; 循環</h3>
   </li>
 </ul>
 
-<p>跟 <code><span class="CodeRay"><span class="predefined">list</span></span></code> comprehensions 的情況一樣，運算會被推到 C 層面，比 VM 裏跑的效率高。</p>
+<p>跟 <code lang="python">list</code> comprehensions 的情況一樣，運算會被推到 C 層面，比 VM 裏跑的效率高。</p>
 
 <ul>
   <li>
@@ -120,7 +120,7 @@
   </li>
 </ul>
 
-<p>這個尤其要在循環裏注意，就是<a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">本系列第二篇</a>裏我們找到的問題。Python 對局部變量的訪問效率要比全局變量的訪問效率高。另外，如果是一些帶「點」的方法，最好也放到循環的外面，因爲每次「點」，相應的方法都要再 <code><span class="CodeRay"><span class="predefined">eval</span></span></code> 一遍。因此應該像下面這樣寫：</p>
+<p>這個尤其要在循環裏注意，就是<a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">本系列第二篇</a>裏我們找到的問題。Python 對局部變量的訪問效率要比全局變量的訪問效率高。另外，如果是一些帶「點」的方法，最好也放到循環的外面，因爲每次「點」，相應的方法都要再 <code lang="python">eval</code> 一遍。因此應該像下面這樣寫：</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -138,7 +138,7 @@
 </span><span class='line'>    <span class="k">return</span> <span class="n">newlist</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>當然，在可以用 <code><span class="CodeRay"><span class="predefined">list</span></span></code> comprehensions 和 <code><span class="CodeRay"><span class="predefined">map</span></span></code> 的情況下，優先考慮使用這些。</p>
+<p>當然，在可以用 <code lang="python">list</code> comprehensions 和 <code lang="python">map</code> 的情況下，優先考慮使用這些。</p>
 
 <ul>
   <li>
@@ -146,11 +146,11 @@
   </li>
 </ul>
 
-<p>這裏的「懶惰」指 Lazy Evaluation，在 Python 中，我目前知道條件判斷和 2.x 中的 <code><span class="CodeRay"><span class="predefined">xrange</span></span></code> (即 3.x 中的 <code><span class="CodeRay"><span class="predefined">range</span></span></code>)。</p>
+<p>這裏的「懶惰」指 Lazy Evaluation，在 Python 中，我目前知道條件判斷和 2.x 中的 <code lang="python">xrange</code> (即 3.x 中的 <code lang="python">range</code>)。</p>
 
-<p>所以在類似 <code><span class="CodeRay"><span class="keyword">if</span> a <span class="keyword">and</span> b</span></code> 的語句裏，<code>a</code> 會被先判斷，如果是 <code><span class="CodeRay"><span class="predefined-constant">False</span></span></code>，<code>b</code> 的運算就被直接跳過了。因此在寫程序時應該把運算量大的部分寫在靠後的部分。</p>
+<p>所以在類似 <code lang="python">if a and b</code> 的語句裏，<code>a</code> 會被先判斷，如果是 <code lang="python">False</code>，<code>b</code> 的運算就被直接跳過了。因此在寫程序時應該把運算量大的部分寫在靠後的部分。</p>
 
-<p><code><span class="CodeRay"><span class="predefined">xrange</span>()</span></code> 不會在運行時就在內存中產生一個 <code><span class="CodeRay"><span class="predefined">list</span></span></code>，而是在用的時候臨時算出來。看下面的例子：</p>
+<p><code lang="python">xrange()</code> 不會在運行時就在內存中產生一個 <code lang="python">list</code>，而是在用的時候臨時算出來。看下面的例子：</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -190,7 +190,7 @@
 
 <ul>
   <li>
-    <h3 id="langpython--langpython"><code><span class="CodeRay">()</span></code> &gt; <code><span class="CodeRay">[]</span></code></h3>
+    <h3 id="langpython--langpython"><code lang="python">()</code> &gt; <code lang="python">[]</code></h3>
   </li>
 </ul>
 
@@ -198,27 +198,27 @@
 
 <ul>
   <li>
-    <h3 id="islangpython--langpython"><code><span class="CodeRay"><span class="keyword">is</span></span></code> &gt; <code><span class="CodeRay">==</span></code></h3>
+    <h3 id="islangpython--langpython"><code lang="python">is</code> &gt; <code lang="python">==</code></h3>
   </li>
 </ul>
 
-<p><code><span class="CodeRay"><span class="keyword">is</span></span></code> 是比較對象，<code><span class="CodeRay">==</span></code> 是比較對象裏的值。很顯然 <code><span class="CodeRay">==</span></code> 要做的事情要稍微多一點。所以在能夠用 <code><span class="CodeRay"><span class="keyword">is</span></span></code> 的時候要用 <code><span class="CodeRay"><span class="keyword">is</span></span></code></p>
+<p><code lang="python">is</code> 是比較對象，<code lang="python">==</code> 是比較對象裏的值。很顯然 <code lang="python">==</code> 要做的事情要稍微多一點。所以在能夠用 <code lang="python">is</code> 的時候要用 <code lang="python">is</code></p>
 
 <ul>
   <li>
-    <h3 id="truelangpython">1 &gt; <code><span class="CodeRay"><span class="predefined-constant">True</span></span></code></h3>
+    <h3 id="truelangpython">1 &gt; <code lang="python">True</code></h3>
   </li>
 </ul>
 
-<p>Python 裏的 <code>bool</code> 也是繼承自 <code>int</code>，單純從運行效率來說，用 <code><span class="CodeRay"><span class="predefined">int</span></span></code> 代替 <code><span class="CodeRay"><span class="predefined">bool</span></span></code> 更好。可是可讀性會變差。</p>
+<p>Python 裏的 <code>bool</code> 也是繼承自 <code>int</code>，單純從運行效率來說，用 <code lang="python">int</code> 代替 <code lang="python">bool</code> 更好。可是可讀性會變差。</p>
 
 <ul>
   <li>
-    <h3 id="a--b--clangpython--a--b-and-b--clangpython"><code><span class="CodeRay">a &gt; b &gt; c</span></code> &gt; <code><span class="CodeRay">a &gt; b <span class="keyword">and</span> b &gt; c</span></code></h3>
+    <h3 id="a--b--clangpython--a--b-and-b--clangpython"><code lang="python">a &gt; b &gt; c</code> &gt; <code lang="python">a &gt; b and b &gt; c</code></h3>
   </li>
 </ul>
 
-<p>類似 <code><span class="CodeRay"><span class="predefined">map</span></span></code> 的情況，前者被放到更底層算，而後者還停留在 VM 內，效率自然有所差異。</p>
+<p>類似 <code lang="python">map</code> 的情況，前者被放到更底層算，而後者還停留在 VM 內，效率自然有所差異。</p>
 
 <ul>
   <li>
@@ -226,7 +226,7 @@
   </li>
 </ul>
 
-<p>假設我們現在有個 <code><span class="CodeRay"><span class="predefined">list</span></span></code> 需要對其內容一一處理，在你面前是兩條路（假設不用 <code><span class="CodeRay"><span class="predefined">list</span></span></code> comprehensions 之類更好的方式），一條是將 <code><span class="CodeRay"><span class="predefined">list</span></span></code> 傳進專門處理的方法，然後在方法內循環處理裏面的元素；另一條是遍歷此 <code><span class="CodeRay"><span class="predefined">list</span></span></code>，然後將單個的元素用一個方法去做處理。這兩者間前者比較好，因爲 Python
+<p>假設我們現在有個 <code lang="python">list</code> 需要對其內容一一處理，在你面前是兩條路（假設不用 <code lang="python">list</code> comprehensions 之類更好的方式），一條是將 <code lang="python">list</code> 傳進專門處理的方法，然後在方法內循環處理裏面的元素；另一條是遍歷此 <code lang="python">list</code>，然後將單個的元素用一個方法去做處理。這兩者間前者比較好，因爲 Python
 的方法調用還是需要較多的開銷的。看例子，首先是循環裏調方法：</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -269,15 +269,15 @@
 
 <ul>
   <li>
-    <h3 id="importlangpython">減少重複 <code><span class="CodeRay"><span class="keyword">import</span></span></code></h3>
+    <h3 id="importlangpython">減少重複 <code lang="python">import</code></h3>
   </li>
 </ul>
 
-<p>有時候我們將 <code><span class="CodeRay"><span class="keyword">import</span></span></code> 放在一個方法的開頭以此來縮小模塊的可用範圍或加快程序的啓動速度。而 Python 也足夠聰明可以防止多次導入相同的庫。但是 <code><span class="CodeRay"><span class="keyword">import</span></span></code> 本身還是需要開銷一些時間的，無論是不是重複的。所以如果某個方法會被多次調用，最好將 <code><span class="CodeRay"><span class="keyword">import</span></span></code> 放到方法外面。</p>
+<p>有時候我們將 <code lang="python">import</code> 放在一個方法的開頭以此來縮小模塊的可用範圍或加快程序的啓動速度。而 Python 也足夠聰明可以防止多次導入相同的庫。但是 <code lang="python">import</code> 本身還是需要開銷一些時間的，無論是不是重複的。所以如果某個方法會被多次調用，最好將 <code lang="python">import</code> 放到方法外面。</p>
 
 <ul>
   <li>
-    <h3 id="iflangpython">方法重定向 &gt; <code><span class="CodeRay"><span class="keyword">if</span></span></code></h3>
+    <h3 id="iflangpython">方法重定向 &gt; <code lang="python">if</code></h3>
   </li>
 </ul>
 
@@ -307,8 +307,8 @@
 </span><span class='line'>        <span class="n">a</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="err">”</span><span class="n">b</span><span class="err">”</span><span class="p">,</span><span class="err">”</span><span class="n">c</span><span class="err">”</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>初看這段代碼沒什麼問題，但是如果仔細看，<code><span class="CodeRay"><span class="keyword">if</span></span></code> 用得很單調。前 50 個也就算了，但是後面的 99950
-次 <code><span class="CodeRay"><span class="keyword">if</span></span></code> 開銷就很大了。如果能省去這些 <code><span class="CodeRay"><span class="keyword">if</span></span></code> 速度會好很多。這裏其實可以用方法重定向來提高效率：</p>
+<p>初看這段代碼沒什麼問題，但是如果仔細看，<code lang="python">if</code> 用得很單調。前 50 個也就算了，但是後面的 99950
+次 <code lang="python">if</code> 開銷就很大了。如果能省去這些 <code lang="python">if</code> 速度會好很多。這裏其實可以用方法重定向來提高效率：</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -361,9 +361,9 @@
 <p>經過上面的第一步，我們會得到一組有問題的代碼。能直接解決的可以直接解決，不能直接找到原因的就是下面我重點要講的了。因爲 Python 是相對很高級的語言，很多底層細節會被隱藏掉，這從某種程度上加大了找出癥結的難度。換句話說，只要能夠摸清楚某行有問題的代碼到底怎麼執行的，那基本也就能夠推導出問題所在了。所以「理性主義調優」的問題就被簡化爲「如何弄懂代碼到底幹什麼」的問題。</p>
 
 <p>爲此去讀長篇的文檔當然算是一個辦法，很學院派，但是並不是很高效。另一條路就是「Disassembling」，有 C 背景的同學多半是聽過這個詞的。說白了，就是把程序執行時在內存裏的每一步操作都打印出來，以供分析。（如果對此不瞭解的同學可以到我翻譯的開源文集<a href="http://www.conanblog.me/Unix-as-IDE-CN/html/compiling.html#id3">相關章節</a>學習）其實 Python 也可以 Disassembling，不過這和 C 的有些區別。因爲我們知道 Python 在運行時，其機制和 Java 是類似的，都是從源碼到字節碼，即
-bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛擬機裏運行。所以 Python 裏面的 Disassembling 其實是字節碼層面的。下面用到的工具就來自 Python 自帶的 <code><span class="CodeRay">dis</span></code>。</p>
+bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛擬機裏運行。所以 Python 裏面的 Disassembling 其實是字節碼層面的。下面用到的工具就來自 Python 自帶的 <code lang="python">dis</code>。</p>
 
-<p>我們繼續之前的<a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">代碼例子</a>，只是假設我們現在還不知道「慢」的原因。目前的狀況是我們知道了瓶頸在 <code><span class="CodeRay">calculate_z_serial_purepython()</span></code> 裏，並且通過行造影，我們知道 <code><span class="CodeRay">z[i] = z[i]*z[i] +q[i]</span></code> 花了很多时间。现在我们来 Disassembling：</p>
+<p>我們繼續之前的<a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">代碼例子</a>，只是假設我們現在還不知道「慢」的原因。目前的狀況是我們知道了瓶頸在 <code lang="python">calculate_z_serial_purepython()</code> 裏，並且通過行造影，我們知道 <code lang="python">z[i] = z[i]*z[i] +q[i]</code> 花了很多时间。现在我们来 Disassembling：</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -483,7 +483,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
     <id>http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling</id>
     <content type="html"><![CDATA[<p>在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。<!-- more --></p>
 
-<p>Python 是自帶造影工具的，從 <a href="http://docs.python.org/library/profile.html">官方文檔</a> 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 <code><span class="CodeRay">cProfile</span></code> 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 <a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">小腳本</a>。</p>
+<p>Python 是自帶造影工具的，從 <a href="http://docs.python.org/library/profile.html">官方文檔</a> 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 <code lang="python">cProfile</code> 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 <a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">小腳本</a>。</p>
 
 <p>我們不妨先來運行一下該腳本：</p>
 
@@ -509,7 +509,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>python -m cProfile -o rep.prof pure_python_slow.py
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>用這種方法可以對整個腳本進行 profiling，然後把結果輸出到 <code><span class="CodeRay">rep.prof</span></code> 中。當然對於一些較大的項目，這麼做是不恰當的，因爲一些大的項目往往有人機交互，所以使用這樣的方式來獲取運行時長顯然不可行。所以 <code><span class="CodeRay">cProfile</span></code> 也提供了 function 方式的調用，也就是說可以在代碼裏使用它。而事實上官網的文檔就是這樣用的。使用 Django
+<p>用這種方法可以對整個腳本進行 profiling，然後把結果輸出到 <code lang="python">rep.prof</code> 中。當然對於一些較大的項目，這麼做是不恰當的，因爲一些大的項目往往有人機交互，所以使用這樣的方式來獲取運行時長顯然不可行。所以 <code lang="python">cProfile</code> 也提供了 function 方式的調用，也就是說可以在代碼裏使用它。而事實上官網的文檔就是這樣用的。使用 Django
 的同學可以試試<a href="http://djangosnippets.org/snippets/727/">這樣的代碼</a>。</p>
 
 <p>接着我們來分析一下所得的 profile，在與生成的 profile 文件同目錄下打開 Python 交互命令行：</p>
@@ -564,12 +564,12 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>這裏我們可以看出，加了 <code><span class="CodeRay">cProfile</span></code> 原來的程序會運行得略慢一些。這也是意料之中的。</p>
+<p>這裏我們可以看出，加了 <code lang="python">cProfile</code> 原來的程序會運行得略慢一些。這也是意料之中的。</p>
 
 <p>下面我們來仔細看一下造影報告，也就是從第十一行開始的表格。
-表格第一行是總時間，第二行是 <code><span class="CodeRay">calc_pure_python</span></code> 所用時間，而第三行是 <code><span class="CodeRay">calculate_z_serial_purepython</span></code> 所用時間，以此類推。從以上的這個表格我們至少可以判斷：大部分時間都花在了 <code><span class="CodeRay">calculate_z_serial_purepython</span></code> 上。</p>
+表格第一行是總時間，第二行是 <code lang="python">calc_pure_python</code> 所用時間，而第三行是 <code lang="python">calculate_z_serial_purepython</code> 所用時間，以此類推。從以上的這個表格我們至少可以判斷：大部分時間都花在了 <code lang="python">calculate_z_serial_purepython</code> 上。</p>
 
-<p>可能這個表格並不是很直觀。那下面我再介紹一種更加直觀的方式 —— <code><span class="CodeRay">runsnake</span></code>。我們回到命令行，用 <code><span class="CodeRay">runsnake</span></code> 跑剛剛生成的造影文件（<code><span class="CodeRay">rep.prof</span></code>）:</p>
+<p>可能這個表格並不是很直觀。那下面我再介紹一種更加直觀的方式 —— <code lang="sh">runsnake</code>。我們回到命令行，用 <code lang="sh">runsnake</code> 跑剛剛生成的造影文件（<code lang="python">rep.prof</code>）:</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>runsnake res.prof
@@ -579,7 +579,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 <p><img src="https://xiil8w.blu.livefilestore.com/y1p-S46t388afLR5WALVXfzfgc36A_zh3jlEMbbjm3ouwkI1KEl7CRTPE8OS9mmtW7MZBCkujoUHT19OkiolKb1Dvd37IW8WMd-/runsnake.png?psid=1" alt="RunSnake 運行結果" title="RunSnake 運行結果" /></p>
 
-<p>現在顯而易見了吧， <code><span class="CodeRay">calculate_z_serial_purepython</span></code> 就是花時間最多的。可是到底是什麼使得它花這麼久，還是不能從上圖中找到原因。很顯然不是因爲 <code>&lt;abs&gt;</code> 和 <code>&lt;range&gt;</code>。于是我们定位到这个 function：</p>
+<p>現在顯而易見了吧， <code lang="python">calculate_z_serial_purepython</code> 就是花時間最多的。可是到底是什麼使得它花這麼久，還是不能從上圖中找到原因。很顯然不是因爲 <code>&lt;abs&gt;</code> 和 <code>&lt;range&gt;</code>。于是我们定位到这个 function：</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function calculate_z_serial_purepython  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -612,7 +612,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 <p>有經驗的 Python 程序員可能已經知道問題出在哪裏了，但是我先賣個關子。當然目的是爲了介紹下面的一個造影工具 —— <code>kernprof.py</code>，line profiling，行造影工具。</p>
 
-<p>相比之下，使用 <code>kernprof.py</code> 略麻煩一點。你得在需要做“行造影”的 function 前面加一個 decorator <code><span class="CodeRay"><span class="decorator">@profile</span></span></code>，然后运行：</p>
+<p>相比之下，使用 <code>kernprof.py</code> 略麻煩一點。你得在需要做“行造影”的 function 前面加一個 decorator <code lang="python">@profile</code>，然后运行：</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -678,11 +678,11 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 <p>這三行裏就有兩個小問題。</p>
 
 <ul>
-  <li>首先是 32 行，在 Python 3.x 之前，<code><span class="CodeRay"><span class="predefined">range</span>()</span></code> 和 <code><span class="CodeRay"><span class="predefined">xrange</span>()</span></code> 還是有區別的。前者會在內存中真的生成 <code><span class="CodeRay"><span class="predefined">list</span></span></code>，而後者只是返回一個類似的 object （我們會在<a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/">第四篇</a>中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
-  <li>33、34 行一直在直接從 <code><span class="CodeRay"><span class="predefined">list</span></span></code> 裏查詢數據，而雖然查詢時間複雜度是 <script type="math/tex">O(1)</script>，但是代碼一遍又一遍地 <code><span class="CodeRay">get</span></code> 和 <code><span class="CodeRay"><span class="predefined">set</span></span></code>，這樣做勢必會消耗更多時間。</li>
+  <li>首先是 32 行，在 Python 3.x 之前，<code lang="python">range()</code> 和 <code lang="python">xrange()</code> 還是有區別的。前者會在內存中真的生成 <code lang="python">list</code>，而後者只是返回一個類似的 object （我們會在<a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/high-performance-python-general-coding-tips/">第四篇</a>中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
+  <li>33、34 行一直在直接從 <code lang="python">list</code> 裏查詢數據，而雖然查詢時間複雜度是 <script type="math/tex">O(1)</script>，但是代碼一遍又一遍地 <code lang="python">get</code> 和 <code lang="python">set</code>，這樣做勢必會消耗更多時間。</li>
 </ul>
 
-<p>所以通過分析，我們知道就以上的第一點而言，我們即使改用成 <code><span class="CodeRay"><span class="predefined">xrange</span>()</span></code>，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：</p>
+<p>所以通過分析，我們知道就以上的第一點而言，我們即使改用成 <code lang="python">xrange()</code>，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -769,7 +769,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 <p>看似沒有多大提升？確實，就每行時間上來看確實沒有多大提升，但是從總時間看，有了差不多兩秒的提升。而且如果我把行造影去掉，裸跑的話，速度的提升更加顯著一些（大約 6 秒）。有人說這樣的提升要不要都也無所謂，其實不然。我剛剛說到 scope，如果放大 scope，原先兩秒的優勢可能會被放大到 20 分鐘甚至更多。</p>
 
-<p>大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，<code><span class="CodeRay">cProfile</span></code> 可用於造影模塊的運行，<code><span class="CodeRay">RunSnake</span></code> 可以幫助可視化造影結果，而 <code>kernprof.py</code> 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。</p>
+<p>大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，<code lang="python">cProfile</code> 可用於造影模塊的運行，<code lang="sh">RunSnake</code> 可以幫助可視化造影結果，而 <code>kernprof.py</code> 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。</p>
 
 <p>最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章裏我會談一談優化「運行機制」。</p>
 

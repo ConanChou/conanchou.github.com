@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Raspberry-Pi | conan@notes:~/]]></title>
   <link href="http://ConanChou.github.com/categories/raspberry-pi/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2013-02-25T03:38:09-05:00</updated>
+  <updated>2013-02-25T13:49:16-05:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -121,7 +121,7 @@ $ sha1sum ~/Downloads/archlinux-hf-2013-02-11.zip
 $ unzip ~/Downloads/archlinux-hf-2013-02-11.zip
 </code></p>
 
-<p>在插入SD卡之前，用 <code><span class="CodeRay">df -h</span></code> 查看當前掛載的磁盤，再插入SD卡再查看。找出你的SD卡名字，就是像 <code>/dev/mmcblk0p1</code> 或 <code>/dev/sdd1</code> 這樣的盤符。記住名字並卸載該盤符（如果這個SD卡裏有多個分區，保證卸載該SD卡下的所有盤符）,這裏我們假設是<code>mmcblk0p1</code>这个盘：</p>
+<p>在插入SD卡之前，用 <code lang="bash">df -h</code> 查看當前掛載的磁盤，再插入SD卡再查看。找出你的SD卡名字，就是像 <code>/dev/mmcblk0p1</code> 或 <code>/dev/sdd1</code> 這樣的盤符。記住名字並卸載該盤符（如果這個SD卡裏有多個分區，保證卸載該SD卡下的所有盤符）,這裏我們假設是<code>mmcblk0p1</code>这个盘：</p>
 
 <p><code>bash
 $ unmount /dev/mmcblk0p1

@@ -144,7 +144,7 @@ MathJax.Hub.Config({
 </pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>unzip ~/Downloads/archlinux-hf-2013-02-11.zip
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>在插入SD卡之前，用 <code><span class="CodeRay">df -h</span></code> 查看當前掛載的磁盤，再插入SD卡再查看。找出你的SD卡名字，就是像 <code>/dev/mmcblk0p1</code> 或 <code>/dev/sdd1</code> 這樣的盤符。記住名字並卸載該盤符（如果這個SD卡裏有多個分區，保證卸載該SD卡下的所有盤符）,這裏我們假設是<code>mmcblk0p1</code>这个盘：</p>
+<p>在插入SD卡之前，用 <code lang="bash">df -h</code> 查看當前掛載的磁盤，再插入SD卡再查看。找出你的SD卡名字，就是像 <code>/dev/mmcblk0p1</code> 或 <code>/dev/sdd1</code> 這樣的盤符。記住名字並卸載該盤符（如果這個SD卡裏有多個分區，保證卸載該SD卡下的所有盤符）,這裏我們假設是<code>mmcblk0p1</code>这个盘：</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>unmount /dev/mmcblk0p1
