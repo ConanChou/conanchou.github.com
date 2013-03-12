@@ -8,7 +8,6 @@ categories: Test
 tags: [local, test, nopublished]
 ---
 
-{:lang="ruby"}
     def fact(n)
       if n == 0
         1
@@ -16,6 +15,7 @@ tags: [local, test, nopublished]
         n * fact(n-1)
       end
     end
+{:lang="ruby"}
 
 {% codeblock lang:ruby %}
 def fact(n)
