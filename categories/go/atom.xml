@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Go | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.com/categories/go/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.com/"/>
-  <updated>2013-02-26T15:31:14-05:00</updated>
+  <updated>2013-03-12T17:44:04-04:00</updated>
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -18,9 +18,33 @@
     <link href="http://ConanChou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/"/>
     <updated>2013-02-17T17:11:00-05:00</updated>
     <id>http://ConanChou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi</id>
-    <content type="html"><![CDATA[<p>Tl;dr. 原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
+    <content type="html"><![CDATA[<p>原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
 
-<p><a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
+<p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
+
+<ul id="markdown-toc">
+  <li><a href="#section">硬件</a></li>
+  <li><a href="#section-1">軟件</a>    <ul>
+      <li><a href="#section-2">操作系统</a></li>
+      <li><a href="#section-3">分區擴容</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-4">打印分區表</a></li>
+  <li><a href="#section-5">刪除第二個分區</a></li>
+  <li><a href="#section-6">新建一個分區</a></li>
+  <li><a href="#section-7">!!! 第一個扇區號必須和上面刪除的分區的起始扇區號一樣，這裏的話是186368 !!!</a></li>
+  <li><a href="#section-8">保存剛剛的操作並退出</a>    <ul>
+      <li><a href="#section-9">系統常規設置</a></li>
+      <li><a href="#section-10">聲音</a>        <ul>
+          <li><a href="#vlc">VLC</a></li>
+        </ul>
+      </li>
+      <li><a href="#wifi">WiFi</a></li>
+      <li><a href="#go">Go</a></li>
+      <li><a href="#section-11">後記</a></li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="section">硬件</h2>
 

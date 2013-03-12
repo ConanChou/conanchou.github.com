@@ -7,7 +7,7 @@
 	<meta name="author" content="Conan">
 
 	
-	<meta name="description" content="Raspberry Pi + Arch + WiFi + Sound + Go 簡記 Tl;dr. 原文地址：http://goo.gl/RSj7A Raspberry Pi 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於種種原因， &hellip;">
+	<meta name="description" content="Raspberry Pi + Arch + WiFi + Sound + Go 簡記 原文地址：http://goo.gl/RSj7A Tl;dr. Raspberry Pi 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於種種原因， &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,9 +110,26 @@ MathJax.Hub.Config({
 			<div class="mid-col-container">
 				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name">Raspberry Pi + Arch + WiFi + Sound + Go 簡記</h1>
-	<div class="entry-content" itemprop="articleBody"><p>Tl;dr. 原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
+	<div class="entry-content" itemprop="articleBody"><p>原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
 
-<p><a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
+<p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
+
+<ul id="markdown-toc">
+  <li><a href="#section">硬件</a></li>
+  <li><a href="#section-1">軟件</a>    <ul>
+      <li><a href="#section-2">操作系统</a></li>
+      <li><a href="#section-3">分區擴容</a></li>
+      <li><a href="#section-4">系統常規設置</a></li>
+      <li><a href="#section-5">聲音</a>        <ul>
+          <li><a href="#vlc">VLC</a></li>
+        </ul>
+      </li>
+      <li><a href="#wifi">WiFi</a></li>
+      <li><a href="#go">Go</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-6">後記</a></li>
+</ul>
 
 <h2 id="section">硬件</h2>
 
