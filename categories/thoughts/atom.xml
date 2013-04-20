@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Thoughts | conan @ notes:~/]]></title>
+  <link href="http://ConanChou.github.com/categories/thoughts/atom.xml" rel="self"/>
+  <link href="http://ConanChou.github.com/"/>
+  <updated>2013-04-20T04:06:36-04:00</updated>
+  <id>http://ConanChou.github.com/</id>
+  <author>
+    <name><![CDATA[Conan]]></name>
+    <email><![CDATA[conanchou1412@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[道不明，術不精]]></title>
+    <link href="http://ConanChou.github.com/blog/Thoughts/2013/04/20/dao-bu-ming-shu-bu-jing/"/>
+    <updated>2013-04-20T01:20:00-04:00</updated>
+    <id>http://ConanChou.github.com/blog/Thoughts/2013/04/20/dao-bu-ming-shu-bu-jing</id>
+    <content type="html"><![CDATA[<p>「道不明，術不精」是現在最適合形容我狀態的語句。說真的，我對自己有些失望。從兩千年初開始接觸計算機和因特網，到現在幾乎沒有什麼大的成就。對照 Coding Horror 裏的<a href="http://www.codinghorror.com/blog/2009/04/the-eight-levels-of-programmers.html">《程序員的八個等級》</a>，我大概在4～5吧。而很顯然這不應該是一個有志者所止步的位置。我最接近「Famous」的恐怕也只有幾年前趕鴨子上架般的在亞太開源軟件峯會上給的關於 CakePHP 和 Symfony
+的講座吧。我一直在學習，可長進不足。到底是哪裏做得不對？<!--more--></p>
+
+<p>上上週考算法，這週又有電話面試，所以最近一個月把<a href="http://www.amazon.com/Introduction-Algorithms-Thomas-H-Cormen/dp/0262033844/ref=sr_1_2?ie=UTF8&amp;qid=1366437541&amp;sr=8-2&amp;keywords=intro+to+algo">《Introduction to Algorithms》</a>和<a href="http://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/098478280X/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1366437600&amp;sr=1-1&amp;keywords=cracking+the+coding+interview">《Cracking the Coding Interview》</a>過了一遍。同時看了一小半<a href="http://www.amazon.com/What-Technology-Wants-Kevin-Kelly/dp/0143120174/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1366437694&amp;sr=1-1&amp;keywords=what+technology+wants">《What Technology
+Wants》</a>和<a href="http://book.douban.com/subject/2567698/">《三體》</a>前兩部。感覺明白了一些東西，可是又不明確到足以用語言表達的程度。所以我將僅陳述一些事實和我零碎的想法。我相信人類的大腦在接收了這些信息後可以感悟出相近的思想。</p>
+
+<h1 id="section">學習的困難</h1>
+
+<p>語言的形成給知識的記錄和傳播提供了必要的基礎。而語言其本身，是人類思想的一種編碼方式。一般情況下，所謂的「讀懂」只是解碼成功的代名詞。因爲人類智商大致一樣，所以大多數書本的知識並不會困難到無法理解，真正使你無法理解的原因是缺失解碼需要的額外知識。而那些額外知識可能在其他書本裏。</p>
+
+<p>從地球上出現私有制開始，人類就已經將「自私」深深埋入自己的基因。真理往往簡單到讓你感到不真實。可得到真理的部分人並不希望別人輕鬆地獲得真理，別人也必須要花不少於自己所花的時間才公平。於是他們喜歡在「編碼」的時候故弄玄虛。當然，也有可能是出於多得到些稿費的原因。於是怪圈就形成了。但一旦你能識破怪圈，怪圈也會隨之消失。所要做的只是耐心。</p>
+
+<h1 id="section-1">人與科技</h1>
+
+<p>人類的科技放在宇宙尺度來看確實是爆炸式的，就像生物的出現、人類的演化也幾乎都是爆炸式的一樣。爲什麼是這樣，直到凱文凱利點破了科技是更高級的生命時我才恍然大悟。科技並不只是人類缺失能力的補足，而是像物種間的相互利用一樣，人離不開科技，科技離不開人。於是，適用於其他生物的公理也適用於科技。於是科技和生物一樣，有生存、繁衍和進化的需要。說到進化就不得不談DNA。人類的異性交配而交換DNA的方式大大提高多樣性，也進而增大了進化的可能性。而對於科技而言，它們的DNA是什麼呢？是「道」和「術」。</p>
+
+<p>科技和科學到底是個什麼樣的關係？科技是「道」和「術」的集合，她既是指導思想，也是技巧方法。而科學就僅僅是研究其「道」，是學問。「道」像海上的明燈，指明方向；而「術」像划船的方法，用於前行。二者缺一不可。</p>
+
+<h1 id="section-2">我的問題</h1>
+
+<p>科技孕育於人類，這就迴歸到我了。「道不明」會導致沒有爆發力，就會像輪胎陷在泥潭裏一樣使不上力；久而久之必然「術不精」，在泥潭裏的各種掙扎，用盡了辦法（術），到頭來也不知道什麼術可行、也不知自己會什麼術。也就是說，要想孕育出更好的科技，就必須道術兼備，且要像DNA交換那麼富於變化。除此之外，就是不停地嘗試，畢竟富於變化的DNA並沒有任何質量上的保障。</p>
+
+<p>一年前我還把計算機科學叫做「人造科學」，因爲覺得有別與自然科學，她似乎是人「生造」出來的。可是我現在又覺得這樣說不確切了。我們都知道計算機科學跟數學的淵源，可以說計算機科學完全構建於數學之上，當然這裏的數學包括邏輯學。如果僅僅從這裏看，說她人造科學也合情合理。可是我目光短淺了。數學又來自哪裏？數學是一切的抽象，當然也包括自然科學。（有興趣的話可以看一下BBC的The History of
+Mathematics）如果從這個意義上來說計算機科學是一切科學的虛擬化。所以我一度覺得計算機科學的核心是術多於道的想法是大錯特錯的，其道很深，還來自除了大家已經爛熟於心的計算存儲原理和圖靈機以外的方方面面。這顯然是我一輩子都沒法學得完的。</p>
+
+<p>當想明白了這些，再回頭看看程序員的八個等級，排在前列的都是偉大的「父親」或「母親」。他們孕育了更加優質的科技。現在我要做的已然很清晰。</p>
+]]></content>
+  </entry>
+  
+</feed>
