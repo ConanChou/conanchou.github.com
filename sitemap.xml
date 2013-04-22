@@ -1,83 +1,83 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://ConanChou.github.com/blog/routine/2012/07/21/touch-log/</loc>
+        <loc>http://ConanChou.github.io/blog/routine/2012/07/21/touch-log/</loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/
+            http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/
+            http://ConanChou.github.io/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/
+            http://ConanChou.github.io/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/
+            http://ConanChou.github.io/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/
+            http://ConanChou.github.io/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/
+            http://ConanChou.github.io/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/
+            http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/
+            http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/
+            http://ConanChou.github.io/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://ConanChou.github.com/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/
+            http://ConanChou.github.io/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/
         </loc>
         <lastmod>2013-03-22T16:49:26-04:00</lastmod>
     </url>
     <url>
-        <loc>http://ConanChou.github.com/blog/Thought/2013/04/20/dao-bu-ming-shu-bu-jing/</loc>
+        <loc>http://ConanChou.github.io/blog/Thought/2013/04/20/dao-bu-ming-shu-bu-jing/</loc>
         <lastmod>2013-04-21T18:45:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://ConanChou.github.com/blog/Thought/Tool/2013/04/21/programming-tools/</loc>
+        <loc>http://ConanChou.github.io/blog/Thought/Tool/2013/04/21/programming-tools/</loc>
         <lastmod>2013-04-22T00:39:30-04:00</lastmod>
     </url>
     <url>
-        <loc>http://ConanChou.github.com/</loc>
+        <loc>http://ConanChou.github.io/</loc>
         <lastmod>2013-04-22T00:39:30-04:00</lastmod>
     </url>
     <url>
-        <loc>http://ConanChou.github.com/blog/archives/</loc>
+        <loc>http://ConanChou.github.io/blog/archives/</loc>
         <lastmod>2013-04-22T00:39:30-04:00</lastmod>
     </url>
 </urlset>

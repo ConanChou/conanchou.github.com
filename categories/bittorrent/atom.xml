@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: BitTorrent | conan @ notes:~/]]></title>
-  <link href="http://ConanChou.github.com/categories/bittorrent/atom.xml" rel="self"/>
-  <link href="http://ConanChou.github.com/"/>
-  <updated>2013-04-22T00:40:24-04:00</updated>
-  <id>http://ConanChou.github.com/</id>
+  <link href="http://ConanChou.github.io/categories/bittorrent/atom.xml" rel="self"/>
+  <link href="http://ConanChou.github.io/"/>
+  <updated>2013-04-22T00:41:44-04:00</updated>
+  <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
     <email><![CDATA[conanchou1412@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi 下載盒]]></title>
-    <link href="http://ConanChou.github.com/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
+    <link href="http://ConanChou.github.io/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
     <updated>2013-02-20T17:03:00-05:00</updated>
-    <id>http://ConanChou.github.com/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
+    <id>http://ConanChou.github.io/blog/Raspberry-Pi/BitTorrent/Arch/Linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more--></p>
 
 <h2 id="section">環境搭建</h2>

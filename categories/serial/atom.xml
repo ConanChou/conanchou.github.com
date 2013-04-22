@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Serial | conan @ notes:~/]]></title>
-  <link href="http://ConanChou.github.com/categories/serial/atom.xml" rel="self"/>
-  <link href="http://ConanChou.github.com/"/>
-  <updated>2013-04-22T00:40:24-04:00</updated>
-  <id>http://ConanChou.github.com/</id>
+  <link href="http://ConanChou.github.io/categories/serial/atom.xml" rel="self"/>
+  <link href="http://ConanChou.github.io/"/>
+  <updated>2013-04-22T00:41:44-04:00</updated>
+  <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
     <email><![CDATA[conanchou1412@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·經驗主義調優]]></title>
-    <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/"/>
+    <link href="http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/"/>
     <updated>2012-08-26T14:56:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips</id>
+    <id>http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">上一次我們聊了「理性主義」</a>，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。<!--more--></p>
 
 <p>在列舉各種「術」之前，先說「道」（術指具體做事的方法，道指做事的原理）。領悟了道之後才能在不同情況下做出正確的選擇。一般而言，調優無非在兩方面做優化：時間複雜度和空間複雜度。有時候時間和空間會互相矛盾，而這個時候就不得不在它們中做取捨。不同的應用取捨的決定因素是不一樣的。不過就目前而言，因爲空間越來越廉價，時間越來越寶貴，大部分時候人們會偏向與用空間換時間。當然也有兩者不矛盾的時候，這個時候肯定是綜合複雜度越小越好。除了空間、時間複雜度的取捨之外，還有一個可讀性的問題，實際上有時候爲了優化代碼，可讀性會下降不少。所以這個也是個要權衡的方面。</p>
@@ -351,9 +351,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·理性主義調優]]></title>
-    <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/"/>
+    <link href="http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/"/>
     <updated>2012-08-26T00:10:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling</id>
+    <id>http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「理性主義調優」，當然這裏只指代碼級別的調優。（理性主義相對於經驗主義，是兩個相對的哲學流派。）<!--more--></p>
 
 <p>我們要做的第一步就是學會使用代碼造影，上次我們討論的幾個工具並不是你每次每個都要使用，但是先做大範圍的模塊造影，再做有針對性的行造影是造影的常規步驟。</p>
@@ -478,9 +478,9 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·代碼造影]]></title>
-    <link href="http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/"/>
+    <link href="http://ConanChou.github.io/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/"/>
     <updated>2012-07-25T00:14:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling</id>
+    <id>http://ConanChou.github.io/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling</id>
     <content type="html"><![CDATA[<p>在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。<!-- more --></p>
 
 <p>Python 是自帶造影工具的，從 <a href="http://docs.python.org/library/profile.html">官方文檔</a> 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 <code lang="python">cProfile</code> 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 <a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">小腳本</a>。</p>
@@ -788,9 +788,9 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·序]]></title>
-    <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/"/>
+    <link href="http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/"/>
     <updated>2012-07-23T01:19:00-04:00</updated>
-    <id>http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1</id>
+    <id>http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1</id>
     <content type="html"><![CDATA[<p>以往我都以寫命令行下的 Python 腳本爲主。即使做項目也基本是做小規模 Web 類的。所以很少遇到效率太低受不了的情況，所以也鮮有調優的需要。當然，在寫代碼時就已經注意了一些效率問題，所以基本不需要很費心機地調優。可是幾個月前我做了兩個項目，一是一個機器學習引擎，用以學習在線讀者閱讀習慣；另一個是一個下 Chess 的 AI，用以人機對奕。<!-- more -->兩個系統都用 Python 構建。因爲這兩個項目都是 CPU intensive 的，真的是慢的可以。於是這逼得我不得不去研究下有關 Python
 的調優。而在機器學習的項目中，因爲當時自己的服務器實在很爛（只有256 MB 內存），所以得瘋狂得做服務器部署的優化才能讓它處理外部請求和部分邏輯。加上以往的服務器調優經驗，也算是積累了一些有用的東西。</p>
 
