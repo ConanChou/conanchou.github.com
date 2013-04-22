@@ -4,7 +4,7 @@
   <title><![CDATA[conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2013-04-22T00:49:44-04:00</updated>
+  <updated>2013-04-22T01:05:35-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -57,7 +57,7 @@ Python、Ruby、PHP、Java、Go、JS等相關的程序（其實還包括我現�
 
 <p>我曾看到<a href="http://developers.slashdot.org/story/12/10/30/065244/the-ide-as-a-bad-programming-language-enabler">這樣一種說法</a>，說如果一門語言設計得足夠好的話，IDE是一種多餘的存在。因爲IDE本身就是爲了很大程度上彌補語言設計的不足。聽起來有點偏激？我暫不置評吧，畢竟這篇日誌是談工具，而語言，作爲生產材料，或許可以作爲以後某篇日誌的主題。引入這個評論，其實我是想說分析生產工具無法徹底將其與生產材料分開討論。而確實，不同的編程語言其需要的自動化類型也是不同的。對於設計較差的編程語言，自動化可能更多的是在生成代碼上。而對設計較好的編程語言，自動化可能更多的是放在生產環節上，比如自動測試、編譯、部署等。生產環節的自動化往往是需要很強靈活性的，而前面我也已經說了，這種靈活性恐怕是大多數IDE不具備的，除非有像google內部專門的team做相關的IDE定製化開發的支持。</p>
 
-<p>如果先拋開語言的優劣不說，我覺得目前我看到的最想用的IDE就是<a href="http://www.lighttable.com/">LightTable</a>。當然，如果它能兼備靈活性，我會果斷拋棄現在我在使用的開發環境方案。</p>
+<p>先拋開語言的優劣，我覺得目前我看到的最想用的IDE就是<a href="http://www.lighttable.com/">LightTable</a>。當然，如果它能兼備靈活性，我會果斷拋棄現在我在使用的開發環境方案。</p>
 ]]></content>
   </entry>
   
