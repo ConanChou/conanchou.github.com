@@ -7,7 +7,7 @@
 	<meta name="author" content="Conan">
 
 	
-	<meta name="description" content="Jun 9th, 2013 Thought 勤與懶 「Just In Case」和「Just In Time」，前者是「以防萬一」，而後者是「正好及時」。寫這篇日誌不是爲了給大家解釋這兩個詞組的字面意思，我更想談一談它們字面意思以下的含義，以及它們在程序設計中的意義。 初看之下， &hellip;">
+	<meta name="description" content="Jun 10th, 2013 Python 蟒之惰性 上一篇日誌其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,6 @@
 	<link href="/atom.xml" rel="alternate" title="conan @ notes:~/" type="application/atom+xml">
 	
 	<link rel="canonical" href="http://ConanChou.github.io/">
-	<link href="/favicon.ico" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -92,24 +91,46 @@ MathJax.Hub.Config({
 		<div class="mid-col">
 			
 				
-<div id="banner" class="inner">
-	<div class="container">
-		<ul class="feed"></ul>
-	</div>
-	<small><a href="http://twitter.com/ConanChou">ConanChou</a> @ <a href="http://twitter.com">Twitter</a></small>
-	<div class="loading">Loading...</div>
-</div>
-<script src="/javascripts/twitter.js"></script>
-<script type="text/javascript">
-	(function($){
-		$('#banner').getTwitterFeed('ConanChou', 4, false);
-	})(jQuery);
-</script>
-
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-10T18:06:00-04:00" data-updated="true" itemprop="datePublished">Jun 10<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/categories/python/'>Python</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/Python/2013/06/10/laziness-in-python/" itemprop="url">蟒之惰性</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><a href="http://conanchou.github.io/blog/Thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 Wikipedia。</p>
+
+<p>Python本身是具有惰性的，我在<a href="http://conanchou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">《Python 調優筆記 · 經驗主義調優》</a>的「懶惰&gt;勤勞」小節就已經說了一些。我們接下來要看看Python中更高級一點的惰性用法。
+		
+		<a href="/blog/Python/2013/06/10/laziness-in-python/" class="more-link">Read on</a>
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -423,40 +444,6 @@ MathJax.Hub.Config({
 中則是類似地用<code>__</code>開頭的方法。
 		
 		<a href="/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/" class="more-link">Read on</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-20T22:21:00-04:00" data-updated="true" itemprop="datePublished">Aug 20<span>th</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/categories/hack/'>Hack</a>, <a class='category' href='/categories/linux/'>Linux</a>, <a class='category' href='/categories/unix/'>Unix</a>, <a class='category' href='/categories/zsh/'>Zsh</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/" itemprop="url">簡單粗暴解決 Zsh Home 和 End 按鍵問題</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don’t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。
-		
-		<a href="/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/" class="more-link">Read on</a>
 	</div>
 
 </article>

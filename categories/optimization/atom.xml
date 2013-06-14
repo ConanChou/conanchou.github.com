@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Optimization | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/optimization/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2013-06-10T01:11:57-04:00</updated>
+  <updated>2013-06-13T23:49:21-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -581,7 +581,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 <p>現在顯而易見了吧， <code lang="python">calculate_z_serial_purepython</code> 就是花時間最多的。可是到底是什麼使得它花這麼久，還是不能從上圖中找到原因。很顯然不是因爲 <code>&lt;abs&gt;</code> 和 <code>&lt;range&gt;</code>。于是我们定位到这个 function：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function calculate_z_serial_purepython  </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function calculate_z_serial_purepython </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
