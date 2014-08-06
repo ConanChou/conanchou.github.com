@@ -4,7 +4,7 @@
   <title><![CDATA[Category: routine | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/routine/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2014-08-05T23:08:46-04:00</updated>
+  <updated>2014-08-05T23:15:20-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[touch log]]></title>
-    <link href="http://ConanChou.github.io/blog/routine/2012/07/21/touch-log/"/>
+    <link href="http://ConanChou.github.io/blog/2012/07/21/touch-log/"/>
     <updated>2012-07-21T02:05:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/routine/2012/07/21/touch-log</id>
+    <id>http://ConanChou.github.io/blog/2012/07/21/touch-log</id>
     <content type="html"><![CDATA[<p>大半年前就在 HN 上看到一篇文章说 <a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">像黑客一样写博客</a> 的文章。看到标题的时候，我还以为肯定是一篇无聊的炫耀文。可是我错了。文章是 GitHub 的联合创始人 Tom Preston-Werner 写的。他在文中推荐了一种新的写作博客的方式。其实说穿了就是拿 Ruby 世界的 <code>make</code>，<code>rake</code> 来生成基于 markdown 的静态网页，然后将这些网页再部署到 GitHub。</p>
 
 <!-- more -->
