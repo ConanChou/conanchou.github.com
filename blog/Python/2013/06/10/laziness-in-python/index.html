@@ -17,7 +17,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="conan @ notes:~/" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://ConanChou.github.io/blog/Python/2013/06/10/laziness-in-python/">
+	<link rel="canonical" href="http://ConanChou.github.io/blog/python/2013/06/10/laziness-in-python/">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -210,7 +210,7 @@ MathJax.Hub.Config({
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>猜<code>[11, 12, 13, 14]</code>的同學，恭喜你們成功跳進了陷阱。上面代碼的運行結果是<code>[20, 21, 22,
-23]</code>。不信貼到自己的環境裏跑跑看。爲什麼呢？<code>numbers</code>裏的<code>1</code>壓根不見了？其實是因爲直到最後一句<code>list(base)</code>的時候運算才被出發，而此時本地變量<code>n</code><code>已經循環到了最後一個，即</code>10`。又因爲有兩個數字要加，就變成了把10加了兩遍。理解這個過程的難點在於，要時刻提醒自己惰性求值發生的時間點在哪裏，以及它所記住的狀態（或變量）都包含哪些。下面爲了方便理解，我貼一個本程序跑的時候在內存裏的慢動作，還沒弄明白的同學可以一步一步看：</p>
+23]</code>。不信貼到自己的環境裏跑跑看。爲什麼呢？<code>numbers</code>裏的<code>1</code>壓根不見了？其實是因爲直到最後一句<code>list(base)</code>的時候運算才被出發，而此時本地變量<code>n</code>已經循環到了最後一個，即<code>10</code>。又因爲有兩個數字要加，就變成了把10加了兩遍。理解這個過程的難點在於，要時刻提醒自己惰性求值發生的時間點在哪裏，以及它所記住的狀態（或變量）都包含哪些。下面爲了方便理解，我貼一個本程序跑的時候在內存裏的慢動作，還沒弄明白的同學可以一步一步看：</p>
 
 <iframe width="960" height="600" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=def+add(s,+x)%3A%0A++++return+s+%2B+x%0A%0Adef+gen()%3A%0A++++for+i+in+range(4)%3A%0A++++++++yield+i%0A++++++++%0Abase+%3D+gen()%0Anumbers+%3D+%5B1,+10%5D%0Afor+n+in+numbers%3A%0A++++base+%3D+(add(i,+n)+for+i+in+base)%0Aprint+list(base)&amp;cumulative=false&amp;heapPrimitives=false&amp;drawParentPointers=false&amp;textReferences=false&amp;showOnlyOutputs=false&amp;py=2&amp;curInstr=0"> </iframe>
 
@@ -550,7 +550,7 @@ MathJax.Hub.Config({
 </section>
 </div>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2013
+			<footer id="footer" class="inner">Copyright &copy; 2014
 
     Conan
 
@@ -570,8 +570,8 @@ MathJax.Hub.Config({
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ConanChou.github.io/blog/Python/2013/06/10/laziness-in-python/';
-        var disqus_url = 'http://ConanChou.github.io/blog/Python/2013/06/10/laziness-in-python/';
+        var disqus_identifier = 'http://ConanChou.github.io/blog/python/2013/06/10/laziness-in-python/';
+        var disqus_url = 'http://ConanChou.github.io/blog/python/2013/06/10/laziness-in-python/';
         var disqus_script = 'embed.js';
       
     (function () {

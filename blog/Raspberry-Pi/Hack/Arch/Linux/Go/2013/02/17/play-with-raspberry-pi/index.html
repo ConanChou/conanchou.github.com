@@ -17,7 +17,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="conan @ notes:~/" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://ConanChou.github.io/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">
+	<link rel="canonical" href="http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -204,25 +204,25 @@ MathJax.Hub.Config({
 </pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>sudo fdisk -uc /dev/mmcblk0
 </span><span class="line">
 </span><span class="line"><span class="c"># 打印分區表</span>
-</span><span class="line">Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>: p
+</span><span class="line">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
 </span><span class="line">
-</span><span class="line">Disk /dev/mmcblk0: 3904 MB, 3904897024 bytes
-</span><span class="line">64 heads, 32 sectors/track, 3724 cylinders, total 7626752 sectors
-</span><span class="line"><span class="nv">Units</span> <span class="o">=</span> sectors of 1 * <span class="nv">512</span> <span class="o">=</span> 512 bytes
-</span><span class="line">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512 bytes / 512 bytes
-</span><span class="line">I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: 512 bytes / 512 bytes
+</span><span class="line">Disk /dev/mmcblk0: <span class="m">3904</span> MB, <span class="m">3904897024</span> bytes
+</span><span class="line"><span class="m">64</span> heads, <span class="m">32</span> sectors/track, <span class="m">3724</span> cylinders, total <span class="m">7626752</span> sectors
+</span><span class="line"><span class="nv">Units</span> <span class="o">=</span> sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
+</span><span class="line">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+</span><span class="line">I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
 </span><span class="line">Disk identifier: 0x0004f23a
 </span><span class="line">
 </span><span class="line">        Device Boot      Start         End      Blocks   Id  System
-</span><span class="line">/dev/mmcblk0p1   *        2048      186367       92160    c  W95 FAT32 <span class="o">(</span>LBA<span class="o">)</span>
-</span><span class="line">/dev/mmcblk0p2          186368     3667967     1740800   83  Linux
+</span><span class="line">/dev/mmcblk0p1   *        <span class="m">2048</span>      <span class="m">186367</span>       <span class="m">92160</span>    c  W95 FAT32 <span class="o">(</span>LBA<span class="o">)</span>
+</span><span class="line">/dev/mmcblk0p2          <span class="m">186368</span>     <span class="m">3667967</span>     <span class="m">1740800</span>   <span class="m">83</span>  Linux
 </span><span class="line">
 </span><span class="line"><span class="c"># 刪除第二個分區</span>
-</span><span class="line">Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>: d
+</span><span class="line">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: d
 </span><span class="line">Partition number <span class="o">(</span>1-4<span class="o">)</span>: 2
 </span><span class="line">
 </span><span class="line"><span class="c"># 新建一個分區</span>
-</span><span class="line">Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>: n
+</span><span class="line">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
 </span><span class="line">Command action
 </span><span class="line">   e   extended
 </span><span class="line">   p   primary partition <span class="o">(</span>1-4<span class="o">)</span>
@@ -235,7 +235,7 @@ MathJax.Hub.Config({
 </span><span class="line">Using default value 7626751
 </span><span class="line">
 </span><span class="line"><span class="c"># 保存剛剛的操作並退出</span>
-</span><span class="line">Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>: w
+</span><span class="line">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: w
 </span><span class="line">The partition table has been altered!
 </span><span class="line">
 </span><span class="line">Calling ioctl<span class="o">()</span> to re-read partition table.
@@ -269,11 +269,11 @@ MathJax.Hub.Config({
 </span><span class="line"><span class="c"># /etc/fstab: static file system information</span>
 </span><span class="line"><span class="c">#</span>
 </span><span class="line"><span class="c"># &lt;file system&gt;        &lt;dir&gt;         &lt;type&gt;    &lt;options&gt;          &lt;dump&gt; &lt;pass&gt;</span>
-</span><span class="line">devpts                 /dev/pts      devpts    defaults            0      0
-</span><span class="line">shm                    /dev/shm      tmpfs     nodev,nosuid        0      0
-</span><span class="line">/dev/mmcblk0p1  /boot           vfat    defaults        0       0
-</span><span class="line">/dev/mmcblk0p2  /               ext4    defaults,noatime        0       0
-</span><span class="line">tmpfs           /var/log        tmpfs   defaults,noatime,mode<span class="o">=</span>0755,size<span class="o">=</span>5%      0       0
+</span><span class="line">devpts                 /dev/pts      devpts    defaults            <span class="m">0</span>      0
+</span><span class="line">shm                    /dev/shm      tmpfs     nodev,nosuid        <span class="m">0</span>      0
+</span><span class="line">/dev/mmcblk0p1  /boot           vfat    defaults        <span class="m">0</span>       0
+</span><span class="line">/dev/mmcblk0p2  /               ext4    defaults,noatime        <span class="m">0</span>       0
+</span><span class="line">tmpfs           /var/log        tmpfs   defaults,noatime,mode<span class="o">=</span>0755,size<span class="o">=</span>5%      <span class="m">0</span>       0
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>升級系統：</p>
@@ -404,11 +404,11 @@ MathJax.Hub.Config({
 <span class="line-number">8</span>
 <span class="line-number">9</span>
 </pre></td><td class="code"><pre><code class="bash"><span class="line">ALSA lib confmisc.c:768:<span class="o">(</span>parse_card<span class="o">)</span> cannot find card <span class="s1">&#39;0&#39;</span>
-</span><span class="line">ALSA lib conf.c:4246:<span class="o">(</span>_snd_config_evaluate<span class="o">)</span> <span class="k">function </span>snd_func_card_driver returned error: No such file or directory
+</span><span class="line">ALSA lib conf.c:4246:<span class="o">(</span>_snd_config_evaluate<span class="o">)</span> <span class="k">function</span> snd_func_card_driver returned error: No such file or directory
 </span><span class="line">ALSA lib confmisc.c:392:<span class="o">(</span>snd_func_concat<span class="o">)</span> error evaluating strings
-</span><span class="line">ALSA lib conf.c:4246:<span class="o">(</span>_snd_config_evaluate<span class="o">)</span> <span class="k">function </span>snd_func_concat returned error: No such file or directory
+</span><span class="line">ALSA lib conf.c:4246:<span class="o">(</span>_snd_config_evaluate<span class="o">)</span> <span class="k">function</span> snd_func_concat returned error: No such file or directory
 </span><span class="line">ALSA lib confmisc.c:1251:<span class="o">(</span>snd_func_refer<span class="o">)</span> error evaluating name
-</span><span class="line">ALSA lib conf.c:4246:<span class="o">(</span>_snd_config_evaluate<span class="o">)</span> <span class="k">function </span>snd_func_refer returned error: No such file or directory
+</span><span class="line">ALSA lib conf.c:4246:<span class="o">(</span>_snd_config_evaluate<span class="o">)</span> <span class="k">function</span> snd_func_refer returned error: No such file or directory
 </span><span class="line">ALSA lib conf.c:4725:<span class="o">(</span>snd_config_expand<span class="o">)</span> Evaluate error: No such file or directory
 </span><span class="line">ALSA lib pcm.c:2217:<span class="o">(</span>snd_pcm_open_noupdate<span class="o">)</span> Unknown PCM default
 </span><span class="line">aplay: main:696: audio open error: No such file or directory
@@ -443,7 +443,7 @@ MathJax.Hub.Config({
 <p>這樣應該就好了，來聽首歌試試：</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>vlc --intf http --http-host 192.168.2.11 --http-port 8080 /home/conan/hikari-loveletter.mp3
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>vlc --intf http --http-host 192.168.2.11 --http-port <span class="m">8080</span> /home/conan/hikari-loveletter.mp3
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>打開 Web Interface 就只需要：</p>
@@ -527,7 +527,7 @@ MathJax.Hub.Config({
 </pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>cp 8192cu.ko /lib/modules/<span class="k">$(</span>uname -r<span class="k">)</span>/kernel/net/wireless
 </span><span class="line"><span class="nv">$ </span>depmod -a
 </span><span class="line"><span class="nv">$ </span>insmod 8192cu.ko
-</span><span class="line"><span class="nv">$ </span>install -p -m 644 ~/RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622/8192cu.ko /lib/modules/<span class="o">(</span><span class="nv">$uname</span> -r<span class="o">)</span>/kernel/drivers/net/wireless/
+</span><span class="line"><span class="nv">$ </span>install -p -m <span class="m">644</span> ~/RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622/8192cu.ko /lib/modules/<span class="o">(</span><span class="nv">$uname</span> -r<span class="o">)</span>/kernel/drivers/net/wireless/
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>驅動裝完後我們還得看看有沒有衝突的驅動，用<code>mkinitcpio -M</code>查看。如果发现列表里有<code>rtl8192cu</code>，我們得禁用它才能保證新的驅動正常工作：</p>
@@ -625,7 +625,7 @@ MathJax.Hub.Config({
 </pre></td><td class="code"><pre><code class="bash"><span class="line">ALL TESTS PASSED
 </span><span class="line">
 </span><span class="line">---
-</span><span class="line">Installed Go <span class="k">for </span>linux/amd64 in /home/you/go.
+</span><span class="line">Installed Go <span class="k">for</span> linux/amd64 in /home/you/go.
 </span><span class="line">Installed commands in /home/you/go/bin.
 </span><span class="line">*** You need to add /home/you/go/bin to your <span class="nv">$PATH</span>. ***
 </span></code></pre></td></tr></table></div></figure></notextile></div>
@@ -645,12 +645,12 @@ MathJax.Hub.Config({
 <span class="line-number">5</span>
 <span class="line-number">6</span>
 <span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="go"><span class="line"><span class="k">package</span> <span class="n">main</span>
+</pre></td><td class="code"><pre><code class="go"><span class="line"><span class="kn">package</span> <span class="nx">main</span>
 </span><span class="line">
-</span><span class="line"><span class="k">import</span> <span class="s">&quot;fmt&quot;</span>
+</span><span class="line"><span class="kn">import</span> <span class="s">&quot;fmt&quot;</span>
 </span><span class="line">
-</span><span class="line"><span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">    <span class="n">fmt</span><span class="p">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">&quot;hello, world\n&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;hello, world\n&quot;</span><span class="p">)</span>
 </span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -696,7 +696,7 @@ MathJax.Hub.Config({
 </section>
 </div>
 			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2013
+			<footer id="footer" class="inner">Copyright &copy; 2014
 
     Conan
 
@@ -716,8 +716,8 @@ MathJax.Hub.Config({
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ConanChou.github.io/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/';
-        var disqus_url = 'http://ConanChou.github.io/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/';
+        var disqus_identifier = 'http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/';
+        var disqus_url = 'http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/';
         var disqus_script = 'embed.js';
       
     (function () {

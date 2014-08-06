@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Programming | conan @ notes:~/]]></title>
+  <title><![CDATA[Category: programming | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/programming/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2013-06-13T23:49:21-04:00</updated>
+  <updated>2014-08-05T23:08:46-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·經驗主義調優]]></title>
-    <link href="http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/"/>
+    <link href="http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/"/>
     <updated>2012-08-26T14:56:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips</id>
+    <id>http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">上一次我們聊了「理性主義」</a>，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。<!--more--></p>
 
 <p>在列舉各種「術」之前，先說「道」（術指具體做事的方法，道指做事的原理）。領悟了道之後才能在不同情況下做出正確的選擇。一般而言，調優無非在兩方面做優化：時間複雜度和空間複雜度。有時候時間和空間會互相矛盾，而這個時候就不得不在它們中做取捨。不同的應用取捨的決定因素是不一樣的。不過就目前而言，因爲空間越來越廉價，時間越來越寶貴，大部分時候人們會偏向與用空間換時間。當然也有兩者不矛盾的時候，這個時候肯定是綜合複雜度越小越好。除了空間、時間複雜度的取捨之外，還有一個可讀性的問題，實際上有時候爲了優化代碼，可讀性會下降不少。所以這個也是個要權衡的方面。</p>
@@ -56,9 +56,9 @@
 
 <p>前者與生俱來的 <code lang="python">|</code> (union)、<code lang="python">&amp;</code> (intersection) 和 <code lang="python">-</code> (difference) 運算就比 <code lang="python">list</code> 的迭代式效率高。所以涉及到 <code lang="python">list</code> 的這三種運算，最佳方案是轉成 <code lang="python">set</code> 再用相應的 <code lang="python">set</code> 運算符計算，最後再轉到 <code lang="python">list</code>。例如：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">list_a</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">list_b</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <ul>
   <li>
@@ -84,9 +84,9 @@
 
 <p>Python 字符串自帶了不少有用的方法可以取代正則表達式。比如那些 <code>is</code> 開頭的方法以及 <code>with</code> 結尾的方法。具體的列表可以查看 pydoc：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>pydoc str
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <ul>
   <li>
@@ -122,7 +122,7 @@
 
 <p>這個尤其要在循環裏注意，就是<a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">本系列第二篇</a>裏我們找到的問題。Python 對局部變量的訪問效率要比全局變量的訪問效率高。另外，如果是一些帶「點」的方法，最好也放到循環的外面，因爲每次「點」，相應的方法都要再 <code lang="python">eval</code> 一遍。因此應該像下面這樣寫：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -136,7 +136,7 @@
 </span><span class='line'>    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">oldlist</span><span class="p">:</span>
 </span><span class='line'>        <span class="n">append</span><span class="p">(</span><span class="n">upper</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">newlist</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>當然，在可以用 <code lang="python">list</code> comprehensions 和 <code lang="python">map</code> 的情況下，優先考慮使用這些。</p>
 
@@ -152,7 +152,7 @@
 
 <p><code lang="python">xrange()</code> 不會在運行時就在內存中產生一個 <code lang="python">list</code>，而是在用的時候臨時算出來。看下面的例子：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -186,7 +186,7 @@
 </span><span class='line'><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">rangeiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fbbed1123f0</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span>
 </span><span class='line'><span class="err">»</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">print</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 </span><span class='line'><span class="mi">0</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <ul>
   <li>
@@ -229,7 +229,7 @@
 <p>假設我們現在有個 <code lang="python">list</code> 需要對其內容一一處理，在你面前是兩條路（假設不用 <code lang="python">list</code> comprehensions 之類更好的方式），一條是將 <code lang="python">list</code> 傳進專門處理的方法，然後在方法內循環處理裏面的元素；另一條是遍歷此 <code lang="python">list</code>，然後將單個的元素用一個方法去做處理。這兩者間前者比較好，因爲 Python
 的方法調用還是需要較多的開銷的。看例子，首先是循環裏調方法：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -245,11 +245,11 @@
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nb">list</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
 </span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
 </span><span class='line'>    <span class="n">doit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>改成下面這樣更好</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -265,7 +265,7 @@
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nb">list</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
 </span><span class='line'><span class="n">doit</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <ul>
   <li>
@@ -283,7 +283,7 @@
 
 <p>假設我們有這麼一種情況：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -305,12 +305,12 @@
 </span><span class='line'><span class="k">def</span> <span class="nf">example</span><span class="p">():</span>
 </span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100000</span><span class="p">):</span>
 </span><span class='line'>        <span class="n">a</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="err">”</span><span class="n">b</span><span class="err">”</span><span class="p">,</span><span class="err">”</span><span class="n">c</span><span class="err">”</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>初看這段代碼沒什麼問題，但是如果仔細看，<code lang="python">if</code> 用得很單調。前 50 個也就算了，但是後面的 99950
 次 <code lang="python">if</code> 開銷就很大了。如果能省去這些 <code lang="python">if</code> 速度會好很多。這裏其實可以用方法重定向來提高效率：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -334,26 +334,26 @@
 </span><span class='line'><span class="k">def</span> <span class="nf">example</span><span class="p">():</span>
 </span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100000</span><span class="p">):</span>
 </span><span class='line'>        <span class="n">a</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="err">”</span><span class="n">b</span><span class="err">”</span><span class="p">,</span><span class="err">”</span><span class="n">c</span><span class="err">”</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>
 ***
 
 本文是『Python 調優筆記』系列中的一篇，其它文章還有：
 
-- [序，一切的開始](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/ "Python 調優筆記·序")
-- [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ " Python 調優筆記·代碼造影")
-- [理性主義調優，一切從根本出發](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/ "Python 調優筆記·理性主義調優")
-- [經驗主義調優，站在巨人的肩膀上](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/ "Python 調優筆記·經驗主義調優")
+- [序，一切的開始](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/ &#8220;Python 調優筆記·序&#8221;)
+- [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ &#8221; Python 調優筆記·代碼造影&#8221;)
+- [理性主義調優，一切從根本出發](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/ &#8220;Python 調優筆記·理性主義調優&#8221;)
+- [經驗主義調優，站在巨人的肩膀上](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/ &#8220;Python 調優筆記·經驗主義調優&#8221;)
 </p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·理性主義調優]]></title>
-    <link href="http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/"/>
+    <link href="http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/"/>
     <updated>2012-08-26T00:10:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling</id>
+    <id>http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「理性主義調優」，當然這裏只指代碼級別的調優。（理性主義相對於經驗主義，是兩個相對的哲學流派。）<!--more--></p>
 
 <p>我們要做的第一步就是學會使用代碼造影，上次我們討論的幾個工具並不是你每次每個都要使用，但是先做大範圍的模塊造影，再做有針對性的行造影是造影的常規步驟。</p>
@@ -365,7 +365,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 <p>我們繼續之前的<a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">代碼例子</a>，只是假設我們現在還不知道「慢」的原因。目前的狀況是我們知道了瓶頸在 <code lang="python">calculate_z_serial_purepython()</code> 裏，並且通過行造影，我們知道 <code lang="python">z[i] = z[i]*z[i] +q[i]</code> 花了很多时间。现在我们来 Disassembling：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -443,7 +443,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">h1</span> <span class="nb">id</span><span class="o">=</span><span class="s">&quot;section&quot;</span><span class="o">&gt;</span><span class="err">後略</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>因爲我們已經將我們的注意力定在了這幾行，所以我略去了前後無關的內容。後面的註釋是我加的，說實話光是註釋就加得累死我了，那問題看來也很顯然了吧。太多重複調用了，非常不科學。</p>
 
@@ -468,19 +468,19 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 本文是『Python 調優筆記』系列中的一篇，其它文章還有：
 
-- [序，一切的開始](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/ "Python 調優筆記·序")
-- [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ " Python 調優筆記·代碼造影")
-- [理性主義調優，一切從根本出發](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/ "Python 調優筆記·理性主義調優")
-- [經驗主義調優，站在巨人的肩膀上](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/ "Python 調優筆記·經驗主義調優")
+- [序，一切的開始](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/ &#8220;Python 調優筆記·序&#8221;)
+- [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ &#8221; Python 調優筆記·代碼造影&#8221;)
+- [理性主義調優，一切從根本出發](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/ &#8220;Python 調優筆記·理性主義調優&#8221;)
+- [經驗主義調優，站在巨人的肩膀上](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/ &#8220;Python 調優筆記·經驗主義調優&#8221;)
 </p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[用 Python 的「神奇方法」元編程]]></title>
-    <link href="http://ConanChou.github.io/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/"/>
+    <link href="http://ConanChou.github.io/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods/"/>
     <updated>2012-08-21T22:41:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods</id>
+    <id>http://ConanChou.github.io/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods</id>
     <content type="html"><![CDATA[<p>在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。</p>
 
 <p>什麼是「神奇方法」？其實是我亂翻譯的，英文中大家叫它們「Magic Methods」。我沒有在靜態語言中聽到過這個概念，只在 Python、PHP 這類動態語言中聽到。這是一類比較特殊的方法（Method/Function），是隨語言本身所故有的，在程序中無聲無息地起到作用。它們的命名方式都很特別，比如在 Python 中就是用<code>__</code>開頭用<code>__</code>結尾的方法，而在 PHP
@@ -515,10 +515,10 @@ unrelated_musics = api.calculate_getUnrelatedMusic(x=aaa, y=bbb, z=ccc)
 
 <p>其實說到這裏，我想很多老 Python 程序員應該是想到我要用的「神奇方法」了。沒錯，就是 <code>__getattr__(self, name)</code>。Python 會在找不到所呼叫的 attribute 的時候來調用這個方法。這不正是我想要的嘛，我只要截獲這個方法的邏輯就可以動態生成 API 調用方法了。所以解決方案一下子變得很簡單：</p>
 
-<p>``` python</p>
+<p>&#8220;` python</p>
 
 <p>class ABCAPI:
-    “"”ABC API wrapper”””</p>
+    “&#8221;”ABC API wrapper”””</p>
 
 <pre><code># 初始化，很常規
 def __init__(self, accesskey, sharedsecret, server='abc.com', version='4.10'):
@@ -558,9 +558,9 @@ def __getattr__(self, name):
   
   <entry>
     <title type="html"><![CDATA[關於編程，對我最有用的建議]]></title>
-    <link href="http://ConanChou.github.io/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/"/>
+    <link href="http://ConanChou.github.io/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got/"/>
     <updated>2012-08-20T15:58:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got</id>
+    <id>http://ConanChou.github.io/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got</id>
     <content type="html"><![CDATA[<p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">“The Best Programming Advice I Ever Got”</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。<!--more--></p>
 
 <ul>
@@ -568,7 +568,8 @@ def __getattr__(self, name):
     <p>「寫更少的代碼。」不要覺得寫很多代碼來修補一個 bug 是一件很光榮的事情，有時問題的關鍵只是多餘的一行代碼，刪除即可。寫更多的代碼只會增加維護成本。可以少寫代碼就少寫。</p>
   </li>
   <li>
-    <p>「在動手修改代碼前，先仔細理解報錯。」這一點看起來是廢話，但是我自己也好、別人也好，都多多少少犯過這樣的錯誤。原因很簡單，因爲人們寫代碼的時候很多是在壓力下完成的，比如要在下班前完成某個功能，或者在這禮拜前完成教授佈置的編程作業。所以經常就有人在沒有理解報錯的情況下枉自猜測着 debug。結果是反而浪費了很多時間在無用地猜測和推理上。這種現象在新手身上尤爲顯著，這裏的新手跟你寫程序的時間沒有關係，我雖然寫了10年程序，但對 Lisp 這門語言來說我仍然是新手。</p>
+    <p>「在動手修改代碼前，先仔細理解報錯。」這一點看起來是廢話，但是我自己也好、別人也好，都多多少少犯過這樣的錯誤。原因很簡單，因爲人們寫代碼的時候很多是在壓力下完成的，比如要在下班前完成某個功能，或者在這禮拜前完成教授佈置的編程作業。所以經常就有人在沒有理解報錯的情況下枉自猜測着
+debug。結果是反而浪費了很多時間在無用地猜測和推理上。這種現象在新手身上尤爲顯著，這裏的新手跟你寫程序的時間沒有關係，我雖然寫了十餘年程序，但對 Lisp 這門語言來說我仍然是新手。</p>
   </li>
   <li>
     <p>「讀多於寫，只讀高質量的書籍，一直更新知識庫。」程序員，尤其是老程序員，會傾向與專攻一項技術。當知識水平滿足了現在的工作需求的時候，一些人可能會停止繼續學習。這樣的程序員往往會遇到以下的情況：比如他是 C++ 程序員，兩年後再看別人新寫的 C++  代碼，可能會很不能理解。因爲他們的知識體系老化了。技術也是隨着摩爾定律一起發展的。所以當你完成了四年的大學，你已經有一半的知識快要淘汰。所以，繼續學習，學習更好更新的知識。</p>
@@ -599,18 +600,18 @@ def __getattr__(self, name):
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·代碼造影]]></title>
-    <link href="http://ConanChou.github.io/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/"/>
+    <link href="http://ConanChou.github.io/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/"/>
     <updated>2012-07-25T00:14:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling</id>
+    <id>http://ConanChou.github.io/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling</id>
     <content type="html"><![CDATA[<p>在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。<!-- more --></p>
 
 <p>Python 是自帶造影工具的，從 <a href="http://docs.python.org/library/profile.html">官方文檔</a> 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 <code lang="python">cProfile</code> 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 <a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">小腳本</a>。</p>
 
 <p>我們不妨先來運行一下該腳本：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>python pure_python_slow.py
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>運行結果是會生成這張圖片：</p>
 
@@ -618,24 +619,24 @@ def __getattr__(self, name):
 
 <p>命令行下的運行結果輸出則是：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>Main took 0:00:17.247938
-</span><span class='line'>Total sum of elements <span class="o">(</span><span class="k">for </span>validation<span class="o">)</span>: 1148485
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span><span class='line'>Total sum of elements <span class="o">(</span><span class="k">for</span> validation<span class="o">)</span>: 1148485
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>下面我們來用 cProfile 看看哪些地方用的時間比較長：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>python -m cProfile -o rep.prof pure_python_slow.py
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>用這種方法可以對整個腳本進行 profiling，然後把結果輸出到 <code lang="python">rep.prof</code> 中。當然對於一些較大的項目，這麼做是不恰當的，因爲一些大的項目往往有人機交互，所以使用這樣的方式來獲取運行時長顯然不可行。所以 <code lang="python">cProfile</code> 也提供了 function 方式的調用，也就是說可以在代碼裏使用它。而事實上官網的文檔就是這樣用的。使用 Django
 的同學可以試試<a href="http://djangosnippets.org/snippets/727/">這樣的代碼</a>。</p>
 
 <p>接着我們來分析一下所得的 profile，在與生成的 profile 文件同目錄下打開 Python 交互命令行：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -668,7 +669,7 @@ def __getattr__(self, name):
 </span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Ordered</span> <span class="n">by</span><span class="p">:</span> <span class="n">cumulative</span> <span class="n">time</span>
-</span><span class='line'>   <span class="n">List</span> <span class="n">reduced</span> <span class="kn">from</span> <span class="err">182</span> <span class="nn">to</span> <span class="err">10</span> <span class="nn">due</span> <span class="nn">to</span> <span class="nn">restriction</span> <span class="err">&amp;</span><span class="nn">lt</span><span class="err">;10&amp;</span><span class="nn">gt</span><span class="err">;&lt;/</span><span class="nn">p</span><span class="err">&gt;</span>
+</span><span class='line'>   <span class="n">List</span> <span class="n">reduced</span> <span class="kn">from</span> <span class="mi">182</span> <span class="n">to</span> <span class="mi">10</span> <span class="n">due</span> <span class="n">to</span> <span class="n">restriction</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="mi">10</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">ncalls</span>  <span class="n">tottime</span>  <span class="n">percall</span>  <span class="n">cumtime</span>  <span class="n">percall</span> <span class="n">filename</span><span class="p">:</span><span class="n">lineno</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
 </span><span class='line'>        <span class="mi">1</span>    <span class="mf">0.026</span>    <span class="mf">0.026</span>   <span class="mf">20.844</span>   <span class="mf">20.844</span> <span class="n">pure_python_slow</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">(</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">)</span>
@@ -683,7 +684,7 @@ def __getattr__(self, name):
 </span><span class='line'>        <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.019</span>    <span class="mf">0.019</span> <span class="p">{</span><span class="nb">__import__</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">module</span><span class="o">&gt;&lt;/</span><span class="n">genexpr</span><span class="o">&gt;&lt;/</span><span class="n">module</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>這裏我們可以看出，加了 <code lang="python">cProfile</code> 原來的程序會運行得略慢一些。這也是意料之中的。</p>
 
@@ -692,9 +693,9 @@ def __getattr__(self, name):
 
 <p>可能這個表格並不是很直觀。那下面我再介紹一種更加直觀的方式 —— <code lang="sh">runsnake</code>。我們回到命令行，用 <code lang="sh">runsnake</code> 跑剛剛生成的造影文件（<code lang="python">rep.prof</code>）:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>runsnake res.prof
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>運行後你會看到這個窗口：</p>
 
@@ -702,8 +703,8 @@ def __getattr__(self, name):
 
 <p>現在顯而易見了吧， <code lang="python">calculate_z_serial_purepython</code> 就是花時間最多的。可是到底是什麼使得它花這麼久，還是不能從上圖中找到原因。很顯然不是因爲 <code>&lt;abs&gt;</code> 和 <code>&lt;range&gt;</code>。于是我们定位到这个 function：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>function calculate_z_serial_purepython </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span>function calculate_z_serial_purepython </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -717,7 +718,7 @@ def __getattr__(self, name):
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">calculate_z_serial_purepython</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
-</span><span class='line'>    <span class="err">“</span><span class="s">&quot;”Pure python with complex datatype, iterating over list of q and z”””</span>
+</span><span class='line'>    <span class="err">“</span><span class="o">&amp;</span><span class="c">#8221;”Pure python with complex datatype, iterating over list of q and z”””</span>
 </span><span class='line'>    <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 </span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)):</span>
 </span><span class='line'>        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -729,13 +730,13 @@ def __getattr__(self, name):
 </span><span class='line'>                <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">iteration</span>
 </span><span class='line'>                <span class="k">break</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">output</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>有經驗的 Python 程序員可能已經知道問題出在哪裏了，但是我先賣個關子。當然目的是爲了介紹下面的一個造影工具 —— <code>kernprof.py</code>，line profiling，行造影工具。</p>
 
 <p>相比之下，使用 <code>kernprof.py</code> 略麻煩一點。你得在需要做“行造影”的 function 前面加一個 decorator <code lang="python">@profile</code>，然后运行：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -764,7 +765,7 @@ def __getattr__(self, name):
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>kernprof.py -l -v pure_python_slow_lineprof.py
 </span><span class='line'><span class="c">#…略去部分無關輸出</span>
 </span><span class='line'>Main took 0:03:38.140994
-</span><span class='line'>Total sum of elements <span class="o">(</span><span class="k">for </span>validation<span class="o">)</span>: 1148485
+</span><span class='line'>Total sum of elements <span class="o">(</span><span class="k">for</span> validation<span class="o">)</span>: 1148485
 </span><span class='line'>Wrote profile results to pure_python_slow_lineprof.py.lprof
 </span><span class='line'>Timer unit: 1e-06 s&lt;/p&gt;
 </span><span class='line'>
@@ -774,20 +775,20 @@ def __getattr__(self, name):
 </span><span class='line'>
 </span><span class='line'>&lt;h1 <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;line-------hits---------time--per-hit----time--line-contents&quot;</span>&gt;Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents&lt;/h1&gt;</span>
 </span><span class='line'>&lt;pre&gt;&lt;code&gt;24                                           @profile
-</span><span class='line'>25                                           def calculate_z_serial_purepython<span class="o">(</span>q, maxiter, z<span class="o">)</span>:
-</span><span class='line'>26                                               <span class="s2">&quot;&quot;&quot;Pure python with complex datatype, iterating over list of q and z&quot;&quot;&quot;</span>
-</span><span class='line'>27         1         1193   1193.0      0.0      <span class="nv">output</span> <span class="o">=</span> <span class="o">[</span>0<span class="o">]</span> * len<span class="o">(</span>q<span class="o">)</span>
-</span><span class='line'>28    250001       158612      0.6      0.1      <span class="k">for </span>i in range<span class="o">(</span>len<span class="o">(</span>q<span class="o">))</span>:
-</span><span class='line'>29    250000       178444      0.7      0.2          <span class="k">if </span>i % <span class="nv">1000</span> <span class="o">==</span> 0:
-</span><span class='line'>30                                                       <span class="c"># print out some progress info since it is so slow...</span>
-</span><span class='line'>31       250         5943     23.8      0.0              print <span class="s2">&quot;%0.2f%% complete&quot;</span> % <span class="o">(</span>1.0/len<span class="o">(</span>q<span class="o">)</span> * i * 100<span class="o">)</span>
-</span><span class='line'>32  51464485     31971119      0.6     28.5          <span class="k">for </span>iteration in range<span class="o">(</span>maxiter<span class="o">)</span>:
-</span><span class='line'>33  51414419     40896082      0.8     36.5              z<span class="o">[</span>i<span class="o">]</span> <span class="o">=</span> z<span class="o">[</span>i<span class="o">]</span>*z<span class="o">[</span>i<span class="o">]</span> + q<span class="o">[</span>i<span class="o">]</span>
-</span><span class='line'>34  51414419     38095052      0.7     34.0              <span class="k">if </span>abs<span class="o">(</span>z<span class="o">[</span>i<span class="o">])</span> &amp;gt; 2.0:
-</span><span class='line'>35    199934       128641      0.6      0.1                  output<span class="o">[</span>i<span class="o">]</span> <span class="o">=</span> iteration
-</span><span class='line'>36    199934       714362      3.6      0.6                  <span class="nb">break</span>
-</span><span class='line'>37         1            4      4.0      0.0      <span class="k">return </span>output
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'><span class="m">25</span>                                           def calculate_z_serial_purepython<span class="o">(</span>q, maxiter, z<span class="o">)</span>:
+</span><span class='line'><span class="m">26</span>                                               <span class="s2">&quot;&quot;&quot;Pure python with complex datatype, iterating over list of q and z&quot;&quot;&quot;</span>
+</span><span class='line'><span class="m">27</span>         <span class="m">1</span>         <span class="m">1193</span>   1193.0      0.0      <span class="nv">output</span> <span class="o">=</span> <span class="o">[</span>0<span class="o">]</span> * len<span class="o">(</span>q<span class="o">)</span>
+</span><span class='line'><span class="m">28</span>    <span class="m">250001</span>       <span class="m">158612</span>      0.6      0.1      <span class="k">for</span> i in range<span class="o">(</span>len<span class="o">(</span>q<span class="o">))</span>:
+</span><span class='line'><span class="m">29</span>    <span class="m">250000</span>       <span class="m">178444</span>      0.7      0.2          <span class="k">if</span> i % <span class="nv">1000</span> <span class="o">==</span> 0:
+</span><span class='line'><span class="m">30</span>                                                       <span class="c"># print out some progress info since it is so slow...</span>
+</span><span class='line'><span class="m">31</span>       <span class="m">250</span>         <span class="m">5943</span>     23.8      0.0              print <span class="s2">&quot;%0.2f%% complete&quot;</span> % <span class="o">(</span>1.0/len<span class="o">(</span>q<span class="o">)</span> * i * 100<span class="o">)</span>
+</span><span class='line'><span class="m">32</span>  <span class="m">51464485</span>     <span class="m">31971119</span>      0.6     28.5          <span class="k">for</span> iteration in range<span class="o">(</span>maxiter<span class="o">)</span>:
+</span><span class='line'><span class="m">33</span>  <span class="m">51414419</span>     <span class="m">40896082</span>      0.8     36.5              z<span class="o">[</span>i<span class="o">]</span> <span class="o">=</span> z<span class="o">[</span>i<span class="o">]</span>*z<span class="o">[</span>i<span class="o">]</span> + q<span class="o">[</span>i<span class="o">]</span>
+</span><span class='line'><span class="m">34</span>  <span class="m">51414419</span>     <span class="m">38095052</span>      0.7     34.0              <span class="k">if</span> abs<span class="o">(</span>z<span class="o">[</span>i<span class="o">])</span> <span class="p">&amp;</span>gt<span class="p">;</span> 2.0:
+</span><span class='line'><span class="m">35</span>    <span class="m">199934</span>       <span class="m">128641</span>      0.6      0.1                  output<span class="o">[</span>i<span class="o">]</span> <span class="o">=</span> iteration
+</span><span class='line'><span class="m">36</span>    <span class="m">199934</span>       <span class="m">714362</span>      3.6      0.6                  <span class="nb">break</span>
+</span><span class='line'><span class="m">37</span>         <span class="m">1</span>            <span class="m">4</span>      4.0      0.0      <span class="k">return</span> output
+</span></code></pre></td></tr></table></div></figure>
 </code></pre>
 
 <p>這裏我爲了不弄亂之前的文件裏的代碼，就直接另存爲了 <code>pure_python_slow_lineprof.py</code>。</p>
@@ -805,7 +806,7 @@ def __getattr__(self, name):
 
 <p>所以通過分析，我們知道就以上的第一點而言，我們即使改用成 <code lang="python">xrange()</code>，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -822,7 +823,7 @@ def __getattr__(self, name):
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">calculate_z_serial_purepython</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
-</span><span class='line'>    <span class="err">“</span><span class="s">&quot;”Pure python with complex datatype, iterating over list of q and z”””</span>
+</span><span class='line'>    <span class="err">“</span><span class="o">&amp;</span><span class="c">#8221;”Pure python with complex datatype, iterating over list of q and z”””</span>
 </span><span class='line'>    <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
 </span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)):</span>
 </span><span class='line'>        <span class="n">zi</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -837,11 +838,11 @@ def __getattr__(self, name):
 </span><span class='line'>                <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">iteration</span>
 </span><span class='line'>                <span class="k">break</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">output</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>修改後我們再運行一遍行造影：</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -869,23 +870,23 @@ def __getattr__(self, name):
 </span><span class='line'>
 </span><span class='line'>&lt;h1 <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;line-------hits---------time--per-hit----time--line-contents-1&quot;</span>&gt;Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents&lt;/h1&gt;</span>
 </span><span class='line'>&lt;pre&gt;&lt;code&gt;24                                           @profile
-</span><span class='line'>25                                           def calculate_z_serial_purepython<span class="o">(</span>q, maxiter, z<span class="o">)</span>:
-</span><span class='line'>26                                               <span class="s2">&quot;&quot;&quot;Pure python with complex datatype, iterating over list of q and z&quot;&quot;&quot;</span>
-</span><span class='line'>27         1         1180   1180.0      0.0      <span class="nv">output</span> <span class="o">=</span> <span class="o">[</span>0<span class="o">]</span> * len<span class="o">(</span>q<span class="o">)</span>
-</span><span class='line'>28    250001       162404      0.6      0.1      <span class="k">for </span>i in range<span class="o">(</span>len<span class="o">(</span>q<span class="o">))</span>:
-</span><span class='line'>29    250000       161958      0.6      0.1          <span class="nv">zi</span> <span class="o">=</span> z<span class="o">[</span>i<span class="o">]</span>
-</span><span class='line'>30    250000       155260      0.6      0.1          <span class="nv">qi</span> <span class="o">=</span> q<span class="o">[</span>i<span class="o">]</span>
-</span><span class='line'>31    250000       173665      0.7      0.2          <span class="k">if </span>i % <span class="nv">1000</span> <span class="o">==</span> 0:
-</span><span class='line'>32                                                       <span class="c"># print out some progress info since it is so slow...</span>
-</span><span class='line'>33       250         5647     22.6      0.0              print <span class="s2">&quot;%0.2f%% complete&quot;</span> % <span class="o">(</span>1.0/len<span class="o">(</span>q<span class="o">)</span> * i * 100<span class="o">)</span>
-</span><span class='line'>34  51464485     31790147      0.6     28.7          <span class="k">for </span>iteration in xrange<span class="o">(</span>maxiter<span class="o">)</span>:
-</span><span class='line'>35                                                       <span class="c">#z[i] = z[i]*z[i] + q[i]</span>
-</span><span class='line'>36  51414419     37946710      0.7     34.2              <span class="nv">zi</span> <span class="o">=</span> zi * zi + qi
-</span><span class='line'>37  51414419     40239095      0.8     36.3              <span class="k">if </span>abs<span class="o">(</span>zi<span class="o">)</span> &amp;gt; 2.0:
-</span><span class='line'>38    199934       138030      0.7      0.1                  output<span class="o">[</span>i<span class="o">]</span> <span class="o">=</span> iteration
-</span><span class='line'>39    199934       123589      0.6      0.1                  <span class="nb">break</span>
-</span><span class='line'>40         1            4      4.0      0.0      <span class="k">return </span>output
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'><span class="m">25</span>                                           def calculate_z_serial_purepython<span class="o">(</span>q, maxiter, z<span class="o">)</span>:
+</span><span class='line'><span class="m">26</span>                                               <span class="s2">&quot;&quot;&quot;Pure python with complex datatype, iterating over list of q and z&quot;&quot;&quot;</span>
+</span><span class='line'><span class="m">27</span>         <span class="m">1</span>         <span class="m">1180</span>   1180.0      0.0      <span class="nv">output</span> <span class="o">=</span> <span class="o">[</span>0<span class="o">]</span> * len<span class="o">(</span>q<span class="o">)</span>
+</span><span class='line'><span class="m">28</span>    <span class="m">250001</span>       <span class="m">162404</span>      0.6      0.1      <span class="k">for</span> i in range<span class="o">(</span>len<span class="o">(</span>q<span class="o">))</span>:
+</span><span class='line'><span class="m">29</span>    <span class="m">250000</span>       <span class="m">161958</span>      0.6      0.1          <span class="nv">zi</span> <span class="o">=</span> z<span class="o">[</span>i<span class="o">]</span>
+</span><span class='line'><span class="m">30</span>    <span class="m">250000</span>       <span class="m">155260</span>      0.6      0.1          <span class="nv">qi</span> <span class="o">=</span> q<span class="o">[</span>i<span class="o">]</span>
+</span><span class='line'><span class="m">31</span>    <span class="m">250000</span>       <span class="m">173665</span>      0.7      0.2          <span class="k">if</span> i % <span class="nv">1000</span> <span class="o">==</span> 0:
+</span><span class='line'><span class="m">32</span>                                                       <span class="c"># print out some progress info since it is so slow...</span>
+</span><span class='line'><span class="m">33</span>       <span class="m">250</span>         <span class="m">5647</span>     22.6      0.0              print <span class="s2">&quot;%0.2f%% complete&quot;</span> % <span class="o">(</span>1.0/len<span class="o">(</span>q<span class="o">)</span> * i * 100<span class="o">)</span>
+</span><span class='line'><span class="m">34</span>  <span class="m">51464485</span>     <span class="m">31790147</span>      0.6     28.7          <span class="k">for</span> iteration in xrange<span class="o">(</span>maxiter<span class="o">)</span>:
+</span><span class='line'><span class="m">35</span>                                                       <span class="c">#z[i] = z[i]*z[i] + q[i]</span>
+</span><span class='line'><span class="m">36</span>  <span class="m">51414419</span>     <span class="m">37946710</span>      0.7     34.2              <span class="nv">zi</span> <span class="o">=</span> zi * zi + qi
+</span><span class='line'><span class="m">37</span>  <span class="m">51414419</span>     <span class="m">40239095</span>      0.8     36.3              <span class="k">if</span> abs<span class="o">(</span>zi<span class="o">)</span> <span class="p">&amp;</span>gt<span class="p">;</span> 2.0:
+</span><span class='line'><span class="m">38</span>    <span class="m">199934</span>       <span class="m">138030</span>      0.7      0.1                  output<span class="o">[</span>i<span class="o">]</span> <span class="o">=</span> iteration
+</span><span class='line'><span class="m">39</span>    <span class="m">199934</span>       <span class="m">123589</span>      0.6      0.1                  <span class="nb">break</span>
+</span><span class='line'><span class="m">40</span>         <span class="m">1</span>            <span class="m">4</span>      4.0      0.0      <span class="k">return</span> output
+</span></code></pre></td></tr></table></div></figure>
 </code></pre>
 
 <p>看似沒有多大提升？確實，就每行時間上來看確實沒有多大提升，但是從總時間看，有了差不多兩秒的提升。而且如果我把行造影去掉，裸跑的話，速度的提升更加顯著一些（大約 6 秒）。有人說這樣的提升要不要都也無所謂，其實不然。我剛剛說到 scope，如果放大 scope，原先兩秒的優勢可能會被放大到 20 分鐘甚至更多。</p>
@@ -899,10 +900,10 @@ def __getattr__(self, name):
 
 本文是『Python 調優筆記』系列中的一篇，其它文章還有：
 
-- [序，一切的開始](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/ "Python 調優筆記·序")
-- [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ " Python 調優筆記·代碼造影")
-- [理性主義調優，一切從根本出發](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/ "Python 調優筆記·理性主義調優")
-- [經驗主義調優，站在巨人的肩膀上](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/ "Python 調優筆記·經驗主義調優")
+- [序，一切的開始](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/ &#8220;Python 調優筆記·序&#8221;)
+- [代碼造影，定位癥結](http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/ &#8221; Python 調優筆記·代碼造影&#8221;)
+- [理性主義調優，一切從根本出發](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/ &#8220;Python 調優筆記·理性主義調優&#8221;)
+- [經驗主義調優，站在巨人的肩膀上](http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/ &#8220;Python 調優筆記·經驗主義調優&#8221;)
 </p>
 ]]></content>
   </entry>

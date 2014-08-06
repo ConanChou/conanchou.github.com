@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octopress | conan @ notes:~/]]></title>
+  <title><![CDATA[Category: octopress | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/octopress/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2013-06-13T23:49:21-04:00</updated>
+  <updated>2014-08-05T23:08:46-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[用另一臺計算機寫 Octopress]]></title>
-    <link href="http://ConanChou.github.io/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/"/>
+    <link href="http://ConanChou.github.io/blog/octopress/hack/2012/08/23/write-octopress-in-another-box/"/>
     <updated>2012-08-23T23:26:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box</id>
+    <id>http://ConanChou.github.io/blog/octopress/hack/2012/08/23/write-octopress-in-another-box</id>
     <content type="html"><![CDATA[<p>用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch <code>clone</code> 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。<!--more--></p>
 
 <p>Octopress 的運行機制很簡單，就是用類似 <code>make</code> 的 <code>rake</code> 將寫好的 <code>markdown</code> 文件轉化成 HTML 文件，皮膚什麼的都也一併生成好，然後再把生成好的一堆靜態文件 <code>push</code> 到 Github 或其他類似的地方。我想不能推送的話應該是可以從 Rakefile 裏找到答案。果不其然：</p>
@@ -42,7 +42,7 @@ end
 
 <p>很顯然，這個 <code>deploy_dir</code> 也是一個單獨的 git 目錄。追溯其根源，也就是默認設置，就是 「_deploy」 目錄。而這個目錄是被 「.gitignore」 排除的。這就難怪爲什麼單純的 <code>clone</code> 沒法工作了。于是完整的 <code>clone</code> 过程如下（包含註解）：</p>
 
-<p>``` bash
+<p>&#8220;` bash
 $ ;: go to the dir you want to put your octopress repo
 $ cd ~/Documents</p>
 
@@ -63,7 +63,7 @@ $ git clone git@github.com:ConanChou/conanchou.github.com.git _deploy</p>
 $ gem install bundler
 $ bundle install
 $ rake install
-```</p>
+&#8220;`</p>
 
 <p>Happy hacking!</p>
 ]]></content>

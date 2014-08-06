@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Hack | conan @ notes:~/]]></title>
+  <title><![CDATA[Category: hack | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/hack/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2013-06-13T23:49:21-04:00</updated>
+  <updated>2014-08-05T23:08:46-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi + Arch + WiFi + Sound + Go 簡記]]></title>
-    <link href="http://ConanChou.github.io/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/"/>
+    <link href="http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/"/>
     <updated>2013-02-17T17:11:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi</id>
+    <id>http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi</id>
     <content type="html"><![CDATA[<p>原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
 
 <p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
@@ -92,7 +92,7 @@ $ sudo dd bs=4M if=/path/to/your/image/arch-linux.img of=/dev/mmcblk0p1
 
 <p>OS 的安裝其實到這裏就算結束了，但是因爲原鏡像是2GB的，如果你的SD卡大於2GB，其他的空間就用不到了，要用就得對SD卡上的分區擴容。擴容的工具很多，有命令行的也有圖形界面的。GParted 就挺好用的，如果對命令行工具不太熟悉，它是個很好的選擇。不過在這篇簡記裏我要裝個逼：</p>
 
-<p>``` bash
+<p>&#8220;` bash
 $ sudo fdisk -uc /dev/mmcblk0</p>
 
 <h1 id="section-4">打印分區表</h1>
@@ -131,7 +131,7 @@ The partition table has been altered!</p>
 
 <p>Calling ioctl() to re-read partition table.
 Syncing disks.
-```</p>
+&#8220;`</p>
 
 <p>檢查下磁盤，然後再擴容：</p>
 
@@ -455,14 +455,14 @@ $ ./all.bash
 
 <p>跑完后應該會有類似這樣的信息：</p>
 
-<p>```
+<p>&#8220;`
 ALL TESTS PASSED</p>
 
 <hr />
 <p>Installed Go for linux/amd64 in /home/you/go.
 Installed commands in /home/you/go/bin.
 <em>** You need to add /home/you/go/bin to your $PATH. **</em>
-```</p>
+&#8220;`</p>
 
 <p>當然也有可能測試沒有完全通過的，我就遇到過，但是 bin 已經編譯成功了。這時候只需要把環境變量裏的<code>PATH</code>更新一下就可以了：</p>
 
@@ -472,7 +472,7 @@ $ export PATH=$PATH:/usr/local/go/bin
 
 <p>最後跑個「喂世界」程序測試下。建一個<code>hello.go</code>：</p>
 
-<p>```go
+<p>&#8220;`go
 package main</p>
 
 <p>import “fmt”</p>
@@ -480,7 +480,7 @@ package main</p>
 <p>func main() {
     fmt.Printf(“hello, world\n”)
 }
-```</p>
+&#8220;`</p>
 
 <p>走起：</p>
 
@@ -501,9 +501,9 @@ hello, world
   
   <entry>
     <title type="html"><![CDATA[用另一臺計算機寫 Octopress]]></title>
-    <link href="http://ConanChou.github.io/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/"/>
+    <link href="http://ConanChou.github.io/blog/octopress/hack/2012/08/23/write-octopress-in-another-box/"/>
     <updated>2012-08-23T23:26:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box</id>
+    <id>http://ConanChou.github.io/blog/octopress/hack/2012/08/23/write-octopress-in-another-box</id>
     <content type="html"><![CDATA[<p>用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch <code>clone</code> 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。<!--more--></p>
 
 <p>Octopress 的運行機制很簡單，就是用類似 <code>make</code> 的 <code>rake</code> 將寫好的 <code>markdown</code> 文件轉化成 HTML 文件，皮膚什麼的都也一併生成好，然後再把生成好的一堆靜態文件 <code>push</code> 到 Github 或其他類似的地方。我想不能推送的話應該是可以從 Rakefile 裏找到答案。果不其然：</p>
@@ -528,7 +528,7 @@ end
 
 <p>很顯然，這個 <code>deploy_dir</code> 也是一個單獨的 git 目錄。追溯其根源，也就是默認設置，就是 「_deploy」 目錄。而這個目錄是被 「.gitignore」 排除的。這就難怪爲什麼單純的 <code>clone</code> 沒法工作了。于是完整的 <code>clone</code> 过程如下（包含註解）：</p>
 
-<p>``` bash
+<p>&#8220;` bash
 $ ;: go to the dir you want to put your octopress repo
 $ cd ~/Documents</p>
 
@@ -549,7 +549,7 @@ $ git clone git@github.com:ConanChou/conanchou.github.com.git _deploy</p>
 $ gem install bundler
 $ bundle install
 $ rake install
-```</p>
+&#8220;`</p>
 
 <p>Happy hacking!</p>
 ]]></content>
@@ -557,18 +557,18 @@ $ rake install
   
   <entry>
     <title type="html"><![CDATA[簡單粗暴解決 Zsh Home 和 End 按鍵問題]]></title>
-    <link href="http://ConanChou.github.io/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/"/>
+    <link href="http://ConanChou.github.io/blog/linux/unix/zsh/hack/2012/08/20/resolve-zsh-home-and-end-key-problem/"/>
     <updated>2012-08-20T22:21:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem</id>
+    <id>http://ConanChou.github.io/blog/linux/unix/zsh/hack/2012/08/20/resolve-zsh-home-and-end-key-problem</id>
     <content type="html"><![CDATA[<p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don’t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。<!--more--></p>
 
 <p>半年前我加入了 <code>Zsh</code> 的用戶陣營，一番配置後倒也用着挺爽。前幾天又去折騰 <code>.zshrc</code> 文件，更爽了，可是 <kbd>Home</kbd> 和 <kbd>End</kbd> 鍵工作得不正常了，就像這樣：</p>
 
-<p>``` bash
+<p>&#8220;` bash
 $ H                   <br />
 git push origin source</p>
 
-<p>```</p>
+<p>&#8220;`</p>
 
 <p>按完 <kbd>Home</kbd> 鍵就在我的命令裏加了一個 H 還換行，我居然就這樣「settle」了一段時間。今天實在忍不住，找解決方案。網上的解決方案很多，也有很成熟的，比如用 <code>autoload zkbd</code>
 來問答式生成按鍵和含義對應表的，可我嫌麻煩。更大部分的解決方案只是放一堆配置文件代碼，而事實上這些代碼在不同環境下是不一樣的。所以換句話說這些代碼只是治標不治本，答者沒有授問者以漁。</p>

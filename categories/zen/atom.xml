@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Zen | conan @ notes:~/]]></title>
+  <title><![CDATA[Category: zen | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/zen/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2013-06-13T23:49:21-04:00</updated>
+  <updated>2014-08-05T23:08:46-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[關於編程，對我最有用的建議]]></title>
-    <link href="http://ConanChou.github.io/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/"/>
+    <link href="http://ConanChou.github.io/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got/"/>
     <updated>2012-08-20T15:58:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got</id>
+    <id>http://ConanChou.github.io/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got</id>
     <content type="html"><![CDATA[<p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">“The Best Programming Advice I Ever Got”</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。<!--more--></p>
 
 <ul>
@@ -25,7 +25,8 @@
     <p>「寫更少的代碼。」不要覺得寫很多代碼來修補一個 bug 是一件很光榮的事情，有時問題的關鍵只是多餘的一行代碼，刪除即可。寫更多的代碼只會增加維護成本。可以少寫代碼就少寫。</p>
   </li>
   <li>
-    <p>「在動手修改代碼前，先仔細理解報錯。」這一點看起來是廢話，但是我自己也好、別人也好，都多多少少犯過這樣的錯誤。原因很簡單，因爲人們寫代碼的時候很多是在壓力下完成的，比如要在下班前完成某個功能，或者在這禮拜前完成教授佈置的編程作業。所以經常就有人在沒有理解報錯的情況下枉自猜測着 debug。結果是反而浪費了很多時間在無用地猜測和推理上。這種現象在新手身上尤爲顯著，這裏的新手跟你寫程序的時間沒有關係，我雖然寫了10年程序，但對 Lisp 這門語言來說我仍然是新手。</p>
+    <p>「在動手修改代碼前，先仔細理解報錯。」這一點看起來是廢話，但是我自己也好、別人也好，都多多少少犯過這樣的錯誤。原因很簡單，因爲人們寫代碼的時候很多是在壓力下完成的，比如要在下班前完成某個功能，或者在這禮拜前完成教授佈置的編程作業。所以經常就有人在沒有理解報錯的情況下枉自猜測着
+debug。結果是反而浪費了很多時間在無用地猜測和推理上。這種現象在新手身上尤爲顯著，這裏的新手跟你寫程序的時間沒有關係，我雖然寫了十餘年程序，但對 Lisp 這門語言來說我仍然是新手。</p>
   </li>
   <li>
     <p>「讀多於寫，只讀高質量的書籍，一直更新知識庫。」程序員，尤其是老程序員，會傾向與專攻一項技術。當知識水平滿足了現在的工作需求的時候，一些人可能會停止繼續學習。這樣的程序員往往會遇到以下的情況：比如他是 C++ 程序員，兩年後再看別人新寫的 C++  代碼，可能會很不能理解。因爲他們的知識體系老化了。技術也是隨着摩爾定律一起發展的。所以當你完成了四年的大學，你已經有一半的知識快要淘汰。所以，繼續學習，學習更好更新的知識。</p>

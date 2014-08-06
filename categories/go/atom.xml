@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Go | conan @ notes:~/]]></title>
+  <title><![CDATA[Category: go | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/go/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2013-06-13T23:49:21-04:00</updated>
+  <updated>2014-08-05T23:08:46-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi + Arch + WiFi + Sound + Go 簡記]]></title>
-    <link href="http://ConanChou.github.io/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/"/>
+    <link href="http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/"/>
     <updated>2013-02-17T17:11:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi</id>
+    <id>http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi</id>
     <content type="html"><![CDATA[<p>原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
 
 <p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
@@ -92,7 +92,7 @@ $ sudo dd bs=4M if=/path/to/your/image/arch-linux.img of=/dev/mmcblk0p1
 
 <p>OS 的安裝其實到這裏就算結束了，但是因爲原鏡像是2GB的，如果你的SD卡大於2GB，其他的空間就用不到了，要用就得對SD卡上的分區擴容。擴容的工具很多，有命令行的也有圖形界面的。GParted 就挺好用的，如果對命令行工具不太熟悉，它是個很好的選擇。不過在這篇簡記裏我要裝個逼：</p>
 
-<p>``` bash
+<p>&#8220;` bash
 $ sudo fdisk -uc /dev/mmcblk0</p>
 
 <h1 id="section-4">打印分區表</h1>
@@ -131,7 +131,7 @@ The partition table has been altered!</p>
 
 <p>Calling ioctl() to re-read partition table.
 Syncing disks.
-```</p>
+&#8220;`</p>
 
 <p>檢查下磁盤，然後再擴容：</p>
 
@@ -455,14 +455,14 @@ $ ./all.bash
 
 <p>跑完后應該會有類似這樣的信息：</p>
 
-<p>```
+<p>&#8220;`
 ALL TESTS PASSED</p>
 
 <hr />
 <p>Installed Go for linux/amd64 in /home/you/go.
 Installed commands in /home/you/go/bin.
 <em>** You need to add /home/you/go/bin to your $PATH. **</em>
-```</p>
+&#8220;`</p>
 
 <p>當然也有可能測試沒有完全通過的，我就遇到過，但是 bin 已經編譯成功了。這時候只需要把環境變量裏的<code>PATH</code>更新一下就可以了：</p>
 
@@ -472,7 +472,7 @@ $ export PATH=$PATH:/usr/local/go/bin
 
 <p>最後跑個「喂世界」程序測試下。建一個<code>hello.go</code>：</p>
 
-<p>```go
+<p>&#8220;`go
 package main</p>
 
 <p>import “fmt”</p>
@@ -480,7 +480,7 @@ package main</p>
 <p>func main() {
     fmt.Printf(“hello, world\n”)
 }
-```</p>
+&#8220;`</p>
 
 <p>走起：</p>
 
