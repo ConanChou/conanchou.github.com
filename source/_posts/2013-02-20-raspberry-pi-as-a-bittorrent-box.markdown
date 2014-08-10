@@ -6,7 +6,7 @@ comments: true
 categories: [Raspberry-Pi, BitTorrent, Arch, Linux]
 ---
 
-[上一篇日誌](http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/)我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more-->
+[上一篇日誌](http://conanchou.github.com/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/)我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more-->
 
 ## 環境搭建
 
