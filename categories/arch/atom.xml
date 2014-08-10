@@ -4,7 +4,7 @@
   <title><![CDATA[Category: arch | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/arch/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2014-08-05T23:50:36-04:00</updated>
+  <updated>2014-08-10T14:21:38-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi 下載盒]]></title>
-    <link href="http://ConanChou.github.io/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
+    <link href="http://ConanChou.github.io/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
     <updated>2013-02-20T17:03:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
+    <id>http://ConanChou.github.io/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more--></p>
 
 <h2 id="section">環境搭建</h2>
@@ -84,9 +84,9 @@ $ ln -s /mnt/disk500/Downloads/ ~/Downloads
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi + Arch + WiFi + Sound + Go 簡記]]></title>
-    <link href="http://ConanChou.github.io/blog/2013/02/17/play-with-raspberry-pi/"/>
+    <link href="http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/"/>
     <updated>2013-02-17T17:11:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/2013/02/17/play-with-raspberry-pi</id>
+    <id>http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi</id>
     <content type="html"><![CDATA[<p>原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
 
 <p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>

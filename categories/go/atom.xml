@@ -4,7 +4,7 @@
   <title><![CDATA[Category: go | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/go/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2014-08-05T23:50:36-04:00</updated>
+  <updated>2014-08-10T14:21:38-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi + Arch + WiFi + Sound + Go 簡記]]></title>
-    <link href="http://ConanChou.github.io/blog/2013/02/17/play-with-raspberry-pi/"/>
+    <link href="http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/"/>
     <updated>2013-02-17T17:11:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/2013/02/17/play-with-raspberry-pi</id>
+    <id>http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi</id>
     <content type="html"><![CDATA[<p>原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
 
 <p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>

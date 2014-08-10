@@ -4,7 +4,7 @@
   <title><![CDATA[conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2014-08-05T23:50:36-04:00</updated>
+  <updated>2014-08-10T14:21:38-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[蟒之惰性]]></title>
-    <link href="http://ConanChou.github.io/blog/2013/06/10/laziness-in-python/"/>
+    <link href="http://ConanChou.github.io/blog/python/2013/06/10/laziness-in-python/"/>
     <updated>2013-06-10T18:06:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2013/06/10/laziness-in-python</id>
+    <id>http://ConanChou.github.io/blog/python/2013/06/10/laziness-in-python</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.io/blog/Thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 Wikipedia。</p>
 
 <p>Python本身是具有惰性的，我在<a href="http://conanchou.github.io/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">《Python 調優筆記 · 經驗主義調優》</a>的「懶惰&gt;勤勞」小節就已經說了一些。我們接下來要看看Python中更高級一點的惰性用法。<!--more--></p>
@@ -451,9 +451,9 @@
   
   <entry>
     <title type="html"><![CDATA[勤與懶]]></title>
-    <link href="http://ConanChou.github.io/blog/2013/06/09/just-in-case-vs-just-in-time/"/>
+    <link href="http://ConanChou.github.io/blog/thought/2013/06/09/just-in-case-vs-just-in-time/"/>
     <updated>2013-06-09T22:02:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2013/06/09/just-in-case-vs-just-in-time</id>
+    <id>http://ConanChou.github.io/blog/thought/2013/06/09/just-in-case-vs-just-in-time</id>
     <content type="html"><![CDATA[<p>「Just In Case」和「Just In Time」，前者是「以防萬一」，而後者是「正好及時」。寫這篇日誌不是爲了給大家解釋這兩個詞組的字面意思，我更想談一談它們字面意思以下的含義，以及它們在程序設計中的意義。</p>
 
 <p>初看之下，這兩個詞組只是長得很像，似乎並沒有什麼聯繫。而事實上我覺得它們間是一種反義的聯繫。「Just In Case」的做法是在處理問題時把所有可預料的情況處理放在前面處理；「Just In Time」則相對應，總是只處理當前需要處理的問題，處理是放在當下的。所以打個形象的比喻就是前者是勤勤懇懇的人，而後者是懶惰精明的人。<!--more--></p>
@@ -474,9 +474,9 @@ zone，所以即便知道自己在做的是重複勞動，他也會「勤勤懇�
   
   <entry>
     <title type="html"><![CDATA[也談編程工具]]></title>
-    <link href="http://ConanChou.github.io/blog/2013/04/21/programming-tools/"/>
+    <link href="http://ConanChou.github.io/blog/thought/tool/2013/04/21/programming-tools/"/>
     <updated>2013-04-21T18:09:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2013/04/21/programming-tools</id>
+    <id>http://ConanChou.github.io/blog/thought/tool/2013/04/21/programming-tools</id>
     <content type="html"><![CDATA[<p>我總是避免在博客裏談工具，因爲怕被扣上「工具黨」的帽子。今天看到<a href="http://www.yinwang.org/blog-cn/2013/04/20/editor-ide">王垠聊到編輯器與IDE</a>，才想起來我似乎沒有在博客中寫過相關的話題。接觸代碼世界也已經十餘年了，這一拍腦袋，覺得好多話想說。</p>
 
 <p>首先表個態，爭論工具孰好孰壞意義不大，就跟編程語言的爭論一樣無意義，因爲這些東西都不存在絕對的「好壞」，而只存在「適合不適合」，脫離前提的討論是空泛而不切實際的。既然這樣還寫這篇博客幹嘛？只是隨想，算是滿足一下我的傾訴慾望。<!--more--></p>
@@ -522,9 +522,9 @@ Python、Ruby、PHP、Java、Go、JS等相關的程序（其實還包括我現�
   
   <entry>
     <title type="html"><![CDATA[道不明，術不精]]></title>
-    <link href="http://ConanChou.github.io/blog/2013/04/20/dao-bu-ming-shu-bu-jing/"/>
+    <link href="http://ConanChou.github.io/blog/thought/2013/04/20/dao-bu-ming-shu-bu-jing/"/>
     <updated>2013-04-20T01:20:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2013/04/20/dao-bu-ming-shu-bu-jing</id>
+    <id>http://ConanChou.github.io/blog/thought/2013/04/20/dao-bu-ming-shu-bu-jing</id>
     <content type="html"><![CDATA[<p>「道不明，術不精」是現在最適合形容我狀態的語句。說真的，我對自己有些失望。從兩千年初開始接觸計算機和因特網，到現在幾乎沒有什麼大的成就。對照 Coding Horror 裏的<a href="http://www.codinghorror.com/blog/2009/04/the-eight-levels-of-programmers.html">《程序員的八個等級》</a>，我大概在4～5吧。而很顯然這不應該是一個有志者所止步的位置。我最接近「Famous」的恐怕也只有幾年前趕鴨子上架般的在亞太開源軟件峯會上給的關於 CakePHP 和 Symfony
 的講座吧。我一直在學習，可長進不足。到底是哪裏做得不對？<!--more--></p>
 
@@ -556,9 +556,9 @@ Mathematics）如果從這個意義上來說計算機科學是一切科學的虛
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi 下載盒]]></title>
-    <link href="http://ConanChou.github.io/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
+    <link href="http://ConanChou.github.io/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
     <updated>2013-02-20T17:03:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
+    <id>http://ConanChou.github.io/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Raspberry-Pi/Hack/Arch/Linux/Go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more--></p>
 
 <h2 id="section">環境搭建</h2>
@@ -631,9 +631,9 @@ Mathematics）如果從這個意義上來說計算機科學是一切科學的虛
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi + Arch + WiFi + Sound + Go 簡記]]></title>
-    <link href="http://ConanChou.github.io/blog/2013/02/17/play-with-raspberry-pi/"/>
+    <link href="http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/"/>
     <updated>2013-02-17T17:11:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/2013/02/17/play-with-raspberry-pi</id>
+    <id>http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi</id>
     <content type="html"><![CDATA[<p>原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
 
 <p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
@@ -1213,9 +1213,9 @@ Mathematics）如果從這個意義上來說計算機科學是一切科學的虛
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·經驗主義調優]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/"/>
+    <link href="http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/"/>
     <updated>2012-08-26T14:56:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips</id>
+    <id>http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/">上一次我們聊了「理性主義」</a>，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。<!--more--></p>
 
 <p>在列舉各種「術」之前，先說「道」（術指具體做事的方法，道指做事的原理）。領悟了道之後才能在不同情況下做出正確的選擇。一般而言，調優無非在兩方面做優化：時間複雜度和空間複雜度。有時候時間和空間會互相矛盾，而這個時候就不得不在它們中做取捨。不同的應用取捨的決定因素是不一樣的。不過就目前而言，因爲空間越來越廉價，時間越來越寶貴，大部分時候人們會偏向與用空間換時間。當然也有兩者不矛盾的時候，這個時候肯定是綜合複雜度越小越好。除了空間、時間複雜度的取捨之外，還有一個可讀性的問題，實際上有時候爲了優化代碼，可讀性會下降不少。所以這個也是個要權衡的方面。</p>
@@ -1550,9 +1550,9 @@ Mathematics）如果從這個意義上來說計算機科學是一切科學的虛
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·理性主義調優]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/08/26/python-optimization-3-disassembling/"/>
+    <link href="http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/"/>
     <updated>2012-08-26T00:10:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/08/26/python-optimization-3-disassembling</id>
+    <id>http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling</id>
     <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「理性主義調優」，當然這裏只指代碼級別的調優。（理性主義相對於經驗主義，是兩個相對的哲學流派。）<!--more--></p>
 
 <p>我們要做的第一步就是學會使用代碼造影，上次我們討論的幾個工具並不是你每次每個都要使用，但是先做大範圍的模塊造影，再做有針對性的行造影是造影的常規步驟。</p>
@@ -1676,9 +1676,9 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
   
   <entry>
     <title type="html"><![CDATA[用另一臺計算機寫 Octopress]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/08/23/write-octopress-in-another-box/"/>
+    <link href="http://ConanChou.github.io/blog/octopress/hack/2012/08/23/write-octopress-in-another-box/"/>
     <updated>2012-08-23T23:26:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/08/23/write-octopress-in-another-box</id>
+    <id>http://ConanChou.github.io/blog/octopress/hack/2012/08/23/write-octopress-in-another-box</id>
     <content type="html"><![CDATA[<p>用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch <code>clone</code> 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。<!--more--></p>
 
 <p>Octopress 的運行機制很簡單，就是用類似 <code>make</code> 的 <code>rake</code> 將寫好的 <code>markdown</code> 文件轉化成 HTML 文件，皮膚什麼的都也一併生成好，然後再把生成好的一堆靜態文件 <code>push</code> 到 Github 或其他類似的地方。我想不能推送的話應該是可以從 Rakefile 裏找到答案。果不其然：</p>
@@ -1765,9 +1765,9 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
   
   <entry>
     <title type="html"><![CDATA[用 Python 的「神奇方法」元編程]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/08/21/python-metaprogramming-with-magic-methods/"/>
+    <link href="http://ConanChou.github.io/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods/"/>
     <updated>2012-08-21T22:41:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/08/21/python-metaprogramming-with-magic-methods</id>
+    <id>http://ConanChou.github.io/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods</id>
     <content type="html"><![CDATA[<p>在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。</p>
 
 <p>什麼是「神奇方法」？其實是我亂翻譯的，英文中大家叫它們「Magic Methods」。我沒有在靜態語言中聽到過這個概念，只在 Python、PHP 這類動態語言中聽到。這是一類比較特殊的方法（Method/Function），是隨語言本身所故有的，在程序中無聲無息地起到作用。它們的命名方式都很特別，比如在 Python 中就是用<code>__</code>開頭用<code>__</code>結尾的方法，而在 PHP
@@ -1877,9 +1877,9 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
   
   <entry>
     <title type="html"><![CDATA[簡單粗暴解決 Zsh Home 和 End 按鍵問題]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/08/20/resolve-zsh-home-and-end-key-problem/"/>
+    <link href="http://ConanChou.github.io/blog/linux/unix/zsh/hack/2012/08/20/resolve-zsh-home-and-end-key-problem/"/>
     <updated>2012-08-20T22:21:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/08/20/resolve-zsh-home-and-end-key-problem</id>
+    <id>http://ConanChou.github.io/blog/linux/unix/zsh/hack/2012/08/20/resolve-zsh-home-and-end-key-problem</id>
     <content type="html"><![CDATA[<p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don’t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。<!--more--></p>
 
 <p>半年前我加入了 <code>Zsh</code> 的用戶陣營，一番配置後倒也用着挺爽。前幾天又去折騰 <code>.zshrc</code> 文件，更爽了，可是 <kbd>Home</kbd> 和 <kbd>End</kbd> 鍵工作得不正常了，就像這樣：</p>
@@ -1915,9 +1915,9 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
   
   <entry>
     <title type="html"><![CDATA[關於編程，對我最有用的建議]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/08/20/the-best-programming-advice-i-ever-got/"/>
+    <link href="http://ConanChou.github.io/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got/"/>
     <updated>2012-08-20T15:58:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/08/20/the-best-programming-advice-i-ever-got</id>
+    <id>http://ConanChou.github.io/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got</id>
     <content type="html"><![CDATA[<p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">“The Best Programming Advice I Ever Got”</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。<!--more--></p>
 
 <ul>
@@ -1957,9 +1957,9 @@ debug。結果是反而浪費了很多時間在無用地猜測和推理上。這
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·代碼造影]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/07/25/python-optimization-2-profiling/"/>
+    <link href="http://ConanChou.github.io/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/"/>
     <updated>2012-07-25T00:14:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/07/25/python-optimization-2-profiling</id>
+    <id>http://ConanChou.github.io/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling</id>
     <content type="html"><![CDATA[<p>在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。<!-- more --></p>
 
 <p>Python 是自帶造影工具的，從 <a href="http://docs.python.org/library/profile.html">官方文檔</a> 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 <code lang="python">cProfile</code> 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 <a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">小腳本</a>。</p>
@@ -2264,9 +2264,9 @@ debug。結果是反而浪費了很多時間在無用地猜測和推理上。這
   
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·序]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/07/23/python-optimization-1/"/>
+    <link href="http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/07/23/python-optimization-1/"/>
     <updated>2012-07-23T01:19:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/07/23/python-optimization-1</id>
+    <id>http://ConanChou.github.io/blog/python/optimization/serial/programming/2012/07/23/python-optimization-1</id>
     <content type="html"><![CDATA[<p>以往我都以寫命令行下的 Python 腳本爲主。即使做項目也基本是做小規模 Web 類的。所以很少遇到效率太低受不了的情況，所以也鮮有調優的需要。當然，在寫代碼時就已經注意了一些效率問題，所以基本不需要很費心機地調優。可是幾個月前我做了兩個項目，一是一個機器學習引擎，用以學習在線讀者閱讀習慣；另一個是一個下 Chess 的 AI，用以人機對奕。<!-- more -->兩個系統都用 Python 構建。因爲這兩個項目都是 CPU intensive 的，真的是慢的可以。於是這逼得我不得不去研究下有關 Python
 的調優。而在機器學習的項目中，因爲當時自己的服務器實在很爛（只有256 MB 內存），所以得瘋狂得做服務器部署的優化才能讓它處理外部請求和部分邏輯。加上以往的服務器調優經驗，也算是積累了一些有用的東西。</p>
 
@@ -2305,9 +2305,9 @@ debug。結果是反而浪費了很多時間在無用地猜測和推理上。這
   
   <entry>
     <title type="html"><![CDATA[touch log]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/07/21/touch-log/"/>
+    <link href="http://ConanChou.github.io/blog/routine/2012/07/21/touch-log/"/>
     <updated>2012-07-21T02:05:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/07/21/touch-log</id>
+    <id>http://ConanChou.github.io/blog/routine/2012/07/21/touch-log</id>
     <content type="html"><![CDATA[<p>大半年前就在 HN 上看到一篇文章说 <a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html">像黑客一样写博客</a> 的文章。看到标题的时候，我还以为肯定是一篇无聊的炫耀文。可是我错了。文章是 GitHub 的联合创始人 Tom Preston-Werner 写的。他在文中推荐了一种新的写作博客的方式。其实说穿了就是拿 Ruby 世界的 <code>make</code>，<code>rake</code> 来生成基于 markdown 的静态网页，然后将这些网页再部署到 GitHub。</p>
 
 <!-- more -->

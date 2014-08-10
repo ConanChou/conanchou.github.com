@@ -4,7 +4,7 @@
   <title><![CDATA[Category: zen | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/zen/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2014-08-05T23:50:36-04:00</updated>
+  <updated>2014-08-10T14:21:38-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[關於編程，對我最有用的建議]]></title>
-    <link href="http://ConanChou.github.io/blog/2012/08/20/the-best-programming-advice-i-ever-got/"/>
+    <link href="http://ConanChou.github.io/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got/"/>
     <updated>2012-08-20T15:58:00-04:00</updated>
-    <id>http://ConanChou.github.io/blog/2012/08/20/the-best-programming-advice-i-ever-got</id>
+    <id>http://ConanChou.github.io/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got</id>
     <content type="html"><![CDATA[<p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">“The Best Programming Advice I Ever Got”</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。<!--more--></p>
 
 <ul>
