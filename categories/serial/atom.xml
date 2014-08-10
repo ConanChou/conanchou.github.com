@@ -4,7 +4,7 @@
   <title><![CDATA[Category: serial | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/serial/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2014-08-10T14:29:33-04:00</updated>
+  <updated>2014-08-10T14:50:09-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -678,7 +678,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 <p>這三行裏就有兩個小問題。</p>
 
 <ul>
-  <li>首先是 32 行，在 Python 3.x 之前，<code lang="python">range()</code> 和 <code lang="python">xrange()</code> 還是有區別的。前者會在內存中真的生成 <code lang="python">list</code>，而後者只是返回一個類似的 object （我們會在<a href="http://conanchou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">第四篇</a>中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
+  <li>首先是 32 行，在 Python 3.x 之前，<code lang="python">range()</code> 和 <code lang="python">xrange()</code> 還是有區別的。前者會在內存中真的生成 <code lang="python">list</code>，而後者只是返回一個類似的 object （我們會在<a href="http://conanchou.github.com/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">第四篇</a>中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
   <li>33、34 行一直在直接從 <code lang="python">list</code> 裏查詢數據，而雖然查詢時間複雜度是 <script type="math/tex">O(1)</script>，但是代碼一遍又一遍地 <code lang="python">get</code> 和 <code lang="python">set</code>，這樣做勢必會消耗更多時間。</li>
 </ul>
 
