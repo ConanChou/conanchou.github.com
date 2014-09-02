@@ -1,55 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a6b83353-2813-444c-99a4-5f4d8ec3f525" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.rbenv-version" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.rvmrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gemfile.lock.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gemfile.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Rakefile.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_config.yml.orig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/date.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/pagination.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/post_filters.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/preview_unpublished.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/sitemap_generator.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2012-07-25-python-optimization-2-profiling.markdown" afterPath="$PROJECT_DIR$/source/_posts/2012-07-25-python-optimization-2-profiling.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2012-08-20-the-best-programming-advice-i-ever-got.markdown" afterPath="$PROJECT_DIR$/source/_posts/2012-08-20-the-best-programming-advice-i-ever-got.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2012-08-26-python-optimization-3-disassembling.markdown" afterPath="$PROJECT_DIR$/source/_posts/2012-08-26-python-optimization-3-disassembling.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2012-08-26-python-optimization-4-high-performance-python-general-coding-tips.markdown" afterPath="$PROJECT_DIR$/source/_posts/2012-08-26-python-optimization-4-high-performance-python-general-coding-tips.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2013-02-20-raspberry-pi-as-a-bittorrent-box.markdown" afterPath="$PROJECT_DIR$/source/_posts/2013-02-20-raspberry-pi-as-a-bittorrent-box.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2013-04-21-programming-tools.markdown" afterPath="$PROJECT_DIR$/source/_posts/2013-04-21-programming-tools.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2013-06-10-laziness-in-python.markdown" afterPath="$PROJECT_DIR$/source/_posts/2013-06-10-laziness-in-python.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/documentation/_partials/Python_optimization_serial_TOC.markdown" afterPath="$PROJECT_DIR$/source/documentation/_partials/Python_optimization_serial_TOC.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.markdown" afterPath="$PROJECT_DIR$/README.markdown" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rakefile" afterPath="$PROJECT_DIR$/Rakefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/sass/base/_theme.scss" afterPath="$PROJECT_DIR$/.themes/classic/sass/base/_theme.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/_includes/archive_post.html" afterPath="$PROJECT_DIR$/.themes/classic/source/_includes/archive_post.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/_includes/article.html" afterPath="$PROJECT_DIR$/.themes/classic/source/_includes/article.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/atom.xml" afterPath="$PROJECT_DIR$/.themes/classic/source/atom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/_includes/custom/category_feed.xml" afterPath="$PROJECT_DIR$/.themes/classic/source/_includes/custom/category_feed.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/category_generator.rb" afterPath="$PROJECT_DIR$/plugins/category_generator.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/code_block.rb" afterPath="$PROJECT_DIR$/plugins/code_block.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.rb" afterPath="$PROJECT_DIR$/config.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/_includes/disqus.html" afterPath="$PROJECT_DIR$/.themes/classic/source/_includes/disqus.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/gist_tag.rb" afterPath="$PROJECT_DIR$/plugins/gist_tag.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/_includes/head.html" afterPath="$PROJECT_DIR$/.themes/classic/source/_includes/head.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/_includes/custom/head.html" afterPath="$PROJECT_DIR$/.themes/classic/source/_includes/custom/head.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/include_code.rb" afterPath="$PROJECT_DIR$/plugins/include_code.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/index.html" afterPath="$PROJECT_DIR$/.themes/classic/source/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/jsfiddle.rb" afterPath="$PROJECT_DIR$/plugins/jsfiddle.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/javascripts/octopress.js" afterPath="$PROJECT_DIR$/.themes/classic/source/javascripts/octopress.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/octopress_filters.rb" afterPath="$PROJECT_DIR$/plugins/octopress_filters.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/pygments_code.rb" afterPath="$PROJECT_DIR$/plugins/pygments_code.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/sass/screen.scss" afterPath="$PROJECT_DIR$/.themes/classic/sass/screen.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/_includes/post/sharing.html" afterPath="$PROJECT_DIR$/.themes/classic/source/_includes/post/sharing.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.themes/classic/source/_includes/twitter_sharing.html" afterPath="$PROJECT_DIR$/.themes/classic/source/_includes/twitter_sharing.html" />
-    </list>
+    <list default="true" id="a6b83353-2813-444c-99a4-5f4d8ec3f525" name="Default" comment="" />
     <ignored path="conanchou.github.com.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
