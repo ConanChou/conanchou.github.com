@@ -85,6 +85,7 @@ MathJax.Hub.Config({
 		
 	</div>
 </nav>
+<div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
 
 </header>				
 			</div>
@@ -142,6 +143,28 @@ zone，所以即便知道自己在做的是重複勞動，他也會「勤勤懇�
 
     Conan
 
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
+<link href="/stylesheets/switchery.min.css" rel="stylesheet" />
+<script type="text/javascript" src="/javascripts/switchery.min.js"></script>
+<script type="text/javascript">
+    var ts_switch = document.querySelector('#ts-switch');
+    var ts_label =document.querySelector('#side-label');
+    var init = new Switchery(ts_switch);
+
+    ts_switch.onchange = function() {
+        if (ts_switch.checked) {
+            TongWen.trans2Trad(document);
+            ts_label.innerHTML = "繁";
+        } else {
+            TongWen.trans2Simp(document);
+            ts_label.innerHTML = "简";
+        }
+    };
+</script>
 
 </footer>
 			<script src="/javascripts/slash.js"></script>
