@@ -6,6 +6,8 @@ comments: true
 categories: [life, thoughts]
 ---
 
+![](https://xij5xq-ch3301.files.1drv.com/y3pvdLX7IaEB1E0OuJQci_gr37cctynGdnicpVfACcVU1IKvgZc5l7_3iAqaIcGN_0EytUvuIAMw-rOWH5X9VlVs_wT4FmiDF-RHYmlvHIzOlQLBdkHCzE09kcHPL79E4tYA8IGu9fEJb1vqLBlcmhGs_lLL6DwPJoOZJmvnB9MYCQ/Attachment-1.jpeg)
+
 距離上次的更新又是很久了。這個一年多來換了三處地方住，各種各樣的事情接踵而至，工作也從一個項目
 變成了四個項目。說真的一直扛著重壓走了很久。不過好就好在，我遇到了我的女朋友。事情沒有太糟糕。
 
