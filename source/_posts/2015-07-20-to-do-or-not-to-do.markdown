@@ -73,4 +73,4 @@ categories: [life, thoughts]
 
 900 個月的人生，轉瞬即逝，我們為何要選擇不愉快的方式去度過呢？別給自己畫上格子，這不是格子人生。
 
-<small>封面圖片我也不知道版權屬誰，是從這裡拿到的：https://theabysmal.wordpress.com/tag/zen-mind-beginners-mind/ 。暫時先用了，如有問題請聯繫我，我會扯下。</small>
+<small>封面圖片我也不知道版權屬誰，是從這裡拿到的：[the Abysmal Centre](https://theabysmal.wordpress.com/tag/zen-mind-beginners-mind/)。暫時先用了，如有問題請聯繫我，我會徹下。</small>
