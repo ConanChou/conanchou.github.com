@@ -3,11 +3,13 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>簡單粗暴解決 Zsh Home 和 End 按鍵問題 - conan @ notes:~/</title>
+	<title>不是格子人生 - conan @ notes:~/</title>
 	<meta name="author" content="Conan">
 
 	
-	<meta name="description" content="簡單粗暴解決 Zsh Home 和 End 按鍵問題 記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don’t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協， &hellip;">
+	<meta name="description" content="不是格子人生 距離上次的更新又是很久了。這個一年多來換了三處地方住，各種各樣的事情接踵而至，工作也從一個項目
+變成了四個項目。說真的一直扛著重壓走了很久。不過好就好在，我遇到了我的未婚妻。事情沒有太糟糕。 之前的一次更新
+我寫了一些關於 GTD 的想法，以及一個私人的項目。隨著時間的推移， &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -17,7 +19,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="conan @ notes:~/" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://ConanChou.github.io/blog/linux/unix/zsh/hack/2012/08/20/resolve-zsh-home-and-end-key-problem/">
+	<link rel="canonical" href="http://ConanChou.github.io/blog/life/thoughts/2015/07/20/to-do-or-not-to-do/">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -96,37 +98,79 @@ MathJax.Hub.Config({
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">簡單粗暴解決 Zsh Home 和 End 按鍵問題</h1>
-	<div class="entry-content" itemprop="articleBody"><p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don’t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。<!--more--></p>
+	<h1 class="title" itemprop="name">不是格子人生</h1>
+	<div class="entry-content" itemprop="articleBody"><p>距離上次的更新又是很久了。這個一年多來換了三處地方住，各種各樣的事情接踵而至，工作也從一個項目
+變成了四個項目。說真的一直扛著重壓走了很久。不過好就好在，我遇到了我的未婚妻。事情沒有太糟糕。</p>
 
-<p>半年前我加入了 <code>Zsh</code> 的用戶陣營，一番配置後倒也用着挺爽。前幾天又去折騰 <code>.zshrc</code> 文件，更爽了，可是 <kbd>Home</kbd> 和 <kbd>End</kbd> 鍵工作得不正常了，就像這樣：</p>
+<p><a href="http://conanblog.me/blog/life/hack/productivity/2014/09/01/900-months/">之前的一次更新</a>
+我寫了一些關於 GTD 的想法，以及一個私人的項目。隨著時間的推移，我是一直在努力讓自己跟上時間的步伐，
+然而事情並沒有非常順利。經過很長時間的努力但如果還是不見成效的話，往往說明了也許我們看/解決問題的
+方法有問題。於是就有了這篇隨想/分享。</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>H
-</span><span class="line">git push origin <span class="nb">source</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<!--more-->
 
-<p>按完 <kbd>Home</kbd> 鍵就在我的命令裏加了一個 H 還換行，我居然就這樣「settle」了一段時間。今天實在忍不住，找解決方案。網上的解決方案很多，也有很成熟的，比如用 <code>autoload zkbd</code>
-來問答式生成按鍵和含義對應表的，可我嫌麻煩。更大部分的解決方案只是放一堆配置文件代碼，而事實上這些代碼在不同環境下是不一樣的。所以換句話說這些代碼只是治標不治本，答者沒有授問者以漁。</p>
+<p>讓我決定寫下我的想法的其實是 Jeff Atwood 的 <a href="http://blog.codinghorror.com/todont/">這篇文章</a>，
+我在讀他的博客文集
+<a href="http://www.amazon.com/How-Stop-Sucking-Awesome-Instead-ebook/dp/B00BU3KPQU"><em>How to Stop Sucking and Be Awesome Instead</em></a>
+的時候遇到了這篇文章。（題外話，這本書並沒有書名顯得那麽沒營養，其實是很有料的一本書。）</p>
 
-<p>問題的本身在 <code>bindkey</code> 上。也就是說只要找到對應的按鍵和 <code>Zsh</code> 內的含義接口就可以解決問題。而含義接口就是 <code>beginning-of-line</code> 和 <code>end-of-line</code>。所以只需要找到我們的按鍵碼是什麼就可以了。下面這個小技巧可能鮮爲人知，就是利用 <code>cat</code> 來查看按鍵碼。很簡單，在命令行下直接 <code>cat</code> + <kbd>回車</kbd>，然後接着按你想知道按鍵碼的按鍵，在我的例子裏就是 <kbd>Home</kbd> 鍵：</p>
+<p>請允許我引用文中的一句話，因為它同樣也是我心中的聲音：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>cat
-</span><span class="line">^<span class="o">[</span>OH
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<blockquote>
+  <p>If you can’t wake up every day and, using your 100% original equipment God-given organic brain, come up with the three most important things you need to do that day – then you should seriously work on fixing that.</p>
+</blockquote>
 
-<p>接着我又得到了 <kbd>End</kbd> 鍵的按鍵碼。最後在 <code>.zshrc</code> 裏添加兩行代碼：</p>
+<p>可能跟大多數使用 GTD 工具的人一樣，我有一個鼠標滾輪滾好多下都不見底的 TODO list。它讓罪惡感在我心裏
+慢慢堆積，進而升級變成了壓力。當然這只是加之我身的一部份壓力的具象化。在我之後要提到的一本書里就提到，
+我們的壓力來自多方面，比較常見的有：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">bindkey <span class="s2">&quot;^[OH&quot;</span> beginning-of-line
-</span><span class="line">bindkey <span class="s2">&quot;^[OF&quot;</span> end-of-line
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<ul>
+  <li>Traffic stress</li>
+  <li>Getting angry</li>
+  <li>Interpersonal conflicts</li>
+  <li>Frustration over failed weight loss efforts</li>
+  <li>Financial stress</li>
+  <li>Being overwhelmed with too much to do</li>
+  <li>Having regrets</li>
+  <li>Discrimination</li>
+</ul>
 
-<p>問題解決，簡單粗暴，但直截了當。Don’t settle. Happy hacking.</p>
+<p>我比對了一下，只能默默在每一項前面打勾……
+我一開始覺得可能用一個 TODO list 來記錄並優先排序，然後按照自己的時間
+安排來處理這些事務是可以解決這些事情的。可事實告訴我：然並卵。這個“系統”看似完美，可是就跟安全界的
+一句名言說得一樣：</p>
+
+<blockquote>
+  <p>任何系統里，人總是軟肋</p>
+</blockquote>
+
+<p>在這種 TODO 系統裏也是一樣。我成了系統的瓶頸。我有自動腳本幫我篩選新聞、
+放進我的 Pocket 服務、並在 TODO 裏創建新項目；我也用 IFTTT 將很多東西自動化。
+可是這些最終只是將我的 TODO list 加長。而我只能慢慢地一個一個完成。</p>
+
+<p>在重壓下，我得尋找出路，於是找到了這本書 <a href="http://www.amazon.com/The-Myth-Stress-Happier-Healthier/dp/1439159459"><em>The Myth of Stress</em></a>。
+或許在讀書之前我就這麽想，但是似乎在讀完之後我更加篤定：</p>
+
+<blockquote>
+  <p>我們承受如此大的壓力，根源並不是這個世界變得糟糕了，真正需要改變的是我們自己</p>
+</blockquote>
+
+<p>其實就跟我在大學期間對待考試一樣的態度——平常心。只是進入工作，面對異鄉人的特殊身份、財政、感情、
+工作、學習、雜務，我漸漸忘記當年的口頭禪“平常心”。之前我也曾讀到一篇很有意思的文章，表面看起來是說
+如何準備自殺，其實是勸好好面對人生的。當中作者就指出一個很關鍵的點：人在面臨大災難的時候往往非常
+堅強，反倒是那些瑣事會讓人萌生自殺的念頭。</p>
+
+<p>這才回到了我開頭所引用的觀點，平常心對待日常事務，不要再給自己什麽 TODO List 了。錯過一個事務
+也不會怎樣，真正關鍵的、非做不可的事情肯定不會錯過。不管是以哪種方式“不錯過”，要麽是重要到你忘不了
+的事情，要麽是有第二次、第三次機會的事。</p>
+
+<p>其實在 <em>The Myth of Stress</em> 和另一本有關壓力的書 <a href="http://www.amazon.com/The-Upside-Stress-Why-Good/dp/1583335617"><em>The Upside of Stress</em></a> 里，
+都提到了一個不容忽視的一點：壓力不可避免，適當的壓力能讓你做得更好。</p>
+
+<p>所以經過一段時間的思考和沉澱，我廢除了 GTD 以及相關的 GTD 項目，只用大腦記錄要務。因為工作後雜務太多，
+學習變成了一件困難的事情，所以仍然需要對學習給予一定的壓力，比如我給自己設定一個今年閱讀 30 本書的目標。</p>
+
+<p>900 個月的人生，轉瞬即逝，我們為何要選擇不愉快的方式去度過呢？別給自己畫上格子，這不是格子人生。</p>
 </div>
 
 </article>
@@ -196,8 +240,8 @@ MathJax.Hub.Config({
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ConanChou.github.io/blog/linux/unix/zsh/hack/2012/08/20/resolve-zsh-home-and-end-key-problem/';
-        var disqus_url = 'http://ConanChou.github.io/blog/linux/unix/zsh/hack/2012/08/20/resolve-zsh-home-and-end-key-problem/';
+        var disqus_identifier = 'http://ConanChou.github.io/blog/life/thoughts/2015/07/20/to-do-or-not-to-do/';
+        var disqus_url = 'http://ConanChou.github.io/blog/life/thoughts/2015/07/20/to-do-or-not-to-do/';
         var disqus_script = 'embed.js';
       
     (function () {
