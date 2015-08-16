@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mooc | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/mooc/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2015-08-16T18:38:41-04:00</updated>
+  <updated>2015-08-16T19:05:28-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -30,7 +30,7 @@
 
 <h3 id="why">Why</h3>
 
-<p>Let us start with why. <strong>Why</strong> do we need sound visualization? I think the point of sound visualization is to make vague problem clear. Sound has many aspects, in the first few lectures, we have learnt three essentials of them: <em>propagation</em>, <em>amplitude</em>, and <em>frequancy</em>. I didn’t include <em>timbre</em> here is because that timbre is a combination of different frequencies, it doesn’t sound like a essential to me. Another implicit essential about sound is time, I have to mention it because it will be one axis in some of our diagrams. When we are looking at a problem, we want to easily grasp the global overview, and at the meanwhile maintain the precision. Lucky that mathematician and physicist has already built some handy tools (in here I considered a data representation methodology as a tool, but not a specific software).</p>
+<p>Let us start with why. Why do we need sound visualization? I think the point of sound visualization is to make vague problem clear. Sound has many aspects, in the first few lectures, we have learnt three essentials of them: <em>propagation</em>, <em>amplitude</em>, and <em>frequancy</em>. I didn’t include <em>timbre</em> here is because that timbre is a combination of different frequencies, it doesn’t sound like a essential to me. Another implicit essential about sound is time, I have to mention it because it will be one axis in some of our diagrams. When we are looking at a problem, we want to <strong>easily grasp the global overview, and at the meanwhile maintain the precision</strong>. Lucky that mathematician and physicist has already built some handy tools (in here I considered a data representation methodology as a tool, but not a specific software).</p>
 
 <p>A good case study would be DJing. When you are performing, we want to get the overview of the track, <strong>quickly</strong>. You can of cause hearing/scanning the next track with your headphone, but it is just not good enough and quick enough. I personally rely on the waveform display a lot. The following screenshot is from Serato DJ’s waveform section.</p>
 
@@ -51,7 +51,7 @@
 
 <h3 id="what">What</h3>
 
-<p><strong>What</strong> are these tools? The first is <em>Oscilloscope</em>. It is only showing two aspects of sound: amplitude (Y axis) and time (X axis). The larger the range of Y axis, the higher the amplitude. For the time axis, the time window usually will be few millisecond in our case.</p>
+<p>What are these tools as in diagrams? The first is <em>Oscilloscope</em>. It is only showing two aspects of sound: amplitude (Y axis) and time (X axis). The larger the range of Y axis, the higher the amplitude. For the time axis, the time window usually will be few millisecond in our case.</p>
 
 <p>Frequency is also in the diagram, it is just implicit. The following animation is from <a href="https://en.wikipedia.org/wiki/Oscilloscope">Oscilloscope wikipedia page</a>. You can see that within the same period of time, the more dense the waveform, the frequency is higher.</p>
 
