@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: music | conan @ notes:~/]]></title>
+  <link href="http://ConanChou.github.io/categories/music/atom.xml" rel="self"/>
+  <link href="http://ConanChou.github.io/"/>
+  <updated>2015-08-16T18:30:14-04:00</updated>
+  <id>http://ConanChou.github.io/</id>
+  <author>
+    <name><![CDATA[Conan]]></name>
+    <email><![CDATA[conanchou1412@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Visualizing Sound]]></title>
+    <link href="http://ConanChou.github.io/blog/music/mooc/2015/08/15/visualizing-sound/"/>
+    <updated>2015-08-15T23:18:33-04:00</updated>
+    <id>http://ConanChou.github.io/blog/music/mooc/2015/08/15/visualizing-sound</id>
+    <content type="html"><![CDATA[<p>Hi, I am Conan, a programmer in New York. I taught myself DJing. After a while I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a> is a perfect starting point for music production. I am looking forward to learn from Loudon and you guys and gals. English is not my mother tongue, please bear with me..</p>
+
+<p>This blog is for the week 1 lectures assignment. I would not consider this as teaching, this one will be more like a reviewing and reflecting.</p>
+
+<h2 id="study">Study</h2>
+
+<h3 id="why">Why</h3>
+
+<p>Let us start with why. <strong>Why</strong> do we need sound visualization? I think the point of sound visualization is to make vague problem clear. Sound has many aspects, in the first few lectures, we have learnt three essentials of them: <em>propagation</em>, <em>amplitude</em>, and <em>frequancy</em>. I didn’t include <em>timbre</em> here is because that timbre is a combination of different frequencies, it doesn’t sound like a essential to me. Another implicit essential about sound is time, I have to mention it because it will be one axis in some of our diagrams. When we are looking at a problem, we want to easily grasp the global overview, and at the meanwhile maintain the precision. Lucky that mathematician and physicist has already built some handy tools (in here I considered a data representation methodology as a tool, but not a specific software).</p>
+
+<p>A good case study would be DJing. When you are performing, we want to get the overview of the track, <strong>quickly</strong>. You can of cause hearing/scanning the next track with your headphone, but it is just not good enough and quick enough. I personally rely on the waveform display a lot. The following screenshot is from Serato DJ’s waveform section.</p>
+
+<p><img src="/images/20150815/waveform.png" alt="Serato DJ Waveform" /></p>
+
+<p>From the waveforms’ shape, I can tell:</p>
+
+<ul>
+  <li>where are the kicks, hi-hats, and vocals</li>
+  <li>section of the track</li>
+</ul>
+
+<p>From the color of the waveforms, I can tell how the EQ changes cross the track. Quote from the Serato site:</p>
+
+<blockquote>
+  <p>The EQ Colored waveform option changes the waveform colors in Serato DJ to reflect your EQ changes. For example, taking out the bass will remove all the red from the waveform, taking out the high end will remove all the blue and taking the midrange out will remove all the green.</p>
+</blockquote>
+
+<h3 id="what">What</h3>
+
+<p><strong>What</strong> are these tools? The first is <em>Oscilloscope</em>. It is only showing two aspects of sound: amplitude (Y axis) and time (X axis). The larger the range of Y axis, the higher the amplitude. For the time axis, the time window usually will be few millisecond in our case.</p>
+
+<p>Frequency is also in the diagram, it is just implicit. The following animation is from <a href="https://en.wikipedia.org/wiki/Oscilloscope">Oscilloscope wikipedia page</a>. You can see that within the same period of time, the more dense the waveform, the frequency is higher.</p>
+
+<p><img src="/images/20150815/CROtperdivisionincrease.gif" alt="" /></p>
+
+<hr />
+
+<p>The next is <em>spectrum</em> analyzer. In the oscilloscope diagram, we can only observe relative frequency change, it cannot describe the frequency aspect accurately. We use spectrum analyzer for this. This time, the X axis is frequency and the Y axis is the amplitude. Remember Loudon mentioned that when people talking about 1K, 2K, 5K, we should have some idea on mapping these numbers to our hearing? I actually did try to feel the numbers. What I did is playing note using a Sin synth, which is also hooked to a spectrum analyzer. Here is what I found:</p>
+
+<p><img src="/images/20150815/1k.png" alt="1K" /></p>
+
+<p><img src="/images/20150815/2k.png" alt="2K" /></p>
+
+<p><img src="/images/20150815/5k.png" alt="5K" /></p>
+
+<p>So what is middle c (C4) frequency?</p>
+
+<p><img src="/images/20150815/midc.png" alt="Middle C" /></p>
+
+<hr />
+
+<p>The last one is <em>Sonogram</em>. The <em>spectrum</em> diagram is like a snapshot of the sound in that moment. We could not tell the changes over time. We use sonogram to see these dynamics. In sonogram, the X axis is the time, and the Y axis is the frequency. The third dimension is amplitude, which is represented by color.</p>
+
+<hr />
+
+<p>That is about it. Thank you for your reading, and <strong>you are welcome to leave feedback and criticize</strong>.</p>
+
+<h2 id="extra">Extra</h2>
+
+<p>While I am searching around about sound visualization, I found an amazing video clip:</p>
+
+<iframe src="https://player.vimeo.com/video/111593305" width="720" height="307" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+<p><a href="https://vimeo.com/111593305">CYMATICS: Science Vs. Music - Nigel Stanford</a> from <a href="https://vimeo.com/user1852409">Nigel Stanford</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
+<p>With the knowledge of the first 4 lectures and basic physics, we should be able to reveal the secrets in this video.</p>
+
+<p>Here are the hints: vibration, longitudinal wave, camera ;)</p>
+]]></content>
+  </entry>
+  
+</feed>
