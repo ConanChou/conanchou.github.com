@@ -4,7 +4,7 @@
   <title><![CDATA[Category: music | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/music/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2015-08-16T19:47:10-04:00</updated>
+  <updated>2015-08-18T08:40:46-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -20,7 +20,7 @@
     <id>http://ConanChou.github.io/blog/music/mooc/2015/08/15/visualizing-sound</id>
     <content type="html"><![CDATA[<p><img src="/images/20150815/wave-cover.jpg" alt="" /></p>
 
-<p>Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a> is a perfect starting point for music production. I am looking forward to learn from Loudon and you guys and gals. English is not my mother tongue, please bear with me..</p>
+<p>Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a> is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..</p>
 
 <p>This blog is for the week 1 lectures assignment. I would not consider this as teaching, this one will be more like a reviewing and reflecting.</p>
 
@@ -30,9 +30,9 @@
 
 <h3 id="why">Why</h3>
 
-<p>Let us start with why. Why do we need sound visualization? I think the point of sound visualization is to make vague problem clear. Sound has many aspects, in the first few lectures, we have learnt three essentials of them: <em>propagation</em>, <em>amplitude</em>, and <em>frequancy</em>. I didn’t include <em>timbre</em> here is because that timbre is a combination of different frequencies, it doesn’t sound like a essential to me. Another implicit essential about sound is time, I have to mention it because it will be one axis in some of our diagrams. When we are looking at a problem, we want to <strong>easily grasp the global overview, and at the meanwhile maintain the precision</strong>. Lucky that mathematician and physicist has already built some handy tools (in here I considered a data representation methodology as a tool, but not a specific software).</p>
+<p>Let us start with why. Why do we need sound visualization? I think the point of sound visualization is to make vague problem clear. Sound has many aspects, in the first few lectures, we have learnt three essentials of them: <em>propagation</em>, <em>amplitude</em>, and <em>frequancy</em>. I didn’t include <em>timbre</em> here is because that timbre is a combination of different frequencies, it doesn’t sound like a essential to me. Another implicit essential about sound is time, I have to mention it because it will be one axis in some of our diagrams. When we are looking at a problem, we want to <strong>easily grasp the global overview, and at the meanwhile maintain the precision</strong>. Luckily that mathematician and physicist has already built some handy tools (in here I considered a data representation methodology as a tool, but not a specific software).</p>
 
-<p>A good case study would be DJing. When you are performing, we want to get the overview of the track, <strong>quickly</strong>. You can of cause hearing/scanning the next track with your headphone, but it is just not good enough and quick enough. I personally rely on the waveform display a lot. The following screenshot is from Serato DJ’s waveform section.</p>
+<p>A good case study would be DJing. When you are performing, we want to get the overview of the track, <strong>quickly</strong>. You can of course hearing/scanning the next track with your headphone, but it is just not good enough and quick enough. I personally rely on the waveform display a lot. The following screenshot is from Serato DJ’s waveform section.</p>
 
 <p><img src="/images/20150815/waveform.png" alt="Serato DJ Waveform" /></p>
 
