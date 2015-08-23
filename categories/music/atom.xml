@@ -4,7 +4,7 @@
   <title><![CDATA[Category: music | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/music/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2015-08-18T08:40:46-04:00</updated>
+  <updated>2015-08-22T23:11:58-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Recording MIDI]]></title>
+    <link href="http://ConanChou.github.io/blog/music/mooc/2015/08/22/recording-midi/"/>
+    <updated>2015-08-22T14:06:50-04:00</updated>
+    <id>http://ConanChou.github.io/blog/music/mooc/2015/08/22/recording-midi</id>
+    <content type="html"><![CDATA[<p>This post is the week 2 assignment for the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a>. You can find my introduction and assignment 1 in here: <a href="http://conanblog.me/blog/music/mooc/2015/08/15/visualizing-sound/">Visualizing Sound</a>.This time my topic will be focused on <em>MIDI recording</em>. I would like to use divide and conquer strategy to explain this topic. The following sub-topics will be covered in this tutorial:</p>
+
+<ul>
+  <li>Pre-recording preparation:</li>
+  <li>Recording</li>
+  <li>Basic editing</li>
+</ul>
+
+<!--more-->
+<p>By the way, the DAW I am using is Ableton Live 9, the MIDI device is AKAI MPK49.</p>
+
+<h2 id="pre-recording-preparation">Pre-recording preparation</h2>
+
+<h3 id="checklist">Checklist</h3>
+<p>First, let’s make sure the project is setup properly. Here is a checklist:</p>
+
+<ul>
+  <li>Proper project name and location</li>
+  <li>Digital audio preferences</li>
+  <li>Recording file type</li>
+  <li>Hardware settings</li>
+  <li>Buffer size</li>
+</ul>
+
+<p>The following video showed how I did the checks.</p>
+
+<iframe width="720" height="450" src="https://www.youtube.com/embed/5CB7wxnI-mc" frameborder="0" allowfullscreen=""></iframe>
+
+<h3 id="prepare-recording">Prepare recording</h3>
+
+<p>As you may noticed, the default template of Ableton Live came with the 2 MIDI tracks and 2 audio tracks created. For demo purpose, I will delete all the MIDI tracks, so we can preparing the track.</p>
+
+<p>In the following video I will show you how to:</p>
+
+<ul>
+  <li>preparing the track</li>
+  <li>adding the instrument</li>
+  <li>config the click and countoff</li>
+</ul>
+
+<iframe width="720" height="450" src="https://www.youtube.com/embed/TXAVZSsZ8f0" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="recording">Recording</h2>
+
+<p>Now we are ready to record some notes. Since I am bad at playing any instrument, let me also enable <em>metronome</em> to help me in beat:</p>
+
+<iframe width="720" height="450" src="https://www.youtube.com/embed/qN-s08UWcCE" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="basic-editing">Basic editing</h2>
+
+<p>In the final part, I will demonstrate how to:</p>
+
+<ul>
+  <li>modify notes length</li>
+  <li>change grid setting</li>
+  <li>quantize</li>
+  <li>modify velocity</li>
+</ul>
+
+<iframe width="720" height="450" src="https://www.youtube.com/embed/QtosZgB72Y4" frameborder="0" allowfullscreen=""></iframe>
+
+<hr />
+
+<p>Thank you for your time and feedback :)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Visualizing Sound]]></title>
