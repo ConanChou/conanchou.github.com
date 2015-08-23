@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mooc | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/mooc/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2015-08-22T23:11:58-04:00</updated>
+  <updated>2015-08-22T23:20:09-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -18,7 +18,15 @@
     <link href="http://ConanChou.github.io/blog/music/mooc/2015/08/22/recording-midi/"/>
     <updated>2015-08-22T14:06:50-04:00</updated>
     <id>http://ConanChou.github.io/blog/music/mooc/2015/08/22/recording-midi</id>
-    <content type="html"><![CDATA[<p>This post is the week 2 assignment for the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a>. You can find my introduction and assignment 1 in here: <a href="http://conanblog.me/blog/music/mooc/2015/08/15/visualizing-sound/">Visualizing Sound</a>.This time my topic will be focused on <em>MIDI recording</em>. I would like to use divide and conquer strategy to explain this topic. The following sub-topics will be covered in this tutorial:</p>
+    <content type="html"><![CDATA[<p>This post is the week 2 assignment for the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a>. You can find my introduction and assignment 1 in here: <a href="http://conanblog.me/blog/music/mooc/2015/08/15/visualizing-sound/">Visualizing Sound</a>.</p>
+
+<p>Quote my self introduction:</p>
+
+<blockquote>
+  <p>Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a> is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..</p>
+</blockquote>
+
+<p>This time my topic will be focused on <em>MIDI recording</em>. I would like to use divide and conquer strategy to explain this topic. The following sub-topics will be covered in this tutorial:</p>
 
 <ul>
   <li>Pre-recording preparation:</li>
@@ -27,9 +35,7 @@
 </ul>
 
 <!--more-->
-<p>By the way, the DAW I am using is Ableton Live 9, the MIDI device is AKAI MPK49.</p>
-
-<h2 id="pre-recording-preparation">Pre-recording preparation</h2>
+<p>## Pre-recording preparation</p>
 
 <h3 id="checklist">Checklist</h3>
 <p>First, let’s make sure the project is setup properly. Here is a checklist:</p>
@@ -79,7 +85,9 @@
 
 <iframe width="720" height="450" src="https://www.youtube.com/embed/QtosZgB72Y4" frameborder="0" allowfullscreen=""></iframe>
 
-<hr />
+<h2 id="reflection">Reflection</h2>
+
+<p>In the progress, I figured out how to config my MIDI device and DAW. And this time, I finally correctly using quantization. The process also helped me to know better the editing tool in the DAW.</p>
 
 <p>Thank you for your time and feedback :)</p>
 ]]></content>
