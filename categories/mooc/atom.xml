@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mooc | conan @ notes:~/]]></title>
   <link href="http://ConanChou.github.io/categories/mooc/atom.xml" rel="self"/>
   <link href="http://ConanChou.github.io/"/>
-  <updated>2015-08-22T23:21:21-04:00</updated>
+  <updated>2015-08-30T23:47:11-04:00</updated>
   <id>http://ConanChou.github.io/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,54 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ableton Live 9 Automation How-To]]></title>
+    <link href="http://ConanChou.github.io/blog/music/mooc/2015/08/30/ableton-live-9-automation-how-to/"/>
+    <updated>2015-08-30T15:53:32-04:00</updated>
+    <id>http://ConanChou.github.io/blog/music/mooc/2015/08/30/ableton-live-9-automation-how-to</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a> is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..</p>
+</blockquote>
+
+<p>This is the 3rd week assignment. In this one, I am going to demonstrate the automation in Ableton Live 9. Similar to previous tutorial, I will also divide this topic into several sub-topics. The audio track used in the examples is Lion original mix by Dannic. I will only play the first few bars.</p>
+
+<h2 id="automation-recording">Automation Recording</h2>
+
+<p>Animation recording in Ableton Live is very easy. You just need to remember to enable the <em>Automation Arm</em> button before hit the record button. The following short video shows how to do so.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/K4yK6W0vdOk" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="automation-editing">Automation Editing</h2>
+
+<p>In this section I am going to show you how to:
+- Basic editing
+- use the <em>Draw Mode Switch</em> (aka pencil tool)</p>
+
+<h3 id="general-editing">General Editing</h3>
+
+<ul>
+  <li>Create: click the place you want to add a point on the automation line</li>
+  <li>Move: drag the point you want move, release at the place you want</li>
+  <li>Delete: just click on the point you don’t want</li>
+  <li>Curve Automation Line: When mouse close (not over yet) to the automation line, the line will turn to blue color. Hold Option/Alt key and click drag up and down</li>
+</ul>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JMPnozZmyxI" frameborder="0" allowfullscreen=""></iframe>
+
+<p>Tip: hold command key and click drag can be helpful if you want to precisely adjust the value of the point. So when doing so, you can only move the point up and down, and the value changing sensitivity will be lower.</p>
+
+<h3 id="pencil-tool">Pencil Tool</h3>
+
+<p>In <em>Clip View</em> pencil tool can be used to draw MIDI and envelopes; in <em>Arrangement View</em> we can use it for automation line editing. By default, the drawing will be very rigid. The edit size depends on the grid size. However if you want to draw freely, you can hold the Option/Alt key and draw. The command key tip also works with pencil tool.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_2s91azSfXQ" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="reflection">Reflection</h2>
+
+<p>After this assignment, I have better understanding of automation, and also have a solid knowledge how should I utilizing Ableton Live automation functions.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Recording MIDI]]></title>

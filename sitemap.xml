@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://ConanChou.github.io/blog/music/mooc/2015/08/30/ableton-live-9-automation-how-to/</loc>
+    <lastmod>2015-08-30T15:53:32-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://ConanChou.github.io/blog/music/mooc/2015/08/22/recording-midi/</loc>
     <lastmod>2015-08-22T14:06:50-04:00</lastmod>
     <priority>0.8</priority>
@@ -119,14 +125,14 @@
   
   <url>
     <loc>http://ConanChou.github.io/blog/archives/</loc>
-    <lastmod>2015-08-22T23:21:21-04:00</lastmod>
+    <lastmod>2015-08-30T23:47:11-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://ConanChou.github.io/</loc>
-    <lastmod>2015-08-22T23:21:21-04:00</lastmod>
+    <lastmod>2015-08-30T23:47:11-04:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
