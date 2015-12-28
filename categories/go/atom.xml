@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="//www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: go | conan @ notes:~/]]></title>
   <link href="https://conanblog.me/categories/go/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2015-12-28T17:48:38-05:00</updated>
+  <updated>2015-12-28T17:55:23-05:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
     <email><![CDATA[conanchou1412@gmail.com]]></email>
   </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+  <generator uri="//octopress.org/">Octopress</generator>
 
   
   <entry>
