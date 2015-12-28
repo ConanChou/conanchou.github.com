@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: raspberry-pi | conan @ notes:~/]]></title>
-  <link href="http://ConanChou.github.io/categories/raspberry-pi/atom.xml" rel="self"/>
-  <link href="http://ConanChou.github.io/"/>
-  <updated>2015-08-30T23:47:47-04:00</updated>
-  <id>http://ConanChou.github.io/</id>
+  <link href="https://conanblog.me/categories/raspberry-pi/atom.xml" rel="self"/>
+  <link href="https://conanblog.me/"/>
+  <updated>2015-12-28T17:34:17-05:00</updated>
+  <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
     <email><![CDATA[conanchou1412@gmail.com]]></email>
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi 下載盒]]></title>
-    <link href="http://ConanChou.github.io/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
+    <link href="https://conanblog.me/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
     <updated>2013-02-20T17:03:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
-    <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more--></p>
+    <id>https://conanblog.me/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
+    <content type="html"><![CDATA[<p><a href="https://conanblog.me/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more--></p>
 
 <h2 id="section">環境搭建</h2>
 
@@ -68,13 +68,13 @@ $ ln -s /mnt/disk500/Downloads/ ~/Downloads
 
 <p>這樣就可以通過<a href="http://127.0.0.1:9091">http://127.0.0.1:9091</a>來管理下載了。下面是效果圖。</p>
 
-<p><img src="http://conanchou.github.com/images/20130220/WebUI.png" alt="Web UI" title="Web UI" /></p>
+<p><img src="https://conanblog.me/images/20130220/WebUI.png" alt="Web UI" title="Web UI" /></p>
 
-<p><img src="http://conanchou.github.com/images/20130220/peers.png" alt="Peers" title="Peers" /></p>
+<p><img src="https://conanblog.me/images/20130220/peers.png" alt="Peers" title="Peers" /></p>
 
 <p>速度還不錯吧，再來看一下內存和CPU使用情況：</p>
 
-<p><img src="http://conanchou.github.com/images/20130220/top.png" alt="top" title="top" /></p>
+<p><img src="https://conanblog.me/images/20130220/top.png" alt="top" title="top" /></p>
 
 <p>可以發現，其實 Transmission 內存使用並沒有很嚇人，反而是 NTFS 用掉了很多CPU資源，這也是爲什麼我上面說到要格式化這塊硬盤的原因。</p>
 
@@ -84,33 +84,33 @@ $ ln -s /mnt/disk500/Downloads/ ~/Downloads
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi + Arch + WiFi + Sound + Go 簡記]]></title>
-    <link href="http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/"/>
+    <link href="https://conanblog.me/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/"/>
     <updated>2013-02-17T17:11:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi</id>
+    <id>https://conanblog.me/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi</id>
     <content type="html"><![CDATA[<p>原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
 
 <p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
 
 <ul id="markdown-toc">
-  <li><a href="#section">硬件</a></li>
-  <li><a href="#section-1">軟件</a>    <ul>
-      <li><a href="#section-2">操作系统</a></li>
-      <li><a href="#section-3">分區擴容</a></li>
+  <li><a href="#section" id="markdown-toc-section">硬件</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">軟件</a>    <ul>
+      <li><a href="#section-2" id="markdown-toc-section-2">操作系统</a></li>
+      <li><a href="#section-3" id="markdown-toc-section-3">分區擴容</a></li>
     </ul>
   </li>
-  <li><a href="#section-4">打印分區表</a></li>
-  <li><a href="#section-5">刪除第二個分區</a></li>
-  <li><a href="#section-6">新建一個分區</a></li>
-  <li><a href="#section-7">!!! 第一個扇區號必須和上面刪除的分區的起始扇區號一樣，這裏的話是186368 !!!</a></li>
-  <li><a href="#section-8">保存剛剛的操作並退出</a>    <ul>
-      <li><a href="#section-9">系統常規設置</a></li>
-      <li><a href="#section-10">聲音</a>        <ul>
-          <li><a href="#vlc">VLC</a></li>
+  <li><a href="#section-4" id="markdown-toc-section-4">打印分區表</a></li>
+  <li><a href="#section-5" id="markdown-toc-section-5">刪除第二個分區</a></li>
+  <li><a href="#section-6" id="markdown-toc-section-6">新建一個分區</a></li>
+  <li><a href="#section-7" id="markdown-toc-section-7">!!! 第一個扇區號必須和上面刪除的分區的起始扇區號一樣，這裏的話是186368 !!!</a></li>
+  <li><a href="#section-8" id="markdown-toc-section-8">保存剛剛的操作並退出</a>    <ul>
+      <li><a href="#section-9" id="markdown-toc-section-9">系統常規設置</a></li>
+      <li><a href="#section-10" id="markdown-toc-section-10">聲音</a>        <ul>
+          <li><a href="#vlc" id="markdown-toc-vlc">VLC</a></li>
         </ul>
       </li>
-      <li><a href="#wifi">WiFi</a></li>
-      <li><a href="#go">Go</a></li>
-      <li><a href="#section-11">後記</a></li>
+      <li><a href="#wifi" id="markdown-toc-wifi">WiFi</a></li>
+      <li><a href="#go" id="markdown-toc-go">Go</a></li>
+      <li><a href="#section-11" id="markdown-toc-section-11">後記</a></li>
     </ul>
   </li>
 </ul>

@@ -17,7 +17,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="conan @ notes:~/" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://ConanChou.github.io/blog/python/2013/06/10/laziness-in-python/">
+	<link rel="canonical" href="https://conanblog.me/blog/python/2013/06/10/laziness-in-python/">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -97,9 +97,9 @@ MathJax.Hub.Config({
 			<div class="mid-col-container">
 				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name">蟒之惰性</h1>
-	<div class="entry-content" itemprop="articleBody"><p><a href="http://conanchou.github.io/blog/thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 Wikipedia。</p>
+	<div class="entry-content" itemprop="articleBody"><p><a href="https://conanblog.me/blog/thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 Wikipedia。</p>
 
-<p>Python本身是具有惰性的，我在<a href="http://conanchou.github.io/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">《Python 調優筆記 · 經驗主義調優》</a>的「懶惰&gt;勤勞」小節就已經說了一些。我們接下來要看看Python中更高級一點的惰性用法。<!--more--></p>
+<p>Python本身是具有惰性的，我在<a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">《Python 調優筆記 · 經驗主義調優》</a>的「懶惰&gt;勤勞」小節就已經說了一些。我們接下來要看看Python中更高級一點的惰性用法。<!--more--></p>
 
 <h1 id="generator">Generator</h1>
 
@@ -183,7 +183,7 @@ MathJax.Hub.Config({
 </span><span class="line"><span class="bp">True</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>Generator 看起來是個好物，但是它也有自己的使用注意事項，這裏我主要說一說除了惰性求值共性問題（見<a href="http://conanchou.github.io/blog/thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>）之外的注意事項。</p>
+<p>Generator 看起來是個好物，但是它也有自己的使用注意事項，這裏我主要說一說除了惰性求值共性問題（見<a href="https://conanblog.me/blog/thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>）之外的注意事項。</p>
 
 <p>第一點非常淺顯易懂，Generator 產生的序列只能使用一次，也就是說，如果生成的序列需要多次使用的話，還是選擇<code>list</code>。不要硬用 Generator，強扭的瓜不甜，你懂的。</p>
 
@@ -594,8 +594,8 @@ MathJax.Hub.Config({
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://ConanChou.github.io/blog/python/2013/06/10/laziness-in-python/';
-        var disqus_url = 'http://ConanChou.github.io/blog/python/2013/06/10/laziness-in-python/';
+        var disqus_identifier = 'https://conanblog.me/blog/python/2013/06/10/laziness-in-python/';
+        var disqus_url = 'https://conanblog.me/blog/python/2013/06/10/laziness-in-python/';
         var disqus_script = 'embed.js';
       
     (function () {

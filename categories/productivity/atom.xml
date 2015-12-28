@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: productivity | conan @ notes:~/]]></title>
-  <link href="http://ConanChou.github.io/categories/productivity/atom.xml" rel="self"/>
-  <link href="http://ConanChou.github.io/"/>
-  <updated>2015-08-30T23:47:47-04:00</updated>
-  <id>http://ConanChou.github.io/</id>
+  <link href="https://conanblog.me/categories/productivity/atom.xml" rel="self"/>
+  <link href="https://conanblog.me/"/>
+  <updated>2015-12-28T17:34:17-05:00</updated>
+  <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
     <email><![CDATA[conanchou1412@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[格子人生]]></title>
-    <link href="http://ConanChou.github.io/blog/life/hack/productivity/2014/09/01/900-months/"/>
+    <link href="https://conanblog.me/blog/life/hack/productivity/2014/09/01/900-months/"/>
     <updated>2014-09-01T00:18:33-04:00</updated>
-    <id>http://ConanChou.github.io/blog/life/hack/productivity/2014/09/01/900-months</id>
+    <id>https://conanblog.me/blog/life/hack/productivity/2014/09/01/900-months</id>
     <content type="html"><![CDATA[<p>很久未更新日誌了，真是忙碌的一年。具體的更新就不寫在這一篇里了，長話短說是：我很好。</p>
 
 <p>長久以來，我就有病，很多病，強迫症是之一，尤其對於時間管理。在聽說「人生只有900個月，一張A4紙就能打印出來」之後，病得更重了。所以我一直尋求一些方法去靈活地、有效地規劃（Hack）自己的人生，讓更多有意思的事情發生在這30＊30的表格里。<!--more-->曾經做了一個僅供自己使用的時間跟蹤系統來分析自己的時間都花到哪裡了，由於代碼寫得很hacky，使用也太geeky（其實我就是懶得寫文檔），就沒有開源。如果有興趣的朋友可以去試試<a href="https://www.rescuetime.com/">「RescueTime」</a>，我是受到它的啟發做的，當然我做的就比較粗陋，功能性上比它多了一個強制加鎖，即，在一段時限內不能訪問黑名單內的網站。這是幾年前的故事。</p>

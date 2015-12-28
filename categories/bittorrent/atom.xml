@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: bittorrent | conan @ notes:~/]]></title>
-  <link href="http://ConanChou.github.io/categories/bittorrent/atom.xml" rel="self"/>
-  <link href="http://ConanChou.github.io/"/>
-  <updated>2015-08-30T23:47:47-04:00</updated>
-  <id>http://ConanChou.github.io/</id>
+  <link href="https://conanblog.me/categories/bittorrent/atom.xml" rel="self"/>
+  <link href="https://conanblog.me/"/>
+  <updated>2015-12-28T17:34:17-05:00</updated>
+  <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
     <email><![CDATA[conanchou1412@gmail.com]]></email>
@@ -15,10 +15,10 @@
   
   <entry>
     <title type="html"><![CDATA[Raspberry Pi 下載盒]]></title>
-    <link href="http://ConanChou.github.io/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
+    <link href="https://conanblog.me/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
     <updated>2013-02-20T17:03:00-05:00</updated>
-    <id>http://ConanChou.github.io/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
-    <content type="html"><![CDATA[<p><a href="http://conanchou.github.com/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more--></p>
+    <id>https://conanblog.me/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
+    <content type="html"><![CDATA[<p><a href="https://conanblog.me/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more--></p>
 
 <h2 id="section">環境搭建</h2>
 
@@ -68,13 +68,13 @@ $ ln -s /mnt/disk500/Downloads/ ~/Downloads
 
 <p>這樣就可以通過<a href="http://127.0.0.1:9091">http://127.0.0.1:9091</a>來管理下載了。下面是效果圖。</p>
 
-<p><img src="http://conanchou.github.com/images/20130220/WebUI.png" alt="Web UI" title="Web UI" /></p>
+<p><img src="https://conanblog.me/images/20130220/WebUI.png" alt="Web UI" title="Web UI" /></p>
 
-<p><img src="http://conanchou.github.com/images/20130220/peers.png" alt="Peers" title="Peers" /></p>
+<p><img src="https://conanblog.me/images/20130220/peers.png" alt="Peers" title="Peers" /></p>
 
 <p>速度還不錯吧，再來看一下內存和CPU使用情況：</p>
 
-<p><img src="http://conanchou.github.com/images/20130220/top.png" alt="top" title="top" /></p>
+<p><img src="https://conanblog.me/images/20130220/top.png" alt="top" title="top" /></p>
 
 <p>可以發現，其實 Transmission 內存使用並沒有很嚇人，反而是 NTFS 用掉了很多CPU資源，這也是爲什麼我上面說到要格式化這塊硬盤的原因。</p>
 
