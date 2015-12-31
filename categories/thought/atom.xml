@@ -4,7 +4,7 @@
   <title><![CDATA[Category: thought | conan @ notes:~/]]></title>
   <link href="https://conanblog.me/categories/thought/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2015-12-28T17:55:23-05:00</updated>
+  <updated>2015-12-31T17:41:26-05:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,169 @@
   </author>
   <generator uri="//octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2015->2016]]></title>
+    <link href="https://conanblog.me/blog/life/thought/2015/12/31/2015-2016/"/>
+    <updated>2015-12-31T13:53:55-05:00</updated>
+    <id>https://conanblog.me/blog/life/thought/2015/12/31/2015-2016</id>
+    <content type="html"><![CDATA[<p><img src="/images/20151231/hpny.jpg" alt="" /></p>
+
+<p>又是一年忙忙碌碌，可能光從這兩年的博客發表數量就可以看出來。今年跨年，是該稍微寫一點東西了，
+免得以後忘記這兩年都幹了些啥。</p>
+
+<!--more-->
+
+<h2 id="section">工作</h2>
+
+<p>2013 年中，我加入了一家做為金融公司做私有雲的創業公司。開始的一年做得非常開心。因為做的東西很有
+挑戰，我到現在還記得加入的第二天就接到了一個獨立任務──寫一個 in-memory graph database，
+而且不能太臃腫，因為要放進 OpenVSwitch 交換機里跑。之後幹了小半個禮拜，在我離開這家公司時，
+這個項目依然還在我們數據中心的每一台交換機里運行著。當然其實整個 OpenVSwitch 的軟件框架基本
+都是我寫的。這也是那一年半里我每天工作的重心。在這個過程中，我的搭檔──一名網絡工程專家，以及我的
+上司──一名總是比我多想一步的實時高頻系統專家，都給予了很多的鼓勵和幫助，不論是硬技術方面的還是
+軟技術方面的。之後，有了一些人事方面的變動，我老闆跳槽了，於是我便慢慢變成了個自由人，
+我也越來越多地涉及到公司產品的其它部份，尤其是數據庫和數據中心方面的項目。好的不好的事、物都經歷
+過，這些都是寶貴的經驗。在我離開的時候，公司好幾個組的夥伴都來跟我說願做我的推薦人，
+這就讓我很感動。這種肯定是為我踐行的最好的禮物。</p>
+
+<p>2015 年中，我決定跳槽了。過去的兩年，我成長了，公司也成長了，它再也不是一家創業公司；然而我還是
+喜歡創業公司。一次機緣巧合的機會，我應邀去哥大參加一個清華北美地區校友會組織的座談會（應該是人生
+中最接近清華的一次，哈哈），結識了同是嘉賓的一位哥大教授。那會兒他剛剛和他的一個博士學生建立了一
+個有學術背景的創業公司。當中略過幾次吃飯聊天，大半年之後我便加入了他的公司。現在我剛剛加入這家
+公司一個多月吧，它還跟小嬰兒似的，還有很多待做的事情，從架構到功能，從 UI/UX 到代碼。
+當然這一切都得建立在團隊對我的信任上。我相信這只是個時間問題。希望 2016 年我能幫助它成長得更好。</p>
+
+<h2 id="section-1">生活</h2>
+
+<p>2014 年初的時候，我邂逅了她，我現在的妻子。她很美，也比我聰明。在我眼裡她無限接近于完美。
+我經常偷樂，沒想到我這德行還能追到這麼好的姑娘。在她的細心照料下，我的生活有了質的飛越，
+身上的毛病也少了。我很感謝她，在迷茫的時候她幫我解惑，她的支持給我繼續執行的勇氣，另外她還容忍我
+玩電子音樂、夢話說程序語言設計，還耐心聽我嘮叨那些偏門冷知識。來年我依然會努力照顧好她，不給她
+惹麻煩 ;)</p>
+
+<p>去年回了一次國，時間上也是匆匆忙忙，并沒有來得及見朋友。
+父母和祖輩都去看望過。都還好，只是許久不見，他們都老了。我爸雖然還壯實，但是跟我記憶里的樣子已經
+不一樣了。忍不住就想起朱自清的《背影》。想到就心疼和無奈。剛認識我老婆那會兒，她問我可有我爸媽的
+照片，我那時才意識到我沒有我爸的照片，這麼多年我腦子里還是那個開車送我上學時的他。我爸還不會視頻
+聊天，所以這些年一直都是我打網絡電話給他，可是每次都是匆匆幾句話。近幾年，歲月改變了他，想來開始
+掛念孩子家人了，才多了幾通十幾分鐘的電話。最近我媽那邊傳來消息，說是外公快不行了，六七年了，
+她一個人照料得了癌症的外公。也是非常不容易。想想要不是你們的辛苦，我哪裡有這般無憂的生活？
+希望未來我能常回家看看吧。</p>
+
+<p>對了，我要減肥了，BMI逼近正常和肥胖的那條交界線了。</p>
+
+<h2 id="section-2">學習</h2>
+
+<p><img class="left" src="/images/20151231/2016resolution.png" width="472"></p>
+
+<p>這幾年學習倒是沒斷過，工作必須要學的和自己感興趣的。這一點還算欣慰。2015 年初我在 GoodReads
+上定下一年 30 本書的挑戰，年末看看自己才差不多完成了一半。不過沒完成挑戰倒沒什麼要緊的，
+想想我讀的書畢竟不是暢銷小說，知識密度大多了。其實左邊這幅圖片的背景就是我今年翻閱過的書籍的
+一部份。</p>
+
+<p>今年還在 coursera 上上了一些伯克利音樂學院的課，深受啟發。我又看到來年有一些新課，找個時間還是
+會再去上一上。</p>
+
+<p>學習方面繼續保持吧。現在唯一覺得時間不太夠用，之後等生活進一步穩定下來應該會有更多時間吧。</p>
+
+<h2 id="section-3">創業</h2>
+
+<p>創業的夢一直在做，想法也一直有，也經常和朋友們分享。再積累幾年，我會再回來的。今年國內的資本市場
+也是動盪的一年。一旦錯過一個好窗口，就有可能錯過整片江山。我曾投資的一家公司就遇到了不小的麻煩。
+不管怎樣，兄弟繼續加油！</p>
+
+<h2 id="section-4">2015-&gt;2016</h2>
+
+<p>就這樣吧，一篇沒什麼營養的總結，寫在 2015 的最後一天。對來年我也沒什麼高大上的願景，踏踏實實
+做好眼前事兒吧。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[不是格子人生]]></title>
+    <link href="https://conanblog.me/blog/life/thought/2015/07/20/to-do-or-not-to-do/"/>
+    <updated>2015-07-20T12:08:48-04:00</updated>
+    <id>https://conanblog.me/blog/life/thought/2015/07/20/to-do-or-not-to-do</id>
+    <content type="html"><![CDATA[<p><img src="https://conanblog.me/images/20150720/zen.jpeg" alt="" /></p>
+
+<p>距離上次的更新又是很久了。這個一年多來換了三處地方住，各種各樣的事情接踵而至，工作也從一個項目
+變成了四個項目。說真的一直扛著重壓走了很久。不過好就好在，我遇到了我的女朋友。事情沒有太糟糕。</p>
+
+<p><a href="https://conanblog.me/blog/life/hack/productivity/2014/09/01/900-months/">之前的一次更新</a>
+我寫了一些關於 GTD 的想法，以及一個私人的項目。隨著時間的推移，我是一直在努力讓自己跟上時間的步伐，
+然而事情並沒有非常順利。經過很長時間的努力但如果還是不見成效的話，往往說明了也許我們看/解決問題的
+方法有問題。於是就有了這篇隨想/分享。</p>
+
+<!--more-->
+
+<p>讓我決定寫下我的想法的其實是 Jeff Atwood 的 <a href="http://blog.codinghorror.com/todont/"><em>Todon’t</em></a>，
+我在讀他的博客文集
+<a href="http://www.amazon.com/How-Stop-Sucking-Awesome-Instead-ebook/dp/B00BU3KPQU"><em>How to Stop Sucking and Be Awesome Instead</em></a>
+的時候遇到了這篇文章。（題外話，這本書並沒有書名顯得那麽沒營養，其實是很有料的一本書。）</p>
+
+<p>請允許我引用文中的一句話，因為它同樣也是我心中的聲音：</p>
+
+<blockquote>
+  <p>If you can’t wake up every day and, using your 100% original equipment God-given organic brain, come up with the three most important things you need to do that day – then you should seriously work on fixing that.</p>
+</blockquote>
+
+<p>可能跟大多數使用 GTD 工具的人一樣，我有一個鼠標滾輪滾好多下都不見底的 TODO list。它讓罪惡感在我心裏
+慢慢堆積，進而升級變成了壓力。當然這只是加之我身的一部份壓力的具象化。在我之後要提到的一本書里就提到，
+我們的壓力來自多方面，比較常見的有：</p>
+
+<ul>
+  <li>Traffic stress</li>
+  <li>Getting angry</li>
+  <li>Interpersonal conflicts</li>
+  <li>Frustration over failed weight loss efforts</li>
+  <li>Financial stress</li>
+  <li>Being overwhelmed with too much to do</li>
+  <li>Having regrets</li>
+  <li>Discrimination</li>
+</ul>
+
+<p>我比對了一下，只能默默在每一項前面打勾……
+我一開始覺得可能用一個 TODO list 來記錄並優先排序，然後按照自己的時間
+安排來處理這些事務是可以解決這些事情的。可事實告訴我：然並卵。這個“系統”看似完美，可是就跟安全界的
+一句名言說得一樣：</p>
+
+<blockquote>
+  <p>任何系統里，人總是軟肋</p>
+</blockquote>
+
+<p>在這種 TODO 系統裏也是一樣。我成了系統的瓶頸。我有自動腳本幫我篩選新聞、
+放進我的 Pocket 服務、並在 TODO 裏創建新項目；我也用 IFTTT 將很多東西自動化。
+可是這些最終只是將我的 TODO list 加長。而我只能慢慢地一個一個完成。</p>
+
+<p>在重壓下，我得尋找出路，於是找到了這本書 <a href="http://www.amazon.com/The-Myth-Stress-Happier-Healthier/dp/1439159459"><em>The Myth of Stress</em></a>。
+或許在讀書之前我就這麽想，但是似乎在讀完之後我更加篤定：</p>
+
+<blockquote>
+  <p>我們承受如此大的壓力，根源並不是這個世界變得糟糕了，真正需要改變的是我們自己</p>
+</blockquote>
+
+<p>其實就跟我在大學期間對待考試一樣的態度——平常心。只是進入工作，面對異鄉人的特殊身份、財政、感情、
+工作、創業、學習、雜務，我漸漸忘記當年的口頭禪“平常心”。之前我也曾讀到一篇很有意思的文章，表面看起來是說
+如何準備自殺，其實是勸好好面對人生的。當中作者就指出一個很關鍵的點：人在面臨大災難的時候往往非常
+堅強，反倒是那些瑣事會讓人萌生自殺的念頭。</p>
+
+<p>這才回到了我開頭所引用的觀點，平常心對待日常事務，不要再給自己什麽 TODO List 了。錯過一個事務
+也不會怎樣，真正關鍵的、非做不可的事情肯定不會錯過。不管是以哪種方式“不錯過”，要麽是重要到你忘不了
+的事情，要麽是有第二次、第三次機會的事。</p>
+
+<p>其實在 <em>The Myth of Stress</em> 和另一本有關壓力的書 <a href="http://www.amazon.com/The-Upside-Stress-Why-Good/dp/1583335617"><em>The Upside of Stress</em></a> 里，
+都提到了一個不容忽視的一點：壓力不可避免，適當的壓力能讓你做得更好。</p>
+
+<p>所以經過一段時間的思考和沉澱，我廢除了 GTD 以及相關的 GTD 項目，只用大腦記錄要務。因為工作後雜務太多，
+學習變成了一件困難的事情，所以仍然需要對學習給予一定的壓力，比如我給自己設定一個今年閱讀 30 本書的目標。</p>
+
+<p>900 個月的人生，轉瞬即逝，我們為何要選擇不愉快的方式去度過呢？別給自己畫上格子，這不是格子人生。</p>
+
+<p><small>說明：封面圖片我也不知道版權屬誰，是從這裡拿到的：<a href="https://theabysmal.wordpress.com/tag/zen-mind-beginners-mind/">the Abysmal Centre</a>。
+暫時先用了，如有問題請聯繫我，我會徹下。</small></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[勤與懶]]></title>
