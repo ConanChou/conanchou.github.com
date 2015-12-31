@@ -2,7 +2,8 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://ConanChou.github.io
+url: https://conanblog.me
+enforce_ssl: conanblog.me
 title: conan @ notes:~/
 subtitle: notes about hack
 author: Conan

@@ -3,15 +3,15 @@ layout: post
 title: "不是格子人生"
 date: 2015-07-20 12:08:48 -0400
 comments: true
-categories: [life, thoughts]
+categories: [life, thought]
 ---
 
-![](http://conanchou.github.com/images/20150720/zen.jpeg)
+![](https://conanblog.me/images/20150720/zen.jpeg)
 
 距離上次的更新又是很久了。這個一年多來換了三處地方住，各種各樣的事情接踵而至，工作也從一個項目
 變成了四個項目。說真的一直扛著重壓走了很久。不過好就好在，我遇到了我的女朋友。事情沒有太糟糕。
 
-[之前的一次更新](http://conanblog.me/blog/life/hack/productivity/2014/09/01/900-months/)
+[之前的一次更新](https://conanblog.me/blog/life/hack/productivity/2014/09/01/900-months/)
 我寫了一些關於 GTD 的想法，以及一個私人的項目。隨著時間的推移，我是一直在努力讓自己跟上時間的步伐，
 然而事情並沒有非常順利。經過很長時間的努力但如果還是不見成效的話，往往說明了也許我們看/解決問題的
 方法有問題。於是就有了這篇隨想/分享。

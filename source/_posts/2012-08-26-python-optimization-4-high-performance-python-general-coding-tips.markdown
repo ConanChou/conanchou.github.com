@@ -6,7 +6,7 @@ comments: true
 categories: [Python, Optimization, Serial, Programming]
 ---
 
-[上一次我們聊了「理性主義」](http://conanchou.github.com/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/)，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。<!--more-->
+[上一次我們聊了「理性主義」](https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/)，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。<!--more-->
 
 在列舉各種「術」之前，先說「道」（術指具體做事的方法，道指做事的原理）。領悟了道之後才能在不同情況下做出正確的選擇。一般而言，調優無非在兩方面做優化：時間複雜度和空間複雜度。有時候時間和空間會互相矛盾，而這個時候就不得不在它們中做取捨。不同的應用取捨的決定因素是不一樣的。不過就目前而言，因爲空間越來越廉價，時間越來越寶貴，大部分時候人們會偏向與用空間換時間。當然也有兩者不矛盾的時候，這個時候肯定是綜合複雜度越小越好。除了空間、時間複雜度的取捨之外，還有一個可讀性的問題，實際上有時候爲了優化代碼，可讀性會下降不少。所以這個也是個要權衡的方面。
 
@@ -16,7 +16,7 @@ $$O(1)>O(\log n)>O(n\log n)>O(n^2)>O(n^3)>O(n^k)>O(k^n)>O(n!)$$
 
 在 Python 中，對 `list`{:lang="python"}、`collections.deque`{:lang="python"}、`set`{:lang="python"}、`dict`{:lang="python"} 的各種操作的時間複雜度可以在[這裏找到](http://wiki.python.org/moin/TimeComplexity)。
 
-下面我就羅列各種「前人的經驗」。其實記住就可以，不過我還是用簡短的描述大致解釋一下原因,便於更加深刻地理解 Python 內部。有興趣的話其實可以用[「理性主義」的分析方法](http://conanchou.github.com/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/)來看看下面的這些「經驗」。
+下面我就羅列各種「前人的經驗」。其實記住就可以，不過我還是用簡短的描述大致解釋一下原因,便於更加深刻地理解 Python 內部。有興趣的話其實可以用[「理性主義」的分析方法](https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/)來看看下面的這些「經驗」。
 
 - ### `dict`{:lang="python"} > `list`{:lang="python"}
 
@@ -68,7 +68,7 @@ $ pydoc str
 
 - ### 局部變量 > 全局變量
 
-這個尤其要在循環裏注意，就是[本系列第二篇](http://conanchou.github.com/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/)裏我們找到的問題。Python 對局部變量的訪問效率要比全局變量的訪問效率高。另外，如果是一些帶「點」的方法，最好也放到循環的外面，因爲每次「點」，相應的方法都要再 `eval`{:lang="python"} 一遍。因此應該像下面這樣寫：
+這個尤其要在循環裏注意，就是[本系列第二篇](https://conanblog.me/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/)裏我們找到的問題。Python 對局部變量的訪問效率要比全局變量的訪問效率高。另外，如果是一些帶「點」的方法，最好也放到循環的外面，因爲每次「點」，相應的方法都要再 `eval`{:lang="python"} 一遍。因此應該像下面這樣寫：
 
 {% codeblock lang:python %}
 def func():

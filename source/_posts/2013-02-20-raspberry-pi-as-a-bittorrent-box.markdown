@@ -6,7 +6,7 @@ comments: true
 categories: [Raspberry-Pi, BitTorrent, Arch, Linux]
 ---
 
-[上一篇日誌](http://conanchou.github.com/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/)我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more-->
+[上一篇日誌](https://conanblog.me/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/)我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more-->
 
 ## 環境搭建
 
@@ -56,13 +56,13 @@ $ ln -s /mnt/disk500/Downloads/ ~/Downloads
 
 這樣就可以通過[http://127.0.0.1:9091](http://127.0.0.1:9091)來管理下載了。下面是效果圖。
 
-![Web UI](http://conanchou.github.com/images/20130220/WebUI.png "Web UI")
+![Web UI](https://conanblog.me/images/20130220/WebUI.png "Web UI")
 
-![Peers](http://conanchou.github.com/images/20130220/peers.png "Peers")
+![Peers](https://conanblog.me/images/20130220/peers.png "Peers")
 
 速度還不錯吧，再來看一下內存和CPU使用情況：
 
-![top](http://conanchou.github.com/images/20130220/top.png "top")
+![top](https://conanblog.me/images/20130220/top.png "top")
 
 可以發現，其實 Transmission 內存使用並沒有很嚇人，反而是 NTFS 用掉了很多CPU資源，這也是爲什麼我上面說到要格式化這塊硬盤的原因。
 

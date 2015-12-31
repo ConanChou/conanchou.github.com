@@ -138,7 +138,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 
 這三行裏就有兩個小問題。
 
-- 首先是 32 行，在 Python 3.x 之前，`range()`{:lang="python"} 和 `xrange()`{:lang="python"} 還是有區別的。前者會在內存中真的生成 `list`{:lang="python"}，而後者只是返回一個類似的 object （我們會在[第四篇](http://conanchou.github.com/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/)中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。
+- 首先是 32 行，在 Python 3.x 之前，`range()`{:lang="python"} 和 `xrange()`{:lang="python"} 還是有區別的。前者會在內存中真的生成 `list`{:lang="python"}，而後者只是返回一個類似的 object （我們會在[第四篇](https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/)中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。
 - 33、34 行一直在直接從 `list`{:lang="python"} 裏查詢數據，而雖然查詢時間複雜度是 $$O(1)$$，但是代碼一遍又一遍地 `get`{:lang="python"} 和 `set`{:lang="python"}，這樣做勢必會消耗更多時間。
 
 所以通過分析，我們知道就以上的第一點而言，我們即使改用成 `xrange()`{:lang="python"}，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：

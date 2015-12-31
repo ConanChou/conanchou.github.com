@@ -2,7 +2,7 @@
 layout: nil
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="//www.w3.org/2005/Atom">
 
   <title><![CDATA[{{ page.title }} | {{ site.title }}]]></title>
   <link href="{{ site.url }}/{{ page.feed_url }}" rel="self"/>
@@ -13,7 +13,7 @@ layout: nil
     <name><![CDATA[{{ site.author | strip_html }}]]></name>
     {% if site.email %}<email><![CDATA[{{ site.email }}]]></email>{% endif %}
   </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+  <generator uri="//octopress.org/">Octopress</generator>
 
   {% for post in site.categories[page.category] limit: 5 %}
   <entry>
