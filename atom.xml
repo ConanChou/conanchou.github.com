@@ -4,7 +4,7 @@
   <title><![CDATA[conan @ notes:~/]]></title>
   <link href="https://conanblog.me/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2015-12-31T18:36:22-05:00</updated>
+  <updated>2016-01-03T15:24:36-05:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[一些关于假新闻和标题党的想法]]></title>
+    <link href="https://conanblog.me/blog/china/internet/thought/2016/01/03/we-media-fake-news/"/>
+    <updated>2016-01-03T11:03:16-05:00</updated>
+    <id>https://conanblog.me/blog/china/internet/thought/2016/01/03/we-media-fake-news</id>
+    <content type="html"><![CDATA[<p>最近又有一些自媒体的假新闻被忽然炒热，比如最近一篇说苹果收购特斯拉的。不管是愚人节假新闻被挖坟，
+还是挖坟、传播者无脑。假新闻、标题党这两年已经泛滥，自媒体更是搞臭了自己的名声。
+表面看，这事儿一半关于内容制造者的人品，另一半关于读者和传播者素质，我相信 Fenng 的<a href="http://mp.weixin.qq.com/s?__biz=MjM5ODIyMTE0MA==&amp;mid=401811966&amp;idx=1&amp;sn=76a53dbe421dcba15e923ce79d832eb0&amp;scene=5&amp;srcid=01032MbUPhPM67o8GPanOOSd#rd">这篇文章</a>已经做了很“给力”的讨论。</p>
+
+<p>前不久我也在 Twitter 上跟几个推友讨论了相关话题。</p>
+
+<p><img src="https://conanblog.me/images/20160103/twitter.png" alt="为保护推友隐私，已经把推号和头像遮掉" /></p>
+
+<!--more-->
+
+<p>我这篇推文虽然得到了很多人的赞同，然而我觉得这并不是问题的全貌和根本。那根本是什么？我觉得是诚信缺失。
+你可能觉得这岂不是废话，可是我想说的不仅仅是造假自媒体和恶意传播者的诚信缺失，更是社会诚信缺失的问题。</p>
+
+<p>在进入到分析之前我想先分享一下诚信较高的社会里自媒体是如何生存的。拿 Medium 来说吧，
+它是目前运营得最成功的博客平台之一。他们公司也很早就开始想如何犒劳写手/作家。
+按照点击量付正相关的酬劳似乎合情合理，毕竟他们是互联网公司，流量和用户数就能直接和间接
+给他们带来经济利益。
+不过他们第一个枪毙了这个想法，因为这种模式极有可能让人们忽视真正高质量的文章。
+所以是毋庸置疑的情怀牌，当然不光文章质量有情怀，整个网站的 UI/UX 也是处处体现情怀。
+这里就不多说了，感兴趣的同学可以自己去仔细体验。</p>
+
+<p>而发文的那些专业与非专业的作者们对 Medium 的态度呢？大多数人觉得 Medium 是一个提高知名度的平台，
+他们用它来 <strong>建立</strong> 自己的公众形象和声誉，最终从这些知名度和公众形象中，他们能获得一定的经济利益。
+当然 Medium 也会给一些明星作家一定的报酬，而我觉得这也是建立在之前这些明星作家们的 <strong>积累</strong> 之上。
+而其它类似的自媒体平台也是大同小异。</p>
+
+<p><span class="pullquote-left" data-pullquote="在诚信较好社会，人们更加讲求运营，一种积累的过程。行为和经济利益之间往往不是直接的关系。">
+所以你看，在诚信较好社会，人们更加讲求运营，一种积累的过程。行为和经济利益之间往往不是直接的关系。
+注意！（请用老罗的方式念）这一点很重要，因为在诚信较缺失的社会体系里，
+行为和经济利益之间的关系往往是更直接的。
+</span></p>
+
+<p>那再来看看在华人社会比较流行的这些自媒体平台。朋友圈、微博、以及类似 Medium 的平台简书。
+他们有一个共同点。这也多亏了老罗的发布会我才意识到。就是“打赏”这个功能。我并不是不喜欢这个功能，
+事实上我自己也做过产品，换我我也会加同样的功能。
+之所以加这个功能，说明产品经理们已经意识到了某种更深层的脉动。顺便插一句，
+在写这篇文章做调查时我也发现了一些美国的创业公司试图给 Medium 添加类似“打赏”的功能，可是最终都
+因响应不强烈，不了了之了。</p>
+
+<p>接着说回这个打赏的事儿。华人相对来说不喜欢分享，“自扫门前雪”、“肥水不流外人田”、
+“多一事不如少一事”、“枪打出头鸟”等思想已经深深影响着我们的行为。
+而对于大多数中国网民来说，生活虽不到艰难的地步，但也没有闲到天天有时间写文章。
+尤其是一些中产，有思想有知识，但是没时间做没有报酬的“闲事”。
+所以产品经理们为了换得更多的质量相对高的内容（从而得到更多用户和流量），
+他们要把“闲事”变成“稍正的事”。</p>
+
+<p>情怀牌在这个时候就不管用了，表面上，作家/写手要养家糊口、或赚点外快。
+实际上，想想之前我说的行为和经济利益的关系，
+在诚信相对缺失的社会，写作这种行为和经济利益如果还是间接关系，还有多少人买账？
+必须要直接，而且要赤裸裸地直接，要有视觉和数字的直观冲击。</p>
+
+<p>那诚信在这儿起什么作用？诚信是现金的缓冲带，越没有信任就越是要“一手交钱一手交货”，
+越有信任就越可以“赊账”。可诚信这东西怎么来呢？靠 <strong>积累</strong>。
+人都是社会动物，不可避免地会相互模仿，
+当“积累”这种“吃力不讨好”的方式在一个社会里被一些不诚信的“抄近路”的方式打败时，
+人们自然会学习“抄近路”，直到人们发现“抄近路”的弊端大于利益时才会罢休。这不可避免，即便是现在已经
+很诚信的社会在早期也面临过这样的历史进程。</p>
+
+<p><span class="pullquote-left" data-pullquote="当在一个社会里，人与机构要为自己以往的言行负责任时， 人们才会意识到“积累”的重要性，从而才有真正的“运营”。">
+要改变这一现状并非易事，在经济条件好，更富足的社会，这会简单一些，毕竟更多人追求情怀。
+说这个并没有什么意义，因为强国几乎是共识。而我想说的是用经济体系引导社会意识。
+我觉得马云想要建立支付信用体系就是一个很好的开端。其实美国社会很大程度地建立在信用体系之上，
+它影响着美国人的行为模式。当在一个社会里，人与机构要为自己以往的言行负责任时，
+人们才会意识到“积累”的重要性，从而才有真正的“运营”。
+</span></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2015->2016]]></title>
@@ -2773,47 +2846,6 @@ debug。結果是反而浪費了很多時間在無用地猜測和推理上。這
   <li><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/" title="Python 調優筆記·理性主義調優">理性主義調優，一切從根本出發</a></li>
   <li><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/" title="Python 調優筆記·經驗主義調優">經驗主義調優，站在巨人的肩膀上</a></li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python 調優筆記·序]]></title>
-    <link href="https://conanblog.me/blog/python/optimization/serial/programming/2012/07/23/python-optimization-1/"/>
-    <updated>2012-07-23T01:19:00-04:00</updated>
-    <id>https://conanblog.me/blog/python/optimization/serial/programming/2012/07/23/python-optimization-1</id>
-    <content type="html"><![CDATA[<p>以往我都以寫命令行下的 Python 腳本爲主。即使做項目也基本是做小規模 Web 類的。所以很少遇到效率太低受不了的情況，所以也鮮有調優的需要。當然，在寫代碼時就已經注意了一些效率問題，所以基本不需要很費心機地調優。可是幾個月前我做了兩個項目，一是一個機器學習引擎，用以學習在線讀者閱讀習慣；另一個是一個下 Chess 的 AI，用以人機對奕。<!-- more -->兩個系統都用 Python 構建。因爲這兩個項目都是 CPU intensive 的，真的是慢的可以。於是這逼得我不得不去研究下有關 Python
-的調優。而在機器學習的項目中，因爲當時自己的服務器實在很爛（只有256 MB 內存），所以得瘋狂得做服務器部署的優化才能讓它處理外部請求和部分邏輯。加上以往的服務器調優經驗，也算是積累了一些有用的東西。</p>
-
-<p>上個禮拜一個朋友跟我討論 Python 以及 Django 網站的調優問題。我告訴了他一些我的經驗。雖然當時聊得很匆忙，可是我想這些信息是有用的，至少對我很有用。一方面我真的沒有具體地整理過，另一方面也是怕自己將來忘記。所以趁熱打鐵，打算整理成系列。在這個系列裏，我將會涉及到以下兩大類瓶頸的調優：</p>
-
-<ul>
-  <li>瓶頸在計算的調優</li>
-  <li>瓶頸在數據讀寫的調優</li>
-</ul>
-
-<p>讓我們來看張圖先：</p>
-
-<p><img src="https://public.blu.livefilestore.com/y1pauSVpp8onRf0BIEWig2UQ0yvy0OYj-1bpinVGs6SqA4s4q2qZV1daZXxKrQXoG4ktnb0ddekeu2iTohP_PtyuQ/chart.png?psid=1" alt="熱門編程語言速度對比" title="熱門編程語言速度對比" /></p>
-
-<p>調優之後我們的程序到底能跑多快？猜 V8 JavaScript 的很大膽。但是你還不夠大膽，事實上效果好的情況可以直逼 GCC C。也就是可以提升 20 多倍的速度。而這張圖測試的背景是代碼本身已經優化過的基礎上。那在真實的生產生活中，這個數字可以是上三位數的。</p>
-
-<p>優化是沒有一針見血很徹底的方案的，因爲優化牽扯到程序從編寫到運行的方方面面。有句話說：如果一個程序能夠很正常地運行，那說明沒有地方有問題；但是如果程序出錯了，就有可能不止一處有問題。同樣的道理，調優也是如此。因此，本系列會分很多篇，每一篇針對一個話題。</p>
-
-<hr />
-
-<p>本文是『Python 調優筆記』系列中的一篇，其它文章還有：</p>
-
-<ul>
-  <li><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/07/23/python-optimization-1/" title="Python 調優筆記·序">序，一切的開始</a></li>
-  <li><a href="https://conanblog.me/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/" title=" Python 調優筆記·代碼造影">代碼造影，定位癥結</a></li>
-  <li><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/" title="Python 調優筆記·理性主義調優">理性主義調優，一切從根本出發</a></li>
-  <li><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/" title="Python 調優筆記·經驗主義調優">經驗主義調優，站在巨人的肩膀上</a></li>
-</ul>
-
-<p>在整理時我參考了大量資料，以一定程度上確保靠譜。</p>
-
-<p>整理和尋找知識系統和方法理論的時候，我使用了非常好用的 Mind Mapping 開源軟件 <a href="http://freemind.sourceforge.net/wiki/index.php/Main_Page">FreeMind</a>，提高效率的 <a href="http://tmux.sourceforge.net/">tmux</a> 和 <a href="http://tmux.sourceforge.net/">Vim</a>。題外話，推薦一下。</p>
 
 ]]></content>
   </entry>
