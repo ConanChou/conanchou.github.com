@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
@@ -8,11 +11,11 @@
   <id>http://ConanChou.github.com/</id>
   <author>
     <name><![CDATA[Conan]]></name>
-    
+
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
+
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·理性主義調優]]></title>
     <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/08/26/python-optimization-3-disassembling/"/>
@@ -138,7 +141,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[用另一臺計算機寫 Octopress]]></title>
     <link href="http://ConanChou.github.com/blog/Octopress/Hack/2012/08/23/write-octopress-in-another-box/"/>
@@ -217,7 +220,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 <p>Happy hacking!</p>
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[用 Python 的「神奇方法」元編程]]></title>
     <link href="http://ConanChou.github.com/blog/Python/Programming/2012/08/21/python-metaprogramming-with-magic-methods/"/>
@@ -329,7 +332,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 <p>那最後我的這種實現方式到底屬於上文提到的哪種元編程實現方式呢？留作思考題吧～</p>
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[簡單粗暴解決 Zsh Home 和 End 按鍵問題]]></title>
     <link href="http://ConanChou.github.com/blog/Linux/Unix/Zsh/Hack/2012/08/20/resolve-zsh-home-and-end-key-problem/"/>
@@ -367,7 +370,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 <p>問題解決，簡單粗暴，但直截了當。Don’t settle. Happy hacking.</p>
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[關於編程，對我最有用的建議]]></title>
     <link href="http://ConanChou.github.com/blog/Programming/Zen/2012/08/20/the-best-programming-advice-i-ever-got/"/>
@@ -408,7 +411,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 <p>最後我也來分享一下對我一直有深遠影響的建議：「70% 思考，30% 做」。</p>
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·代碼造影]]></title>
     <link href="http://ConanChou.github.com/blog/Optimization/Programming/Python/Serial/2012/07/25/python-optimization-2-profiling/"/>
@@ -715,7 +718,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[Python 調優筆記·序]]></title>
     <link href="http://ConanChou.github.com/blog/Python/Optimization/Serial/Programming/2012/07/23/python-optimization-1/"/>
@@ -756,7 +759,7 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 
 ]]></content>
   </entry>
-  
+
   <entry>
     <title type="html"><![CDATA[touch log]]></title>
     <link href="http://ConanChou.github.com/blog/routine/2012/07/21/touch-log/"/>
@@ -778,5 +781,5 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 </pre></td><td class="code"><pre><code class=""><span class="line">conan@notes:~/ touch log</span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
-  
+
 </feed>
