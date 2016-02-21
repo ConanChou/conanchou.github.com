@@ -4,7 +4,7 @@
   <title><![CDATA[conan @ notes:~/]]></title>
   <link href="https://conanblog.me/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-02-20T16:52:14-05:00</updated>
+  <updated>2016-02-21T18:19:50-05:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -41,7 +41,7 @@
 
 <p>第一個是關於海森堡的<a href="https://zh.wikipedia.org/wiki/不确定性原理">不確定原理</a>，有人質疑它的正確性。於是就做了個假想實驗，說假設有這麼個盒子，盒子上有個帶快門的小孔，箱子里有若干光子。再假設這個快門足夠快可以一次只放跑一個光子，$\Delta {t}$ 足夠小，而少了一個光子也可以用理想的秤稱量 $\Delta {m}$，這麼一來那個光子的質量也就是 $m$，再根據質能方程 $E=mc^2$，可以輕鬆得到 $\Delta {E}$。這麼一來海森堡的不確定原理公式 $\Delta {E} \times \Delta {t} &gt; h/2\pi$ 就不成立了。</p>
 
-<p>第二個證明是關於超光速的。還是一個假想實驗，如果假設能製造一根長達一光年的棍子，A和B站在棍子兩端，A用棍子戳B一下，動能的傳遞能在瞬間完成，這就自然實現了超光速。</p>
+<p>第二個是關於超光速的。還是一個假想實驗，如果假設能製造一根長達一光年的棍子，A和B站在棍子兩端，A用棍子戳B一下，動能的傳遞能在瞬間完成，這就自然實現了超光速。</p>
 
 <p>這倆都有問題你們看出來了嗎？</p>
 
