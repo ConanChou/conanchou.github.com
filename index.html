@@ -12,7 +12,10 @@
 	<meta name="author" content="Conan">
 
 	
-	<meta name="description" content="Feb 20th, 2016 thought 談民科 近幾年「民科」這個詞的曝光度越來越大，有關的言論也是越來越多。兩件事情讓我最近一段時間一直思考關於「民科」的事兒。一是王垠寫了篇幫 Java 洗白的博客，雖然很多觀點我是讚同的，但依然不敢同意他的種種論調，尤其是他文章中出現了三次民科， &hellip;">
+	<meta name="description" content="Mar 6th, 2016 clojure, note Reagent 的 Figwheel REPL 方案 剛剛開始了壹個新 side project，這次打算用
+reagent
+做這個項目。我是直接用了 reagent 的默認模板： 1
+lein new reagent myproject &hellip;">
 	
 
   <!-- //t.co/dKP3o1e -->
@@ -104,6 +107,54 @@ MathJax.Hub.Config({
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-03-06T11:42:03-05:00" data-updated="true" itemprop="datePublished">Mar 6<sup>th</sup>, 2016</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/categories/clojure/'>clojure</a>, <a class='category' href='/categories/note/'>note</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/note/clojure/2016/03/06/reagent-figwheel-repl-with-nrepl/" itemprop="url">Reagent 的 Figwheel REPL 方案</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>剛剛開始了壹個新 side project，這次打算用
+<a href="https://github.com/reagent-project/reagent">reagent</a>
+做這個項目。我是直接用了 reagent 的默認模板：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">lein new reagent myproject</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>開發的時候用 <code>lein figwheel</code> 運行，當瀏覽器指向默認的開發地址 <code>http://localhost:3449</code>
+時，Figwheel 的
+<a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>
+就會出現，然後調試起來簡直不能更爽。不過這個 Figwheel REPL 有個問題，就是不支持歷史回溯，
+不像 <a href="https://github.com/clojure/tools.nrepl">nREPL</a>，妳不能上下鍵調歷史，更不能 <kbd>ctrl</kbd> + <kbd>r</kbd> 搜索歷史。</p>
+
+
+		
+		<a href="/blog/note/clojure/2016/03/06/reagent-figwheel-repl-with-nrepl/" class="more-link">Read on</a>
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -221,47 +272,6 @@ MathJax.Hub.Config({
 
 		
 		<a href="/blog/life/thought/2015/12/31/2015-2016/" class="more-link">Read on</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-08-30T15:53:32-04:00" data-updated="true" itemprop="datePublished">Aug 30<sup>th</sup>, 2015</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/categories/mooc/'>mooc</a>, <a class='category' href='/categories/music/'>music</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/music/mooc/2015/08/30/ableton-live-9-automation-how-to/" itemprop="url">Ableton Live 9 Automation How-To</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<blockquote>
-  <p>Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a> is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..</p>
-</blockquote>
-
-<p>This is the 3rd week assignment. In this one, I am going to demonstrate the automation in Ableton Live 9. Similar to previous tutorial, I will also divide this topic into several sub-topics. The audio track used in the examples is Lion original mix by Dannic. I will only play the first few bars.</p>
-
-
-		
-		<a href="/blog/music/mooc/2015/08/30/ableton-live-9-automation-how-to/" class="more-link">Read on</a>
 	</div>
 
 </article>

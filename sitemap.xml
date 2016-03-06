@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://conanblog.me/blog/note/clojure/2016/03/06/reagent-figwheel-repl-with-nrepl/</loc>
+    <lastmod>2016-03-06T11:42:03-05:00</lastmod>
+  </url>
+  <url>
     <loc>https://conanblog.me/blog/thought/2016/02/20/crank-and-autodidacticism/</loc>
     <lastmod>2016-02-20T11:54:51-05:00</lastmod>
   </url>
@@ -166,5 +170,11 @@
   </url>
   <url>
     <loc>https://conanblog.me/categories/internet/</loc>
+  </url>
+  <url>
+    <loc>https://conanblog.me/categories/note/</loc>
+  </url>
+  <url>
+    <loc>https://conanblog.me/categories/clojure/</loc>
   </url>
 </urlset>

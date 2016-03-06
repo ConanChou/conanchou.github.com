@@ -12,7 +12,7 @@
 	<meta name="author" content="Conan">
 
 	
-	<meta name="description" content="Feb 20th, 2013 arch, bittorrent, linux, raspberry-pi Raspberry Pi 下載盒 上一篇日誌我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄 &hellip;">
+	<meta name="description" content="Apr 20th, 2013 thought 道不明，術不精 「道不明，術不精」是現在最適合形容我狀態的語句。說真的，我對自己有些失望。從兩千年初開始接觸計算機和因特網，到現在幾乎沒有什麼大的成就。對照 Coding Horror 裏的《程序員的八個等級》，我大概在4～5吧。 &hellip;">
 	
 
   <!-- //t.co/dKP3o1e -->
@@ -121,6 +121,42 @@ MathJax.Hub.Config({
 
 
 
+<time datetime="2013-04-20T01:20:00-04:00" data-updated="true" itemprop="datePublished">Apr 20<sup>th</sup>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/categories/thought/'>thought</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/thought/2013/04/20/dao-bu-ming-shu-bu-jing/" itemprop="url">道不明，術不精</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>「道不明，術不精」是現在最適合形容我狀態的語句。說真的，我對自己有些失望。從兩千年初開始接觸計算機和因特網，到現在幾乎沒有什麼大的成就。對照 Coding Horror 裏的<a href="http://www.codinghorror.com/blog/2009/04/the-eight-levels-of-programmers.html">《程序員的八個等級》</a>，我大概在4～5吧。而很顯然這不應該是一個有志者所止步的位置。我最接近「Famous」的恐怕也只有幾年前趕鴨子上架般的在亞太開源軟件峯會上給的關於 CakePHP 和 Symfony
+的講座吧。我一直在學習，可長進不足。到底是哪裏做得不對？
+		
+		<a href="/blog/thought/2013/04/20/dao-bu-ming-shu-bu-jing/" class="more-link">Read on</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+
 <time datetime="2013-02-20T17:03:00-05:00" data-updated="true" itemprop="datePublished">Feb 20<sup>th</sup>, 2013</time></div>
 		<div class="tags">
 
@@ -208,41 +244,6 @@ MathJax.Hub.Config({
 		<p><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/">上一次我們聊了「理性主義」</a>，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。
 		
 		<a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/" class="more-link">Read on</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-08-26T00:10:00-04:00" data-updated="true" itemprop="datePublished">Aug 26<sup>th</sup>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/categories/optimization/'>optimization</a>, <a class='category' href='/categories/programming/'>programming</a>, <a class='category' href='/categories/python/'>python</a>, <a class='category' href='/categories/serial/'>serial</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/" itemprop="url">Python 調優筆記·理性主義調優</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p><a href="https://conanblog.me/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/">上次</a>我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來的，是完全可以推導出問題出在哪裏的（題外話，我認爲後者也屬於前者，可是聯合國教科文組織卻把它們分開了）。本篇博文就是要說如何在無經驗狀態下找到癥結。我稱之爲「理性主義調優」，當然這裏只指代碼級別的調優。（理性主義相對於經驗主義，是兩個相對的哲學流派。）
-		
-		<a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/" class="more-link">Read on</a>
 	</div>
 
 </article>

@@ -4,7 +4,7 @@
   <title><![CDATA[conan @ notes:~/]]></title>
   <link href="https://conanblog.me/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-02-21T18:19:50-05:00</updated>
+  <updated>2016-03-06T18:36:28-05:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,142 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reagent 的 Figwheel REPL 方案]]></title>
+    <link href="https://conanblog.me/blog/note/clojure/2016/03/06/reagent-figwheel-repl-with-nrepl/"/>
+    <updated>2016-03-06T11:42:03-05:00</updated>
+    <id>https://conanblog.me/blog/note/clojure/2016/03/06/reagent-figwheel-repl-with-nrepl</id>
+    <content type="html"><![CDATA[<p>剛剛開始了壹個新 side project，這次打算用
+<a href="https://github.com/reagent-project/reagent">reagent</a>
+做這個項目。我是直接用了 reagent 的默認模板：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">lein new reagent myproject</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>開發的時候用 <code>lein figwheel</code> 運行，當瀏覽器指向默認的開發地址 <code>http://localhost:3449</code>
+時，Figwheel 的
+<a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>
+就會出現，然後調試起來簡直不能更爽。不過這個 Figwheel REPL 有個問題，就是不支持歷史回溯，
+不像 <a href="https://github.com/clojure/tools.nrepl">nREPL</a>，妳不能上下鍵調歷史，更不能 <kbd>ctrl</kbd> + <kbd>r</kbd> 搜索歷史。</p>
+
+<!--more-->
+
+<p>這個肯定不能忍啊，經過壹番搗鼓，算摸出個方案。記錄下來以免之後忘了……
+其實方案很直白，就是在 nREPL 裏用 Figwheel REPL。
+如果是直接用 Figwheel Leiningen 模板的，可以按照
+<a href="https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl">這份 wiki</a>
+配置壹下。如果是用 reagent 的默認模板，其實這些配置是已經配置好了的。
+我也是看了 <code>project.clj</code> 的配置才意識到的，壹開始還改了半天配置，走了些彎路，直到看到這壹段：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">:figwheel {:http-server-root "public"
+</span><span class="line">           :server-port 3449
+</span><span class="line">           :nrepl-port 7002
+</span><span class="line">           :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"
+</span><span class="line">                              ]
+</span><span class="line">           :css-dirs ["resources/public/css"]
+</span><span class="line">           :ring-handler khm-clj.handler/app}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>有 nREPL 相關的配置，看來是 reagent 已經配置了 nREPL，其實啟動後仔細看 STDOUT 也能看到：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">Figwheel: Starting nREPL server on port: 7002</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>接下來只需要連上 nREPL 就好了。<a href="https://cursive-ide.com">Cursive</a> 的話可以參考
+<a href="https://cursive-ide.com/userguide/repl.html">這份文檔</a> 配置遠程 nREPL，
+我在文末的動圖裏也會演示。而純命令行的就更簡單了，直接</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">lein repl :connect 7002</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>連接成功就已經成功壹半了，最後還剩兩條命令，壹是加載 <code>figwheel-sidecar.repl-api</code>，
+壹是調用 <code>cljs-repl</code>，調用之後 <code>namespace</code> 會被自動從 <code>user</code> 換到 <code>cljs.user</code>：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conan@crmbp ~/workspace/khm-clj $ lein repl :connect 7002
+</span><span class="line">Connecting to nREPL at 127.0.0.1:7002
+</span><span class="line">REPL-y 0.3.7, nREPL 0.2.12
+</span><span class="line">Clojure 1.8.0
+</span><span class="line">Java HotSpot(TM) 64-Bit Server VM 1.8.0_65-b17
+</span><span class="line">    Docs: (doc function-name-here)
+</span><span class="line">          (find-doc "part-of-name-here")
+</span><span class="line">  Source: (source function-name-here)
+</span><span class="line"> Javadoc: (javadoc java-object-or-class-here)
+</span><span class="line">    Exit: Control+D or (exit) or (quit)
+</span><span class="line"> Results: Stored in vars *1, *2, *3, an exception in *e
+</span><span class="line">
+</span><span class="line">user=&gt; (use 'figwheel-sidecar.repl-api)
+</span><span class="line">nil
+</span><span class="line">user=&gt; (cljs-repl)
+</span><span class="line">Launching ClojureScript REPL for build: app
+</span><span class="line">Figwheel Controls:
+</span><span class="line">          (stop-autobuild)                ;; stops Figwheel autobuilder
+</span><span class="line">          (start-autobuild [id ...])      ;; starts autobuilder focused on optional ids
+</span><span class="line">          (switch-to-build id ...)        ;; switches autobuilder to different build
+</span><span class="line">          (reset-autobuild)               ;; stops, cleans, and starts autobuilder
+</span><span class="line">          (reload-config)                 ;; reloads build config and resets autobuild
+</span><span class="line">          (build-once [id ...])           ;; builds source one time
+</span><span class="line">          (clean-builds [id ..])          ;; deletes compiled cljs target files
+</span><span class="line">          (print-config [id ...])         ;; prints out build configurations
+</span><span class="line">          (fig-status)                    ;; displays current state of system
+</span><span class="line">  Switch REPL build focus:
+</span><span class="line">          :cljs/quit                      ;; allows you to switch REPL to another build
+</span><span class="line">    Docs: (doc function-name-here)
+</span><span class="line">    Exit: Control+C or :cljs/quit
+</span><span class="line"> Results: Stored in vars *1, *2, *3, *e holds last exception object
+</span><span class="line">Prompt will show when Figwheel connects to your application
+</span><span class="line">To quit, type: :cljs/quit
+</span><span class="line">nil
+</span><span class="line">cljs.user=&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>最後我們來測試壹下：</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/480759/13558112/f083e61a-e3c9-11e5-9556-80eaab79b6a2.gif" alt="" /></p>
+
+<p>今天手賤，又忘了保存帖子，於是只能又重寫了壹遍……</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[談民科]]></title>
@@ -2540,48 +2676,6 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>問題解決，簡單粗暴，但直截了當。Don’t settle. Happy hacking.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[關於編程，對我最有用的建議]]></title>
-    <link href="https://conanblog.me/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got/"/>
-    <updated>2012-08-20T15:58:00-04:00</updated>
-    <id>https://conanblog.me/blog/programming/zen/2012/08/20/the-best-programming-advice-i-ever-got</id>
-    <content type="html"><![CDATA[<p>關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：<a href="http://www.informit.com/promotions/promotion.aspx?promo=138930">“The Best Programming Advice I Ever Got”</a>，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。<!--more--></p>
-
-<ul>
-  <li>
-    <p>「寫更少的代碼。」不要覺得寫很多代碼來修補一個 bug 是一件很光榮的事情，有時問題的關鍵只是多餘的一行代碼，刪除即可。寫更多的代碼只會增加維護成本。可以少寫代碼就少寫。</p>
-  </li>
-  <li>
-    <p>「在動手修改代碼前，先仔細理解報錯。」這一點看起來是廢話，但是我自己也好、別人也好，都多多少少犯過這樣的錯誤。原因很簡單，因爲人們寫代碼的時候很多是在壓力下完成的，比如要在下班前完成某個功能，或者在這禮拜前完成教授佈置的編程作業。所以經常就有人在沒有理解報錯的情況下枉自猜測着
-debug。結果是反而浪費了很多時間在無用地猜測和推理上。這種現象在新手身上尤爲顯著，這裏的新手跟你寫程序的時間沒有關係，我雖然寫了十餘年程序，但對 Lisp 這門語言來說我仍然是新手。</p>
-  </li>
-  <li>
-    <p>「讀多於寫，只讀高質量的書籍，一直更新知識庫。」程序員，尤其是老程序員，會傾向與專攻一項技術。當知識水平滿足了現在的工作需求的時候，一些人可能會停止繼續學習。這樣的程序員往往會遇到以下的情況：比如他是 C++ 程序員，兩年後再看別人新寫的 C++  代碼，可能會很不能理解。因爲他們的知識體系老化了。技術也是隨着摩爾定律一起發展的。所以當你完成了四年的大學，你已經有一半的知識快要淘汰。所以，繼續學習，學習更好更新的知識。</p>
-  </li>
-  <li>
-    <p>「學習新的知識，要從更小的切入點進入。」學習新的知識對於程序員來說可以說是家常便飯，可是學得效果是好是壞往往因人而異。導致這種差異的原因有很多，但是我認爲這一點非常關鍵。很多人在學習一個新技術或編程語言的時候偏向於廣泛地學習。事實上這並無助於你對知識的掌握和理解；相反，如果縮小切入點，你能夠學得更好。比如不是學習 JavaScript 一整本厚厚的書，而是學習 JavaScript 的語義學。這樣學習的知識相對少，但是足夠深入；深入之後逐漸會使你學到更廣泛的其他相關知識。這樣你自然能比別人學得好。這也就能解釋爲什麼有些人能夠在短短幾年內成長爲某領域的專家。</p>
-  </li>
-  <li>
-    <p>「以後別碰別人的代碼。」必須在此聲明，<strong>這不是個好建議；相反，你應該更加積極地團隊合作，讓權利鬥爭、包幹領域和理讓得體去見鬼</strong>。事實上這個建議是作者早年在一個大企業裏做的時候某個上司給他的。因爲他私自修改了別人的代碼而帶來了很多人際關係上的麻煩。我覺得這個很大程度上跟企業文化有關係。我相信程序員們都是或多或少有 Hacker 情懷的，所以自由開放的工作環境才是適合我們的。遇到這樣的公司，無論薪資怎樣，都請跳槽吧，這樣的企業不值得你在那裏浪費青春。</p>
-  </li>
-  <li>
-    <p>「debug 前先深入思考。」這一點跟上面的第二點很像。但是作者在文章中提到了在腦中建立模型，深入地理解 bug，這往往不僅可以讓你很快能夠解決局部的 bug，你甚至還能預見更高層次的 bug。</p>
-  </li>
-  <li>
-    <p>「你要重構代碼，你要 TDD」。代碼重構的目的就在於最大程度地使代碼能夠被重用，要做到這一點，最佳方式是銘記「一個 function 只做一件事，並且把這件事做好」。重構後的代碼通常更加短小便於理解，而且小巧的 function debug 起來也更加方便。其二就是你要貫徹 TDD (Test Driven Design/Development)。筆者一度是 TDD 的反對者，因爲我覺得它太麻煩，浪費了太多時間。而事實上，TDD
-恰好可以幫助你節省很多時間。此話怎講？當系統越來越複雜時，任何一個模塊的小變動都有可能引起系統其他部分出錯，那這個時候你可能就需要深入到各個可能出錯的地方尋找癥結。但是如果之前你是一直做 Test 的，那任何新加的模塊或是修改的模塊，只要跑了 Test Suite 你就知道哪兒有問題，而不是等到 release 了，等用戶來給你反饋哪兒哪兒有問題。</p>
-  </li>
-  <li>
-    <p>「重用之前先確保代碼能用」。其實我認爲這是「不要過早重構」的另一種說法。首先你代碼還不能滿足功用的時候你是不知道哪些東西是要擴展的哪些是要重用的。其次如果過早重構很可能讓你一直停滯不前。</p>
-  </li>
-</ul>
-
-<p>我在總結的時候就已經對以上的好多條深有共鳴了，這些確確實實對我的工作很有幫助。如果還沒有共鳴那恐怕也只是時間問題吧。</p>
-
-<p>最後我也來分享一下對我一直有深遠影響的建議：「70% 思考，30% 做」。</p>
 ]]></content>
   </entry>
   
