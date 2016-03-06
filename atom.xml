@@ -4,7 +4,7 @@
   <title><![CDATA[conan @ notes:~/]]></title>
   <link href="https://conanblog.me/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-03-06T18:36:28-05:00</updated>
+  <updated>2016-03-06T18:40:56-05:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -29,7 +29,7 @@
 時，Figwheel 的
 <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>
 就會出現，然後調試起來簡直不能更爽。不過這個 Figwheel REPL 有個問題，就是不支持歷史回溯，
-不像 <a href="https://github.com/clojure/tools.nrepl">nREPL</a>，妳不能上下鍵調歷史，更不能 <kbd>ctrl</kbd> + <kbd>r</kbd> 搜索歷史。</p>
+不像 <a href="https://github.com/clojure/tools.nrepl">nREPL</a>，你不能上下鍵調歷史，更不能 <kbd>ctrl</kbd> + <kbd>r</kbd> 搜索歷史。</p>
 
 <!--more-->
 
