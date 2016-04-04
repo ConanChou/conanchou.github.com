@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://conanblog.me/blog/thought/music/open_source/2016/04/03/music-meets-open-source/</loc>
+    <lastmod>2016-04-03T00:03:27-04:00</lastmod>
+  </url>
+  <url>
     <loc>https://conanblog.me/blog/note/clojure/2016/03/06/reagent-figwheel-repl-with-nrepl/</loc>
     <lastmod>2016-03-06T11:42:03-05:00</lastmod>
   </url>
@@ -178,18 +182,6 @@
     <loc>https://conanblog.me/categories/clojure/</loc>
   </url>
   <url>
-    <loc>https://conanblog.me/page2/</loc>
-  </url>
-  <url>
-    <loc>https://conanblog.me/page3/</loc>
-  </url>
-  <url>
-    <loc>https://conanblog.me/page4/</loc>
-  </url>
-  <url>
-    <loc>https://conanblog.me/page5/</loc>
-  </url>
-  <url>
-    <loc>https://conanblog.me/page6/</loc>
+    <loc>https://conanblog.me/categories/open-source/</loc>
   </url>
 </urlset>

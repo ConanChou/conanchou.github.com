@@ -4,7 +4,7 @@
   <title><![CDATA[Category: thought | conan @ notes:~/]]></title>
   <link href="https://conanblog.me/categories/thought/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-03-06T18:40:56-05:00</updated>
+  <updated>2016-04-04T00:36:52-04:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="//octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[当音乐遇上开源]]></title>
+    <link href="https://conanblog.me/blog/thought/music/open_source/2016/04/03/music-meets-open-source/"/>
+    <updated>2016-04-03T00:03:27-04:00</updated>
+    <id>https://conanblog.me/blog/thought/music/open_source/2016/04/03/music-meets-open-source</id>
+    <content type="html"><![CDATA[<p><img src="https://cloud.githubusercontent.com/assets/480759/14236501/0051f722-f9e5-11e5-8dd8-6ec43da87e4c.jpg" alt="Moog Modular Synth" /></p>
+
+<p>頁首的這幅圖片是那台非常經典的 <a href="https://en.wikipedia.org/wiki/Moog_modular_synthesizer">Moog Modular Synthesizers</a>，<a href="https://en.wikipedia.org/wiki/Giorgio_Moroder">Giovanni Giorgio</a> 用它把『來自未來的聲音』 帶進人們的音樂，人們的生活，從而有了 synth disco。那時候他並不知道自己做了一件多麼開創先河的事情。下面放一首跟我的這段話相關的曲子，有興趣的同學也可以去看看 <a href="http://www.randomaccessmemories.com">The Collabrators Series</a>。</p>
+
+<!--more-->
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/130363831&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+
+<p>而接下來我要說的，我覺得，並不亞於 Giorgio 的創舉：讓音樂創作和開源相遇。</p>
+
+<p>玩電子音樂的朋友可能已經知道我要說的東西了，就是像 <a href="https://splice.com">Splice</a> 和 <a href="https://blend.io/feed">Blend</a> 之類的平台，類似給音樂制作人/DJ/愛好者們用的 Github。有了它們，你不光可以和世界各地的音樂制作人合作項目，工程文件就像源代碼一樣可以被 fork。這將會是繼 Jazz 之後最美好的時代。</p>
+
+<p>人，說到底還是社會動物，喜歡合作。在音樂上的合作已是數不甚數。合作不僅僅能夠帶來技術的交流和傳承，還能激發靈感進而帶來創新和快樂。近代有個爵士樂裡起源的詞用來描述這種音樂合作——Jam。這些平台正是順應了人類這一本能的需求。</p>
+
+<p>然而，人總愛給自己找麻煩，就像在很多年有些人對開源持懷疑態度類似，對於音樂，版權問題仿佛一直是個很頭疼的問題。在 Sean Parker 和 Steve Jobs 的幫助之下，雖然我們從無到有地實現了消費者數字音樂版權，可是卻有一個更深層次的問題被積壓和惡化，就是版權化之後死無生氣的音樂創作領域。一旦再創作被限制，創新也會擱淺。</p>
+
+<p>而在幕後悄悄解決這個問題的正是 DJ 們，或者更准確地說，早期的電台 DJ 們和之後的 Club DJ 以及地下音樂制作人們<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>。唱片公司最開始可是沒給這些 DJ 好日子過，直到後來他們發現凡是被 DJ 放過、改過的曲子都能大賣。從此放松態度，這一路發展到現在，我們經常會發現，原來一些 Remix 反而能給唱片公司帶來更多利益。其實在這一點上音樂行業和電子游戲行業非常像。Chris Dixon 的<a href="https://medium.com/software-is-eating-the-world/lessons-from-the-pc-video-game-industry-3350bb7713de#.omszygo22">這篇文章</a>就跟好地揭示了遊戲產業的發展模式，同樣也適用於音樂產業。</p>
+
+<p>在這樣的一個大背景下，這樣的開放式合作平台應運而生。對於普通消費者來說這或許沒什麼直接影響，不過對於音樂人來說，應該慶幸自己生在這麼美好的時代。開放給我們帶來過文藝復興和 Linux，有什麼理由讓我不相信開放能給我們更好的音樂？</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="http://amzn.to/1RyUlN8">Last Night a DJ Saved My Life: The History of the Disc Jockey</a> by Bill Brewster <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[談民科]]></title>
@@ -280,29 +315,6 @@ OpenVSwitch 的軟件框架基本都是我寫的。
 
 <p><small>說明：封面圖片我也不知道版權屬誰，是從這裡拿到的：<a href="https://theabysmal.wordpress.com/tag/zen-mind-beginners-mind/">the Abysmal Centre</a>。
 暫時先用了，如有問題請聯繫我，我會徹下。</small></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[勤與懶]]></title>
-    <link href="https://conanblog.me/blog/thought/2013/06/09/just-in-case-vs-just-in-time/"/>
-    <updated>2013-06-09T22:02:00-04:00</updated>
-    <id>https://conanblog.me/blog/thought/2013/06/09/just-in-case-vs-just-in-time</id>
-    <content type="html"><![CDATA[<p>「Just In Case」和「Just In Time」，前者是「以防萬一」，而後者是「正好及時」。寫這篇日誌不是爲了給大家解釋這兩個詞組的字面意思，我更想談一談它們字面意思以下的含義，以及它們在程序設計中的意義。</p>
-
-<p>初看之下，這兩個詞組只是長得很像，似乎並沒有什麼聯繫。而事實上我覺得它們間是一種反義的聯繫。「Just In Case」的做法是在處理問題時把所有可預料的情況處理放在前面處理；「Just In Time」則相對應，總是只處理當前需要處理的問題，處理是放在當下的。所以打個形象的比喻就是前者是勤勤懇懇的人，而後者是懶惰精明的人。<!--more--></p>
-
-<p>看到這裏，或許你會認爲前者是好的，後者是壞的。但是這也正是我想澄清的，它們並沒有好壞之分，應該說它們各有各的優勢也各有各的劣勢。此話怎講？我們來用我們學過的知識來打個比方好了。曾经我和很多人一样都有一种困惑，或者说失落感，因为大学本科课程太浅，觉得学得泛而浅；而真正开始工作了又要开始学各种更加深入而专项的知识。为什么不在本科就学呢？其实这样的教育体系是有它存在的意义的。泛而浅的知识是必要的，因为如果你从未开始探索某一领域的知识的话，在将来如果要用到的时候就很难往这一领域的知识想。比如《数学之美》的作者吴军博士就曾经是学信号处理的，而这些知识恰好在他后来的信息和语音处理领域可以得到应用。如果他之前学的，比方说，会计學，他或许最终会用一样的知识体系去解决问题，但很显然，他很有可能得走更多的弯路。所以这些在本科学到的泛而浅的知识其实就是「Just
-In Case」的知识。相對應的，那些到了工作中学到的专项深入的知识大多是「Just In Time」的知识。这两种不同类型的知识我們都需要，自然可以看出 JIC 和 JIT 是各有千秋的了。</p>
-
-<p>現在我們再把這兩個概念放到編程語言和程序設計這裏領域來說說吧。可能對編譯有所瞭解的同學會一眼認出JIT，那是一種編譯方式沒錯，不過我想說的是一個更廣一點的概念，就是「lazy」。lazy 是計算機科學裏一個處理問題的策略，說白了就是讓程序避免執行不必要的指令，從而達到提升效能的目的。lazy 這個詞跟我們平時生活中用來形容人的用法其實是一樣的，只是這裏我們似乎因爲它帶來了額外的利益，反而對 lazy
-跪舔了。（再次表現出了人類的醜陋本性，嫉妒別人能夠省事，同時又無節操地喜歡對自己有利的東西。）那在程序世界裏跟 JIT 相對的概念跑哪兒去了？其實我們平時正常的、無 laziness 的編程方式就是跟 JIT 相對的編程方式了。</p>
-
-<p>這時候可能有人會覺得，既然 lazy 式的編程方式可以幫我們節省資源，我們爲什麼不全都用這種方式？這就引出了我想說的，不同應用場景這兩種編程風格的利弊了。lazy 也不是徹底的好東西。我們拿分佈式計算裏的一個案例來舉例，Hadoop（MapReduce），如果全都採用 lazy 式的設計方案，那很有可能有些數據就總不會被算，直到被需要的那一刻，這帶來的後果就是本來能夠並行分佈式運算的，但卻因爲
-lazy 變成了低效的半並行半流水線的分佈式運算。</p>
-
-<p>聊完了編程，我們來聊聊人生好了。其實「勤奮」與「懶惰」，還真的是個哲學問題呢。有人看起來勤奮，但其實他懶惰；有人看起來懶惰，但其實他勤奮。第一類人，我們通常會用「庸庸碌碌」來形容他，而第二類人更像是「精明能幹」的。第一類人不想走出自己的 confident
-zone，所以即便知道自己在做的是重複勞動，他也會「勤勤懇懇」地做下去，「懶」到不願去想有沒有更好的辦法。第二類人合理地避開不需要處理的事物，創造性地產生出可以取代現有方案的新方案，他們可能看起來做的事情並不多，但其實「勤」于思考。</p>
 ]]></content>
   </entry>
   

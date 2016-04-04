@@ -4,7 +4,7 @@
   <title><![CDATA[conan @ notes:~/]]></title>
   <link href="https://conanblog.me/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-03-06T18:40:56-05:00</updated>
+  <updated>2016-04-04T00:36:52-04:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[当音乐遇上开源]]></title>
+    <link href="https://conanblog.me/blog/thought/music/open_source/2016/04/03/music-meets-open-source/"/>
+    <updated>2016-04-03T00:03:27-04:00</updated>
+    <id>https://conanblog.me/blog/thought/music/open_source/2016/04/03/music-meets-open-source</id>
+    <content type="html"><![CDATA[<p><img src="https://cloud.githubusercontent.com/assets/480759/14236501/0051f722-f9e5-11e5-8dd8-6ec43da87e4c.jpg" alt="Moog Modular Synth" /></p>
+
+<p>頁首的這幅圖片是那台非常經典的 <a href="https://en.wikipedia.org/wiki/Moog_modular_synthesizer">Moog Modular Synthesizers</a>，<a href="https://en.wikipedia.org/wiki/Giorgio_Moroder">Giovanni Giorgio</a> 用它把『來自未來的聲音』 帶進人們的音樂，人們的生活，從而有了 synth disco。那時候他並不知道自己做了一件多麼開創先河的事情。下面放一首跟我的這段話相關的曲子，有興趣的同學也可以去看看 <a href="http://www.randomaccessmemories.com">The Collabrators Series</a>。</p>
+
+<!--more-->
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/130363831&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+
+<p>而接下來我要說的，我覺得，並不亞於 Giorgio 的創舉：讓音樂創作和開源相遇。</p>
+
+<p>玩電子音樂的朋友可能已經知道我要說的東西了，就是像 <a href="https://splice.com">Splice</a> 和 <a href="https://blend.io/feed">Blend</a> 之類的平台，類似給音樂制作人/DJ/愛好者們用的 Github。有了它們，你不光可以和世界各地的音樂制作人合作項目，工程文件就像源代碼一樣可以被 fork。這將會是繼 Jazz 之後最美好的時代。</p>
+
+<p>人，說到底還是社會動物，喜歡合作。在音樂上的合作已是數不甚數。合作不僅僅能夠帶來技術的交流和傳承，還能激發靈感進而帶來創新和快樂。近代有個爵士樂裡起源的詞用來描述這種音樂合作——Jam。這些平台正是順應了人類這一本能的需求。</p>
+
+<p>然而，人總愛給自己找麻煩，就像在很多年有些人對開源持懷疑態度類似，對於音樂，版權問題仿佛一直是個很頭疼的問題。在 Sean Parker 和 Steve Jobs 的幫助之下，雖然我們從無到有地實現了消費者數字音樂版權，可是卻有一個更深層次的問題被積壓和惡化，就是版權化之後死無生氣的音樂創作領域。一旦再創作被限制，創新也會擱淺。</p>
+
+<p>而在幕後悄悄解決這個問題的正是 DJ 們，或者更准確地說，早期的電台 DJ 們和之後的 Club DJ 以及地下音樂制作人們<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>。唱片公司最開始可是沒給這些 DJ 好日子過，直到後來他們發現凡是被 DJ 放過、改過的曲子都能大賣。從此放松態度，這一路發展到現在，我們經常會發現，原來一些 Remix 反而能給唱片公司帶來更多利益。其實在這一點上音樂行業和電子游戲行業非常像。Chris Dixon 的<a href="https://medium.com/software-is-eating-the-world/lessons-from-the-pc-video-game-industry-3350bb7713de#.omszygo22">這篇文章</a>就跟好地揭示了遊戲產業的發展模式，同樣也適用於音樂產業。</p>
+
+<p>在這樣的一個大背景下，這樣的開放式合作平台應運而生。對於普通消費者來說這或許沒什麼直接影響，不過對於音樂人來說，應該慶幸自己生在這麼美好的時代。開放給我們帶來過文藝復興和 Linux，有什麼理由讓我不相信開放能給我們更好的音樂？</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="http://amzn.to/1RyUlN8">Last Night a DJ Saved My Life: The History of the Disc Jockey</a> by Bill Brewster <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reagent 的 Figwheel REPL 方案]]></title>
@@ -2638,44 +2673,6 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 <p>以上就是我认为很优美的解决方案，短小精悍。然而这种用法并没有在我上文提到的那個有關「神奇方法」的文檔裏提及。所以在參考的時候請開動腦筋，不要侷限在作者的框框裏。你可以拿它們來做很多意想不到的事情。</p>
 
 <p>那最後我的這種實現方式到底屬於上文提到的哪種元編程實現方式呢？留作思考題吧～</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[簡單粗暴解決 Zsh Home 和 End 按鍵問題]]></title>
-    <link href="https://conanblog.me/blog/linux/unix/zsh/hack/2012/08/20/resolve-zsh-home-and-end-key-problem/"/>
-    <updated>2012-08-20T22:21:00-04:00</updated>
-    <id>https://conanblog.me/blog/linux/unix/zsh/hack/2012/08/20/resolve-zsh-home-and-end-key-problem</id>
-    <content type="html"><![CDATA[<p>記得剛來美國那會兒，有一次在地鐵裏聽到兩位老太太聊關於手機待機時間短的話題，當中一個老太太勸另一個老太太說去找客服「Go talk to them. Don’t settle.」這句話很大程度上概括了美國人的生活態度 —— 不妥協，有不滿就去解決。這種思想對 Hack 文化也有着潛移默化的影響，用中國人的話說便是「折騰」。<!--more--></p>
-
-<p>半年前我加入了 <code>Zsh</code> 的用戶陣營，一番配置後倒也用着挺爽。前幾天又去折騰 <code>.zshrc</code> 文件，更爽了，可是 <kbd>Home</kbd> 和 <kbd>End</kbd> 鍵工作得不正常了，就像這樣：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>H
-</span><span class="line">git push origin <span class="nb">source</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>按完 <kbd>Home</kbd> 鍵就在我的命令裏加了一個 H 還換行，我居然就這樣「settle」了一段時間。今天實在忍不住，找解決方案。網上的解決方案很多，也有很成熟的，比如用 <code>autoload zkbd</code>
-來問答式生成按鍵和含義對應表的，可我嫌麻煩。更大部分的解決方案只是放一堆配置文件代碼，而事實上這些代碼在不同環境下是不一樣的。所以換句話說這些代碼只是治標不治本，答者沒有授問者以漁。</p>
-
-<p>問題的本身在 <code>bindkey</code> 上。也就是說只要找到對應的按鍵和 <code>Zsh</code> 內的含義接口就可以解決問題。而含義接口就是 <code>beginning-of-line</code> 和 <code>end-of-line</code>。所以只需要找到我們的按鍵碼是什麼就可以了。下面這個小技巧可能鮮爲人知，就是利用 <code>cat</code> 來查看按鍵碼。很簡單，在命令行下直接 <code>cat</code> + <kbd>回車</kbd>，然後接着按你想知道按鍵碼的按鍵，在我的例子裏就是 <kbd>Home</kbd> 鍵：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>cat
-</span><span class="line">^<span class="o">[</span>OH
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>接着我又得到了 <kbd>End</kbd> 鍵的按鍵碼。最後在 <code>.zshrc</code> 裏添加兩行代碼：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">bindkey <span class="s2">&quot;^[OH&quot;</span> beginning-of-line
-</span><span class="line">bindkey <span class="s2">&quot;^[OF&quot;</span> end-of-line
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>問題解決，簡單粗暴，但直截了當。Don’t settle. Happy hacking.</p>
 ]]></content>
   </entry>
   
