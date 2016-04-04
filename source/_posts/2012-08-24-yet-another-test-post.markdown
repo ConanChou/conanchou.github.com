@@ -17,6 +17,9 @@ tags: [local, test, nopublished]
     end
 {:lang="ruby"}
 
+- [ ] test
+- [x] test 2
+
 {% codeblock lang:ruby %}
 def fact(n)
   if n == 0
