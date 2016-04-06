@@ -4,7 +4,7 @@
   <title><![CDATA[Category: open-source | conan @ notes:~/]]></title>
   <link href="https://conanblog.me/categories/open-source/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-04-04T12:14:12-04:00</updated>
+  <updated>2016-04-06T09:43:50-04:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -35,7 +35,7 @@
 <p>然而，人總愛給自己找麻煩，就像在很多年有些人對開源持懷疑態度類似，對於音樂，版權問題仿佛一直是個很頭疼的問題。在 <a href="https://en.wikipedia.org/wiki/Sean_Parker#Napster">Sean Parker</a> 和 <a href="https://en.wikipedia.org/wiki/Steve_Jobs">Steve Jobs</a> 的幫助之下，雖然我們從無到有地實現了消費數字音樂版權，可是卻有一個更深層次的問題被積壓和惡化，就是版權化之後死無生氣的音樂創作領域。一旦再創作被限制，創新也會擱淺。</p>
 
 <p>而在幕後悄悄解決這個問題的正是 DJ 們，或者更准確地說，早期的電台 DJ 們和之後的 Club DJ 以及地下音樂制作人們<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>。唱片公司最開始可是沒給這些 DJ 好日子過，直到後來他們發現凡是被 DJ 放過、改過的曲子都能大賣。從此放松態度，這一路發展到現在，我們經常會發現，原來一些 <a href="https://en.wikipedia.org/wiki/Remix">Remix</a> 反而能給唱片公司帶來更多利益。其實在這一點上音樂行業和電子游戲行業非常像。Chris Dixon
-的文章 <a href="https://medium.com/software-is-eating-the-world/lessons-from-the-pc-video-game-industry-3350bb7713de#.omszygo22">Lessons from the PC video game industry</a> 就跟好地揭示了遊戲產業的發展模式，同樣也適用於音樂產業。</p>
+的文章 <a href="https://medium.com/software-is-eating-the-world/lessons-from-the-pc-video-game-industry-3350bb7713de#.omszygo22">Lessons from the PC video game industry</a> 就很好地揭示了遊戲產業的發展模式，同樣也適用於音樂產業。</p>
 
 <p>在這樣的一個大背景下，這樣的開放式合作平台應運而生。對於普通消費者來說這或許沒什麼直接影響(或許我們應該感恩更好的音樂)，不過對於音樂人來說，應該慶幸自己生在這麼美好的時代。開放給我們帶來過文藝復興和 Linux，有什麼理由讓我不相信開放能給我們更好的音樂呢？</p>
 
