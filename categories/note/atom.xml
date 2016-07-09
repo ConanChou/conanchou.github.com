@@ -4,7 +4,7 @@
   <title><![CDATA[Category: note | conan @ notes:~/]]></title>
   <link href="https://conanblog.me/categories/note/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-07-08T23:26:42-04:00</updated>
+  <updated>2016-07-09T16:51:48-04:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -18,7 +18,9 @@
     <link href="https://conanblog.me/blog/music/note/2016/07/08/music-notes-070116/"/>
     <updated>2016-07-08T22:17:34-04:00</updated>
     <id>https://conanblog.me/blog/music/note/2016/07/08/music-notes-070116</id>
-    <content type="html"><![CDATA[<p>有一个事实，分析过去五年里的上千首电子舞曲后可以发现，绝大多数曲子是A小调、D小调或E小调的（分别占42%，21%，16%）。</p>
+    <content type="html"><![CDATA[<p><img src="https://cloud.githubusercontent.com/assets/480759/16710021/56c13cfc-45ef-11e6-96e7-f886154a8b8f.jpg" alt="" /></p>
+
+<p>有一个事实，分析过去五年里的上千首电子舞曲后可以发现，绝大多数曲子是A小调、D小调或E小调的（分别占42%，21%，16%）。</p>
 
 <p>有几个原因可能共同促使这样的不平均分布：</p>
 
@@ -26,7 +28,18 @@
 <ul>
   <li>首先A小调的平行大调是C大调，这一对平行大小调是没有升降符的，换句话说就是纯白键—简单。</li>
   <li>而最近几年里越来越多的 club DJ 同时也是音乐制作人，所以他们将一些音乐理论带进现场的表演中，开始流行的一个技巧是 harmonic mix，就是要匹配曲子的调性。而为了让自己的作品有更大可能性被大多数 DJ 播放，很多音乐制作人选择用可以和主流电子舞曲容易匹配的调子，所以就有更多人用A小调。</li>
-  <li>而E小调和D小调，一方面能给我们更多创新空间，又跟主流A小调有所区别，同时和声又较其它调子更接近A小调，所以也有不少人用这俩。</li>
+  <li>而E小调和D小调，一方面能给我们更多创新空间，又跟主流A小调有所区别，同时和声又较其它调子更接近A小调，所以也有不少人用这俩。你可以看到篇首的 Camelot Easymix Wheel 中，D Minor 和 E Minor 就在 A Minor 的两边。这个轮盘是提炼过的结果，其实放到钢琴键盘上看就更明白了。如下图：</li>
+</ul>
+
+<p><img src="https://cloud.githubusercontent.com/assets/480759/16710068/9e98bf68-45f0-11e6-93af-a0f1fb1e7486.png" alt="A Minor Scale" /></p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/480759/16710086/11084d7a-45f1-11e6-80c9-36602bf0f391.png" alt="D Minor Scale" /></p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/480759/16710087/165f4b5c-45f1-11e6-9b88-635b6ab051db.png" alt="E Minor Scale" /></p>
+
+<p>可见 D Minor 和 E Minor 分别与 A Minor 只有一个黑键的区别。</p>
+
+<ul>
   <li>最后一点也是音乐创作中最容易忽视又最重要的一点（领悟到这一点全是因为 David Byrne 写的那本 How music works）—音乐的创作跟演奏环境分不开。很多古典乐节慢、音也长，和弦较爵士和谐也更简单，因为演奏环境大多在类似大教堂的地方，回响会更久，所以简化和弦，拉长音节可以让演奏和回声更和谐。而电子舞曲演奏地点通常空间小、嘈杂，几乎没有回声。而作为舞曲音乐必须有更具穿透力的鼓点（强有力的低频）。目前 club 音响系统中重低音工作区间是50到65赫兹，而A小调根音的A1音正好在55赫兹。（在这个频率区间的还有降A1、升A1和B1）当然空间小了节奏也可以更快，不必担心跟回声和声的事儿。当然没了回声这种艺术表现手法也不行，于是 club DJ 和制作人多出了一堆音频效果器，比如reverb、echo、pingpong delay等等。</li>
 </ul>
 
@@ -34,7 +47,22 @@
 
 <p>至于为什么是小调而不是大调？我也不知道…不过这几乎是个常识，绝大多数电子舞曲都是小调的，旋律部分可能会用平行大调。</p>
 
-<p>人们对小调的认识通常有误区，一般教材会说大调是开心的感觉，小调是悲伤的感觉。但是！这个定义是狭隘的，相较大调，小调应该是给人更严肃或更专注的感觉。而事实上有很多小调曲子依然给人阳光、上扬的情绪带动。</p>
+<p>人们对小调的认识通常有误区，一般教材会说大调是开心的感觉，小调是悲伤的感觉。但是！这个定义是狭隘的，相较大调，小调应该是给人更严肃或更专注的感觉。而事实上有很多小调曲子依然给人阳光、上扬的情绪带动。随手举几个栗子（顺便安利一下本 Up 主的视频，逃……）：</p>
+
+<p>降B小调：</p>
+
+<embed height="415" width="544" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="http://static.hdslb.com/miniloader.swf" flashvars="aid=5232799&amp;page=1" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" />
+<p>&lt;/embed&gt;</p>
+
+<p>F小调：</p>
+
+<embed height="415" width="544" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="http://static.hdslb.com/miniloader.swf" flashvars="aid=5205694&amp;page=1" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" />
+<p>&lt;/embed&gt;</p>
+
+<p>C小调：</p>
+
+<embed height="415" width="544" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="http://static.hdslb.com/miniloader.swf" flashvars="aid=5220294&amp;page=1" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" />
+<p>&lt;/embed&gt;</p>
 ]]></content>
   </entry>
   
