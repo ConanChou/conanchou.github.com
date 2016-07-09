@@ -4,7 +4,7 @@
   <title><![CDATA[conan @ notes:~/]]></title>
   <link href="https://conanblog.me/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-04-06T09:43:50-04:00</updated>
+  <updated>2016-07-08T23:26:42-04:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[音乐笔记 070116]]></title>
+    <link href="https://conanblog.me/blog/music/note/2016/07/08/music-notes-070116/"/>
+    <updated>2016-07-08T22:17:34-04:00</updated>
+    <id>https://conanblog.me/blog/music/note/2016/07/08/music-notes-070116</id>
+    <content type="html"><![CDATA[<p>有一个事实，分析过去五年里的上千首电子舞曲后可以发现，绝大多数曲子是A小调、D小调或E小调的（分别占42%，21%，16%）。</p>
+
+<p>有几个原因可能共同促使这样的不平均分布：</p>
+
+<!--more-->
+<ul>
+  <li>首先A小调的平行大调是C大调，这一对平行大小调是没有升降符的，换句话说就是纯白键—简单。</li>
+  <li>而最近几年里越来越多的 club DJ 同时也是音乐制作人，所以他们将一些音乐理论带进现场的表演中，开始流行的一个技巧是 harmonic mix，就是要匹配曲子的调性。而为了让自己的作品有更大可能性被大多数 DJ 播放，很多音乐制作人选择用可以和主流电子舞曲容易匹配的调子，所以就有更多人用A小调。</li>
+  <li>而E小调和D小调，一方面能给我们更多创新空间，又跟主流A小调有所区别，同时和声又较其它调子更接近A小调，所以也有不少人用这俩。</li>
+  <li>最后一点也是音乐创作中最容易忽视又最重要的一点（领悟到这一点全是因为 David Byrne 写的那本 How music works）—音乐的创作跟演奏环境分不开。很多古典乐节慢、音也长，和弦较爵士和谐也更简单，因为演奏环境大多在类似大教堂的地方，回响会更久，所以简化和弦，拉长音节可以让演奏和回声更和谐。而电子舞曲演奏地点通常空间小、嘈杂，几乎没有回声。而作为舞曲音乐必须有更具穿透力的鼓点（强有力的低频）。目前 club 音响系统中重低音工作区间是50到65赫兹，而A小调根音的A1音正好在55赫兹。（在这个频率区间的还有降A1、升A1和B1）当然空间小了节奏也可以更快，不必担心跟回声和声的事儿。当然没了回声这种艺术表现手法也不行，于是 club DJ 和制作人多出了一堆音频效果器，比如reverb、echo、pingpong delay等等。</li>
+</ul>
+
+<p>综上所述，就是为什么这么多电子舞曲用A小调、D小调和E小调。</p>
+
+<p>至于为什么是小调而不是大调？我也不知道…不过这几乎是个常识，绝大多数电子舞曲都是小调的，旋律部分可能会用平行大调。</p>
+
+<p>人们对小调的认识通常有误区，一般教材会说大调是开心的感觉，小调是悲伤的感觉。但是！这个定义是狭隘的，相较大调，小调应该是给人更严肃或更专注的感觉。而事实上有很多小调曲子依然给人阳光、上扬的情绪带动。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[當音樂遇上開源]]></title>
@@ -2562,118 +2587,6 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Happy hacking!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用 Python 的「神奇方法」元編程]]></title>
-    <link href="https://conanblog.me/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods/"/>
-    <updated>2012-08-21T22:41:00-04:00</updated>
-    <id>https://conanblog.me/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods</id>
-    <content type="html"><![CDATA[<p>在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。</p>
-
-<p>什麼是「神奇方法」？其實是我亂翻譯的，英文中大家叫它們「Magic Methods」。我沒有在靜態語言中聽到過這個概念，只在 Python、PHP 這類動態語言中聽到。這是一類比較特殊的方法（Method/Function），是隨語言本身所故有的，在程序中無聲無息地起到作用。它們的命名方式都很特別，比如在 Python 中就是用<code>__</code>開頭用<code>__</code>結尾的方法，而在 PHP
-中則是類似地用<code>__</code>開頭的方法。<!--more-->說他們默默無聞一點不假，因爲正常編程的過程中較少的跟它們打交道，就連官方的文檔都只是用只言片語描述了下，以示存在。然而它們非常重要。幸好有一些熱心人做了<a href="http://www.rafekettler.com/magicmethods.html">一份較爲詳細的文檔</a>可作參考。</p>
-
-<p>「元編程」的概念並不新鮮，簡單而廣義地說就是語言本身可以在運行時被修改或可以增量編譯，那麼我們就可以使用該語言進行元編程。而要實現上述功能，語言本身就需要有反射或者泛型編程的語言特性。這術語聽起來很嚇人，但其實說具體如何實踐就不嚇人了。根據維基百科，實現元編程可以有三種方法。一是語言本身暴露一些本身運行時的 API，然後我們可以通過對調教 API
-來實現元編程。二是語言本身可以動態地執行一些本身是程序方法的字符串表達式。而第三種可能略有爭議，就是撤徹底底用一種可以形容別的語言的系統來生成目標語言。而元編程的目的嘛，自然是更加簡單優美地解決問題啦。元編程這話題本來就博大精深，我可不敢說我很明白，希望觀者掂量着看這些文字吧。</p>
-
-<p>下面就進入正題。我不會在下文中概括所有有關 Python 的元編程方法，而是通過一個我最近遇到的實例來說明兩件事：元編程跟原子彈都姓 Yuan，它們都很強大；Python 的動態和優美賦予其元編程的能力。</p>
-
-<p>前不久我因工作，需要寫一個腳本來訪問某私有 API，並把內容全部按照 json 結構錄入到數據庫中。接口大致上是這樣的類型：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">http://abc.com/jsonrest/api/4.10/search_getRelatedVideos?x=aaa&amp;y=bbb
-</span><span class="line">http://abc.com/jsonrest/api/4.10/search_getRelatedArticles?x=aaa&amp;y=bbb
-</span><span class="line">http://abc.com/jsonrest/api/4.10/search_getRelatedTopics?x=aaa&amp;y=bbb</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>問題就在於，我要如何做才能簡單而優美地寫一個 API wrapper。這個 wrapper 要可以做到這樣：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">related_articles</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedArticles</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
-</span><span class="line"><span class="n">related_topics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedTopics</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>而且最好我都不需要一個一個地去實現相應的方法，因爲一旦需要呼叫新的 API，我又必须再添加一個個新的方法。所以我最好可以隨意地寫，wrapper 則幫我生成新方法：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># 假设 `calculate_getUnrelatedMusic()` 是個新 API 呼叫方法</span>
-</span><span class="line"><span class="n">unrelated_musics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">calculate_getUnrelatedMusic</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">ccc</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>其實說到這裏，我想很多老 Python 程序員應該是想到我要用的「神奇方法」了。沒錯，就是 <code>__getattr__(self, name)</code>。Python 會在找不到所呼叫的 attribute 的時候來調用這個方法。這不正是我想要的嘛，我只要截獲這個方法的邏輯就可以動態生成 API 調用方法了。所以解決方案一下子變得很簡單：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">ABCAPI</span><span class="p">:</span>
-</span><span class="line">    <span class="sd">&quot;&quot;&quot;ABC API wrapper&quot;&quot;&quot;</span>
-</span><span class="line">
-</span><span class="line">    <span class="c"># 初始化，很常規</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accesskey</span><span class="p">,</span> <span class="n">sharedsecret</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="s">&#39;abc.com&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;4.10&#39;</span><span class="p">):</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">accesskey</span> <span class="o">=</span> <span class="n">accesskey</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">sharedsecret</span> <span class="o">=</span> <span class="n">sharedsecret</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
-</span><span class="line">
-</span><span class="line">    <span class="c"># 這個方法是今天的主角。局部變量 name 就是我們上面所提到的 `search_getRelatedArticles`</span>
-</span><span class="line">    <span class="c"># 之類的方法名。而方法裏的那些參數都會被 `**params` 拿進來。這種寫法有關閉包，不在本文</span>
-</span><span class="line">    <span class="c"># 討論範疇裏。</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-</span><span class="line">        <span class="sd">&quot;&quot;&quot;Get API Call&quot;&quot;&quot;</span>
-</span><span class="line">        <span class="c"># 進了方法先判斷下方法名是不是`__`開頭，只要是就拋異常，這樣 `__getattr__()` 就不會</span>
-</span><span class="line">        <span class="c"># 失去原有的行爲模式，即保護私有變量或方法。</span>
-</span><span class="line">        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">):</span>
-</span><span class="line">            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="n">name</span>
-</span><span class="line">        <span class="k">else</span><span class="p">:</span>
-</span><span class="line">            <span class="k">def</span> <span class="nf">caller</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-</span><span class="line">                <span class="c"># 构建 API URL 的所有东西都在这儿了，这需要按照一定规律把这些材料组建成合法 URL</span>
-</span><span class="line">                <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_api_url</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-</span><span class="line">
-</span><span class="line">                <span class="c"># 呼叫刚刚构建好的 URL 并返回结果</span>
-</span><span class="line">                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-</span><span class="line">            <span class="k">return</span> <span class="n">caller</span>
-</span><span class="line">
-</span><span class="line">    <span class="c">#...</span>
-</span><span class="line">    <span class="c"># other utility methods for building the api url and calling the api</span>
-</span><span class="line">    <span class="c">#...</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>以上就是我认为很优美的解决方案，短小精悍。然而这种用法并没有在我上文提到的那個有關「神奇方法」的文檔裏提及。所以在參考的時候請開動腦筋，不要侷限在作者的框框裏。你可以拿它們來做很多意想不到的事情。</p>
-
-<p>那最後我的這種實現方式到底屬於上文提到的哪種元編程實現方式呢？留作思考題吧～</p>
 ]]></content>
   </entry>
   
