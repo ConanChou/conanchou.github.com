@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | conan @ notes:~/]]></title>
   <link href="https://conanblog.me/categories/octopress/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-09-20T17:41:57-04:00</updated>
+  <updated>2016-12-31T23:12:33-05:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -51,10 +51,10 @@ $ git clone git@github.com:ConanChou/conanchou.github.com.git octopress
 $ cd octopress</p>
 
 <p>$ ;: get the source branch
-$ git checkout -b source origin/source</p>
+$ git checkout -b source origin/source </p>
 
 <p>$ ;: add original octopress repo to remote for updates
-$ git remote add octopress https://github.com/imathis/octopress.git</p>
+$ git remote add octopress https://github.com/imathis/octopress.git </p>
 
 <p>$ ;: clone the master branch to _deploy dir
 $ git clone git@github.com:ConanChou/conanchou.github.com.git _deploy</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[conan @ notes:~/]]></title>
   <link href="https://conanblog.me/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-09-20T17:41:57-04:00</updated>
+  <updated>2016-12-31T23:12:33-05:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2016 -> 2017]]></title>
+    <link href="https://conanblog.me/blog/life/thought/2016/12/31/2016-2017/"/>
+    <updated>2016-12-31T21:50:38-05:00</updated>
+    <id>https://conanblog.me/blog/life/thought/2016/12/31/2016-2017</id>
+    <content type="html"><![CDATA[<p><img src="https://conanblog.me/images/20151231/hpny.jpg" alt="" /></p>
+
+<p>又到了一年總結經驗教訓和展望未來的時候。簡單總結就是有進步，但有很大的進步空間。2016年的目標尚未完成的當然有，不過就像我一貫說的那樣，目標定得越遠大，即使達不到，但到達的地方也會越高遠。這個開頭簡直廢話……</p>
+
+<!--more-->
+
+<h2 id="section">工作</h2>
+
+<p>說說工作先。加入新的公司有一年多幾個月。開始的一些事情其實有些動搖我的念頭，甚至有些後悔自己當初過來的決定。這也是為什麼我在去年的年終總結的時候說需要贏得團隊的信任需要一個過程的言外之意。而確實，磨合、溝通和信任不是一紙協議就能搞定的。經過一年的努力，這個在去年定下的大目標相信是完成得不錯的。</p>
+
+<p>工作細節方面，今年實踐了Docker以及一些Docker相關的技術，而我對它的態度也是從好奇轉向不推薦，而後又漸漸中立。好奇那會兒多半是因為各種軟硬文，在家裡的小環境裡面嘗試過之後確實發現了它的優勢確實誘人。環境獨立這樣的特性自然不用說，我更加喜歡它對軟件架構的影響，這種模塊化服務／微服務驅動的架構在運維方面有著非常大的優勢。但這個優勢的獲取並非易事，容器開關與組合、彈性規模在Docker技術框架下都很簡單，可容器內軟件必須要能做到足夠的擼棒性才能利用起Docker的技術框架。這在一開始並沒有朝這麼走的創業公司中是有實踐難度的。想想也是，本來一個“很簡單”的東西，直接那現有框架做做也就幾天功夫，去他媽的可擴展性，未來的事情等有未來再說。所以我的思路也調整了一下，現在可以欠技術債，但要一直紀錄需要改變的地方或更好實踐的方式。並經常審視，並摸清實施計畫和細節。這樣等到時機成熟，說下手就可以下手。另外，在軟件開發過程中，code review要為之前說的這個實施計畫做鋪墊。這個方式在2016中的工作是奏效的，當然還有上升空間，那就是怎樣在團隊內部做佈道，思路上來說首先還要從團隊內部的分享文化開始著手吧。</p>
+
+<p>與Docker相關的，我們在一個核心子項目中採用了LXC，總的來說我對LXC／LXD項目更加鍾意。它們比較平易近人，不強迫你的軟件架構做太多調整。我們事實上成功將VM替換下來了。與Docker相比，它更hackable，更Linux。</p>
+
+<p>另外今年也實踐了ChatOps，我為公司做了一個運維機器人並繼承到了我們的Slack、Github和AWS等第三方服務上。首先者個解了我對新技術動向和趨勢的饞（最早的時候本來想給自己的小社團1682做機器人來著），另一方面它也確實為我們的工作帶來了不少便利。你可以想像它是把命令行帶進了工作聊天群組，但是不一樣的就是，它是另一層抽象。這就大大加速和便利了團隊內部的Ops相關任務，不了解命令行的設計師想要測試個前端方案也不用再麻煩團隊裡的其他成員來做測試部署了。</p>
+
+<p>工作方面的收獲當然不僅如此，大概就先放這些吧。</p>
+
+<h2 id="section-1">生活和學習</h2>
+
+<p>其實我想過把生活和學習分開說，可是發現其實生活中有一大塊是圍繞著學習的，所以還是合併一下吧。</p>
+
+<p>今年一件大事是我們終於把房買了，我們都很滿意的一套。因為我當時工作比較忙，辦辦花了很多心思操持買房的事情，要給她一朵大大的紅花！當然也要感謝爸爸媽媽們的支持。</p>
+
+<p>我跟辦辦已經結婚一週年了，不過今年我們卻有長達5個月不在一起，她因為簽證問題不得不回國一段時間，所以講真的這一長段時間基本沒有什麼生活，因為一個人也不太願意出去玩，這段時間花了大半的時候學習有關音樂的東西，曾經只做做loop，為表演修修曲子，今年終於做了自己的曲子，而且這次挑戰了更難的旋律性曲子，非舞曲。這應該算是今年學習的最大成就。從無到有做一首曲子學了很多東西。新的一年打算花一些時間學習更多synth，如果有時間想要做一些完成度比較高的舞曲。</p>
+
+<p>SoundCloud:</p>
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/278237122&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+
+<p>網易雲音樂：</p>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&amp;id=430787469&amp;auto=0&amp;height=66"></iframe>
+
+<p>說到一週年，我們一週年的那天風雨大作，在去訂好的飯店的路上還下起了冰雹，想來也是個值得記錄的軼事。</p>
+
+<p>今年另一個比較大的成就是堅持去健身房，從辦辦回國之後，我就誇下海口說要去健身房，要練出辣身材。好事是前半句話我做到了，當中要謝謝跟我一起健身的gym buddy永強；後半句話是練了一陣子才意識到以我們的體質其實這個不是一兩年就能做到的事情。不管怎樣，我從一個俯臥撐只能做三五個的弱雞，到20個一組做4組的稍強的弱雞，已經是很值得沾沾自喜一下的了。不過革命尚未成功，明年要繼續。另外，今年夏天開始，跟我的好朋友Roman一起攀岩，雖然當中有過斷斷續續，但我們一直堅持到冬天閉館為止。我們到年末的時候也已經明顯地意識到自己的狀態很好。現在我們已經可以挑戰一些技術性的線路了。十個等級我們現在應該差不多是在五六級的樣子。攀岩是一項對技術、思維、體能都有要求的運動，每次session下來你的左右腦思維模式都會得到鍛鍊。我相信這項運動我還會繼續，它首先很有趣，另一方面它也是對我去健身房的一種督促，畢竟身體機能跟不上，很多技巧性動作也做不了。</p>
+
+<p>還有一件比較有成就感的事情就是今年電焊了好些個東西，當中包括跟辦辦一起做的多功能電子鬧鈴，當然也有後來的ErgoDox鍵盤。趁此機會也學習了一些電子硬件相關的知識，為我的IoT項目打打基礎。說到這一趴，我還挺為自己找了這樣的老婆自豪的。用朋友的話說，她跟外面那些妖豔貨色不一樣。是真的，你見過多少女神還跟你一起玩電焊打電動還學習天文望遠鏡的？記得肖侃兄弟說，那是雅趣，我覺得挺好。喔對了，她回國那幾個月也沒閒著，周遊列國，還學習了不少歐洲文化、藝術和歷史。最討厭跟這種好學生交朋友了，壓力太大了真是……</p>
+
+<p>關於天文望遠鏡，這裏要鳴謝木星的耐心指導，他在百忙之餘給我寫了三封長文，非常細緻而全面地介紹了天文觀測入門者應該懂得的關於天文望遠鏡的知識，且淺顯易懂。搬了新家後，我們應該會有更好的場地去觀星了 ：）</p>
+
+<h2 id="section-2">2017</h2>
+
+<p>2016年年初，我在GoodRead上定下今年12本書的目標，年中達成了，於是就把難度加大，把目標定到了20本，最後果然沒有達成。所以2017繼續努力看書吧，依然定20本。</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/480759/21580056/24d89b74-cfa4-11e6-9b18-16952ad166d0.png" alt="" /></p>
+
+<p>2016年底，我就已經開始策劃做一個手機App，其實心裡也有個小的目標，就是希望能做那個領域裡數一數二的App，最好再拿個什麼獎。跟書有關的一款App，現在先賣個關子。</p>
+
+<p>有時我會情緒不穩定，這樣不好。來年我要努力做好情緒的調節和控制。我覺得我可以首先從打遊戲開始，畢竟有些遊戲真的是難到很想摔手柄……</p>
+
+<p>最後希望我們儘快把新家弄好吧，然後野獸和公主幸福地生活。鬼扯……好就先這樣。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[音樂筆記 070116]]></title>
@@ -1491,20 +1552,20 @@ Mathematics）如果從這個意義上來說計算機科學是一切科學的虛
 <p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
 
 <ul id="markdown-toc">
-  <li><a href="#section" id="markdown-toc-section">硬件</a></li>
-  <li><a href="#section-1" id="markdown-toc-section-1">軟件</a>    <ul>
-      <li><a href="#section-2" id="markdown-toc-section-2">操作系统</a></li>
-      <li><a href="#section-3" id="markdown-toc-section-3">分區擴容</a></li>
-      <li><a href="#section-4" id="markdown-toc-section-4">系統常規設置</a></li>
-      <li><a href="#section-5" id="markdown-toc-section-5">聲音</a>        <ul>
-          <li><a href="#vlc" id="markdown-toc-vlc">VLC</a></li>
+  <li><a href="#section">硬件</a></li>
+  <li><a href="#section-1">軟件</a>    <ul>
+      <li><a href="#section-2">操作系统</a></li>
+      <li><a href="#section-3">分區擴容</a></li>
+      <li><a href="#section-4">系統常規設置</a></li>
+      <li><a href="#section-5">聲音</a>        <ul>
+          <li><a href="#vlc">VLC</a></li>
         </ul>
       </li>
-      <li><a href="#wifi" id="markdown-toc-wifi">WiFi</a></li>
-      <li><a href="#go" id="markdown-toc-go">Go</a></li>
+      <li><a href="#wifi">WiFi</a></li>
+      <li><a href="#go">Go</a></li>
     </ul>
   </li>
-  <li><a href="#section-6" id="markdown-toc-section-6">後記</a></li>
+  <li><a href="#section-6">後記</a></li>
 </ul>
 
 <h2 id="section">硬件</h2>
@@ -2523,95 +2584,6 @@ bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛�
   <li><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/" title="Python 調優筆記·經驗主義調優">經驗主義調優，站在巨人的肩膀上</a></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用另一臺計算機寫 Octopress]]></title>
-    <link href="https://conanblog.me/blog/octopress/hack/2012/08/23/write-octopress-in-another-box/"/>
-    <updated>2012-08-23T23:26:00-04:00</updated>
-    <id>https://conanblog.me/blog/octopress/hack/2012/08/23/write-octopress-in-another-box</id>
-    <content type="html"><![CDATA[<p>用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch <code>clone</code> 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。<!--more--></p>
-
-<p>Octopress 的運行機制很簡單，就是用類似 <code>make</code> 的 <code>rake</code> 將寫好的 <code>markdown</code> 文件轉化成 HTML 文件，皮膚什麼的都也一併生成好，然後再把生成好的一堆靜態文件 <code>push</code> 到 Github 或其他類似的地方。我想不能推送的話應該是可以從 Rakefile 裏找到答案。果不其然：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">mkdir</span> <span class="n">deploy_dir</span>
-</span><span class="line"><span class="n">cd</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">deploy_dir</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">do</span>
-</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git init&quot;</span>
-</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;echo &#39;My Octopress Page is coming soon &amp;hellip;&#39; &gt; index.html&quot;</span>
-</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git add .&quot;</span>
-</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git commit -m </span><span class="se">\&quot;</span><span class="s2">Octopress init</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
-</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git branch -m gh-pages&quot;</span> <span class="k">unless</span> <span class="n">branch</span> <span class="o">==</span> <span class="s1">&#39;master&#39;</span>
-</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;git remote add origin </span><span class="si">#{</span><span class="n">repo_url</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class="line">  <span class="n">rakefile</span> <span class="o">=</span> <span class="no">IO</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span>
-</span><span class="line">  <span class="n">rakefile</span><span class="o">.</span><span class="n">sub!</span><span class="p">(</span><span class="sr">/deploy_branch(\s*)=(\s*)([&quot;&#39;])[\w-]*[&quot;&#39;]/</span><span class="p">,</span> <span class="s2">&quot;deploy_branch</span><span class="se">\\</span><span class="s2">1=</span><span class="se">\\</span><span class="s2">2</span><span class="se">\\</span><span class="s2">3</span><span class="si">#{</span><span class="n">branch</span><span class="si">}</span><span class="se">\\</span><span class="s2">3&quot;</span><span class="p">)</span>
-</span><span class="line">  <span class="n">rakefile</span><span class="o">.</span><span class="n">sub!</span><span class="p">(</span><span class="sr">/deploy_default(\s*)=(\s*)([&quot;&#39;])[\w-]*[&quot;&#39;]/</span><span class="p">,</span> <span class="s2">&quot;deploy_default</span><span class="se">\\</span><span class="s2">1=</span><span class="se">\\</span><span class="s2">2</span><span class="se">\\</span><span class="s2">3push</span><span class="se">\\</span><span class="s2">3&quot;</span><span class="p">)</span>
-</span><span class="line">  <span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
-</span><span class="line">    <span class="n">f</span><span class="o">.</span><span class="n">write</span> <span class="n">rakefile</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>很顯然，這個 <code>deploy_dir</code> 也是一個單獨的 git 目錄。追溯其根源，也就是默認設置，就是 「_deploy」 目錄。而這個目錄是被 「.gitignore」 排除的。這就難怪爲什麼單純的 <code>clone</code> 沒法工作了。于是完整的 <code>clone</code> 过程如下（包含註解）：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span><span class="p">;</span>: go to the dir you want to put your octopress repo
-</span><span class="line"><span class="nv">$ </span><span class="nb">cd</span> ~/Documents
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span><span class="p">;</span>: clone repo from your exists octopress repo
-</span><span class="line"><span class="nv">$ </span>git clone git@github.com:ConanChou/conanchou.github.com.git octopress
-</span><span class="line"><span class="nv">$ </span><span class="nb">cd </span>octopress
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span><span class="p">;</span>: get the <span class="nb">source </span>branch
-</span><span class="line"><span class="nv">$ </span>git checkout -b <span class="nb">source </span>origin/source
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span><span class="p">;</span>: add original octopress repo to remote <span class="k">for</span> updates
-</span><span class="line"><span class="nv">$ </span>git remote add octopress https://github.com/imathis/octopress.git
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span><span class="p">;</span>: clone the master branch to _deploy dir
-</span><span class="line"><span class="nv">$ </span>git clone git@github.com:ConanChou/conanchou.github.com.git _deploy
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span><span class="p">;</span>: install bundles
-</span><span class="line"><span class="nv">$ </span>gem install bundler
-</span><span class="line"><span class="nv">$ </span>bundle install
-</span><span class="line"><span class="nv">$ </span>rake install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Happy hacking!</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: python | conan @ notes:~/]]></title>
   <link href="https://conanblog.me/categories/python/atom.xml" rel="self"/>
   <link href="https://conanblog.me/"/>
-  <updated>2016-09-20T17:41:57-04:00</updated>
+  <updated>2016-12-31T23:12:33-05:00</updated>
   <id>https://conanblog.me/</id>
   <author>
     <name><![CDATA[Conan]]></name>
@@ -136,7 +136,7 @@ print list(base)
 In [1]: def my_filter(x):
    …:     print ‘Checking %d’ % x
    …:     return x % 3 == 0 or x % 7 == 0
-   …:</p>
+   …: </p>
 
 <p>In [2]: filter(my_filter, xrange(100))[:10]
 Checking 0
@@ -243,7 +243,7 @@ In [10]: from itertools import groupby</p>
    ….:     num_groups = groupby(numbers, odd_even_filter)
    ….:     for k, v in num_groups:
    ….:         print ‘%s: %s’ % (k, ‘,’.join(map(str, v)))
-   ….:</p>
+   ….:         </p>
 
 <p>In [12]: groupby_odd_even([1,3,5,2,7,4,6])
 odd: 1,3,5
@@ -261,7 +261,7 @@ In [13]: def groupby_odd_even(numbers):
    ….:     num_groups = groupby(sorted(numbers, key=odd_even_filter), odd_even_filter)
    ….:     for k, v in num_groups:
    ….:         print ‘%s: %s’ % (k, ‘,’.join(map(str, v)))
-   ….:</p>
+   ….:         </p>
 
 <p>In [14]: groupby_odd_even([1,3,5,2,7,4,6])
 even: 2,4,6
@@ -275,7 +275,7 @@ In [15]: from itertools import ifilter, takewhile, count, imap, chain</p>
 
 <p>In [16]: def factors(n):
    ….:     return ifilter(lambda x: n % x == 0, takewhile(lambda y: y &lt;= n, count(1)))
-   ….:</p>
+   ….: </p>
 
 <p>In [17]: reduce(lambda x, y: x.intersection(y), map(set, imap(factors, [9,15,81,60])))
 Out[17]: set([1, 3])</p>
