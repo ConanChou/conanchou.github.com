@@ -8,9 +8,9 @@ categories: [life, thought]
 
 ![](/images/20151231/hpny.jpg)
 
-又到了一年總結經驗教訓和展望未來的時候。簡單總結就是有進步，但有很大的進步空間。2016年的目標尚未
-完成的當然有，不過就像我一貫說的那樣，目標定得越遠大，即使達不到，但到達的地方也會越高遠。這個開頭簡直廢話……
+又到了一年總結經驗教訓和展望未來的時候。簡單總結就是有進步，但有很大的進步空間。2016年的目標尚未完成的當然有，不過就像我一貫說的那樣，目標定得越遠大，即使達不到，但到達的地方也會越高遠。這個開頭簡直廢話……
 
+<!--more-->
 
 ## 工作
 
@@ -22,6 +22,7 @@ categories: [life, thought]
 
 另外今年也實踐了ChatOps，我為公司做了一個運維機器人並繼承到了我們的Slack、Github和AWS等第三方服務上。首先者個解了我對新技術動向和趨勢的饞（最早的時候本來想給自己的小社團1682做機器人來著），另一方面它也確實為我們的工作帶來了不少便利。你可以想像它是把命令行帶進了工作聊天群組，但是不一樣的就是，它是另一層抽象。這就大大加速和便利了團隊內部的Ops相關任務，不了解命令行的設計師想要測試個前端方案也不用再麻煩團隊裡的其他成員來做測試部署了。
 
+工作方面的收獲當然不僅如此，大概就先放這些吧。
 
 ## 生活和學習
 
@@ -31,7 +32,13 @@ categories: [life, thought]
 
 我跟辦辦已經結婚一週年了，不過今年我們卻有長達5個月不在一起，她因為簽證問題不得不回國一段時間，所以講真的這一長段時間基本沒有什麼生活，因為一個人也不太願意出去玩，這段時間花了大半的時候學習有關音樂的東西，曾經只做做loop，為表演修修曲子，今年終於做了自己的曲子，而且這次挑戰了更難的旋律性曲子，非舞曲。這應該算是今年學習的最大成就。從無到有做一首曲子學了很多東西。新的一年打算花一些時間學習更多synth，如果有時間想要做一些完成度比較高的舞曲。
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=430787469&auto=1&height=66"></iframe>
+SoundCloud:
+
+<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/278237122&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+
+網易雲音樂：
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=430787469&auto=0&height=66"></iframe>
 
 說到一週年，我們一週年的那天風雨大作，在去訂好的飯店的路上還下起了冰雹，想來也是個值得記錄的軼事。
 
