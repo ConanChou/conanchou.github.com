@@ -1,0 +1,57 @@
+<footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Made by <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank">@{{ site.author }}</a>, with love and curiosity.
+      </div>
+
+      <!-- <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          {% if site.github_username %}
+          <li>
+            {% include icon-github.html username=site.github_username %}
+          </li>
+          {% endif %}
+
+          {% if site.twitter_username %}
+          <li>
+            {% include icon-twitter.html username=site.twitter_username %}
+          </li>
+          {% endif %}
+        </ul>
+      </div> -->
+
+      <div class="footer-col footer-col-2">
+        <p>{{ site.description | escape }}</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+<script language="JavaScript" src="{{ root_url }}/javascripts/main.js"></script>
+
+<script language="JavaScript" src="{{ root_url }}/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="{{ root_url }}/javascripts/tongwen_table_s2t.js"></script>
+<script language="JavaScript" src="{{ root_url }}/javascripts/tongwen_table_t2s.js"></script>
+<script language="JavaScript" src="{{ root_url }}/javascripts/tongwen_table_ps2t.js"></script>
+<script language="JavaScript" src="{{ root_url }}/javascripts/tongwen_table_pt2s.js"></script>
+<script type="text/javascript">
+    var ts_switch = document.querySelector('#ts-switch');
+    var ts_label =document.querySelector('#side-label');
+    var init = new Switchery(ts_switch);
+
+    ts_switch.onchange = function() {
+        if (ts_switch.checked) {
+            TongWen.trans2Trad(document);
+            ts_label.innerHTML = "繁";
+        } else {
+            TongWen.trans2Simp(document);
+            ts_label.innerHTML = "简";
+        }
+    };
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>

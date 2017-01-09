@@ -1,0 +1,44 @@
+// Define defaults for each variable.
+
+$base-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Roboto, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", "Microsoft Jhenghei", sans-serif;
+$base-font-size:   1.1em !default;
+$base-font-weight: 200 !default;
+$small-font-size:  $base-font-size * 0.7 !default;
+$base-line-height: 1.5 !default;
+
+$spacing-unit:     30px !default;
+
+$text-color:       #111 !default;
+$text-color-hover: #676767 !default;
+$background-color: #fefefe !default;
+$brand-color:      #2a7ae2 !default;
+
+$grey-color:       #828282 !default;
+$grey-color-light: lighten($grey-color, 40%) !default;
+$grey-color-dark:  darken($grey-color, 25%) !default;
+
+// Width of the content area
+$content-width:    700px !default;
+
+$on-palm:          450px !default;
+$on-laptop:        640px !default;
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//   .wrapper {
+//     padding-right: $spacing-unit / 2;
+//     padding-left: $spacing-unit / 2;
+//   }
+// }
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+// Import partials.
+@import
+  "paperwhite/base",
+  "paperwhite/layout",
+  "paperwhite/syntax-highlighting"
+;
