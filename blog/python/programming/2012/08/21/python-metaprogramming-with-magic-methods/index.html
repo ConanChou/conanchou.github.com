@@ -1,113 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
 
-<!DOCTYPE HTML>
-<html>
-<head>
-	<script type="text/javascript">
-	    var host = "conanblog.me";
-	    if ((host == window.location.host) && (window.location.protocol != "https:"))
-		window.location.protocol = "https";
-	</script>
-	<meta charset="utf-8">
-	<title>用 Python 的「神奇方法」元編程 - conan @ notes:~/</title>
-	<meta name="author" content="Conan">
-
-	
-	<meta name="description" content="用 Python 的「神奇方法」元編程 在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。 什麼是「神奇方法」？其實是我亂翻譯的，英文中大家叫它們「Magic Methods」。我沒有在靜態語言中聽到過這個概念，只在 Python、PHP 這類動態語言中聽到。 &hellip;">
-	
-
-  <!-- //t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link href="/atom.xml" rel="alternate" title="conan @ notes:~/" type="application/atom+xml">
-	
-	<link rel="canonical" href="https://conanblog.me/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods/">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
-	<!--Fonts from Google"s Web font directory at //google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<!-- mathjax config similar to math.stackexchange -->
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  jax: ["input/TeX", "output/HTML-CSS"],
-  tex2jax: {
-    inlineMath: [ ['$', '$'] ],
-    displayMath: [ ['$$', '$$']],
-    processEscapes: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-  },
-  messageStyle: "none",
-  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
-});
-</script>
-<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  <title>用 Python 的「神奇方法」元編程</title>
+  <meta name="description" content="在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。">
 
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://conanblog.me/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods/">
+  <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
+  <link href="/stylesheets/switchery.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-lazyload-any/0.3.0/jquery.lazyload-any.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script>
+  <script type="text/javascript" src="/javascripts/switchery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/disqus_loader.min.js"></script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33556525-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
 </head>
 
 
-<body>
-	<div class="container">
-		<div class="left-col">
-			<div class="intrude-less">
-			<header id="header" class="inner"><div class="profilepic">	
-	<script src="/javascripts/md5.js"></script>
-	<script type="text/javascript">
-		document.write("<img src='//www.gravatar.com/avatar/" + MD5("conanchou1412@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;'");
-	</script>
-</div>
-<h1><a href="/">conan @ notes:~/</a></h1>
-<p class="subtitle">notes about hack</p>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-    <li><a href="/blog/archives">Archives</a></li>
-    <li><a href="/Unix-as-IDE--Chinese-/">Unix as IDE</a></li>
-</ul>
+  <body>
 
-</nav>
-<nav id="sub-nav">
-	<div class="social">
-		
-		
-		<a class="google" href="https://plus.google.com/102737685811403816436?rel=author" title="Google+">Google+</a>
-		
-		
-		<a class="twitter" href="//twitter.com/ConanChou" title="Twitter">Twitter</a>
-		
-		
-		<a class="github" href="https://github.com/ConanChou" title="GitHub">GitHub</a>
-		
-		
-		
-		
-		<a class="delicious" href="//delicious.com/ConanChou" title="Delicious">Delicious</a>
-		
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-	</div>
-</nav>
-<div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+    <header class="site-header" role="banner">
 
-</header>				
-			</div>
-		</div>	
-		<div class="mid-col">
-			
-				
+  <div class="wrapper">
 
-			
-			<div class="mid-col-container">
-				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">用 Python 的「神奇方法」元編程</h1>
-	<div class="entry-content" itemprop="articleBody"><p>在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。</p>
+    <a class="site-title" href="/">Conan&#39;s Notes</a>
 
-<p>什麼是「神奇方法」？其實是我亂翻譯的，英文中大家叫它們「Magic Methods」。我沒有在靜態語言中聽到過這個概念，只在 Python、PHP 這類動態語言中聽到。這是一類比較特殊的方法（Method/Function），是隨語言本身所故有的，在程序中無聲無息地起到作用。它們的命名方式都很特別，比如在 Python 中就是用<code>__</code>開頭用<code>__</code>結尾的方法，而在 PHP
-中則是類似地用<code>__</code>開頭的方法。<!--more-->說他們默默無聞一點不假，因爲正常編程的過程中較少的跟它們打交道，就連官方的文檔都只是用只言片語描述了下，以示存在。然而它們非常重要。幸好有一些熱心人做了<a href="http://www.rafekettler.com/magicmethods.html">一份較爲詳細的文檔</a>可作參考。</p>
+    <nav class="site-nav">
+      <span class="menu-icon" onclick = "void(0)">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a href="/Unix-as-IDE--Chinese-/">Unix as IDE</a>
+      </div>
+    </nav>
+    <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">用 Python 的「神奇方法」元編程</h1>
+    <p class="post-meta"><time datetime="2012-08-21T22:41:00-04:00" itemprop="datePublished">Aug 21, 2012</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。</p>
+
+<p>什麼是「神奇方法」？其實是我亂翻譯的，英文中大家叫它們「Magic Methods」。我沒有在靜態語言中聽到過這個概念，只在 Python、PHP 這類動態語言中聽到。這是一類比較特殊的方法（Method/Function），是隨語言本身所故有的，在程序中無聲無息地起到作用。它們的命名方式都很特別，比如在 Python 中就是用<code class="highlighter-rouge">__</code>開頭用<code class="highlighter-rouge">__</code>結尾的方法，而在 PHP
+中則是類似地用<code class="highlighter-rouge">__</code>開頭的方法。<!--more-->說他們默默無聞一點不假，因爲正常編程的過程中較少的跟它們打交道，就連官方的文檔都只是用只言片語描述了下，以示存在。然而它們非常重要。幸好有一些熱心人做了<a href="http://www.rafekettler.com/magicmethods.html">一份較爲詳細的文檔</a>可作參考。</p>
 
 <p>「元編程」的概念並不新鮮，簡單而廣義地說就是語言本身可以在運行時被修改或可以增量編譯，那麼我們就可以使用該語言進行元編程。而要實現上述功能，語言本身就需要有反射或者泛型編程的語言特性。這術語聽起來很嚇人，但其實說具體如何實踐就不嚇人了。根據維基百科，實現元編程可以有三種方法。一是語言本身暴露一些本身運行時的 API，然後我們可以通過對調教 API
 來實現元編程。二是語言本身可以動態地執行一些本身是程序方法的字符串表達式。而第三種可能略有爭議，就是撤徹底底用一種可以形容別的語言的系統來生成目標語言。而元編程的目的嘛，自然是更加簡單優美地解決問題啦。元編程這話題本來就博大精深，我可不敢說我很明白，希望觀者掂量着看這些文字吧。</p>
@@ -116,136 +101,147 @@ MathJax.Hub.Config({
 
 <p>前不久我因工作，需要寫一個腳本來訪問某私有 API，並把內容全部按照 json 結構錄入到數據庫中。接口大致上是這樣的類型：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">http://abc.com/jsonrest/api/4.10/search_getRelatedVideos?x=aaa&amp;y=bbb
-</span><span class="line">http://abc.com/jsonrest/api/4.10/search_getRelatedArticles?x=aaa&amp;y=bbb
-</span><span class="line">http://abc.com/jsonrest/api/4.10/search_getRelatedTopics?x=aaa&amp;y=bbb</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="highlighter-rouge"><pre class="highlight"><code>http://abc.com/jsonrest/api/4.10/search_getRelatedVideos?x=aaa&amp;y=bbb
+http://abc.com/jsonrest/api/4.10/search_getRelatedArticles?x=aaa&amp;y=bbb
+http://abc.com/jsonrest/api/4.10/search_getRelatedTopics?x=aaa&amp;y=bbb
+</code></pre>
+</div>
 
 <p>問題就在於，我要如何做才能簡單而優美地寫一個 API wrapper。這個 wrapper 要可以做到這樣：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">related_articles</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedArticles</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
-</span><span class="line"><span class="n">related_topics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedTopics</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">related_articles</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedArticles</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
+<span class="n">related_topics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search_getRelatedTopics</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>而且最好我都不需要一個一個地去實現相應的方法，因爲一旦需要呼叫新的 API，我又必须再添加一個個新的方法。所以我最好可以隨意地寫，wrapper 則幫我生成新方法：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># 假设 `calculate_getUnrelatedMusic()` 是個新 API 呼叫方法</span>
-</span><span class="line"><span class="n">unrelated_musics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">calculate_getUnrelatedMusic</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">ccc</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c"># 假设 `calculate_getUnrelatedMusic()` 是個新 API 呼叫方法</span>
+<span class="n">unrelated_musics</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">calculate_getUnrelatedMusic</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">aaa</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">bbb</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">ccc</span><span class="p">)</span>
+</code></pre>
+</div>
 
-<p>其實說到這裏，我想很多老 Python 程序員應該是想到我要用的「神奇方法」了。沒錯，就是 <code>__getattr__(self, name)</code>。Python 會在找不到所呼叫的 attribute 的時候來調用這個方法。這不正是我想要的嘛，我只要截獲這個方法的邏輯就可以動態生成 API 調用方法了。所以解決方案一下子變得很簡單：</p>
+<p>其實說到這裏，我想很多老 Python 程序員應該是想到我要用的「神奇方法」了。沒錯，就是 <code class="highlighter-rouge">__getattr__(self, name)</code>。Python 會在找不到所呼叫的 attribute 的時候來調用這個方法。這不正是我想要的嘛，我只要截獲這個方法的邏輯就可以動態生成 API 調用方法了。所以解決方案一下子變得很簡單：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">ABCAPI</span><span class="p">:</span>
-</span><span class="line">    <span class="sd">&quot;&quot;&quot;ABC API wrapper&quot;&quot;&quot;</span>
-</span><span class="line">
-</span><span class="line">    <span class="c"># 初始化，很常規</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accesskey</span><span class="p">,</span> <span class="n">sharedsecret</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="s">&#39;abc.com&#39;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">&#39;4.10&#39;</span><span class="p">):</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">accesskey</span> <span class="o">=</span> <span class="n">accesskey</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">sharedsecret</span> <span class="o">=</span> <span class="n">sharedsecret</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
-</span><span class="line">
-</span><span class="line">    <span class="c"># 這個方法是今天的主角。局部變量 name 就是我們上面所提到的 `search_getRelatedArticles`</span>
-</span><span class="line">    <span class="c"># 之類的方法名。而方法裏的那些參數都會被 `**params` 拿進來。這種寫法有關閉包，不在本文</span>
-</span><span class="line">    <span class="c"># 討論範疇裏。</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-</span><span class="line">        <span class="sd">&quot;&quot;&quot;Get API Call&quot;&quot;&quot;</span>
-</span><span class="line">        <span class="c"># 進了方法先判斷下方法名是不是`__`開頭，只要是就拋異常，這樣 `__getattr__()` 就不會</span>
-</span><span class="line">        <span class="c"># 失去原有的行爲模式，即保護私有變量或方法。</span>
-</span><span class="line">        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">):</span>
-</span><span class="line">            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="n">name</span>
-</span><span class="line">        <span class="k">else</span><span class="p">:</span>
-</span><span class="line">            <span class="k">def</span> <span class="nf">caller</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
-</span><span class="line">                <span class="c"># 构建 API URL 的所有东西都在这儿了，这需要按照一定规律把这些材料组建成合法 URL</span>
-</span><span class="line">                <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_api_url</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-</span><span class="line">
-</span><span class="line">                <span class="c"># 呼叫刚刚构建好的 URL 并返回结果</span>
-</span><span class="line">                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-</span><span class="line">            <span class="k">return</span> <span class="n">caller</span>
-</span><span class="line">
-</span><span class="line">    <span class="c">#...</span>
-</span><span class="line">    <span class="c"># other utility methods for building the api url and calling the api</span>
-</span><span class="line">    <span class="c">#...</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>
+<span class="k">class</span> <span class="nc">ABCAPI</span><span class="p">:</span>
+    <span class="s">"""ABC API wrapper"""</span>
+
+    <span class="c"># 初始化，很常規</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accesskey</span><span class="p">,</span> <span class="n">sharedsecret</span><span class="p">,</span> <span class="n">server</span><span class="o">=</span><span class="s">'abc.com'</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s">'4.10'</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accesskey</span> <span class="o">=</span> <span class="n">accesskey</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sharedsecret</span> <span class="o">=</span> <span class="n">sharedsecret</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">version</span>
+
+    <span class="c"># 這個方法是今天的主角。局部變量 name 就是我們上面所提到的 `search_getRelatedArticles`</span>
+    <span class="c"># 之類的方法名。而方法裏的那些參數都會被 `**params` 拿進來。這種寫法有關閉包，不在本文</span>
+    <span class="c"># 討論範疇裏。</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="s">"""Get API Call"""</span>
+        <span class="c"># 進了方法先判斷下方法名是不是`__`開頭，只要是就拋異常，這樣 `__getattr__()` 就不會</span>
+        <span class="c"># 失去原有的行爲模式，即保護私有變量或方法。</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'_'</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="nb">AttributeError</span><span class="p">,</span> <span class="n">name</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">caller</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">):</span>
+                <span class="c"># 构建 API URL 的所有东西都在这儿了，这需要按照一定规律把这些材料组建成合法 URL</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_api_url</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+                <span class="c"># 呼叫刚刚构建好的 URL 并返回结果</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">caller</span>
+
+    <span class="c">#...</span>
+    <span class="c"># other utility methods for building the api url and calling the api</span>
+    <span class="c">#...</span>
+</code></pre>
+</div>
 
 <p>以上就是我认为很优美的解决方案，短小精悍。然而这种用法并没有在我上文提到的那個有關「神奇方法」的文檔裏提及。所以在參考的時候請開動腦筋，不要侷限在作者的框框裏。你可以拿它們來做很多意想不到的事情。</p>
 
 <p>那最後我的這種實現方式到底屬於上文提到的哪種元編程實現方式呢？留作思考題吧～</p>
-</div>
 
+  </div>
+
+  
+    
+
+  <div id="disqus_thread"></div>
+  <script>
+    disqusLoader( '#disqus_thread',
+      { laziness: 0,
+        scriptUrl: '//conannotes.disqus.com/embed.js' });
+
+    // var disqus_config = function () {
+    //   this.page.url = 'https://conanblog.me/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods/';
+    //   this.page.identifier = 'https://conanblog.me/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods/';
+    // };
+    //
+    // (function() {
+    //   var d = document, s = d.createElement('script');
+    //
+    //   s.src = 'https://conannotes.disqus.com/embed.js';
+    //
+    //   s.setAttribute('data-timestamp', +new Date());
+    //   (d.head || d.body).appendChild(s);
+    // })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+  
 </article>
 
-	<div class="share">
-	<div class="addthis_toolbox addthis_default_style ">
-	
-	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-	
-	
-	
-	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-	
-	<a class="addthis_counter addthis_pill_style"></a>
-	</div>
-  <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
-</div>
+      </div>
+    </main>
 
+    <footer class="site-footer">
 
+  <div class="wrapper">
 
-<section id="comment">
-    <h1 class="title">Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</section>
-</div>
-			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2016
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Made by <a href="https://twitter.com/conanchou" target="_blank">@Conan</a>, with love and curiosity.
+      </div>
 
-    Conan
+      <!-- <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/conanchou"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/conanchou"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+        </ul>
+      </div> -->
+
+      <div class="footer-col footer-col-2">
+        <p>Programming Language, Open Source, Design, Music, and everything in between.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+<script language="JavaScript" src="/javascripts/main.js"></script>
 
 <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<link href="/stylesheets/switchery.min.css" rel="stylesheet" />
-<script type="text/javascript" src="/javascripts/switchery.min.js"></script>
 <script type="text/javascript">
     var ts_switch = document.querySelector('#ts-switch');
     var ts_label =document.querySelector('#side-label');
@@ -261,52 +257,9 @@ MathJax.Hub.Config({
         }
     };
 </script>
-
-</footer>
-			<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script>
- <!-- Delete or comment this line to disable Fancybox -->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
-<script type="text/javascript">
-      var disqus_shortname = 'conannotes';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'https://conanblog.me/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods/';
-        var disqus_url = 'https://conanblog.me/blog/python/programming/2012/08/21/python-metaprogramming-with-magic-methods/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
+  </body>
 
-
-
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-33556525-1']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : '//www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-
-
-
-
-		</div>
-	</div>
-</body>
 </html>

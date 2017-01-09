@@ -1,110 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
 
-<!DOCTYPE HTML>
-<html>
-<head>
-	<script type="text/javascript">
-	    var host = "conanblog.me";
-	    if ((host == window.location.host) && (window.location.protocol != "https:"))
-		window.location.protocol = "https";
-	</script>
-	<meta charset="utf-8">
-	<title>Python 調優筆記·經驗主義調優 - conan @ notes:~/</title>
-	<meta name="author" content="Conan">
-
-	
-	<meta name="description" content="Python 調優筆記·經驗主義調優 上一次我們聊了「理性主義」，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。 &hellip;">
-	
-
-  <!-- //t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link href="/atom.xml" rel="alternate" title="conan @ notes:~/" type="application/atom+xml">
-	
-	<link rel="canonical" href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
-	<!--Fonts from Google"s Web font directory at //google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<!-- mathjax config similar to math.stackexchange -->
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  jax: ["input/TeX", "output/HTML-CSS"],
-  tex2jax: {
-    inlineMath: [ ['$', '$'] ],
-    displayMath: [ ['$$', '$$']],
-    processEscapes: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-  },
-  messageStyle: "none",
-  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
-});
-</script>
-<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+  <title>Python 調優筆記·經驗主義調優</title>
+  <meta name="description" content="上一次我們聊了「理性主義」，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的...">
 
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">
+  <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
+  <link href="/stylesheets/switchery.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-lazyload-any/0.3.0/jquery.lazyload-any.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script>
+  <script type="text/javascript" src="/javascripts/switchery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/disqus_loader.min.js"></script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33556525-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
 </head>
 
 
-<body>
-	<div class="container">
-		<div class="left-col">
-			<div class="intrude-less">
-			<header id="header" class="inner"><div class="profilepic">	
-	<script src="/javascripts/md5.js"></script>
-	<script type="text/javascript">
-		document.write("<img src='//www.gravatar.com/avatar/" + MD5("conanchou1412@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;'");
-	</script>
-</div>
-<h1><a href="/">conan @ notes:~/</a></h1>
-<p class="subtitle">notes about hack</p>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-    <li><a href="/blog/archives">Archives</a></li>
-    <li><a href="/Unix-as-IDE--Chinese-/">Unix as IDE</a></li>
-</ul>
+  <body>
 
-</nav>
-<nav id="sub-nav">
-	<div class="social">
-		
-		
-		<a class="google" href="https://plus.google.com/102737685811403816436?rel=author" title="Google+">Google+</a>
-		
-		
-		<a class="twitter" href="//twitter.com/ConanChou" title="Twitter">Twitter</a>
-		
-		
-		<a class="github" href="https://github.com/ConanChou" title="GitHub">GitHub</a>
-		
-		
-		
-		
-		<a class="delicious" href="//delicious.com/ConanChou" title="Delicious">Delicious</a>
-		
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-	</div>
-</nav>
-<div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+    <header class="site-header" role="banner">
 
-</header>				
-			</div>
-		</div>	
-		<div class="mid-col">
-			
-				
+  <div class="wrapper">
 
-			
-			<div class="mid-col-container">
-				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">Python 調優筆記·經驗主義調優</h1>
-	<div class="entry-content" itemprop="articleBody"><p><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/">上一次我們聊了「理性主義」</a>，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。<!--more--></p>
+    <a class="site-title" href="/">Conan&#39;s Notes</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon" onclick = "void(0)">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a href="/Unix-as-IDE--Chinese-/">Unix as IDE</a>
+      </div>
+    </nav>
+    <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Python 調優筆記·經驗主義調優</h1>
+    <p class="post-meta"><time datetime="2012-08-26T14:56:00-04:00" itemprop="datePublished">Aug 26, 2012</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/">上一次我們聊了「理性主義」</a>，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。<!--more--></p>
 
 <p>在列舉各種「術」之前，先說「道」（術指具體做事的方法，道指做事的原理）。領悟了道之後才能在不同情況下做出正確的選擇。一般而言，調優無非在兩方面做優化：時間複雜度和空間複雜度。有時候時間和空間會互相矛盾，而這個時候就不得不在它們中做取捨。不同的應用取捨的決定因素是不一樣的。不過就目前而言，因爲空間越來越廉價，時間越來越寶貴，大部分時候人們會偏向與用空間換時間。當然也有兩者不矛盾的時候，這個時候肯定是綜合複雜度越小越好。除了空間、時間複雜度的取捨之外，還有一個可讀性的問題，實際上有時候爲了優化代碼，可讀性會下降不少。所以這個也是個要權衡的方面。</p>
 
@@ -112,43 +97,43 @@ MathJax.Hub.Config({
 
 <script type="math/tex; mode=display">O(1)>O(\log n)>O(n\log n)>O(n^2)>O(n^3)>O(n^k)>O(k^n)>O(n!)</script>
 
-<p>在 Python 中，對 <code lang="python">list</code>、<code lang="python">collections.deque</code>、<code lang="python">set</code>、<code lang="python">dict</code> 的各種操作的時間複雜度可以在<a href="http://wiki.python.org/moin/TimeComplexity">這裏找到</a>。</p>
+<p>在 Python 中，對 <code lang="python" class="highlighter-rouge">list</code>、<code lang="python" class="highlighter-rouge">collections.deque</code>、<code lang="python" class="highlighter-rouge">set</code>、<code lang="python" class="highlighter-rouge">dict</code> 的各種操作的時間複雜度可以在<a href="http://wiki.python.org/moin/TimeComplexity">這裏找到</a>。</p>
 
 <p>下面我就羅列各種「前人的經驗」。其實記住就可以，不過我還是用簡短的描述大致解釋一下原因,便於更加深刻地理解 Python 內部。有興趣的話其實可以用<a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/">「理性主義」的分析方法</a>來看看下面的這些「經驗」。</p>
 
 <ul>
   <li>
-    <h3 id="dictlangpython--listlangpython"><code lang="python">dict</code> &gt; <code lang="python">list</code></h3>
+    <h3 id="dict--list"><code lang="python" class="highlighter-rouge">dict</code> &gt; <code lang="python" class="highlighter-rouge">list</code></h3>
   </li>
 </ul>
 
-<p><code lang="python">dict</code> 的數據結構是 Hash Table，查找的時間複雜度 是<script type="math/tex">O(1)</script>；而 <code lang="python">list</code> 的數據結構是 Array，查找的時間複雜度是 <script type="math/tex">O(n)</script>。</p>
+<p><code lang="python" class="highlighter-rouge">dict</code> 的數據結構是 Hash Table，查找的時間複雜度 是<script type="math/tex">O(1)</script>；而 <code lang="python" class="highlighter-rouge">list</code> 的數據結構是 Array，查找的時間複雜度是 <script type="math/tex">O(n)</script>。</p>
 
 <ul>
   <li>
-    <h3 id="dictlangpython--dictgetlangpython"><code lang="python">dict[]</code> &gt; <code lang="python">dict.get()</code></h3>
+    <h3 id="dict--dictget"><code lang="python" class="highlighter-rouge">dict[]</code> &gt; <code lang="python" class="highlighter-rouge">dict.get()</code></h3>
   </li>
 </ul>
 
-<p>前者叫「直接獲取」，如果 <code lang="python">key</code> 超出了範圍會報錯；而後者是通過 <code lang="python">dict</code> 的方法調用，如果超出 <code lang="python">key</code> 範圍，它會將默認值賦給剛剛查詢的 <code lang="python">key</code>。顯然 <code lang="python">get()</code> 做了很多事情，慢一些是預料之中的。</p>
+<p>前者叫「直接獲取」，如果 <code lang="python" class="highlighter-rouge">key</code> 超出了範圍會報錯；而後者是通過 <code lang="python" class="highlighter-rouge">dict</code> 的方法調用，如果超出 <code lang="python" class="highlighter-rouge">key</code> 範圍，它會將默認值賦給剛剛查詢的 <code lang="python" class="highlighter-rouge">key</code>。顯然 <code lang="python" class="highlighter-rouge">get()</code> 做了很多事情，慢一些是預料之中的。</p>
 
-<p>這裏插一句題外話。有時候你確實需要類似 <code lang="python">get()</code> 所提供的效果，即這種容錯性，有些程序員傾向於用 <code lang="python">try...except...</code> 和 <code lang="python">dict[]</code> 來實現。在以前，這兩者在運行速度上區別還比較大，新版本的 Python 在這兩種方案下表現得比較一致，只有 10% 的性能差異。所以在這種情況下用 <code lang="python">dict.get()</code> 其實是個不錯的選擇。</p>
+<p>這裏插一句題外話。有時候你確實需要類似 <code lang="python" class="highlighter-rouge">get()</code> 所提供的效果，即這種容錯性，有些程序員傾向於用 <code lang="python" class="highlighter-rouge">try...except...</code> 和 <code lang="python" class="highlighter-rouge">dict[]</code> 來實現。在以前，這兩者在運行速度上區別還比較大，新版本的 Python 在這兩種方案下表現得比較一致，只有 10% 的性能差異。所以在這種情況下用 <code lang="python" class="highlighter-rouge">dict.get()</code> 其實是個不錯的選擇。</p>
 
 <ul>
   <li>
-    <h3 id="setlangpython--listlangpython"><code lang="python">set</code> &gt; <code lang="python">list</code></h3>
+    <h3 id="set--list"><code lang="python" class="highlighter-rouge">set</code> &gt; <code lang="python" class="highlighter-rouge">list</code></h3>
   </li>
 </ul>
 
-<p>前者與生俱來的 <code lang="python">|</code> (union)、<code lang="python">&amp;</code> (intersection) 和 <code lang="python">-</code> (difference) 運算就比 <code lang="python">list</code> 的迭代式效率高。所以涉及到 <code lang="python">list</code> 的這三種運算，最佳方案是轉成 <code lang="python">set</code> 再用相應的 <code lang="python">set</code> 運算符計算，最後再轉到 <code lang="python">list</code>。例如：</p>
+<p>前者與生俱來的 <code lang="python" class="highlighter-rouge">|</code> (union)、<code lang="python" class="highlighter-rouge">&amp;</code> (intersection) 和 <code lang="python" class="highlighter-rouge">-</code> (difference) 運算就比 <code lang="python" class="highlighter-rouge">list</code> 的迭代式效率高。所以涉及到 <code lang="python" class="highlighter-rouge">list</code> 的這三種運算，最佳方案是轉成 <code lang="python" class="highlighter-rouge">set</code> 再用相應的 <code lang="python" class="highlighter-rouge">set</code> 運算符計算，最後再轉到 <code lang="python" class="highlighter-rouge">list</code>。例如：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">list_a</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">list_b</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">list_a</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">list_b</span><span class="p">))</span>
+</code></pre>
+</div>
 
 <ul>
   <li>
-    <h3 id="strjoinlangpython--str--str--strlangpython"><code lang="python">str.join()</code> &gt; <code lang="python">str + str + str</code></h3>
+    <h3 id="strjoin--str--str--str"><code lang="python" class="highlighter-rouge">str.join()</code> &gt; <code lang="python" class="highlighter-rouge">str + str + str</code></h3>
   </li>
 </ul>
 
@@ -156,127 +141,105 @@ MathJax.Hub.Config({
 
 <ul>
   <li>
-    <h3 id="langpython--str--str--strlangpython">字符串格式化 <code lang="python">%</code> &gt; <code lang="python">str + str + str</code></h3>
+    <h3 id="字符串格式化---str--str--str">字符串格式化 <code lang="python" class="highlighter-rouge">%</code> &gt; <code lang="python" class="highlighter-rouge">str + str + str</code></h3>
   </li>
 </ul>
 
-<p>寫習慣了 PHP 的話很容易就愛後一種方式，但是跟上面一條說的原因差不多，用格式化 <code lang="python">%</code> 的方式要高效一些。</p>
+<p>寫習慣了 PHP 的話很容易就愛後一種方式，但是跟上面一條說的原因差不多，用格式化 <code lang="python" class="highlighter-rouge">%</code> 的方式要高效一些。</p>
 
 <ul>
   <li>
-    <h3 id="section">自帶函數 &gt; 正則表達式</h3>
+    <h3 id="自帶函數--正則表達式">自帶函數 &gt; 正則表達式</h3>
   </li>
 </ul>
 
-<p>Python 字符串自帶了不少有用的方法可以取代正則表達式。比如那些 <code>is</code> 開頭的方法以及 <code>with</code> 結尾的方法。具體的列表可以查看 pydoc：</p>
+<p>Python 字符串自帶了不少有用的方法可以取代正則表達式。比如那些 <code class="highlighter-rouge">is</code> 開頭的方法以及 <code class="highlighter-rouge">with</code> 結尾的方法。具體的列表可以查看 pydoc：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>pydoc str
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pydoc str
+</code></pre>
+</div>
 
 <ul>
   <li>
-    <h3 id="sortlangpython--">自帶 <code lang="python">sort</code> &gt; 自寫排序算法</h3>
+    <h3 id="自帶-sort--自寫排序算法">自帶 <code lang="python" class="highlighter-rouge">sort</code> &gt; 自寫排序算法</h3>
   </li>
 </ul>
 
-<p>如果你不確定你自己寫的算法真的優於 Python 內置的 <code lang="python">sort</code> 方法，那還是使用內置的。因爲 Python 的 <code lang="python">sort</code> 其實會因爲不同的數據類型、甚至根據數據的長度，選擇最優的排序方式。有興趣的話可以去看一看 CPython 有關 <code lang="python">sort</code> 的源碼。</p>
+<p>如果你不確定你自己寫的算法真的優於 Python 內置的 <code lang="python" class="highlighter-rouge">sort</code> 方法，那還是使用內置的。因爲 Python 的 <code lang="python" class="highlighter-rouge">sort</code> 其實會因爲不同的數據類型、甚至根據數據的長度，選擇最優的排序方式。有興趣的話可以去看一看 CPython 有關 <code lang="python" class="highlighter-rouge">sort</code> 的源碼。</p>
 
-<p>其實大多數自帶函數的效率都比較高，甚至 <code lang="python">add()</code> 都要比 <code lang="python">+</code> 快。所以儘量使用 Python 自帶的函數。</p>
+<p>其實大多數自帶函數的效率都比較高，甚至 <code lang="python" class="highlighter-rouge">add()</code> 都要比 <code lang="python" class="highlighter-rouge">+</code> 快。所以儘量使用 Python 自帶的函數。</p>
 
 <ul>
   <li>
-    <h3 id="listlangpython-comprehensions--"><code lang="python">list</code> comprehensions &gt; 循環</h3>
+    <h3 id="list-comprehensions--循環"><code lang="python" class="highlighter-rouge">list</code> comprehensions &gt; 循環</h3>
   </li>
 </ul>
 
-<p><code lang="python">list</code> comprehensions 的運行是 CPython 的底層層面的，而一般的循環是在 VM 裏面跑的。很顯然前者要更優。</p>
+<p><code lang="python" class="highlighter-rouge">list</code> comprehensions 的運行是 CPython 的底層層面的，而一般的循環是在 VM 裏面跑的。很顯然前者要更優。</p>
 
 <ul>
   <li>
-    <h3 id="maplangpython--"><code lang="python">map</code> &gt; 循環</h3>
+    <h3 id="map--循環"><code lang="python" class="highlighter-rouge">map</code> &gt; 循環</h3>
   </li>
 </ul>
 
-<p>跟 <code lang="python">list</code> comprehensions 的情況一樣，運算會被推到 C 層面，比 VM 裏跑的效率高。</p>
+<p>跟 <code lang="python" class="highlighter-rouge">list</code> comprehensions 的情況一樣，運算會被推到 C 層面，比 VM 裏跑的效率高。</p>
 
 <ul>
   <li>
-    <h3 id="section-1">局部變量 &gt; 全局變量</h3>
+    <h3 id="局部變量--全局變量">局部變量 &gt; 全局變量</h3>
   </li>
 </ul>
 
-<p>這個尤其要在循環裏注意，就是<a href="https://conanblog.me/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/">本系列第二篇</a>裏我們找到的問題。Python 對局部變量的訪問效率要比全局變量的訪問效率高。另外，如果是一些帶「點」的方法，最好也放到循環的外面，因爲每次「點」，相應的方法都要再 <code lang="python">eval</code> 一遍。因此應該像下面這樣寫：</p>
+<p>這個尤其要在循環裏注意，就是<a href="https://conanblog.me/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/">本系列第二篇</a>裏我們找到的問題。Python 對局部變量的訪問效率要比全局變量的訪問效率高。另外，如果是一些帶「點」的方法，最好也放到循環的外面，因爲每次「點」，相應的方法都要再 <code lang="python" class="highlighter-rouge">eval</code> 一遍。因此應該像下面這樣寫：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-</span><span class="line">    <span class="n">upper</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">upper</span>
-</span><span class="line">    <span class="n">newlist</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class="line">    <span class="n">append</span> <span class="o">=</span> <span class="n">newlist</span><span class="o">.</span><span class="n">append</span>
-</span><span class="line">    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">oldlist</span><span class="p">:</span>
-</span><span class="line">        <span class="n">append</span><span class="p">(</span><span class="n">upper</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
-</span><span class="line">    <span class="k">return</span> <span class="n">newlist</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">upper</span>
+    <span class="n">newlist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">append</span> <span class="o">=</span> <span class="n">newlist</span><span class="o">.</span><span class="n">append</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">oldlist</span><span class="p">:</span>
+        <span class="n">append</span><span class="p">(</span><span class="n">upper</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">newlist</span>
+</code></pre>
+</div>
 
-<p>當然，在可以用 <code lang="python">list</code> comprehensions 和 <code lang="python">map</code> 的情況下，優先考慮使用這些。</p>
+<p>當然，在可以用 <code lang="python" class="highlighter-rouge">list</code> comprehensions 和 <code lang="python" class="highlighter-rouge">map</code> 的情況下，優先考慮使用這些。</p>
 
 <ul>
   <li>
-    <h3 id="section-2">懶惰 &gt; 勤勞</h3>
+    <h3 id="懶惰--勤勞">懶惰 &gt; 勤勞</h3>
   </li>
 </ul>
 
-<p>這裏的「懶惰」指 Lazy Evaluation，在 Python 中，我目前知道條件判斷和 2.x 中的 <code lang="python">xrange</code> (即 3.x 中的 <code lang="python">range</code>)。</p>
+<p>這裏的「懶惰」指 Lazy Evaluation，在 Python 中，我目前知道條件判斷和 2.x 中的 <code lang="python" class="highlighter-rouge">xrange</code> (即 3.x 中的 <code lang="python" class="highlighter-rouge">range</code>)。</p>
 
-<p>所以在類似 <code lang="python">if a and b</code> 的語句裏，<code>a</code> 會被先判斷，如果是 <code lang="python">False</code>，<code>b</code> 的運算就被直接跳過了。因此在寫程序時應該把運算量大的部分寫在靠後的部分。</p>
+<p>所以在類似 <code lang="python" class="highlighter-rouge">if a and b</code> 的語句裏，<code class="highlighter-rouge">a</code> 會被先判斷，如果是 <code lang="python" class="highlighter-rouge">False</code>，<code class="highlighter-rouge">b</code> 的運算就被直接跳過了。因此在寫程序時應該把運算量大的部分寫在靠後的部分。</p>
 
-<p><code lang="python">xrange()</code> 不會在運行時就在內存中產生一個 <code lang="python">list</code>，而是在用的時候臨時算出來。看下面的例子：</p>
+<p><code lang="python" class="highlighter-rouge">xrange()</code> 不會在運行時就在內存中產生一個 <code lang="python" class="highlighter-rouge">list</code>，而是在用的時候臨時算出來。看下面的例子：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="n">r</span>
-</span><span class="line"><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="n">xr</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="n">xr</span>
-</span><span class="line"><span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</span><span class="line"><span class="mi">3</span>
-</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">xr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</span><span class="line"><span class="mi">3</span>
-</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">xr</span><span class="p">)</span>
-</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">xr</span>
-</span><span class="line"><span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">iterator</span>
-</span><span class="line"><span class="o">&lt;</span><span class="n">rangeiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fbbed1123f0</span><span class="o">&gt;</span>
-</span><span class="line"><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-</span><span class="line"><span class="mi">0</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">xr</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">xr</span>
+<span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">xr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">xr</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">xr</span>
+<span class="nb">xrange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">iterator</span>
+<span class="o">&lt;</span><span class="n">rangeiterator</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fbbed1123f0</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span> <span class="n">iterator</span><span class="o">.</span><span class="nb">next</span><span class="p">()</span>
+<span class="mi">0</span>
+</code></pre>
+</div>
 
 <ul>
   <li>
-    <h3 id="langpython--langpython"><code lang="python">()</code> &gt; <code lang="python">[]</code></h3>
+    <h3 id="--"><code lang="python" class="highlighter-rouge">()</code> &gt; <code lang="python" class="highlighter-rouge">[]</code></h3>
   </li>
 </ul>
 
@@ -284,193 +247,201 @@ MathJax.Hub.Config({
 
 <ul>
   <li>
-    <h3 id="islangpython--langpython"><code lang="python">is</code> &gt; <code lang="python">==</code></h3>
+    <h3 id="is--"><code lang="python" class="highlighter-rouge">is</code> &gt; <code lang="python" class="highlighter-rouge">==</code></h3>
   </li>
 </ul>
 
-<p><code lang="python">is</code> 是比較對象，<code lang="python">==</code> 是比較對象裏的值。很顯然 <code lang="python">==</code> 要做的事情要稍微多一點。所以在能夠用 <code lang="python">is</code> 的時候要用 <code lang="python">is</code></p>
+<p><code lang="python" class="highlighter-rouge">is</code> 是比較對象，<code lang="python" class="highlighter-rouge">==</code> 是比較對象裏的值。很顯然 <code lang="python" class="highlighter-rouge">==</code> 要做的事情要稍微多一點。所以在能夠用 <code lang="python" class="highlighter-rouge">is</code> 的時候要用 <code lang="python" class="highlighter-rouge">is</code></p>
 
 <ul>
   <li>
-    <h3 id="truelangpython">1 &gt; <code lang="python">True</code></h3>
+    <h3 id="1--true">1 &gt; <code lang="python" class="highlighter-rouge">True</code></h3>
   </li>
 </ul>
 
-<p>Python 裏的 <code>bool</code> 也是繼承自 <code>int</code>，單純從運行效率來說，用 <code lang="python">int</code> 代替 <code lang="python">bool</code> 更好。可是可讀性會變差。</p>
+<p>Python 裏的 <code class="highlighter-rouge">bool</code> 也是繼承自 <code class="highlighter-rouge">int</code>，單純從運行效率來說，用 <code lang="python" class="highlighter-rouge">int</code> 代替 <code lang="python" class="highlighter-rouge">bool</code> 更好。可是可讀性會變差。</p>
 
 <ul>
   <li>
-    <h3 id="a--b--clangpython--a--b-and-b--clangpython"><code lang="python">a &gt; b &gt; c</code> &gt; <code lang="python">a &gt; b and b &gt; c</code></h3>
+    <h3 id="a--b--c--a--b-and-b--c"><code lang="python" class="highlighter-rouge">a &gt; b &gt; c</code> &gt; <code lang="python" class="highlighter-rouge">a &gt; b and b &gt; c</code></h3>
   </li>
 </ul>
 
-<p>類似 <code lang="python">map</code> 的情況，前者被放到更底層算，而後者還停留在 VM 內，效率自然有所差異。</p>
+<p>類似 <code lang="python" class="highlighter-rouge">map</code> 的情況，前者被放到更底層算，而後者還停留在 VM 內，效率自然有所差異。</p>
 
 <ul>
   <li>
-    <h3 id="section-3">循環放在方法裏 &gt; 循環裏調方法</h3>
+    <h3 id="循環放在方法裏--循環裏調方法">循環放在方法裏 &gt; 循環裏調方法</h3>
   </li>
 </ul>
 
-<p>假設我們現在有個 <code lang="python">list</code> 需要對其內容一一處理，在你面前是兩條路（假設不用 <code lang="python">list</code> comprehensions 之類更好的方式），一條是將 <code lang="python">list</code> 傳進專門處理的方法，然後在方法內循環處理裏面的元素；另一條是遍歷此 <code lang="python">list</code>，然後將單個的元素用一個方法去做處理。這兩者間前者比較好，因爲 Python
+<p>假設我們現在有個 <code lang="python" class="highlighter-rouge">list</code> 需要對其內容一一處理，在你面前是兩條路（假設不用 <code lang="python" class="highlighter-rouge">list</code> comprehensions 之類更好的方式），一條是將 <code lang="python" class="highlighter-rouge">list</code> 傳進專門處理的方法，然後在方法內循環處理裏面的元素；另一條是遍歷此 <code lang="python" class="highlighter-rouge">list</code>，然後將單個的元素用一個方法去做處理。這兩者間前者比較好，因爲 Python
 的方法調用還是需要較多的開銷的。看例子，首先是循環裏調方法：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class="line"><span class="k">def</span> <span class="nf">doit</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
-</span><span class="line">    <span class="k">global</span> <span class="n">x</span>
-</span><span class="line">    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">i</span>
-</span><span class="line">
-</span><span class="line"><span class="nb">list</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
-</span><span class="line"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-</span><span class="line">    <span class="n">doit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">doit</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">i</span>
+
+<span class="nb">list</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="n">doit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>改成下面這樣更好</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class="line"><span class="k">def</span> <span class="nf">doit</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
-</span><span class="line">    <span class="k">global</span> <span class="n">x</span>
-</span><span class="line">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-</span><span class="line">        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">i</span>
-</span><span class="line">
-</span><span class="line"><span class="nb">list</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
-</span><span class="line"><span class="n">doit</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">def</span> <span class="nf">doit</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">x</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">i</span>
+
+<span class="nb">list</span> <span class="o">=</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">doit</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <ul>
   <li>
-    <h3 id="importlangpython">減少重複 <code lang="python">import</code></h3>
+    <h3 id="減少重複-import">減少重複 <code lang="python" class="highlighter-rouge">import</code></h3>
   </li>
 </ul>
 
-<p>有時候我們將 <code lang="python">import</code> 放在一個方法的開頭以此來縮小模塊的可用範圍或加快程序的啓動速度。而 Python 也足夠聰明可以防止多次導入相同的庫。但是 <code lang="python">import</code> 本身還是需要開銷一些時間的，無論是不是重複的。所以如果某個方法會被多次調用，最好將 <code lang="python">import</code> 放到方法外面。</p>
+<p>有時候我們將 <code lang="python" class="highlighter-rouge">import</code> 放在一個方法的開頭以此來縮小模塊的可用範圍或加快程序的啓動速度。而 Python 也足夠聰明可以防止多次導入相同的庫。但是 <code lang="python" class="highlighter-rouge">import</code> 本身還是需要開銷一些時間的，無論是不是重複的。所以如果某個方法會被多次調用，最好將 <code lang="python" class="highlighter-rouge">import</code> 放到方法外面。</p>
 
 <ul>
   <li>
-    <h3 id="iflangpython">方法重定向 &gt; <code lang="python">if</code></h3>
+    <h3 id="方法重定向--if">方法重定向 &gt; <code lang="python" class="highlighter-rouge">if</code></h3>
   </li>
 </ul>
 
 <p>假設我們有這麼一種情況：</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">Test</span><span class="p">:</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
-</span><span class="line">        <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
-</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">str</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="mi">100</span>
-</span><span class="line">        <span class="k">else</span><span class="p">:</span>
-</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">str</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="mi">100</span>
-</span><span class="line">
-</span><span class="line"><span class="n">a</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
-</span><span class="line"><span class="k">def</span> <span class="nf">example</span><span class="p">():</span>
-</span><span class="line">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100000</span><span class="p">):</span>
-</span><span class="line">        <span class="n">a</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="s">&quot;c&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Test</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="nb">str</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="mi">100</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="nb">str</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="mi">100</span>
 
-<p>初看這段代碼沒什麼問題，但是如果仔細看，<code lang="python">if</code> 用得很單調。前 50 個也就算了，但是後面的 99950
-次 <code lang="python">if</code> 開銷就很大了。如果能省去這些 <code lang="python">if</code> 速度會好很多。這裏其實可以用方法重定向來提高效率：</p>
+<span class="n">a</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">example</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100000</span><span class="p">):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s">"b"</span><span class="p">,</span><span class="s">"c"</span><span class="p">)</span>
+</code></pre>
+</div>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">class</span> <span class="nc">Test</span><span class="p">:</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">str</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="mi">100</span>
-</span><span class="line">        <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
-</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">check</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_post</span>
-</span><span class="line">    <span class="k">def</span> <span class="nf">check_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
-</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">str</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="mi">100</span>
-</span><span class="line">
-</span><span class="line"><span class="n">a</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
-</span><span class="line"><span class="k">def</span> <span class="nf">example</span><span class="p">():</span>
-</span><span class="line">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100000</span><span class="p">):</span>
-</span><span class="line">        <span class="n">a</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="s">&quot;c&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>初看這段代碼沒什麼問題，但是如果仔細看，<code lang="python" class="highlighter-rouge">if</code> 用得很單調。前 50 個也就算了，但是後面的 99950
+次 <code lang="python" class="highlighter-rouge">if</code> 開銷就很大了。如果能省去這些 <code lang="python" class="highlighter-rouge">if</code> 速度會好很多。這裏其實可以用方法重定向來提高效率：</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Test</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="nb">str</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="mi">100</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_post</span>
+    <span class="k">def</span> <span class="nf">check_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="nb">str</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="mi">100</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Test</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">example</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100000</span><span class="p">):</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s">"b"</span><span class="p">,</span><span class="s">"c"</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <hr />
 
 <p>本文是『Python 調優筆記』系列中的一篇，其它文章還有：</p>
 
 <ul>
-  <li><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/07/23/python-optimization-1/" title="Python 調優筆記·序">序，一切的開始</a></li>
-  <li><a href="https://conanblog.me/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/" title=" Python 調優筆記·代碼造影">代碼造影，定位癥結</a></li>
-  <li><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/" title="Python 調優筆記·理性主義調優">理性主義調優，一切從根本出發</a></li>
-  <li><a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/" title="Python 調優筆記·經驗主義調優">經驗主義調優，站在巨人的肩膀上</a></li>
+  <li><a href="/blog/python/optimization/serial/programming/2012/07/23/python-optimization-1/" title="Python 調優筆記·序">序，一切的開始</a></li>
+  <li><a href="/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/" title=" Python 調優筆記·代碼造影">代碼造影，定位癥結</a></li>
+  <li><a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/" title="Python 調優筆記·理性主義調優">理性主義調優，一切從根本出發</a></li>
+  <li><a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/" title="Python 調優筆記·經驗主義調優">經驗主義調優，站在巨人的肩膀上</a></li>
 </ul>
 
-</div>
 
+  </div>
+
+  
+    
+
+  <div id="disqus_thread"></div>
+  <script>
+    disqusLoader( '#disqus_thread',
+      { laziness: 0,
+        scriptUrl: '//conannotes.disqus.com/embed.js' });
+
+    // var disqus_config = function () {
+    //   this.page.url = 'https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/';
+    //   this.page.identifier = 'https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/';
+    // };
+    //
+    // (function() {
+    //   var d = document, s = d.createElement('script');
+    //
+    //   s.src = 'https://conannotes.disqus.com/embed.js';
+    //
+    //   s.setAttribute('data-timestamp', +new Date());
+    //   (d.head || d.body).appendChild(s);
+    // })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+  
 </article>
 
-	<div class="share">
-	<div class="addthis_toolbox addthis_default_style ">
-	
-	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-	
-	
-	
-	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-	
-	<a class="addthis_counter addthis_pill_style"></a>
-	</div>
-  <script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
-</div>
+      </div>
+    </main>
 
+    <footer class="site-footer">
 
+  <div class="wrapper">
 
-<section id="comment">
-    <h1 class="title">Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</section>
-</div>
-			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2016
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Made by <a href="https://twitter.com/conanchou" target="_blank">@Conan</a>, with love and curiosity.
+      </div>
 
-    Conan
+      <!-- <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/conanchou"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/conanchou"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+        </ul>
+      </div> -->
+
+      <div class="footer-col footer-col-2">
+        <p>Programming Language, Open Source, Design, Music, and everything in between.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+<script language="JavaScript" src="/javascripts/main.js"></script>
 
 <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<link href="/stylesheets/switchery.min.css" rel="stylesheet" />
-<script type="text/javascript" src="/javascripts/switchery.min.js"></script>
 <script type="text/javascript">
     var ts_switch = document.querySelector('#ts-switch');
     var ts_label =document.querySelector('#side-label');
@@ -486,52 +457,9 @@ MathJax.Hub.Config({
         }
     };
 </script>
-
-</footer>
-			<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script>
- <!-- Delete or comment this line to disable Fancybox -->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
-<script type="text/javascript">
-      var disqus_shortname = 'conannotes';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/';
-        var disqus_url = 'https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
+  </body>
 
-
-
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-33556525-1']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : '//www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-
-
-
-
-		</div>
-	</div>
-</body>
 </html>

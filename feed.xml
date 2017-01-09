@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2017-01-08T21:11:28-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">2016 -&amp;gt; 2017</title><link href="https://conanblog.me/blog/life/thought/2016/12/31/2016-2017/" rel="alternate" type="text/html" title="2016 -&gt; 2017" /><published>2016-12-31T21:50:38-05:00</published><updated>2016-12-31T21:50:38-05:00</updated><id>https://conanblog.me/blog/life/thought/2016/12/31/2016-2017</id><content type="html" xml:base="https://conanblog.me/blog/life/thought/2016/12/31/2016-2017/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;又到了一年總結經驗教訓和展望未來的時候。簡單總結就是有進步，但有很大的進步空間。2016年的目標尚未完成的當然有，不過就像我一貫說的那樣，目標定得越遠大，即使達不到，但到達的地方也會越高遠。這個開頭簡直廢話……&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;工作&quot;&gt;工作&lt;/h2&gt;
+
+&lt;p&gt;說說工作先。加入新的公司有一年多幾個月。開始的一些事情其實有些動搖我的念頭，甚至有些後悔自己當初過來的決定。這也是為什麼我在去年的年終總結的時候說需要贏得團隊的信任需要一個過程的言外之意。而確實，磨合、溝通和信任不是一紙協議就能搞定的。經過一年的努力，這個在去年定下的大目標相信是完成得不錯的。&lt;/p&gt;
+
+&lt;p&gt;工作細節方面，今年實踐了 Docker 以及一些 Docker 相關的技術，而我對它的態度也是從好奇轉向不推薦，而後又漸漸中立。好奇那會兒多半是因為各種軟硬文，在家裡的小環境裡面嘗試過之後確實發現了它的優勢確實誘人。環境獨立這樣的特性自然不用說，我更加喜歡它對軟件架構的影響，這種模塊化服務／微服務驅動的架構在運維方面有著非常大的優勢。但這個優勢的獲取並非易事，容器開關與組合、彈性規模在Docker技術框架下都很簡單，可容器內軟件必須要能做到足夠的擼棒性才能利用起 Docker 的技術框架。這在一開始並沒有朝這麼走的創業公司中是有實踐難度的。想想也是，本來一個“很簡單”的東西，直接那現有框架做做也就幾天功夫，去他媽的可擴展性，未來的事情等有未來再說。所以我的思路也調整了一下，現在可以欠技術債，但要一直紀錄需要改變的地方或更好實踐的方式。並經常審視，並摸清實施計畫和細節。這樣等到時機成熟，說下手就可以下手。另外，在軟件開發過程中，code review 要為之前說的這個實施計畫做鋪墊。這個方式在 2016 中的工作是奏效的，當然還有上升空間，那就是怎樣在團隊內部做佈道，思路上來說首先還要從團隊內部的分享文化開始著手吧。&lt;/p&gt;
+
+&lt;p&gt;與 Docker 相關的，我們在一個核心子項目中採用了 LXC，總的來說我對 LXC／LXD 項目更加鍾意。它們比較平易近人，不強迫你的軟件架構做太多調整。我們事實上成功將 VM 替換下來了。與 Docker 相比，它更 hackable，更 Linux。&lt;/p&gt;
+
+&lt;p&gt;另外今年也實踐了 &lt;em&gt;ChatOps&lt;/em&gt;，我為公司做了一個運維機器人並繼承到了我們的 Slack、Github 和 AWS 等第三方服務上。首先這個解了我對新技術動向和趨勢的饞（最早的時候本來想給自己的小社團 &lt;em&gt;1682&lt;/em&gt; 做機器人來著），另一方面它也確實為我們的工作帶來了不少便利。你可以想像它是把命令行帶進了工作聊天群組，但是不一樣的就是，它是另一層抽象。這就大大加速和便利了團隊內部的 Ops 相關任務，不了解命令行的設計師想要測試個前端方案也不用再麻煩團隊裡的其他成員來做測試部署了。&lt;/p&gt;
+
+&lt;p&gt;工作方面的收獲當然不僅如此，大概就先放這些吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;生活和學習&quot;&gt;生活和學習&lt;/h2&gt;
+
+&lt;p&gt;其實我想過把生活和學習分開說，可是發現其實生活中有一大塊是圍繞著學習的，所以還是合併一下吧。&lt;/p&gt;
+
+&lt;p&gt;今年一件大事是我們終於把房買了，我們都很滿意的一套。因為我當時工作比較忙，辦辦花了很多心思操持買房的事情，要給她一朵大大的紅花！當然也要感謝爸爸媽媽們的支持。&lt;/p&gt;
+
+&lt;p&gt;我跟辦辦已經結婚一週年了，不過今年我們卻有長達5個月不在一起，她因為簽證問題不得不回國一段時間，所以講真的這一長段時間基本沒有什麼生活，因為一個人也不太願意出去玩，這段時間花了大半的時候學習有關音樂的東西，曾經只做做 loop，為表演修修曲子，今年終於做了自己的曲子，而且這次挑戰了更難的旋律性曲子，非舞曲。這應該算是今年學習的最大成就。從無到有做一首曲子學了很多東西。新的一年打算花一些時間學習更多 synth，如果有時間想要做一些完成度比較高的舞曲。&lt;/p&gt;
+
+&lt;p&gt;SoundCloud:&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;166&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/278237122&amp;amp;color=ff5500&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;網易雲音樂：&lt;/p&gt;
+
+&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;amp;id=430787469&amp;amp;auto=0&amp;amp;height=66&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;說到一週年，我們一週年的那天風雨大作，在去訂好的飯店的路上還下起了冰雹，想來也是個值得記錄的軼事。&lt;/p&gt;
+
+&lt;p&gt;今年另一個比較大的成就是堅持去健身房，從辦辦回國之後，我就誇下海口說要去健身房，要練出辣身材。好事是前半句話我做到了，當中要謝謝跟我一起健身的 gym buddy 永強；後半句話是練了一陣子才意識到以我們的體質其實這個不是一兩年就能做到的事情。不管怎樣，我從一個俯臥撐只能做三五個的弱雞，到20個一組做4組的稍強的弱雞，已經是很值得沾沾自喜一下的了。不過革命尚未成功，明年要繼續。另外，今年夏天開始，跟我的好朋友 Roman 一起攀岩，雖然當中有過斷斷續續，但我們一直堅持到冬天閉館為止。我們到年末的時候也已經明顯地意識到自己的狀態很好。現在我們已經可以挑戰一些技術性的線路了。十個等級我們現在應該差不多是在五六級的樣子。攀岩是一項對技術、思維、體能都有要求的運動，每次 session 下來你的左右腦思維模式都會得到鍛鍊。我相信這項運動我還會繼續，它首先很有趣，另一方面它也是對我去健身房的一種督促，畢竟身體機能跟不上，很多技巧性動作也做不了。&lt;/p&gt;
+
+&lt;p&gt;還有一件比較有成就感的事情就是今年電焊了好些個東西，當中包括跟辦辦一起做的多功能電子鬧鈴，當然也有後來的 ErgoDox 鍵盤。趁此機會也學習了一些電子硬件相關的知識，為我的 IoT 項目打打基礎。說到這一趴，我還挺為自己找了這樣的老婆自豪的。用朋友的話說，她跟外面那些妖豔貨色不一樣。是真的，你見過多少女神還跟你一起玩電焊打電動還學習天文望遠鏡的？記得肖侃兄弟說，那是雅趣，我覺得挺好。喔對了，她回國那幾個月也沒閒著，周遊列國，還學習了不少歐洲文化、藝術和歷史。最討厭跟這種好學生交朋友了，壓力太大了真是……&lt;/p&gt;
+
+&lt;p&gt;關於天文望遠鏡，這裏要鳴謝木星的耐心指導，他在百忙之餘給我寫了三封長文，非常細緻而全面地介紹了天文觀測入門者應該懂得的關於天文望遠鏡的知識，且淺顯易懂。搬了新家後，我們應該會有更好的場地去觀星了 ：）&lt;/p&gt;
+
+&lt;h2 id=&quot;2017&quot;&gt;2017&lt;/h2&gt;
+
+&lt;p&gt;2016年年初，我在GoodRead上定下今年12本書的目標，年中達成了，於是就把難度加大，把目標定到了20本，最後果然沒有達成。所以2017繼續努力看書吧，依然定20本。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/21580056/24d89b74-cfa4-11e6-9b18-16952ad166d0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2016年底，我就已經開始策劃做一個手機 App，其實心裡也有個小的目標，就是希望能做那個領域裡數一數二的App，最好再拿個什麼獎。跟書有關的一款 App，現在先賣個關子。&lt;/p&gt;
+
+&lt;p&gt;有時我會情緒不穩定，這樣不好。來年我要努力做好情緒的調節和控制。我覺得我可以首先從打遊戲開始，畢竟有些遊戲真的是難到很想摔手柄……&lt;/p&gt;
+
+&lt;p&gt;最後希望我們儘快把新家弄好吧，然後野獸和公主幸福地生活。鬼扯……好就先這樣。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">音樂筆記 070116</title><link href="https://conanblog.me/blog/music/note/2016/07/08/music-notes-070116/" rel="alternate" type="text/html" title="音樂筆記 070116" /><published>2016-07-08T22:17:34-04:00</published><updated>2016-07-08T22:17:34-04:00</updated><id>https://conanblog.me/blog/music/note/2016/07/08/music-notes-070116</id><content type="html" xml:base="https://conanblog.me/blog/music/note/2016/07/08/music-notes-070116/">&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/16710021/56c13cfc-45ef-11e6-96e7-f886154a8b8f.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;有一個事實，分析過去五年裏的上千首電子舞曲後可以發現，絕大多數曲子是A小調、D小調或E小調的（分別占42%，21%，16%）。&lt;/p&gt;
+
+&lt;p&gt;有幾個原因可能共同促使這樣的不平均分布：&lt;/p&gt;
+
+&lt;!--more--&gt;
+&lt;ul&gt;
+  &lt;li&gt;首先A小調的平行大調是C大調，這一對平行大小調是沒有升降符的，換句話說就是純白鍵—簡單。&lt;/li&gt;
+  &lt;li&gt;而最近幾年裏越來越多的 club DJ 同時也是音樂制作人，所以他們將一些音樂理論帶進現場的表演中，開始流行的一個技巧是 harmonic mix，就是要匹配曲子的調性。而為了讓自己的作品有更大可能性被大多數 DJ 播放，很多音樂制作人選擇用可以和主流電子舞曲容易匹配的調子，所以就有更多人用A小調。&lt;/li&gt;
+  &lt;li&gt;而E小調和D小調，一方面能給我們更多創新空間，又跟主流A小調有所區別，同時和聲又較其它調子更接近A小調，所以也有不少人用這倆。你可以看到篇首的 Camelot Easymix Wheel 中，D Minor 和 E Minor 就在 A Minor 的兩邊。這個輪盤是提煉過的結果，其實放到鋼琴鍵盤上看就更明白了。如下圖：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/16710068/9e98bf68-45f0-11e6-93af-a0f1fb1e7486.png&quot; alt=&quot;A Minor Scale&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/16710086/11084d7a-45f1-11e6-80c9-36602bf0f391.png&quot; alt=&quot;D Minor Scale&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/16710087/165f4b5c-45f1-11e6-9b88-635b6ab051db.png&quot; alt=&quot;E Minor Scale&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可見 D Minor 和 E Minor 分別與 A Minor 只有一個黑鍵的區別。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;最後一點也是音樂創作中最容易忽視又最重要的一點（領悟到這一點全是因為 David Byrne 寫的那本 How music works）—音樂的創作跟演奏環境分不開。很多古典樂節慢、音也長，和弦較爵士和諧也更簡單，因為演奏環境大多在類似大教堂的地方，回響會更久，所以簡化和弦，拉長音節可以讓演奏和回聲更和諧。而電子舞曲演奏地點通常空間小、嘈雜，幾乎沒有回聲。而作為舞曲音樂必須有更具穿透力的鼓點（強有力的低頻）。目前 club 音響系統中重低音工作區間是50到65赫茲，而A小調根音的A1音正好在55赫茲。（在這個頻率區間的還有降A1、升A1和B1）當然空間小了節奏也可以更快，不必擔心跟回聲和聲的事兒。當然沒了回聲這種藝術表現手法也不行，於是 club DJ 和制作人多出了一堆音頻效果器，比如reverb、echo、pingpong delay等等。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;綜上所述，就是為什麽這麽多電子舞曲用A小調、D小調和E小調。&lt;/p&gt;
+
+&lt;p&gt;至於為什麽是小調而不是大調？我也不知道…不過這幾乎是個常識，絕大多數電子舞曲都是小調的，旋律部分可能會用平行大調。&lt;/p&gt;
+
+&lt;p&gt;人們對小調的認識通常有誤區，一般教材會說大調是開心的感覺，小調是悲傷的感覺。但是！這個定義是狹隘的，相較大調，小調應該是給人更嚴肅或更專註的感覺。而事實上有很多小調曲子依然給人陽光、上揚的情緒帶動。隨手舉幾個栗子（順便安利一下本 Up 主的視頻，逃……）：&lt;/p&gt;
+
+&lt;p&gt;降B小調：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.bilibili.com/video/av5232799&quot;&gt;The Him - Feels Like Home&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;F小調：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.bilibili.com/video/av5205694&quot;&gt;Heren - Here &amp;amp; Now&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;C小調：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.bilibili.com/video/av5220294&quot;&gt;Tilka - Love&lt;/a&gt;&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">當音樂遇上開源</title><link href="https://conanblog.me/blog/music/open-source/2016/04/03/music-meets-open-source/" rel="alternate" type="text/html" title="當音樂遇上開源" /><published>2016-04-03T00:03:27-04:00</published><updated>2016-04-03T00:03:27-04:00</updated><id>https://conanblog.me/blog/music/open-source/2016/04/03/music-meets-open-source</id><content type="html" xml:base="https://conanblog.me/blog/music/open-source/2016/04/03/music-meets-open-source/">&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/14236501/0051f722-f9e5-11e5-8dd8-6ec43da87e4c.jpg&quot; alt=&quot;Moog Modular Synth&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;頁首的這幅圖片是那台非常經典的 &lt;a href=&quot;https://en.wikipedia.org/wiki/Moog_modular_synthesizer&quot;&gt;Moog Modular Synthesizer&lt;/a&gt;，&lt;a href=&quot;https://en.wikipedia.org/wiki/Giorgio_Moroder&quot;&gt;Giovanni Giorgio&lt;/a&gt; 用它把『未來的聲音』 帶進人們的音樂、人們的生活，從而有了 synth disco。那時候他並不知道自己做了一件多麼開創先河的事情。下面放一首跟我的這段話相關的曲子，有興趣的同學也可以去看看 &lt;a href=&quot;http://www.randomaccessmemories.com&quot;&gt;The Collabrators Series&lt;/a&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=eYDvxo-M0OQ&quot;&gt;Giorgio 的訪問&lt;/a&gt;。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;166&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/130363831&amp;amp;color=ff5500&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;而接下來我要說的，我覺得，並不亞於 Giorgio 的創舉：讓音樂創作和開源相遇。&lt;/p&gt;
+
+&lt;p&gt;玩電子音樂的朋友可能已經知道我要說的東西了，就是像 &lt;a href=&quot;https://splice.com&quot;&gt;Splice&lt;/a&gt; 和 &lt;a href=&quot;https://blend.io/feed&quot;&gt;Blend&lt;/a&gt; 之類的平台，類似給音樂制作人/DJ/愛好者們用的 &lt;a href=&quot;https://en.wikipedia.org/wiki/GitHub&quot;&gt;GitHub&lt;/a&gt;。有了它們，你不光可以和世界各地的音樂制作人合作項目，工程文件就像源代碼一樣可以被 fork。這將會是繼 Jazz 之後又一個最美好的時代。或許這樣的平臺是受啓發於 GitHub 或 Daft Punk 的新專輯，但我想說這是一種必然趨勢。&lt;/p&gt;
+
+&lt;p&gt;人，說到底還是社會動物，喜歡合作。在寫代碼上如此，在音樂上的合作也已是數不甚數。合作不僅僅能夠帶來技術的交流和傳承，還能激發靈感進而帶來創新和快樂。近代有個爵士樂裡起源的詞用來描述這種音樂合作——&lt;a href=&quot;https://en.wikipedia.org/wiki/Jam_session&quot;&gt;Jam&lt;/a&gt;。這些平台正是順應了人類這一本能。&lt;/p&gt;
+
+&lt;p&gt;然而，人總愛給自己找麻煩，就像在很多年有些人對開源持懷疑態度類似，對於音樂，版權問題仿佛一直是個很頭疼的問題。在 &lt;a href=&quot;https://en.wikipedia.org/wiki/Sean_Parker#Napster&quot;&gt;Sean Parker&lt;/a&gt; 和 &lt;a href=&quot;https://en.wikipedia.org/wiki/Steve_Jobs&quot;&gt;Steve Jobs&lt;/a&gt; 的幫助之下，雖然我們從無到有地實現了消費數字音樂版權，可是卻有一個更深層次的問題被積壓和惡化，就是版權化之後死無生氣的音樂創作領域。一旦再創作被限制，創新也會擱淺。&lt;/p&gt;
+
+&lt;p&gt;而在幕後悄悄解決這個問題的正是 DJ 們，或者更准確地說，早期的電台 DJ 們和之後的 Club DJ 以及地下音樂制作人們&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;。唱片公司最開始可是沒給這些 DJ 好日子過，直到後來他們發現凡是被 DJ 放過、改過的曲子都能大賣。從此放松態度，這一路發展到現在，我們經常會發現，原來一些 &lt;a href=&quot;https://en.wikipedia.org/wiki/Remix&quot;&gt;Remix&lt;/a&gt; 反而能給唱片公司帶來更多利益。其實在這一點上音樂行業和電子游戲行業非常像。Chris Dixon
+的文章 &lt;a href=&quot;https://medium.com/software-is-eating-the-world/lessons-from-the-pc-video-game-industry-3350bb7713de#.omszygo22&quot;&gt;Lessons from the PC video game industry&lt;/a&gt; 就很好地揭示了遊戲產業的發展模式，同樣也適用於音樂產業。&lt;/p&gt;
+
+&lt;p&gt;在這樣的一個大背景下，這樣的開放式合作平台應運而生。對於普通消費者來說這或許沒什麼直接影響(或許我們應該感恩更好的音樂)，不過對於音樂人來說，應該慶幸自己生在這麼美好的時代。開放給我們帶來過文藝復興和 Linux，有什麼理由讓我不相信開放能給我們更好的音樂呢？&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://amzn.to/1RyUlN8&quot;&gt;Last Night a DJ Saved My Life: The History of the Disc Jockey&lt;/a&gt; by Bill Brewster &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">Reagent 的 Figwheel REPL 方案</title><link href="https://conanblog.me/blog/note/clojure/2016/03/06/reagent-figwheel-repl-with-nrepl/" rel="alternate" type="text/html" title="Reagent 的 Figwheel REPL 方案" /><published>2016-03-06T11:42:03-05:00</published><updated>2016-03-06T11:42:03-05:00</updated><id>https://conanblog.me/blog/note/clojure/2016/03/06/reagent-figwheel-repl-with-nrepl</id><content type="html" xml:base="https://conanblog.me/blog/note/clojure/2016/03/06/reagent-figwheel-repl-with-nrepl/">&lt;p&gt;剛剛開始了壹個新 side project，這次打算用
+&lt;a href=&quot;https://github.com/reagent-project/reagent&quot;&gt;reagent&lt;/a&gt;
+做這個項目。我是直接用了 reagent 的默認模板：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lein new reagent myproject
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;開發的時候用 &lt;code class=&quot;highlighter-rouge&quot;&gt;lein figwheel&lt;/code&gt; 運行，當瀏覽器指向默認的開發地址 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:3449&lt;/code&gt;
+時，Figwheel 的
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop&quot;&gt;REPL&lt;/a&gt;
+就會出現，然後調試起來簡直不能更爽。不過這個 Figwheel REPL 有個問題，就是不支持歷史回溯，
+不像 &lt;a href=&quot;https://github.com/clojure/tools.nrepl&quot;&gt;nREPL&lt;/a&gt;，你不能上下鍵調歷史，更不能 &lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;r&lt;/kbd&gt; 搜索歷史。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;這個肯定不能忍啊，經過壹番搗鼓，算摸出個方案。記錄下來以免之後忘了……
+其實方案很直白，就是在 nREPL 裏用 Figwheel REPL。
+如果是直接用 Figwheel Leiningen 模板的，可以按照
+&lt;a href=&quot;https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl&quot;&gt;這份 wiki&lt;/a&gt;
+配置壹下。如果是用 reagent 的默認模板，其實這些配置是已經配置好了的。
+我也是看了 &lt;code class=&quot;highlighter-rouge&quot;&gt;project.clj&lt;/code&gt; 的配置才意識到的，壹開始還改了半天配置，走了些彎路，直到看到這壹段：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:figwheel {:http-server-root &quot;public&quot;
+           :server-port 3449
+           :nrepl-port 7002
+           :nrepl-middleware [&quot;cemerick.piggieback/wrap-cljs-repl&quot;
+                              ]
+           :css-dirs [&quot;resources/public/css&quot;]
+           :ring-handler khm-clj.handler/app}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;有 nREPL 相關的配置，看來是 reagent 已經配置了 nREPL，其實啟動後仔細看 STDOUT 也能看到：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Figwheel: Starting nREPL server on port: 7002
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;接下來只需要連上 nREPL 就好了。&lt;a href=&quot;https://cursive-ide.com&quot;&gt;Cursive&lt;/a&gt; 的話可以參考
+&lt;a href=&quot;https://cursive-ide.com/userguide/repl.html&quot;&gt;這份文檔&lt;/a&gt; 配置遠程 nREPL，
+我在文末的動圖裏也會演示。而純命令行的就更簡單了，直接&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lein repl :connect 7002
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;連接成功就已經成功壹半了，最後還剩兩條命令，壹是加載 &lt;code class=&quot;highlighter-rouge&quot;&gt;figwheel-sidecar.repl-api&lt;/code&gt;，
+壹是調用 &lt;code class=&quot;highlighter-rouge&quot;&gt;cljs-repl&lt;/code&gt;，調用之後 &lt;code class=&quot;highlighter-rouge&quot;&gt;namespace&lt;/code&gt; 會被自動從 &lt;code class=&quot;highlighter-rouge&quot;&gt;user&lt;/code&gt; 換到 &lt;code class=&quot;highlighter-rouge&quot;&gt;cljs.user&lt;/code&gt;：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conan@crmbp ~/workspace/khm-clj $ lein repl :connect 7002
+Connecting to nREPL at 127.0.0.1:7002
+REPL-y 0.3.7, nREPL 0.2.12
+Clojure 1.8.0
+Java HotSpot(TM) 64-Bit Server VM 1.8.0_65-b17
+    Docs: (doc function-name-here)
+          (find-doc &quot;part-of-name-here&quot;)
+  Source: (source function-name-here)
+ Javadoc: (javadoc java-object-or-class-here)
+    Exit: Control+D or (exit) or (quit)
+ Results: Stored in vars *1, *2, *3, an exception in *e
+
+user=&amp;gt; (use 'figwheel-sidecar.repl-api)
+nil
+user=&amp;gt; (cljs-repl)
+Launching ClojureScript REPL for build: app
+Figwheel Controls:
+          (stop-autobuild)                ;; stops Figwheel autobuilder
+          (start-autobuild [id ...])      ;; starts autobuilder focused on optional ids
+          (switch-to-build id ...)        ;; switches autobuilder to different build
+          (reset-autobuild)               ;; stops, cleans, and starts autobuilder
+          (reload-config)                 ;; reloads build config and resets autobuild
+          (build-once [id ...])           ;; builds source one time
+          (clean-builds [id ..])          ;; deletes compiled cljs target files
+          (print-config [id ...])         ;; prints out build configurations
+          (fig-status)                    ;; displays current state of system
+  Switch REPL build focus:
+          :cljs/quit                      ;; allows you to switch REPL to another build
+    Docs: (doc function-name-here)
+    Exit: Control+C or :cljs/quit
+ Results: Stored in vars *1, *2, *3, *e holds last exception object
+Prompt will show when Figwheel connects to your application
+To quit, type: :cljs/quit
+nil
+cljs.user=&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;最後我們來測試壹下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/13558112/f083e61a-e3c9-11e5-9556-80eaab79b6a2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;今天手賤，又忘了保存帖子，於是只能又重寫了壹遍……&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">剛剛開始了壹個新 side project，這次打算用
+reagent
+做這個項目。我是直接用了 reagent 的默認模板：</summary></entry><entry><title type="html">談民科</title><link href="https://conanblog.me/blog/thought/2016/02/20/crank-and-autodidacticism/" rel="alternate" type="text/html" title="談民科" /><published>2016-02-20T11:54:51-05:00</published><updated>2016-02-20T11:54:51-05:00</updated><id>https://conanblog.me/blog/thought/2016/02/20/crank-and-autodidacticism</id><content type="html" xml:base="https://conanblog.me/blog/thought/2016/02/20/crank-and-autodidacticism/">&lt;p&gt;近幾年「民科」這個詞的曝光度越來越大，有關的言論也是越來越多。兩件事情讓我最近一段時間一直思考關於「民科」的事兒。一是王垠寫了篇幫 Java 洗白的博客，雖然很多觀點我是讚同的，但依然不敢同意他的種種論調，尤其是他文章中出現了三次民科，而且對其嗤之以鼻。於是我就想起了第二件事，我也曾被一個 PhD 在讀生室友扣過民科的帽子，因為我曾經天真地認為某兩種植物屬於同一科。而今天就在寫這篇文章之前，正巧有個群也聊了相關的話題。所以打算寫下我的一些想法。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;首先要解決我腦子里一直存在的一個困惑：怎麼定義民科？&lt;/p&gt;
+
+&lt;p&gt;綜合&lt;a href=&quot;https://zh.wikipedia.org/wiki/民间科学家&quot;&gt;維基百科&lt;/a&gt;和跟朋友們的討論，我覺得民科大致需要符合以下幾個特征：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;极少接受过（甚至拒绝）正规科技学习及训练&lt;/li&gt;
+  &lt;li&gt;理论知识及学术素养匮乏&lt;/li&gt;
+  &lt;li&gt;热衷于相关领域研究&lt;/li&gt;
+  &lt;li&gt;製造已經解決某些重大問題的因特網言論，炒作多過學術&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;然而令我困惑的是，我之前提到的王垠和那位 PhD 在讀生也常把民科掛嘴邊，可似乎他們說的民科跟這個定義似乎有些不一樣。似乎他們指的更多的是「那些非科班出身的人，且正好有錯誤或不被他們認同的觀點」。所以這範圍一下就被擴大了，而事實上很多網民也確實在用這種擴大化的定義 。&lt;/p&gt;
+
+&lt;p&gt;我的那個例子連我自己都不會用「科學」來形容，純屬猜測，也不怪被人恥笑。而王垠說的這些人牽強地說還是有些符合上面歸納的四點的，我一開始這麼想。可後來覺得這經不起推敲，畢竟計算機科學跟其他自然科學還是有區別，我在舊博客里也寫到過，我稱之為人造科學。所以第一個特征並不符合。而第四點其實也是很主觀的。&lt;/p&gt;
+
+&lt;p&gt;今天受到前輩點撥，或許這一群很容易被歸類為「民科」的人應該被歸類到&lt;a href=&quot;https://zh.wikipedia.org/wiki/自主學習&quot;&gt;「自主學習主義」&lt;/a&gt;。這樣的一個群體其實是非常尷尬的群體，因為自己研究研究也就算了，可有了新發現還不能說，說了就會被貼標籤扣帽子。而且這帽子扣得還是因人而異，有些人因為其名望高，所以世人就跪舔，而有些人出生草根就被恥笑。想想 &lt;a href=&quot;https://en.wikipedia.org/wiki/Srinivasa_Ramanujan&quot;&gt;Srinivasa Ramanujan&lt;/a&gt;，我們應當反省自己的言行。你可能會說這也只是特例而已，這種人滿民科界（實指自主學習者）又能找到幾個，那我來說兩個小故事。&lt;/p&gt;
+
+&lt;p&gt;第一個是關於海森堡的&lt;a href=&quot;https://zh.wikipedia.org/wiki/不确定性原理&quot;&gt;不確定原理&lt;/a&gt;，有人質疑它的正確性。於是就做了個假想實驗，說假設有這麼個盒子，盒子上有個帶快門的小孔，箱子里有若干光子。再假設這個快門足夠快可以一次只放跑一個光子，&lt;script type=&quot;math/tex&quot;&gt;\Delta {t}&lt;/script&gt; 足夠小，而少了一個光子也可以用理想的秤稱量 &lt;script type=&quot;math/tex&quot;&gt;\Delta {m}&lt;/script&gt;，這麼一來那個光子的質量也就是 &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt;，再根據質能方程 &lt;script type=&quot;math/tex&quot;&gt;E=mc^2&lt;/script&gt;，可以輕鬆得到 &lt;script type=&quot;math/tex&quot;&gt;\Delta {E}&lt;/script&gt;。這麼一來海森堡的不確定原理公式 &lt;script type=&quot;math/tex&quot;&gt;\Delta {E} \times \Delta {t} &gt; h/2\pi&lt;/script&gt; 就不成立了。&lt;/p&gt;
+
+&lt;p&gt;第二個是關於超光速的。還是一個假想實驗，如果假設能製造一根長達一光年的棍子，A和B站在棍子兩端，A用棍子戳B一下，動能的傳遞能在瞬間完成，這就自然實現了超光速。&lt;/p&gt;
+
+&lt;p&gt;這倆都有問題你們看出來了嗎？&lt;/p&gt;
+
+&lt;p&gt;第一個的話，如何稱量 &lt;script type=&quot;math/tex&quot;&gt;\Delta {m}&lt;/script&gt;呢，拿個彈簧秤好了，設置一個零點，然後看箱子位移多少。那假設位移是 &lt;script type=&quot;math/tex&quot;&gt;\Delta {q}&lt;/script&gt;，這樣箱子就在引力場里移動了 &lt;script type=&quot;math/tex&quot;&gt;\Delta {q}&lt;/script&gt;。但根據廣義相對論的紅移效應，時間的快慢也會相應改變 &lt;script type=&quot;math/tex&quot;&gt;\Delta {T}&lt;/script&gt;。再根據公式最後還是能推導出 &lt;script type=&quot;math/tex&quot;&gt;\Delta {T} \Delta {E} &gt; h&lt;/script&gt;。這反而再次證明了理論的正確性。&lt;/p&gt;
+
+&lt;p&gt;而第二個這個實驗的假設也得重新思考。理想的剛體並不存在，棍子會縣收縮再伸展，動能在棍子內部只能以機械波的速度傳遞，從而低於光速。&lt;/p&gt;
+
+&lt;p&gt;這兩個雖然第二個看起來更小兒科一點，但其實其錯誤是很相似的。在今天，可能很多人都會把他們叫做民科。只是剛剛說的第一個故事是發生在1930年第六屆索爾維會議，而這個假想實驗正是著名的&lt;a href=&quot;https://en.wikipedia.org/wiki/Bohr–Einstein_debates&quot;&gt;愛因斯坦光盒實驗&lt;/a&gt;。通過這兩個故事我其實是想說，拋開人物、標籤，故事是一樣的，不一樣的只是自己。&lt;/p&gt;
+
+&lt;p&gt;忽然我就想起了 Paul Graham 的那篇&lt;a href=&quot;http://www.douban.com/note/344097029/&quot;&gt;《不能說的話》&lt;/a&gt; (&lt;em&gt;&lt;a href=&quot;http://www.paulgraham.com/say.html&quot;&gt;What you can’t say&lt;/a&gt;&lt;/em&gt;)，雖然歷史在一遍遍重演，這幾乎是一種自然規律，但我還是不禁感歎，這樣的現象是多麼可悲的事情。我認為對待言論要動腦思考敞開胸懷，不要傲慢不要偏見，即便是小眾論調也要公平對待，更加不要因為別人的出生或經歷而妄下斷言。對於異議不要動輒就是貼標籤，相反你應該嘗試駁倒對方，更不要因為自己的傲慢與偏見來給別人貼標籤。時不時地逆潮流思考也是有好處的，內省的思辨往往能讓我們保持清醒。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">近幾年「民科」這個詞的曝光度越來越大，有關的言論也是越來越多。兩件事情讓我最近一段時間一直思考關於「民科」的事兒。一是王垠寫了篇幫 Java 洗白的博客，雖然很多觀點我是讚同的，但依然不敢同意他的種種論調，尤其是他文章中出現了三次民科，而且對其嗤之以鼻。於是我就想起了第二件事，我也曾被一個 PhD 在讀生室友扣過民科的帽子，因為我曾經天真地認為某兩種植物屬於同一科。而今天就在寫這篇文章之前，正巧有個群也聊了相關的話題。所以打算寫下我的一些想法。</summary></entry><entry><title type="html">一些關於假新聞和標題黨的想法</title><link href="https://conanblog.me/blog/china/internet/thought/2016/01/03/we-media-fake-news/" rel="alternate" type="text/html" title="一些關於假新聞和標題黨的想法" /><published>2016-01-03T11:03:16-05:00</published><updated>2016-01-03T11:03:16-05:00</updated><id>https://conanblog.me/blog/china/internet/thought/2016/01/03/we-media-fake-news</id><content type="html" xml:base="https://conanblog.me/blog/china/internet/thought/2016/01/03/we-media-fake-news/">&lt;p&gt;最近又有一些自媒體的假新聞被忽然炒熱，比如最近一篇說蘋果收購特斯拉的。不管是愚人節假新聞被挖墳，
+還是挖墳、傳播者無腦。假新聞、標題黨這兩年已經泛濫，自媒體更是搞臭了自己的名聲。
+表面看，這事兒一半關於內容制造者的人品，另一半關於讀者和傳播者素質，我相信 Fenng 的&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MjM5ODIyMTE0MA==&amp;amp;mid=401811966&amp;amp;idx=1&amp;amp;sn=76a53dbe421dcba15e923ce79d832eb0&amp;amp;scene=5&amp;amp;srcid=01032MbUPhPM67o8GPanOOSd#rd&quot;&gt;這篇文章&lt;/a&gt;已經做了很“給力”的討論。&lt;/p&gt;
+
+&lt;p&gt;前不久我也在 Twitter 上跟幾個推友討論了相關話題。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/20160103/twitter.png&quot; alt=&quot;為保護推友隱私，已經把推號和頭像遮掉&quot; /&gt;&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;我這篇推文雖然得到了很多人的贊同，然而我覺得這並不是問題的全貌和根本。那根本是什麼？我覺得是誠信缺失。
+你可能覺得這豈不是廢話，可是我想說的不僅僅是造假自媒體和惡意傳播者的誠信缺失，更是社會誠信缺失的問題。&lt;/p&gt;
+
+&lt;p&gt;在進入到分析之前我想先分享一下誠信較高的社會裡自媒體是如何生存的。拿 Medium 來說吧，
+它是目前運營得最成功的博客平台之一。他們公司也很早就開始想如何犒勞寫手/作家。
+按照點擊量付正相關的酬勞似乎合情合理，畢竟他們是互聯網公司，流量和用戶數就能直接和間接
+給他們帶來經濟利益。
+不過他們第一個槍斃了這個想法，因為這種模式極有可能讓人們忽視真正高質量的文章。
+所以是毋庸置疑的情懷牌，當然不光文章質量有情懷，整個網站的 UI/UX 也是處處體現情懷。
+這裡就不多說了，感興趣的同學可以自己去仔細體驗。&lt;/p&gt;
+
+&lt;p&gt;而發文的那些專業與非專業的作者們對 Medium 的態度呢？大多數人覺得 Medium 是一個提高知名度的平台，
+他們用它來 &lt;strong&gt;建立&lt;/strong&gt; 自己的公眾形像和聲譽，最終從這些知名度和公眾形像中，他們能獲得一定的經濟利益。
+當然 Medium 也會給一些明星作家一定的報酬，而我覺得這也是建立在之前這些明星作家們的 &lt;strong&gt;積累&lt;/strong&gt; 之上。
+而其它類似的自媒體平台也是大同小異。&lt;/p&gt;
+
+&lt;p&gt;所以你看，&lt;strong&gt;在誠信較好社會，人們更加講求運營，一種積累的過程。行為和經濟利益之間往往不是直接的關系。&lt;/strong&gt;
+注意！（請用老羅的方式念）這一點很重要，因為在誠信較缺失的社會體系裡，
+行為和經濟利益之間的關系往往是更直接的。&lt;/p&gt;
+
+&lt;p&gt;那再來看看在華人社會比較流行的這些自媒體平台。朋友圈、微博、以及類似 Medium 的平台簡書。
+他們有一個共同點。這也多虧了老羅的發布會我才意識到。就是“打賞”這個功能。我並不是不喜歡這個功能，
+事實上我自己也做過產品，換我我也會加同樣的功能。
+之所以加這個功能，說明產品經理們已經意識到了某種更深層的脈動。順便插一句，
+在寫這篇文章做調查時我也發現了一些美國的創業公司試圖給 Medium 添加類似“打賞”的功能，可是最終都
+因響應不強烈，不了了之了。&lt;/p&gt;
+
+&lt;p&gt;接著說回這個打賞的事兒。華人相對來說不喜歡分享，“自掃門前雪”、“肥水不流外人田”、
+“多一事不如少一事”、“槍打出頭鳥”等思想已經深深影響著我們的行為。
+而對於大多數中國網民來說，生活雖不到艱難的地步，但也沒有閑到天天有時間寫文章。
+尤其是一些中產，有思想有知識，但是沒時間做沒有報酬的“閑事”。
+所以產品經理們為了換得更多的質量相對高的內容（從而得到更多用戶和流量），
+他們要把“閑事”變成“稍正的事”。&lt;/p&gt;
+
+&lt;p&gt;情懷牌在這個時候就不管用了，表面上，作家/寫手要養家糊口、或賺點外快。
+實際上，想想之前我說的行為和經濟利益的關系，
+在誠信相對缺失的社會，寫作這種行為和經濟利益如果還是間接關系，還有多少人買賬？
+必須要直接，而且要赤裸裸地直接，要有視覺和數字的直觀衝擊。&lt;/p&gt;
+
+&lt;p&gt;那誠信在這兒起什麼作用？誠信是現金的緩衝帶，越沒有信任就越是要“一手交錢一手交貨”，
+越有信任就越可以“賒賬”。可誠信這東西怎麼來呢？靠 &lt;strong&gt;積累&lt;/strong&gt;。
+人都是社會動物，不可避免地會相互模仿，
+當“積累”這種“吃力不討好”的方式在一個社會裡被一些不誠信的“抄近路”的方式打敗時，
+人們自然會學習“抄近路”，直到人們發現“抄近路”的弊端大於利益時才會罷休。這不可避免，即便是現在已經
+很誠信的社會在早期也面臨過這樣的歷史進程。&lt;/p&gt;
+
+&lt;p&gt;要改變這一現狀並非易事，在經濟條件好，更富足的社會，這會簡單一些，畢竟更多人追求情懷。
+說這個並沒有什麼意義，因為強國幾乎是共識。而我想說的是用經濟體系引導社會意識。
+我覺得馬雲想要建立支付信用體系就是一個很好的開端。其實美國社會很大程度地建立在信用體系之上，
+它影響著美國人的行為模式。&lt;strong&gt;當在一個社會裡，人與機構要為自己以往的言行負責任時，
+人們才會意識到“積累”的重要性，從而才有真正的“運營”。&lt;/strong&gt;&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">最近又有一些自媒體的假新聞被忽然炒熱，比如最近一篇說蘋果收購特斯拉的。不管是愚人節假新聞被挖墳，
+還是挖墳、傳播者無腦。假新聞、標題黨這兩年已經泛濫，自媒體更是搞臭了自己的名聲。
+表面看，這事兒一半關於內容制造者的人品，另一半關於讀者和傳播者素質，我相信 Fenng 的這篇文章已經做了很“給力”的討論。</summary></entry><entry><title type="html">2015 -&amp;gt; 2016</title><link href="https://conanblog.me/blog/life/thought/2015/12/31/2015-2016/" rel="alternate" type="text/html" title="2015 -&gt; 2016" /><published>2015-12-31T13:53:55-05:00</published><updated>2015-12-31T13:53:55-05:00</updated><id>https://conanblog.me/blog/life/thought/2015/12/31/2015-2016</id><content type="html" xml:base="https://conanblog.me/blog/life/thought/2015/12/31/2015-2016/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;又是一年忙忙碌碌，可能光從這兩年的博客發表數量就可以看出來。今年跨年，是該稍微寫一點東西了，
+免得以後忘記這兩年都幹了些啥。&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;工作&quot;&gt;工作&lt;/h2&gt;
+
+&lt;p&gt;2013 年中，我加入了一家為金融公司做私有雲的創業公司。開始的一年多做得非常開心。
+因為做的東西很有挑戰，我到現在還記得加入的第二天就接到了一個獨立任務──寫一個 in-memory
+graph database，而且不能太臃腫，因為要放進 OpenVSwitch 交換機里跑。之後幹了半個禮拜，
+在我離開這家公司時，這個項目依然還在我們數據中心的每一台交換機里運行著。當然其實後來整個
+OpenVSwitch 的軟件框架基本都是我寫的。
+這也是那一年半里我每天工作的重心。在這個過程中，我的搭檔──一名網絡工程專家，
+以及我的上司──一名總是比我多想一步的實時高頻系統專家，都給予了很多的鼓勵和幫助，
+不論是硬技術方面的還是軟技術方面的。之後，有了一些人事方面的變動，我老闆跳槽了，
+於是我便慢慢變成了個自由人，我也越來越多地涉及到公司產品的其它部份，
+尤其是數據庫和數據中心方面的項目。好的不好的事、物都經歷過，這些都是寶貴的經驗。
+在我離開的時候，公司好幾個組的夥伴都來跟我說願做我的推薦人，這就讓我很感動。
+這種肯定是為我踐行的最好的禮物。&lt;/p&gt;
+
+&lt;p&gt;2015 年中，我決定跳槽了。過去的兩年，我成長了，公司也成長了，它再也不是一家創業公司；然而我還是
+喜歡創業公司。一次機緣巧合的機會，我去哥大參加一個清華北美地區校友會組織的座談會（應該是我人生
+中最接近清華的一次吧，哈哈），結識了一位同是嘉賓的哥大教授。那會兒他剛剛和他的一個博士學生建立了一
+個有學術背景的創業公司。當中略過幾次吃飯聊天，大半年之後我便加入了他的公司。現在我剛剛加入這家
+公司一個多月吧，它還跟小嬰兒似的，還有很多待做的事情，從架構到功能，從 UI/UX 到代碼。
+當然這一切都得建立在團隊對我的信任上。我相信這只是個時間問題。希望 2016 年我能幫助它成長得更好。&lt;/p&gt;
+
+&lt;h2 id=&quot;生活&quot;&gt;生活&lt;/h2&gt;
+
+&lt;p&gt;2014 年初的時候，我邂逅了她，我現在的妻子。她很美，也比我聰明。在我眼裡她無限接近于完美。
+我經常偷樂，沒想到我這德行還能追到這麼好的姑娘。在她的細心照料下，我的生活有了質的飛越，
+身上的毛病也少了。我很感謝她，在迷茫的時候她幫我解惑，她的支持給我繼續執行的勇氣，
+另外她還容忍我玩電子音樂、夢話說程序語言設計，還耐心聽我嘮叨那些偏門冷知識。
+來年我依然會努力照顧好她，不給她惹麻煩 ;)&lt;/p&gt;
+
+&lt;p&gt;去年回了一次國，時間上也是匆匆忙忙，并沒有來得及見朋友。父母和祖輩都去看望過。都還好，
+只是許久不見，他們都老了。我爸雖然還壯實，但是跟我記憶里的樣子已經不一樣了。
+忍不住就想起朱自清的《背影》。想到就心疼和無奈。剛認識我老婆那會兒，她問我可有我爸媽的照片，
+我那時才意識到我沒有我爸的照片，這麼多年我腦子里還是那個開車送我上學時的他。我爸還不會視頻聊天，
+所以這些年一直都是我打網絡電話給他，可是每次都是匆匆幾句話。近幾年，歲月改變了他，想來開始
+掛念孩子家人了，才多了幾通十幾分鐘的電話。最近我媽那邊傳來消息，說是外公快不行了，六七年了，
+她一個人照料得了癌症的外公。也是非常不容易。想想要不是你們的辛苦，我哪裡有這般無憂的生活？
+希望未來我能常回家看看吧。&lt;/p&gt;
+
+&lt;p&gt;對了，我要減肥了，BMI逼近正常和肥胖的那條交界線了。&lt;/p&gt;
+
+&lt;h2 id=&quot;學習&quot;&gt;學習&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/20151231/2016resolution.png&quot; alt=&quot;2016 Resolution&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;這幾年學習倒是沒斷過，工作必須要學的和自己感興趣的。這一點還算欣慰。2015 年初我在 GoodReads
+上定下一年 30 本書的挑戰，年末看看自己才差不多完成了一半。不過沒完成挑戰倒沒什麼要緊的，
+想想我讀的書畢竟不是暢銷小說，知識密度大多了。
+其實左邊這幅圖片的背景就是我今年翻閱過的書籍的一部份。&lt;/p&gt;
+
+&lt;p&gt;今年還在 coursera 上上了一些伯克利音樂學院的課，深受啟發。我又看到來年有一些新課，找個時間還是
+會再去上一上。&lt;/p&gt;
+
+&lt;p&gt;學習方面繼續保持吧。現在唯一覺得時間不太夠用，之後等生活進一步穩定下來應該會有更多時間吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;創業&quot;&gt;創業&lt;/h2&gt;
+
+&lt;p&gt;創業的夢一直在做，想法也一直有，也經常和朋友們分享。再積累幾年，我會再回來的。
+今年國內的資本市場也是動盪的一年。一旦錯過一個好窗口，就有可能錯過整片江山。
+我曾投資的一家公司就遇到了不小的麻煩。不管怎樣，兄弟繼續加油！&lt;/p&gt;
+
+&lt;h2 id=&quot;2015-2016&quot;&gt;2015-&amp;gt;2016&lt;/h2&gt;
+
+&lt;p&gt;就這樣吧，一篇沒什麼營養的總結，寫在 2015 的最後一天。對來年我也沒什麼高大上的願景，
+踏踏實實做好眼前事兒吧。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">Ableton Live 9 Automation How-To</title><link href="https://conanblog.me/blog/music/mooc/2015/08/30/ableton-live-9-automation-how-to/" rel="alternate" type="text/html" title="Ableton Live 9 Automation How-To" /><published>2015-08-30T15:53:32-04:00</published><updated>2015-08-30T15:53:32-04:00</updated><id>https://conanblog.me/blog/music/mooc/2015/08/30/ableton-live-9-automation-how-to</id><content type="html" xml:base="https://conanblog.me/blog/music/mooc/2015/08/30/ableton-live-9-automation-how-to/">&lt;blockquote&gt;
+  &lt;p&gt;Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course &lt;a href=&quot;https://www.coursera.org/learn/music-production/home/welcome&quot;&gt;Introduction to Music Production&lt;/a&gt; is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is the 3rd week assignment. In this one, I am going to demonstrate the automation in Ableton Live 9. Similar to previous tutorial, I will also divide this topic into several sub-topics. The audio track used in the examples is Lion original mix by Dannic. I will only play the first few bars.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;automation-recording&quot;&gt;Automation Recording&lt;/h2&gt;
+
+&lt;p&gt;Animation recording in Ableton Live is very easy. You just need to remember to enable the &lt;em&gt;Automation Arm&lt;/em&gt; button before hit the record button. The following short video shows how to do so.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/K4yK6W0vdOk&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;automation-editing&quot;&gt;Automation Editing&lt;/h2&gt;
+
+&lt;p&gt;In this section I am going to show you how to:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Basic editing&lt;/li&gt;
+  &lt;li&gt;use the &lt;em&gt;Draw Mode Switch&lt;/em&gt; (aka pencil tool)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;general-editing&quot;&gt;General Editing&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Create: click the place you want to add a point on the automation line&lt;/li&gt;
+  &lt;li&gt;Move: drag the point you want move, release at the place you want&lt;/li&gt;
+  &lt;li&gt;Delete: just click on the point you don’t want&lt;/li&gt;
+  &lt;li&gt;Curve Automation Line: When mouse close (not over yet) to the automation line, the line will turn to blue color. Hold Option/Alt key and click drag up and down&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/JMPnozZmyxI&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Tip: hold command key and click drag can be helpful if you want to precisely adjust the value of the point. So when doing so, you can only move the point up and down, and the value changing sensitivity will be lower.&lt;/p&gt;
+
+&lt;h3 id=&quot;pencil-tool&quot;&gt;Pencil Tool&lt;/h3&gt;
+
+&lt;p&gt;In &lt;em&gt;Clip View&lt;/em&gt; pencil tool can be used to draw MIDI and envelopes; in &lt;em&gt;Arrangement View&lt;/em&gt; we can use it for automation line editing. By default, the drawing will be very rigid. The edit size depends on the grid size. However if you want to draw freely, you can hold the Option/Alt key and draw. The command key tip also works with pencil tool.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/_2s91azSfXQ&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;reflection&quot;&gt;Reflection&lt;/h2&gt;
+
+&lt;p&gt;After this assignment, I have better understanding of automation, and also have a solid knowledge how should I utilizing Ableton Live automation functions.&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course Introduction to Music Production is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..</summary></entry><entry><title type="html">Recording MIDI</title><link href="https://conanblog.me/blog/music/mooc/2015/08/22/recording-midi/" rel="alternate" type="text/html" title="Recording MIDI" /><published>2015-08-22T14:06:50-04:00</published><updated>2015-08-22T14:06:50-04:00</updated><id>https://conanblog.me/blog/music/mooc/2015/08/22/recording-midi</id><content type="html" xml:base="https://conanblog.me/blog/music/mooc/2015/08/22/recording-midi/">&lt;p&gt;This post is the week 2 assignment for the course &lt;a href=&quot;https://www.coursera.org/learn/music-production/home/welcome&quot;&gt;Introduction to Music Production&lt;/a&gt;. You can find my introduction and assignment 1 in here: &lt;a href=&quot;https://conanblog.me/blog/music/mooc/2015/08/15/visualizing-sound/&quot;&gt;Visualizing Sound&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Quote my self introduction:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course &lt;a href=&quot;https://www.coursera.org/learn/music-production/home/welcome&quot;&gt;Introduction to Music Production&lt;/a&gt; is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This time my topic will be focused on &lt;em&gt;MIDI recording&lt;/em&gt;. I would like to use divide and conquer strategy to explain this topic. The following sub-topics will be covered in this tutorial:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Pre-recording preparation:&lt;/li&gt;
+  &lt;li&gt;Recording&lt;/li&gt;
+  &lt;li&gt;Basic editing&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;pre-recording-preparation&quot;&gt;Pre-recording preparation&lt;/h2&gt;
+
+&lt;h3 id=&quot;checklist&quot;&gt;Checklist&lt;/h3&gt;
+&lt;p&gt;First, let’s make sure the project is setup properly. Here is a checklist:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Proper project name and location&lt;/li&gt;
+  &lt;li&gt;Digital audio preferences&lt;/li&gt;
+  &lt;li&gt;Recording file type&lt;/li&gt;
+  &lt;li&gt;Hardware settings&lt;/li&gt;
+  &lt;li&gt;Buffer size&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The following video showed how I did the checks.&lt;/p&gt;
+
+&lt;iframe width=&quot;720&quot; height=&quot;450&quot; src=&quot;https://www.youtube.com/embed/5CB7wxnI-mc&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h3 id=&quot;prepare-recording&quot;&gt;Prepare recording&lt;/h3&gt;
+
+&lt;p&gt;As you may noticed, the default template of Ableton Live came with the 2 MIDI tracks and 2 audio tracks created. For demo purpose, I will delete all the MIDI tracks, so we can preparing the track.&lt;/p&gt;
+
+&lt;p&gt;In the following video I will show you how to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;preparing the track&lt;/li&gt;
+  &lt;li&gt;adding the instrument&lt;/li&gt;
+  &lt;li&gt;config the click and countoff&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;iframe width=&quot;720&quot; height=&quot;450&quot; src=&quot;https://www.youtube.com/embed/TXAVZSsZ8f0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;recording&quot;&gt;Recording&lt;/h2&gt;
+
+&lt;p&gt;Now we are ready to record some notes. Since I am bad at playing any instrument, let me also enable &lt;em&gt;metronome&lt;/em&gt; to help me in beat:&lt;/p&gt;
+
+&lt;iframe width=&quot;720&quot; height=&quot;450&quot; src=&quot;https://www.youtube.com/embed/qN-s08UWcCE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;basic-editing&quot;&gt;Basic editing&lt;/h2&gt;
+
+&lt;p&gt;In the final part, I will demonstrate how to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;modify notes length&lt;/li&gt;
+  &lt;li&gt;change grid setting&lt;/li&gt;
+  &lt;li&gt;quantize&lt;/li&gt;
+  &lt;li&gt;modify velocity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;iframe width=&quot;720&quot; height=&quot;450&quot; src=&quot;https://www.youtube.com/embed/QtosZgB72Y4&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;reflection&quot;&gt;Reflection&lt;/h2&gt;
+
+&lt;p&gt;In the progress, I figured out how to config my MIDI device and DAW. And this time, I finally correctly using quantization. The process also helped me to know better the editing tool in the DAW.&lt;/p&gt;
+
+&lt;p&gt;Thank you for your time and feedback :)&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">This post is the week 2 assignment for the course Introduction to Music Production. You can find my introduction and assignment 1 in here: Visualizing Sound.</summary></entry><entry><title type="html">Visualizing Sound</title><link href="https://conanblog.me/blog/music/mooc/2015/08/15/visualizing-sound/" rel="alternate" type="text/html" title="Visualizing Sound" /><published>2015-08-15T23:18:33-04:00</published><updated>2015-08-15T23:18:33-04:00</updated><id>https://conanblog.me/blog/music/mooc/2015/08/15/visualizing-sound</id><content type="html" xml:base="https://conanblog.me/blog/music/mooc/2015/08/15/visualizing-sound/">&lt;p&gt;&lt;img src=&quot;/images/20150815/wave-cover.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course &lt;a href=&quot;https://www.coursera.org/learn/music-production/home/welcome&quot;&gt;Introduction to Music Production&lt;/a&gt; is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..&lt;/p&gt;
+
+&lt;p&gt;This blog is for the week 1 lectures assignment. I would not consider this as teaching, this one will be more like a reviewing and reflecting.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;h2 id=&quot;study&quot;&gt;Study&lt;/h2&gt;
+
+&lt;h3 id=&quot;why&quot;&gt;Why&lt;/h3&gt;
+
+&lt;p&gt;Let us start with why. Why do we need sound visualization? I think the point of sound visualization is to make vague problem clear. Sound has many aspects, in the first few lectures, we have learnt three essentials of them: &lt;em&gt;propagation&lt;/em&gt;, &lt;em&gt;amplitude&lt;/em&gt;, and &lt;em&gt;frequancy&lt;/em&gt;. I didn’t include &lt;em&gt;timbre&lt;/em&gt; here is because that timbre is a combination of different frequencies, it doesn’t sound like a essential to me. Another implicit essential about sound is time, I have to mention it because it will be one axis in some of our diagrams. When we are looking at a problem, we want to &lt;strong&gt;easily grasp the global overview, and at the meanwhile maintain the precision&lt;/strong&gt;. Luckily that mathematician and physicist has already built some handy tools (in here I considered a data representation methodology as a tool, but not a specific software).&lt;/p&gt;
+
+&lt;p&gt;A good case study would be DJing. When you are performing, we want to get the overview of the track, &lt;strong&gt;quickly&lt;/strong&gt;. You can of course hearing/scanning the next track with your headphone, but it is just not good enough and quick enough. I personally rely on the waveform display a lot. The following screenshot is from Serato DJ’s waveform section.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/20150815/waveform.png&quot; alt=&quot;Serato DJ Waveform&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From the waveforms’ shape, I can tell:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;where are the kicks, hi-hats, and vocals&lt;/li&gt;
+  &lt;li&gt;section of the track&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;From the color of the waveforms, I can tell how the EQ changes cross the track. Quote from the Serato site:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The EQ Colored waveform option changes the waveform colors in Serato DJ to reflect your EQ changes. For example, taking out the bass will remove all the red from the waveform, taking out the high end will remove all the blue and taking the midrange out will remove all the green.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;what&quot;&gt;What&lt;/h3&gt;
+
+&lt;p&gt;What are these tools as in diagrams? The first is &lt;em&gt;Oscilloscope&lt;/em&gt;. It is only showing two aspects of sound: amplitude (Y axis) and time (X axis). The larger the range of Y axis, the higher the amplitude. For the time axis, the time window usually will be few millisecond in our case.&lt;/p&gt;
+
+&lt;p&gt;Frequency is also in the diagram, it is just implicit. The following animation is from &lt;a href=&quot;https://en.wikipedia.org/wiki/Oscilloscope&quot;&gt;Oscilloscope wikipedia page&lt;/a&gt;. You can see that within the same period of time, the more dense the waveform, the frequency is higher.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/20150815/CROtperdivisionincrease.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The next is &lt;em&gt;spectrum&lt;/em&gt; analyzer. In the oscilloscope diagram, we can only observe relative frequency change, it cannot describe the frequency aspect accurately. We use spectrum analyzer for this. This time, the X axis is frequency and the Y axis is the amplitude. Remember Loudon mentioned that when people talking about 1K, 2K, 5K, we should have some idea on mapping these numbers to our hearing? I actually did try to feel the numbers. What I did is playing note using a Sin synth, which is also hooked to a spectrum analyzer. Here is what I found:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/20150815/1k.png&quot; alt=&quot;1K&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/20150815/2k.png&quot; alt=&quot;2K&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/20150815/5k.png&quot; alt=&quot;5K&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So what is middle c (C4) frequency?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/20150815/midc.png&quot; alt=&quot;Middle C&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The last one is &lt;em&gt;Sonogram&lt;/em&gt;. The &lt;em&gt;spectrum&lt;/em&gt; diagram is like a snapshot of the sound in that moment. We could not tell the changes over time. We use sonogram to see these dynamics. In sonogram, the X axis is the time, and the Y axis is the frequency. The third dimension is amplitude, which is represented by color.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;reflection&quot;&gt;Reflection&lt;/h2&gt;
+
+&lt;p&gt;Before the course, I never actually pay much attention on the waveforms. until after then, I realized I actually rely on waveforms or sound visualization a lot. In the post, I not only reviewed the things we have learnt, but also spent some time to explain my use case as a case study. To do that, I actually need to dig into the Serato DJ software manual. Just want to make sure the information I have provided is accurate. I have also tested the spectrum in my DAW. A lot of things are just making more sense now.&lt;/p&gt;
+
+&lt;p&gt;That is about it. &lt;strong&gt;Thank you for your reading, and you are welcome to leave feedback and criticize&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;extra&quot;&gt;Extra&lt;/h2&gt;
+
+&lt;p&gt;While I am searching around about sound visualization, I found an amazing video clip:&lt;/p&gt;
+
+&lt;iframe src=&quot;https://player.vimeo.com/video/111593305&quot; width=&quot;720&quot; height=&quot;307&quot; frameborder=&quot;0&quot; webkitallowfullscreen=&quot;&quot; mozallowfullscreen=&quot;&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href=&quot;https://vimeo.com/111593305&quot;&gt;CYMATICS: Science Vs. Music - Nigel Stanford&lt;/a&gt; from &lt;a href=&quot;https://vimeo.com/user1852409&quot;&gt;Nigel Stanford&lt;/a&gt; on &lt;a href=&quot;https://vimeo.com&quot;&gt;Vimeo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;With the knowledge of the first 4 lectures and basic physics, we should be able to reveal the secrets in this video.&lt;/p&gt;
+
+&lt;p&gt;Here are the hints: vibration, longitudinal wave, camera ;)&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;Cover image copyright by Daniel Palacios&lt;/small&gt;&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
