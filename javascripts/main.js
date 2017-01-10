@@ -49,6 +49,11 @@ function addToTop() {
 $(document).ready(function() {
   detectIframeInView();
   addToTop();
+
+  var ts_switch = document.querySelector('#ts-switch');
+  var ts_label = document.querySelector('#side-label');
+  var init = new Switchery(ts_switch);
+
   var scrollTimer = null;
   $(window).on('scroll', function() {
     if (scrollTimer) {
@@ -88,6 +93,11 @@ $(document).ready(function() {
     $("html, body").stop().animate({scrollTop:0}, '500', 'swing', function() {
       document.title = $(response).filter("title").text();
       pageContentClone.css('opacity', 0);
+      if (ts_switch.checked) {
+          TongWen.trans2Trad(document);
+      } else {
+          TongWen.trans2Simp(document);
+      }
       $('.page-content').after(pageContentClone);
       $('.page-content').animate(
         {
@@ -148,4 +158,18 @@ $(document).ready(function() {
         opacity: 0 }
       );
   });
+
+  ts_switch.onchange = function() {
+      if (ts_switch.checked) {
+          TongWen.trans2Trad(document);
+          ts_label.innerHTML = "繁";
+      } else {
+          TongWen.trans2Simp(document);
+          ts_label.innerHTML = "简";
+      }
+  };
+
+
+
+
 });
