@@ -94,9 +94,9 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p><a href="https://conanblog.me/blog/thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 Wikipedia。</p>
+    <p><a href="/blog/thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 Wikipedia。</p>
 
-<p>Python本身是具有惰性的，我在<a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">《Python 調優筆記 · 經驗主義調優》</a>的「懶惰&gt;勤勞」小節就已經說了一些。我們接下來要看看Python中更高級一點的惰性用法。<!--more--></p>
+<p>Python本身是具有惰性的，我在<a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">《Python 調優筆記 · 經驗主義調優》</a>的「懶惰&gt;勤勞」小節就已經說了一些。我們接下來要看看Python中更高級一點的惰性用法。<!--more--></p>
 
 <h1 id="generator">Generator</h1>
 
@@ -155,7 +155,7 @@
 </code></pre>
 </div>
 
-<p>Generator 看起來是個好物，但是它也有自己的使用注意事項，這裏我主要說一說除了惰性求值共性問題（見<a href="https://conanblog.me/blog/thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>）之外的注意事項。</p>
+<p>Generator 看起來是個好物，但是它也有自己的使用注意事項，這裏我主要說一說除了惰性求值共性問題（見<a href="/blog/thought/2013/06/09/just-in-case-vs-just-in-time/">上一篇日誌</a>）之外的注意事項。</p>
 
 <p>第一點非常淺顯易懂，Generator 產生的序列只能使用一次，也就是說，如果生成的序列需要多次使用的話，還是選擇<code class="highlighter-rouge">list</code>。不要硬用 Generator，強扭的瓜不甜，你懂的。</p>
 
@@ -211,7 +211,7 @@
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">my_filter</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
    <span class="o">...</span><span class="p">:</span>     <span class="k">print</span> <span class="s">'Checking </span><span class="si">%</span><span class="s">d'</span> <span class="o">%</span> <span class="n">x</span>
    <span class="o">...</span><span class="p">:</span>     <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">==</span> <span class="mi">0</span>
-   <span class="o">...</span><span class="p">:</span> 
+   <span class="o">...</span><span class="p">:</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="nb">filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">100</span><span class="p">))[:</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">Checking</span> <span class="mi">0</span>
@@ -350,7 +350,7 @@
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">factors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
    <span class="o">....</span><span class="p">:</span>     <span class="k">return</span> <span class="n">ifilter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">n</span> <span class="o">%</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">takewhile</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">,</span> <span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)))</span>
-   <span class="o">....</span><span class="p">:</span> 
+   <span class="o">....</span><span class="p">:</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="nb">map</span><span class="p">(</span><span class="nb">set</span><span class="p">,</span> <span class="n">imap</span><span class="p">(</span><span class="n">factors</span><span class="p">,</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">60</span><span class="p">])))</span>
 <span class="n">Out</span><span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -433,12 +433,18 @@
 
 </footer>
 
-<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_s2t-d27f0ad57a0f47750d3e861a7405162f6fabf05a17c0e27c758b77a180e219d7.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_t2s-d93925ae251ab1993d8d61db4fbef14dfac804ba9e8af108f9d94851eef7cb84.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_ps2t-3976433ff99f4ca8453c2871ac34e10abaa11dbca47621c622d90e220d92ecca.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
+<script type="text/javascript" src="/assets/main-f0d437cbc0a618fce5f013cf4510ba93697da5e64acd9017b093e9c2e3705f1d.js"></script>
+<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script language="JavaScript" src="/javascripts/main.js"></script>
+<script language="JavaScript" src="/javascripts/main.js"></script> -->
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 

@@ -104,7 +104,7 @@
 
 <p>在 Python 中，對 <code lang="python" class="highlighter-rouge">list</code>、<code lang="python" class="highlighter-rouge">collections.deque</code>、<code lang="python" class="highlighter-rouge">set</code>、<code lang="python" class="highlighter-rouge">dict</code> 的各種操作的時間複雜度可以在<a href="http://wiki.python.org/moin/TimeComplexity">這裏找到</a>。</p>
 
-<p>下面我就羅列各種「前人的經驗」。其實記住就可以，不過我還是用簡短的描述大致解釋一下原因,便於更加深刻地理解 Python 內部。有興趣的話其實可以用<a href="https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/">「理性主義」的分析方法</a>來看看下面的這些「經驗」。</p>
+<p>下面我就羅列各種「前人的經驗」。其實記住就可以，不過我還是用簡短的描述大致解釋一下原因,便於更加深刻地理解 Python 內部。有興趣的話其實可以用<a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/">「理性主義」的分析方法</a>來看看下面的這些「經驗」。</p>
 
 <ul>
   <li>
@@ -196,7 +196,7 @@
   </li>
 </ul>
 
-<p>這個尤其要在循環裏注意，就是<a href="https://conanblog.me/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/">本系列第二篇</a>裏我們找到的問題。Python 對局部變量的訪問效率要比全局變量的訪問效率高。另外，如果是一些帶「點」的方法，最好也放到循環的外面，因爲每次「點」，相應的方法都要再 <code lang="python" class="highlighter-rouge">eval</code> 一遍。因此應該像下面這樣寫：</p>
+<p>這個尤其要在循環裏注意，就是<a href="/blog/optimization/programming/python/serial/2012/07/25/python-optimization-2-profiling/">本系列第二篇</a>裏我們找到的問題。Python 對局部變量的訪問效率要比全局變量的訪問效率高。另外，如果是一些帶「點」的方法，最好也放到循環的外面，因爲每次「點」，相應的方法都要再 <code lang="python" class="highlighter-rouge">eval</code> 一遍。因此應該像下面這樣寫：</p>
 
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
     <span class="n">upper</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">upper</span>
@@ -440,12 +440,18 @@
 
 </footer>
 
-<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_s2t-d27f0ad57a0f47750d3e861a7405162f6fabf05a17c0e27c758b77a180e219d7.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_t2s-d93925ae251ab1993d8d61db4fbef14dfac804ba9e8af108f9d94851eef7cb84.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_ps2t-3976433ff99f4ca8453c2871ac34e10abaa11dbca47621c622d90e220d92ecca.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
+<script type="text/javascript" src="/assets/main-f0d437cbc0a618fce5f013cf4510ba93697da5e64acd9017b093e9c2e3705f1d.js"></script>
+<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script language="JavaScript" src="/javascripts/main.js"></script>
+<script language="JavaScript" src="/javascripts/main.js"></script> -->
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
