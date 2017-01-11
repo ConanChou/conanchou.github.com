@@ -12,7 +12,7 @@ categories: [Python, Optimization, Serial, Programming]
 
 經過上面的第一步，我們會得到一組有問題的代碼。能直接解決的可以直接解決，不能直接找到原因的就是下面我重點要講的了。因爲 Python 是相對很高級的語言，很多底層細節會被隱藏掉，這從某種程度上加大了找出癥結的難度。換句話說，只要能夠摸清楚某行有問題的代碼到底怎麼執行的，那基本也就能夠推導出問題所在了。所以「理性主義調優」的問題就被簡化爲「如何弄懂代碼到底幹什麼」的問題。
 
-爲此去讀長篇的文檔當然算是一個辦法，很學院派，但是並不是很高效。另一條路就是「Disassembling」，有 C 背景的同學多半是聽過這個詞的。說白了，就是把程序執行時在內存裏的每一步操作都打印出來，以供分析。（如果對此不瞭解的同學可以到我翻譯的開源文集[相關章節](http://www.conanblog.me/Unix-as-IDE-CN/html/compiling.html#id3)學習）其實 Python 也可以 Disassembling，不過這和 C 的有些區別。因爲我們知道 Python 在運行時，其機制和 Java 是類似的，都是從源碼到字節碼，即
+爲此去讀長篇的文檔當然算是一個辦法，很學院派，但是並不是很高效。另一條路就是「Disassembling」，有 C 背景的同學多半是聽過這個詞的。說白了，就是把程序執行時在內存裏的每一步操作都打印出來，以供分析。（如果對此不瞭解的同學可以到我翻譯的開源文集[相關章節](https://conanblog.me/Unix-as-IDE-CN/html/compiling.html#id3)學習）其實 Python 也可以 Disassembling，不過這和 C 的有些區別。因爲我們知道 Python 在運行時，其機制和 Java 是類似的，都是從源碼到字節碼，即
 bytecode，而非二進制碼（binary code）；然後再把字節碼放在虛擬機裏運行。所以 Python 裏面的 Disassembling 其實是字節碼層面的。下面用到的工具就來自 Python 自帶的 `dis`{:lang="python"}。
 
 我們繼續之前的[代碼例子](https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py)，只是假設我們現在還不知道「慢」的原因。目前的狀況是我們知道了瓶頸在 `calculate_z_serial_purepython()`{:lang="python"} 裏，並且通過行造影，我們知道 `z[i] = z[i]*z[i] +q[i]`{:lang="python"} 花了很多时间。现在我们来 Disassembling：

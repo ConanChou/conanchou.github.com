@@ -173,13 +173,13 @@ var TongWen = (function () {
 					switch (node.nodeName.toLowerCase()) {
 						case "frame" :
 						case "iframe":
-							if (typeof node.contentDocument != "undefined") {
-								transPage(node.contentDocument, zhflag);
-								// frame.push(node.contentDocument);
-							} else if ((typeof node.contentWindow != "undefined") && (typeof node.contentWindow.document != "undefined")) {
-								transPage(node.contentWindow.document, zhflag);
-								// frame.push(node.contentWindow.document);
-							}
+							// if (typeof node.contentDocument != "undefined") {
+							// 	transPage(node.contentDocument, zhflag);
+							// 	// frame.push(node.contentDocument);
+							// } else if ((typeof node.contentWindow != "undefined") && (typeof node.contentWindow.document != "undefined")) {
+							// 	transPage(node.contentWindow.document, zhflag);
+							// 	// frame.push(node.contentWindow.document);
+							// }
 							// transPage(node.contentDocument || node.contentWindow.document, zhflag);
 							// frame.push(node.contentDocument || node.contentWindow.document);
 							break;

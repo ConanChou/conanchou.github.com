@@ -6,7 +6,7 @@ comments: true
 categories: [music, mooc]
 ---
 
-This post is the week 2 assignment for the course [Introduction to Music Production](https://www.coursera.org/learn/music-production/home/welcome). You can find my introduction and assignment 1 in here: [Visualizing Sound](https://conanblog.me/blog/music/mooc/2015/08/15/visualizing-sound/).
+This post is the week 2 assignment for the course [Introduction to Music Production](https://www.coursera.org/learn/music-production/home/welcome). You can find my introduction and assignment 1 in here: [Visualizing Sound](/blog/music/mooc/2015/08/15/visualizing-sound/).
 
 Quote my self introduction:
 

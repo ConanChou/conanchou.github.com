@@ -1,6 +1,4 @@
-function Utils() {
-
-}
+function Utils() {}
 
 Utils.prototype = {
     constructor: Utils,
@@ -76,8 +74,8 @@ $(document).ready(function() {
     var newLoadedHtml = $(this).attr("href");
 
     history.pushState(null, newLoadedHtml, newLoadedHtml);
-    var pageContentClone = $('.page-content').clone()
-    pageContentClone.addClass('page-content-clone').removeClass('page-content')
+    var pageContentClone = $('.page-content').clone();
+    pageContentClone.addClass('page-content-clone').removeClass('page-content');
     $.ajax({url: $(this).attr("href"), success: function(response) {
       var content = $(response).filter('.page-content').find('.wrapper');
       content.find('iframe').each(function(index) {
@@ -168,8 +166,4 @@ $(document).ready(function() {
           ts_label.innerHTML = "简";
       }
   };
-
-
-
-
 });

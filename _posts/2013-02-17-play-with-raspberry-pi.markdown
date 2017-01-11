@@ -6,7 +6,7 @@ comments: true
 categories: [Raspberry-Pi, Hack, Arch, Linux, Go]
 ---
 
-Tl;dr. [Raspberry Pi](http://www.raspberrypi.org/) 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於[種種原因](http://www.conanblog.me/life/where-are-we/)，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more-->
+Tl;dr. [Raspberry Pi](http://www.raspberrypi.org/) 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於[種種原因](/life/where-are-we/)，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more-->
 
 * ToC
 {:toc}

@@ -6,9 +6,9 @@ comments: true
 categories: [Python]
 ---
 
-[上一篇日誌](https://conanblog.me/blog/thought/2013/06/09/just-in-case-vs-just-in-time/)其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 Wikipedia。
+[上一篇日誌](/blog/thought/2013/06/09/just-in-case-vs-just-in-time/)其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 Wikipedia。
 
-Python本身是具有惰性的，我在[《Python 調優筆記 · 經驗主義調優》](https://conanblog.me/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/)的「懶惰>勤勞」小節就已經說了一些。我們接下來要看看Python中更高級一點的惰性用法。<!--more-->
+Python本身是具有惰性的，我在[《Python 調優筆記 · 經驗主義調優》](/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/)的「懶惰>勤勞」小節就已經說了一些。我們接下來要看看Python中更高級一點的惰性用法。<!--more-->
 
 Generator
 =========
@@ -68,7 +68,7 @@ def infinitely_inc(start=0):
 True
 ```
 
-Generator 看起來是個好物，但是它也有自己的使用注意事項，這裏我主要說一說除了惰性求值共性問題（見[上一篇日誌](https://conanblog.me/blog/thought/2013/06/09/just-in-case-vs-just-in-time/)）之外的注意事項。
+Generator 看起來是個好物，但是它也有自己的使用注意事項，這裏我主要說一說除了惰性求值共性問題（見[上一篇日誌](/blog/thought/2013/06/09/just-in-case-vs-just-in-time/)）之外的注意事項。
 
 第一點非常淺顯易懂，Generator 產生的序列只能使用一次，也就是說，如果生成的序列需要多次使用的話，還是選擇`list`。不要硬用 Generator，強扭的瓜不甜，你懂的。
 
@@ -126,7 +126,7 @@ print list(base)
 In [1]: def my_filter(x):
    ...:     print 'Checking %d' % x
    ...:     return x % 3 == 0 or x % 7 == 0
-   ...: 
+   ...:
 
 In [2]: filter(my_filter, xrange(100))[:10]
 Checking 0
@@ -265,7 +265,7 @@ In [15]: from itertools import ifilter, takewhile, count, imap, chain
 
 In [16]: def factors(n):
    ....:     return ifilter(lambda x: n % x == 0, takewhile(lambda y: y <= n, count(1)))
-   ....: 
+   ....:
 
 In [17]: reduce(lambda x, y: x.intersection(y), map(set, imap(factors, [9,15,81,60])))
 Out[17]: set([1, 3])
