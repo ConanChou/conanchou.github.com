@@ -202,29 +202,13 @@ debug。結果是反而浪費了很多時間在無用地猜測和推理上。這
 
 </footer>
 
-<script language="JavaScript" src="/javascripts/main.js"></script>
-
 <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script type="text/javascript">
-    var ts_switch = document.querySelector('#ts-switch');
-    var ts_label =document.querySelector('#side-label');
-    var init = new Switchery(ts_switch);
-
-    ts_switch.onchange = function() {
-        if (ts_switch.checked) {
-            TongWen.trans2Trad(document);
-            ts_label.innerHTML = "繁";
-        } else {
-            TongWen.trans2Simp(document);
-            ts_label.innerHTML = "简";
-        }
-    };
-</script>
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script language="JavaScript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
   </body>
