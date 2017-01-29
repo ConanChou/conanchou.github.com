@@ -59,9 +59,21 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
+function loadCategory(category) {
+  $('#category-picker li').removeClass('active');
+  $('#'+category).toggleClass('active');
+  $('.post-list li').removeClass('hide');
+  $('.post-list li').css('pointer-events', '');
+  if (category != 'all') {
+    $('.post-list li').not($('.'+category)).css('pointer-events', 'none');
+    $('.post-list li').not($('.'+category)).toggleClass('hide');
+  }
+}
+
 $(document).ready(function() {
   detectIframeInView();
   addToTop();
+  loadCategory(getUrlParameter('category') || 'all');
 
   var ts_switch = document.querySelector('#ts-switch');
   var ts_label = document.querySelector('#side-label');
@@ -137,6 +149,7 @@ $(document).ready(function() {
     $('.page-content')
     .load(document.location.href + " .page-content > .wrapper", function(response) {
       document.title = $(response).filter("title").text();
+      loadCategory(getUrlParameter('category') || 'all');
     });
   });
 
@@ -186,4 +199,18 @@ $(document).ready(function() {
           ts_label.innerHTML = "简";
       }
   };
+
+  $('body').on('click', '#category-picker a', function(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    var newLoadedHtml = $(this).attr("href");
+    history.pushState(null, newLoadedHtml, newLoadedHtml);
+    loadCategory(getUrlParameter('category') || 'all');
+  })
+
+  $('body').on('click', '#cp-icon a', function(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    $('#category-picker').slideToggle('fast');
+  })
 });

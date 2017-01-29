@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <script type="text/javascript">
+    var host = "conanblog.me";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+    window.location.protocol = "https";
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>格子人生</title>
+  <meta name="description" content="很久未更新日誌了，真是忙碌的一年。具體的更新就不寫在這一篇里了，長話短說是：我很好。">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://conanblog.me/blog/life/hack/2014/09/01/900-months/">
+  <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
+  <link href="/stylesheets/switchery.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/logo@3x.png">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-lazyload-any/0.3.0/jquery.lazyload-any.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script>
+  <script type="text/javascript" src="/javascripts/switchery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/disqus_loader.min.js"></script>
+  <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33556525-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Conan&#39;s Notes</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon" onclick = "void(0)">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a href="https://conanblog.me/Unix-as-IDE--Chinese-/" target="_blank">Unix as IDE</a>
+      </div>
+    </nav>
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">格子人生</h1>
+    <p class="post-meta"><time datetime="2014-09-01T00:18:33-04:00" itemprop="datePublished">Sep 1, 2014</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>很久未更新日誌了，真是忙碌的一年。具體的更新就不寫在這一篇里了，長話短說是：我很好。</p>
+
+<p>長久以來，我就有病，很多病，強迫症是之一，尤其對於時間管理。在聽說「人生只有900個月，一張A4紙就能打印出來」之後，病得更重了。所以我一直尋求一些方法去靈活地、有效地規劃（Hack）自己的人生，讓更多有意思的事情發生在這30＊30的表格里。<!--more-->曾經做了一個僅供自己使用的時間跟蹤系統來分析自己的時間都花到哪裡了，由於代碼寫得很hacky，使用也太geeky（其實我就是懶得寫文檔），就沒有開源。如果有興趣的朋友可以去試試<a href="https://www.rescuetime.com/">「RescueTime」</a>，我是受到它的啟發做的，當然我做的就比較粗陋，功能性上比它多了一個強制加鎖，即，在一段時限內不能訪問黑名單內的網站。這是幾年前的故事。</p>
+
+<p>之後的幾年，我接觸到了一些提高效率的「方法論」，當中包括 David Allen 的
+<a href="http://en.wikipedia.org/wiki/Getting_Things_Done">「GTD」</a>，以及Francesco Cirillo
+的<a href="http://en.wikipedia.org/wiki/Pomodoro_Technique">「番茄時間法」</a>，當然還有一些未成大氣候的方法論，比如<a href="http://en.wikipedia.org/wiki/Gamification">「Gamification」</a>。也對他們進行了嘗試和研究。可是我並不是很喜歡當中的任何一個。</p>
+
+<p>於是，我終於啟動了一個想了很久卻沒動作的項目，暫時定名為「OrgLife」，這個項目并不簡單，因為不僅僅是寫寫程序而已，我想要研究出一個對我來說切實可行的方法。而且即便是寫寫程序而已，我還要學好多東西才能做個稍微像樣點、不擋道的工具，我可不想再做個很buggy的工具湊合用，畢竟在用工具提高效率的時候，如果工具不好使降低了效率會讓人很沮喪。在這裡，我特指要學前端開發。雖然大學時代創業時包攬過從前端到後端的活兒，但前端是個非常活躍、日新月異的技術集，三四年沒碰的話就已經是老化的知識了……</p>
+
+<p>剛剛我強調了我要找個對我管用的辦法，因為我不知道這個方法是否普世，但是有我這個時間管理強迫症的人還挺多的，昨天在看 Hacker News
+的時候看到一個要做<a href="https://www.kickstarter.com/projects/1751759988/sicp-distilled">「SICP Distilled」</a>的小夥子，也是個 LISP
+Hacker，去他博客一逛，發現他也跟我一樣，試圖在做一些 life hacking
+projects。所以或許，這個所謂的工具也好，方法也好，能夠讓一部份人先「富起來」：）</p>
+
+<p>我預感這個項目會是一個戰線比較長的戰鬥，所以在完成 OrgLife
+的第一稿之前我得有一些替代品來做輔助。於是這才是今天這一篇帖子的主題：一個暫時的關於時間管理的解決方案，或許適用于大部份病得還沒那麼重的「病友」。</p>
+
+<h2 id="缺失的一環">缺失的一環</h2>
+
+<p>GTD 是目前時間管理最成體系的一個，建議對它不了解的病友先去做一些了解。它很靠譜，，，直到最後的執行這一環。老牌黑客 Kevin Mitnic
+曾經說過，人是一個系統里最薄弱的構件。這話一點不錯，人是複雜的、不可預測的、存在很多弱點的。放在現在的語境里，我們就算完全按照 GTD
+的理論走，最後不執行，還是白搭。這就是我說的「缺失的一環」，也就是一個能提高人的執行力的一種輔助。</p>
+
+<p>很巧的是番茄時間法能比較好地促進人們執行，因為人們在掐表的情況下更傾向於全神貫注、在假想的deadline前把事情做好。這其實是個很簡單有效的hack，對我還蠻有效。於是我現在的工作流程是把這兩種方法有機結合了，即，在
+GTD 最後加上番茄時間；或者也可以說把番茄時間法的 TODO 管理換成了
+GTD。這樣一來，我就有了一個「管用」的體系。但是這還不夠好，先賣個關子，這裡就不分析了。</p>
+
+<h2 id="增強靈活性">增強靈活性</h2>
+
+<p>「Context」，或者說環境，是 GTD
+里一個重要的概念，它主要是幫助你在不一樣的環境下快速找到你要做的事情。這個所謂的環境實在是一個不太好掌控的東西，因為它的定義範疇太廣了。我的建議是不要太具體，但也不要太抽象。這兩個極端會發生同樣的事情，就是你最終放棄使用
+GTD。如果太具體，管理成本就會變高，你的 GTD
+會變得越來越難管理，最終只能放棄；如果太抽象，這個功能等於沒有用到，因為使用成本變高。所以怎麼才算適中？這個真的因人而異。我覺得事務比較少的人相比事務多的人來說，可以稍微抽象一些。這兩個極端都是有很明顯的特徵的，如果太抽象，那你的事務列表就會很長；如果太具體，那你的很多環境分類很少被用到。用面向對象的語言寫程序的同學，這是不是很似曾相識啊？</p>
+
+<p>下面我用我自己目前的配置舉個例子：</p>
+
+<p><img src="https://9qbqfg.dm2303.livefilestore.com/y2p_JUt7QwduLf34NdX7GOgEmHKdRafbVYPzVBWrUsJ46nTLaNgpz9url_QM48-R8RJGxp2f4nexqW6VLzHyfkP_wVORNMyE4g1suETTYQFU4Q/Screen%20Shot%202014-08-30%20at%2010.04.28%20PM.png?psid=1" alt="" /></p>
+
+<p>這個界面是一款完全照搬 GTD 流程的軟件，叫OmniFocus
+2。它並不是唯一的選擇，只是碰巧在我寫這篇博客的時候我正在調研這款軟件。你們也看到了，它的試用期快結束了，結束了之後，我還會繼續調研
+<a href="http://orgmode.org/">org-mode</a>，以及類似 <a href="https://trello.com/">Trello</a> 的其他可選方案。</p>
+
+<p>對這些 Contexts 做一些解釋：</p>
+
+<ul>
+  <li>Errands：一些生活不得不做的瑣事，比如買菜、倒垃圾、整理房間之類的</li>
+  <li>Working：工作相關
+    <ul>
+      <li>Office：在辦公室要做的事情</li>
+      <li>Low Energy：不太想幹事的時候可以做做的事情，一般是不太費腦的無聊的活兒</li>
+      <li>Waiting：在 OmniFocus 里，Context 可以設置為 Waiting 狀態，可是這個狀態下的 context
+  用戶就看不到了，意思就是「這事兒不關我，等著吧」我不喜歡這個狀態，太被動了，所以我單獨另闢了一個 Waiting，卻使用跟其它 context
+  一樣的狀態。這樣我就能看到正在等的工作條目，並且可以在實時的時候催一催進度。</li>
+      <li>Off Duty：離開辦公室時或回家路上要做的事情</li>
+    </ul>
+  </li>
+  <li>Learning：學習相關
+    <ul>
+      <li>Reading：閱讀已成為我的習慣，但是有時我缺乏專注力，經常是一本書還沒讀完就開動了第二本第三本第四本，兩個禮拜之後又拿起了第一本接著看，這樣做其實倒也沒太多弊端，就是如果忘記前文還得翻到前面複習
+  目前為止我還不知道這是好是壞，因為複習可以加深記憶和理解，算是因機制而引起的反芻，是個副產品。所以這個 context
+  里我主要是放兩類事務：
+        <ul>
+          <li>書籍閱讀進度跟蹤，這些一般都是自動循環的，比如每週前幾天是看第一本，后幾天是看另一本。這麼做同時也可以讓自己有個節制，不要太貪心，一下子開太多本……</li>
+          <li>每週積累下來的時事閱讀，一般這一類都是這一週內從各個渠道搜刮到的值得閱讀的文章。用 <a href="https://ifttt.com">IFTTT</a> 和
+  <a href="http://getpocket.com">Pocket</a> 自動化這個收集環節。</li>
+        </ul>
+      </li>
+      <li>Hands Dirty：不動手肯定學不好東西，所有需要動手動腦的學習任務在這裡</li>
+    </ul>
+  </li>
+  <li>Family：家庭相關，有跟多是跟上面的雷同的，我就不再贅述了，說說不一樣的
+    <ul>
+      <li>Reviewing
+  Finances：我會邀請我的女朋友或家人也來參加，一般是一月一次，裡面是記錄了一些需要在檢查財政時要做的事情。</li>
+      <li>Rushing Out：跟上面的「Off Duty」很像，只不過是說要出門前或出門之後在路上要做的事情</li>
+    </ul>
+  </li>
+  <li>Anytime：不受限制，任何時間都可以做的事情</li>
+</ul>
+
+<p>適當地抽象化環境分類，可以一定程度上增強 GTD
+的靈活性；交叉分類和多分類是我要說的「更進一步」，可惜目前我在調研的這個工具不支持一個事務多個分類（或者是 tag
+系統）。而幾年前我摸過 org-mode，它支持 tag 系統，加上最近在寫 Clojure 和 CloJureScript，正好趁此機會撿起 Emacs 吧，Vim
+我已經用了足夠久了，以至於現在沒她不行。而<a href="https://github.com/ConanChou/ConanVimrc">她的配置</a>也是我目前為止維護得最久的一個開源項目（用
+Eric Steven Raymond 「大教堂和市集」里提到的理論能很好地解釋為嘛我還在一直維護，因為維護者就是使用者）。雖然我也知道有 org-mode 的
+Vim 移植，但是開放的心態總沒有錯 ；）</p>
+
+<h2 id="主次要分明">主次要分明</h2>
+
+<p>我要說的概念是「優先級」，這個概念在 GTD
+以及相關輔助工具里是垂直的。在單獨的項目里有優先級，但是并沒有一個橫向的優先級概念，即，項目和項目之間是平等的關係。然而這顯然是不合常理的。所以我提出的另一個修正就是項目優先級。看圖：</p>
+
+<p><img src="https://9qbqfg.dm2303.livefilestore.com/y2pgI7vWgC8V3yoRPlMarjLCmn4lu8i_jnUZbbOm0tIFqXW7yBXeoMnAbImPigzPl8ZpDVuk88VbzO7BGWfmyDWFWgw2pZJ0OGrt3NI0jmNwc8/Screen%20Shot%202014-08-30%20at%2010.03.46%20PM.png?psid=1" alt="" /></p>
+
+<p>上圖看上去沒什麼特別的，但是它們其實是按優先級從高到低排列的（請忽視第一個 Clojure，它本應該在 Learn and Share
+里躺著的，但是截屏的時候沒注意到）。每個人的優先級可能都不太一樣，但是目前來說，我的是這樣。其中可能比較有爭議的是「Help
+Others」，居然倒數第二？是的，因為我覺得幫助別人的前提條件是顧好自己，就好像在飛機上氧氣罩落下時，你應該先戴好自己的面罩再幫助你身邊的小朋友。為什麼？因為我很難想像我自己的生活工作學習在一團糟的情況下還能好好幫助別人。小時候有很多歌頌黨員幹部的影視作品，他們很多人最終是身體垮了。在我看來一方面他們的精神可貴（宣（xǐ）傳（nǎo）部的工作很到位），另一方面他們因為自己在優先級上的不理智而縮短了「為人民服務」的時間，進而減少了好官在中國黨員中的比例。這是個悲傷的故事。</p>
+
+<h2 id="一些小竅門">一些小竅門</h2>
+
+<h3 id="不小視-review">不小視 Review</h3>
+
+<p>Review 這個環節是 GTD
+里很重要但是又常常被人忽視的。因為人們覺得事情做好了就結束了，我一開始也這麼覺得。後來在軟件提醒之下做了一次
+review，才發現一堆漏網之魚，一些沒有加截止日期和 context 的事務。Review 其實跟處理 inbox 是一個工作模式，只是一個在 Done
+之前，一個在 Done 之後。謝耳朵說自己從來不忘記東西，我們也可以，只要你 review。</p>
+
+<h3 id="儘量自動化">儘量自動化</h3>
+
+<p>使用這些工具也好，方法也好，都是有額外時間和處理開銷的。（誒！學計算機科學的病友，這個是不是又似曾相識？）我稱之為管理成本，為了儘量減小管理成本，我們應該更多地使用自動化工具，比如此前提到過的
+IFTTT，還有就是各種腳本。在使用 OmniFocus 階段，我嘗試寫了幾個 AppleScript 自動腳本，感受是真tm糟糕。這也是我看向 Emacs org-mode
+的另一個原因。</p>
+
+<h3 id="遞歸式批處理複雜事務">遞歸式批處理複雜事務</h3>
+
+<p>GTD
+的一個「遊戲規則」是必須把事務拆分成可執行的小事務，這麼做很有道理，比方說如果有一個事務叫做「寫一個操作系統」，估計很少人在900個月的時間里能夠完成這個任務；但是如果你把它拆分成細小的組成部份，比方說「寫一個引導程序」，這就可執行得多。但是拆分並不總是那麼簡單。我的方法是遞歸式＋批處理。在番茄時間里遇到複雜的事務時就把它分成較細的事務，并扔進
+inbox，然後繼續其它的事務。在下一個循環時，在處理較細的事務，以此類推直到把任務做完。這麼做其實是有一定的原因的。因為其實人跟單核計算機差不多，頻繁切換工作內容會降低效率，那些自稱能高效multitask的基本都扯淡＋裝逼。所以我就把處理大數據的軟件架構設計搬了進來，即
+map+reduce。這裡就點到為止吧……</p>
+
+<h2 id="結語">結語</h2>
+
+<p>就先分享到這兒，感覺是還有些東西忘了提，之前本想做個腦圖的，懶了。以後想到了再補充吧，洗洗睡了。希望對病友們有幫助。</p>
+
+<p>另外，如果有病友對 OrgLife 感興趣，請跟我聯繫 ；）</p>
+
+  </div>
+
+  
+    
+
+  <div id="disqus_thread"></div>
+  <script>
+    disqusLoader( '#disqus_thread',
+      { laziness: 0,
+        scriptUrl: '//conannotes.disqus.com/embed.js' });
+
+    // var disqus_config = function () {
+    //   this.page.url = 'https://conanblog.me/blog/life/hack/2014/09/01/900-months/';
+    //   this.page.identifier = 'https://conanblog.me/blog/life/hack/2014/09/01/900-months/';
+    // };
+    //
+    // (function() {
+    //   var d = document, s = d.createElement('script');
+    //
+    //   s.src = 'https://conannotes.disqus.com/embed.js';
+    //
+    //   s.setAttribute('data-timestamp', +new Date());
+    //   (d.head || d.body).appendChild(s);
+    // })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Made by <a href="https://twitter.com/conanchou" target="_blank">@Conan</a>, with love and curiosity.
+      </div>
+
+      <!-- <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/conanchou"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/conanchou"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+        </ul>
+      </div> -->
+
+      <div class="footer-col footer-col-2">
+        <p>Programming Language, Open Source, Design, Music, and everything in between.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+</footer>
+
+<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_s2t-d27f0ad57a0f47750d3e861a7405162f6fabf05a17c0e27c758b77a180e219d7.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_t2s-d93925ae251ab1993d8d61db4fbef14dfac804ba9e8af108f9d94851eef7cb84.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_ps2t-3976433ff99f4ca8453c2871ac34e10abaa11dbca47621c622d90e220d92ecca.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
+<script type="text/javascript" src="/assets/main-a479cedbc4bb0f400bf07cbfd74b83bd67675953fcd2549dbd77764175d02626.js"></script>
+<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
+<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  </body>
+
+</html>
