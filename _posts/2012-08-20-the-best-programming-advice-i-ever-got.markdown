@@ -3,7 +3,7 @@ layout: post
 title: "關於編程，對我最有用的建議"
 date: 2012-08-20 15:58
 comments: true
-categories: [Programming, Zen] 
+categories: [coding, thought, tech] 
 ---
 
 關於編程，其實具體用什麼技術並不重要，很多時候是思想或方法決定了效率。今天我讀到一篇帖子：["The Best Programming Advice I Ever Got"](http://www.informit.com/promotions/promotion.aspx?promo=138930)，這些建議都是影響着這些業界精英們的職業生涯的，感覺對我很有用，於是在這裏做一個整理。<!--more-->

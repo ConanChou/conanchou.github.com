@@ -1,13 +1,27 @@
 ---
 layout: default
 ---
+<div id="category-picker-controller">
+  <div id="cp-icon">
+    <a href="#"><i class="fa fa-filter" aria-hidden="true"></i></a>
+  </div>
+  <div id="category-picker" style="display: none;">
+    <ul>
+      <li id="all"><a href="?category=all">All</a></li>
+      {% for category in site.categories %}
+        <li id="{{ category | first }}"><a href="?category={{ category | first }}">{{ category | first }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div style="clear: both;"></div>
+</div>
 
 <div class="home">
 
   {{ content }}
   <ul class="post-list">
     {% for post in site.posts %}
-      <li>
+      <li class="{{ post.categories | join: ' '}}">
         <h2>
             <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
             <span class="home-post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>

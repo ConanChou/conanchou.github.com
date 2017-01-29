@@ -3,7 +3,7 @@ layout: post
 title: "Python 調優筆記·經驗主義調優"
 date: 2012-08-26 14:56
 comments: true
-categories: [Python, Optimization, Serial, Programming]
+categories: [python, serial, coding, tech]
 ---
 
 [上一次我們聊了「理性主義」](/blog/python/optimization/serial/programming/2012/08/26/python-optimization-3-disassembling/)，與其相對的哲學流派就是「經驗主義」了，在 Python 的調優中，我們自然也有從前人流傳下來的小技巧來使代碼的效率更高。在優化工作當中，這兩類方式往往是交替使用的。而且廣義地說，流派不一樣不代表它們對同一件事情的看法就是矛盾的。事實上流派不一樣僅僅是研究方式不一樣，最後結論往往是一致的。本文則將重點放在「經驗主義調優」，收集儘可能多的小技巧。預料中會有補充。<!--more-->

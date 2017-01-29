@@ -3,7 +3,7 @@ layout: post
 title: "一些關於假新聞和標題黨的想法"
 date: 2016-01-03 11:03:16 -0500
 comments: true
-categories: [china, internet, thought]
+categories: [thought]
 ---
 
 最近又有一些自媒體的假新聞被忽然炒熱，比如最近一篇說蘋果收購特斯拉的。不管是愚人節假新聞被挖墳，

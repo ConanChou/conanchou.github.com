@@ -3,7 +3,7 @@ layout: post
 title: "用 Python 的「神奇方法」元編程"
 date: 2012-08-21 22:41
 comments: true
-categories: [Python, Programming]
+categories: [python, coding, tech]
 ---
 
 在開始聊這個話題前，我覺得有必要先簡單說說這兩個概念：「神奇方法」和「元編程」。

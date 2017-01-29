@@ -3,7 +3,7 @@ layout: post
 title: "Python 調優筆記·代碼造影"
 date: 2012-07-25 00:14
 comments: true
-categories: [Optimization, Programming, Python, Serial]
+categories: [python, tech, serial, coding]
 ---
 
 在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。<!-- more -->

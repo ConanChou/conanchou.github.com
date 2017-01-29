@@ -3,7 +3,7 @@ layout: post
 title: "2016 -> 2017"
 date: 2016-12-31 21:50:38 -0500
 comments: true
-categories: [life, thought]
+categories: [life, thought, summary]
 ---
 
 ![](/images/20151231/hpny.jpg)

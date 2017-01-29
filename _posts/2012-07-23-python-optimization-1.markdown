@@ -3,7 +3,7 @@ layout: post
 title: "Python 調優筆記·序"
 date: 2012-07-23 01:19
 comments: true
-categories: [Python, Optimization, Serial, Programming]
+categories: [python, tech, serial, coding]
 ---
 
 以往我都以寫命令行下的 Python 腳本爲主。即使做項目也基本是做小規模 Web 類的。所以很少遇到效率太低受不了的情況，所以也鮮有調優的需要。當然，在寫代碼時就已經注意了一些效率問題，所以基本不需要很費心機地調優。可是幾個月前我做了兩個項目，一是一個機器學習引擎，用以學習在線讀者閱讀習慣；另一個是一個下 Chess 的 AI，用以人機對奕。<!-- more -->兩個系統都用 Python 構建。因爲這兩個項目都是 CPU intensive 的，真的是慢的可以。於是這逼得我不得不去研究下有關 Python
@@ -27,4 +27,3 @@ categories: [Python, Optimization, Serial, Programming]
 在整理時我參考了大量資料，以一定程度上確保靠譜。
 
 整理和尋找知識系統和方法理論的時候，我使用了非常好用的 Mind Mapping 開源軟件 [FreeMind](http://freemind.sourceforge.net/wiki/index.php/Main_Page)，提高效率的 [tmux](http://tmux.sourceforge.net/) 和 [Vim](http://tmux.sourceforge.net/)。題外話，推薦一下。
-

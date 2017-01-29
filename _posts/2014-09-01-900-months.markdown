@@ -3,7 +3,7 @@ layout: post
 title: "格子人生"
 date: 2014-09-01 00:18:33 -0400
 comments: true
-categories: [life, hack, productivity]
+categories: [life, hack]
 ---
 
 很久未更新日誌了，真是忙碌的一年。具體的更新就不寫在這一篇里了，長話短說是：我很好。

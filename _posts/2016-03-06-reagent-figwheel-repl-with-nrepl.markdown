@@ -3,7 +3,7 @@ layout: post
 title: "Reagent 的 Figwheel REPL 方案"
 date: 2016-03-06 11:42:03 -0500
 comments: true
-categories: [note, clojure]
+categories: [clojure, tech]
 ---
 
 剛剛開始了壹個新 side project，這次打算用

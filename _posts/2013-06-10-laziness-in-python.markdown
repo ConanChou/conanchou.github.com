@@ -3,7 +3,7 @@ layout: post
 title: "蟒之惰性"
 date: 2013-06-10 18:06
 comments: true
-categories: [Python]
+categories: [python, tech, coding]
 ---
 
 [上一篇日誌](/blog/thought/2013/06/09/just-in-case-vs-just-in-time/)其實是發生在我研究了一些 lazy evaluation 之後，有感而發；最初我本來只是想寫現在的這篇博客的，聊一聊 Python 的惰性。如果對編程語言以及編程思想的惰性的定義還不明的話，可以參看我的上篇日誌以及 Wikipedia。

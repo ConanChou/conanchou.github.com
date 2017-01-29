@@ -3,7 +3,7 @@ layout: post
 title: "音樂筆記 070116"
 date: 2016-07-08 22:17:34 -0400
 comments: true
-categories: [music, note]
+categories: [music]
 ---
 ![](https://cloud.githubusercontent.com/assets/480759/16710021/56c13cfc-45ef-11e6-96e7-f886154a8b8f.jpg)
 

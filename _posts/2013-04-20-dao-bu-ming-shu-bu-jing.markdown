@@ -3,7 +3,7 @@ layout: post
 title: "道不明，術不精"
 date: 2013-04-20 01:20
 comments: true
-categories: Thought
+categories: thought
 ---
 
 「道不明，術不精」是現在最適合形容我狀態的語句。說真的，我對自己有些失望。從兩千年初開始接觸計算機和因特網，到現在幾乎沒有什麼大的成就。對照 Coding Horror 裏的[《程序員的八個等級》](http://www.codinghorror.com/blog/2009/04/the-eight-levels-of-programmers.html)，我大概在4～5吧。而很顯然這不應該是一個有志者所止步的位置。我最接近「Famous」的恐怕也只有幾年前趕鴨子上架般的在亞太開源軟件峯會上給的關於 CakePHP 和 Symfony

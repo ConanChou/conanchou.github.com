@@ -3,7 +3,7 @@ layout: post
 title: "用另一臺計算機寫 Octopress"
 date: 2012-08-23 23:26
 comments: true
-categories: [Octopress, Hack]
+categories: [blog, hack, tech]
 ---
 
 用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch `clone` 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。<!--more-->
@@ -39,10 +39,10 @@ $ git clone git@github.com:ConanChou/conanchou.github.com.git octopress
 $ cd octopress
 
 $ ;: get the source branch
-$ git checkout -b source origin/source 
+$ git checkout -b source origin/source
 
 $ ;: add original octopress repo to remote for updates
-$ git remote add octopress https://github.com/imathis/octopress.git 
+$ git remote add octopress https://github.com/imathis/octopress.git
 
 $ ;: clone the master branch to _deploy dir
 $ git clone git@github.com:ConanChou/conanchou.github.com.git _deploy

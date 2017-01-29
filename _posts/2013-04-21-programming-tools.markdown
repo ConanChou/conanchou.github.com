@@ -3,7 +3,7 @@ layout: post
 title: "也談編程工具"
 date: 2013-04-21 18:09
 comments: true
-categories: [Thought, Tool]
+categories: [thought, tech]
 ---
 
 我總是避免在博客裏談工具，因爲怕被扣上「工具黨」的帽子。今天看到[王垠聊到編輯器與IDE](http://www.yinwang.org/blog-cn/2013/04/20/editor-ide)，才想起來我似乎沒有在博客中寫過相關的話題。接觸代碼世界也已經十餘年了，這一拍腦袋，覺得好多話想說。

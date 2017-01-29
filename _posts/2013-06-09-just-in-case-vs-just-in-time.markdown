@@ -3,7 +3,7 @@ layout: post
 title: "勤與懶"
 date: 2013-06-09 22:02
 comments: true
-categories: [Thought]
+categories: [thought, tech]
 ---
 
 「Just In Case」和「Just In Time」，前者是「以防萬一」，而後者是「正好及時」。寫這篇日誌不是爲了給大家解釋這兩個詞組的字面意思，我更想談一談它們字面意思以下的含義，以及它們在程序設計中的意義。
