@@ -38,9 +38,9 @@ function addToTop() {
     $('#toTop').remove();
   }
   if ($('#disqus_thread').length == 0) {
-    $('.page-content').after("<div id='toTop'><a href='#'>▲</a></div>");
+    $('.page-content').after("<div id='toTop'><a href='#' title='Scroll to top'>▲</a></div>");
   } else {
-    $('#disqus_thread').before("<div id='toTop'><a href='#'>▲</a></div>");
+    $('#disqus_thread').before("<div id='toTop'><a href='#' title='Scroll to top'>▲</a></div>");
   }
 }
 
