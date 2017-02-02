@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <script type="text/javascript">
+    var host = "conanblog.me";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+    window.location.protocol = "https";
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <title>Visualizing Sound</title>
+  <meta name="description" content="">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://conanblog.me/blog/2015/08/15/visualizing-sound/">
+  <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
+  <link href="/stylesheets/switchery.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/logo@3x.png">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-lazyload-any/0.3.0/jquery.lazyload-any.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script>
+  <script type="text/javascript" src="/javascripts/switchery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/disqus_loader.min.js"></script>
+  <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33556525-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Conan&#39;s Notes</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon" onclick = "void(0)">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a href="https://conanblog.me/Unix-as-IDE--Chinese-/" target="_blank">Unix as IDE</a>
+      </div>
+    </nav>
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Visualizing Sound</h1>
+    <p class="post-meta"><time datetime="2015-08-15T23:18:33-04:00" itemprop="datePublished">Aug 15, 2015</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><img src="/images/20150815/wave-cover.jpg" alt="" /></p>
+
+<p>Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course <a href="https://www.coursera.org/learn/music-production/home/welcome">Introduction to Music Production</a> is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..</p>
+
+<p>This blog is for the week 1 lectures assignment. I would not consider this as teaching, this one will be more like a reviewing and reflecting.</p>
+
+<!--more-->
+
+<h2 id="study">Study</h2>
+
+<h3 id="why">Why</h3>
+
+<p>Let us start with why. Why do we need sound visualization? I think the point of sound visualization is to make vague problem clear. Sound has many aspects, in the first few lectures, we have learnt three essentials of them: <em>propagation</em>, <em>amplitude</em>, and <em>frequancy</em>. I didn’t include <em>timbre</em> here is because that timbre is a combination of different frequencies, it doesn’t sound like a essential to me. Another implicit essential about sound is time, I have to mention it because it will be one axis in some of our diagrams. When we are looking at a problem, we want to <strong>easily grasp the global overview, and at the meanwhile maintain the precision</strong>. Luckily that mathematician and physicist has already built some handy tools (in here I considered a data representation methodology as a tool, but not a specific software).</p>
+
+<p>A good case study would be DJing. When you are performing, we want to get the overview of the track, <strong>quickly</strong>. You can of course hearing/scanning the next track with your headphone, but it is just not good enough and quick enough. I personally rely on the waveform display a lot. The following screenshot is from Serato DJ’s waveform section.</p>
+
+<p><img src="/images/20150815/waveform.png" alt="Serato DJ Waveform" /></p>
+
+<p>From the waveforms’ shape, I can tell:</p>
+
+<ul>
+  <li>where are the kicks, hi-hats, and vocals</li>
+  <li>section of the track</li>
+</ul>
+
+<p>From the color of the waveforms, I can tell how the EQ changes cross the track. Quote from the Serato site:</p>
+
+<blockquote>
+  <p>The EQ Colored waveform option changes the waveform colors in Serato DJ to reflect your EQ changes. For example, taking out the bass will remove all the red from the waveform, taking out the high end will remove all the blue and taking the midrange out will remove all the green.</p>
+</blockquote>
+
+<h3 id="what">What</h3>
+
+<p>What are these tools as in diagrams? The first is <em>Oscilloscope</em>. It is only showing two aspects of sound: amplitude (Y axis) and time (X axis). The larger the range of Y axis, the higher the amplitude. For the time axis, the time window usually will be few millisecond in our case.</p>
+
+<p>Frequency is also in the diagram, it is just implicit. The following animation is from <a href="https://en.wikipedia.org/wiki/Oscilloscope">Oscilloscope wikipedia page</a>. You can see that within the same period of time, the more dense the waveform, the frequency is higher.</p>
+
+<p><img src="/images/20150815/CROtperdivisionincrease.gif" alt="" /></p>
+
+<hr />
+
+<p>The next is <em>spectrum</em> analyzer. In the oscilloscope diagram, we can only observe relative frequency change, it cannot describe the frequency aspect accurately. We use spectrum analyzer for this. This time, the X axis is frequency and the Y axis is the amplitude. Remember Loudon mentioned that when people talking about 1K, 2K, 5K, we should have some idea on mapping these numbers to our hearing? I actually did try to feel the numbers. What I did is playing note using a Sin synth, which is also hooked to a spectrum analyzer. Here is what I found:</p>
+
+<p><img src="/images/20150815/1k.png" alt="1K" /></p>
+
+<p><img src="/images/20150815/2k.png" alt="2K" /></p>
+
+<p><img src="/images/20150815/5k.png" alt="5K" /></p>
+
+<p>So what is middle c (C4) frequency?</p>
+
+<p><img src="/images/20150815/midc.png" alt="Middle C" /></p>
+
+<hr />
+
+<p>The last one is <em>Sonogram</em>. The <em>spectrum</em> diagram is like a snapshot of the sound in that moment. We could not tell the changes over time. We use sonogram to see these dynamics. In sonogram, the X axis is the time, and the Y axis is the frequency. The third dimension is amplitude, which is represented by color.</p>
+
+<hr />
+
+<h2 id="reflection">Reflection</h2>
+
+<p>Before the course, I never actually pay much attention on the waveforms. until after then, I realized I actually rely on waveforms or sound visualization a lot. In the post, I not only reviewed the things we have learnt, but also spent some time to explain my use case as a case study. To do that, I actually need to dig into the Serato DJ software manual. Just want to make sure the information I have provided is accurate. I have also tested the spectrum in my DAW. A lot of things are just making more sense now.</p>
+
+<p>That is about it. <strong>Thank you for your reading, and you are welcome to leave feedback and criticize</strong>.</p>
+
+<h2 id="extra">Extra</h2>
+
+<p>While I am searching around about sound visualization, I found an amazing video clip:</p>
+
+<iframe src="https://player.vimeo.com/video/111593305" width="720" height="307" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+<p><a href="https://vimeo.com/111593305">CYMATICS: Science Vs. Music - Nigel Stanford</a> from <a href="https://vimeo.com/user1852409">Nigel Stanford</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
+<p>With the knowledge of the first 4 lectures and basic physics, we should be able to reveal the secrets in this video.</p>
+
+<p>Here are the hints: vibration, longitudinal wave, camera ;)</p>
+
+<p><small>Cover image copyright by Daniel Palacios</small></p>
+
+  </div>
+
+  
+    
+
+  <div id="disqus_thread"></div>
+  <script>
+    disqusLoader( '#disqus_thread',
+      { laziness: 0,
+        scriptUrl: '//conannotes.disqus.com/embed.js' });
+
+    // var disqus_config = function () {
+    //   this.page.url = 'https://conanblog.me/blog/2015/08/15/visualizing-sound/';
+    //   this.page.identifier = 'https://conanblog.me/blog/2015/08/15/visualizing-sound/';
+    // };
+    //
+    // (function() {
+    //   var d = document, s = d.createElement('script');
+    //
+    //   s.src = 'https://conannotes.disqus.com/embed.js';
+    //
+    //   s.setAttribute('data-timestamp', +new Date());
+    //   (d.head || d.body).appendChild(s);
+    // })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Made by <a href="https://twitter.com/conanchou" target="_blank">@Conan</a>, with love and curiosity.
+      </div>
+
+      <!-- <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/conanchou"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/conanchou"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+        </ul>
+      </div> -->
+
+      <div class="footer-col footer-col-2">
+        <p>Programming Language, Open Source, Design, Music, and everything in between.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+</footer>
+
+<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_s2t-d27f0ad57a0f47750d3e861a7405162f6fabf05a17c0e27c758b77a180e219d7.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_t2s-d93925ae251ab1993d8d61db4fbef14dfac804ba9e8af108f9d94851eef7cb84.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_ps2t-3976433ff99f4ca8453c2871ac34e10abaa11dbca47621c622d90e220d92ecca.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
+<script type="text/javascript" src="/assets/main-cbc2385803789b1443d4ad227c7322e4297ca78ffd1322e039f0bd7ba0836b56.js"></script>
+<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
+<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  </body>
+
+</html>
