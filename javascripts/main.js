@@ -61,7 +61,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 function loadCategory(category) {
   $('#category-picker li').removeClass('active');
-  $('#'+category).toggleClass('active');
+  $('#category-picker #'+category).toggleClass('active');
   $('.post-list li').removeClass('hide');
   $('.post-list li').css('pointer-events', '');
   if (category != 'all') {
@@ -70,10 +70,22 @@ function loadCategory(category) {
   }
 }
 
+function scrollToAnchor(aid){
+    var aTag = $(aid.replace(/:/, '\\:'));
+    $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+}
+
 $(document).ready(function() {
   detectIframeInView();
   addToTop();
   loadCategory(getUrlParameter('category') || 'all');
+
+  $('body').on('click', '.footnote, .reversefootnote', function(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    scrollToAnchor($(this).attr("href"));
+  });
 
   var ts_switch = document.querySelector('#ts-switch');
   var ts_label = document.querySelector('#side-label');
