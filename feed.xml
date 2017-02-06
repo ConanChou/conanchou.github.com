@@ -1,5 +1,356 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2017-02-02T13:25:04-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">2016 -&amp;gt; 2017</title><link href="https://conanblog.me/blog/2016/12/31/2016-2017/" rel="alternate" type="text/html" title="2016 -&gt; 2017" /><published>2016-12-31T21:50:38-05:00</published><updated>2016-12-31T21:50:38-05:00</updated><id>https://conanblog.me/blog/2016/12/31/2016-2017</id><content type="html" xml:base="https://conanblog.me/blog/2016/12/31/2016-2017/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2017-02-06T00:28:12-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">最近在學 Swift</title><link href="https://conanblog.me/blog/2017/02/06/learning_swift/" rel="alternate" type="text/html" title="最近在學 Swift" /><published>2017-02-06T00:26:00-05:00</published><updated>2017-02-06T00:26:00-05:00</updated><id>https://conanblog.me/blog/2017/02/06/learning_swift</id><content type="html" xml:base="https://conanblog.me/blog/2017/02/06/learning_swift/">&lt;p&gt;最近在學習 Swift，一開始我以為它像目前的一些支持 &lt;a href=&quot;https://en.wikipedia.org/wiki/Object-oriented%5C_programming&quot;&gt;OOP&lt;/a&gt; 和 &lt;a href=&quot;https://en.wikipedia.org/wiki/Functional%5C_programming&quot;&gt;FP&lt;/a&gt; 的多範式語言一樣，可猝不及防它居然引入了一種新的範式，這種範式基於 Java 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;interface&lt;/code&gt;，但加了更多靈活的創新。我覺得學習語言不搞明白它的範式等於是沒學。畢竟語法是形，範式才是神。這才有了這篇文章。&lt;/p&gt;
+
+&lt;p&gt;給沒有耐心讀完的同學一句話概括一下，Swift 的設計基本就鼓勵更多地使用值類型，為了使值類型的應用更具可行性，它引入了比 Java &lt;code class=&quot;highlighter-rouge&quot;&gt;interface&lt;/code&gt; 更加靈活的 &lt;code class=&quot;highlighter-rouge&quot;&gt;protocol&lt;/code&gt; 機制。&lt;/p&gt;
+
+&lt;h2 id=&quot;swift-的時代背景&quot;&gt;Swift 的時代背景&lt;/h2&gt;
+
+&lt;p&gt;Swift 可以說是 &lt;a href=&quot;https://en.wikipedia.org/wiki/Chris_Lattner&quot;&gt;Chris Lattner&lt;/a&gt; 或 Apple 給現代操作系統和編程範式的一個答案。從它的歷史來說，根據最近 ATP 對 Chris 做的一個訪談&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;，Apple 內部做了很多努力讓 Objective-C 更好，包括引進 &lt;a href=&quot;https://en.wikipedia.org/wiki/Automatic%5C_Reference%5C_Counting&quot;&gt;ARC&lt;/a&gt; 增強內存管理。強推一個新語言肯定是萬不得已的選擇。Objective-C 有個問題沒法根除，就是它並不是一個足夠安全的語言，它構建與 C 語言，C 用指針、可定義未初始化的變量、以及數組溢出的問題等等。而從 Objective-C 中剝離 C 又不太現實，最後這才有了 Swift。&lt;/p&gt;
+
+&lt;p&gt;Swift 跟其他現代編程語言一樣，有著很多吸引人的語法糖，其精髓也藏在這一大堆語法糖裏。2015 和 2016 年的 WWDC 有三個 Keynotes 對其做了揭示：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2015/408/&quot;&gt;Protocol-Oriented Programming in Swift&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2015/414/&quot;&gt;Building Better Apps with Value Types in Swift&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2016/419/&quot;&gt;Protocol and Value Oriented Programming in UIKit Apps&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;不難看出，它的核心就是 Value 和 Protocol。當然從語法的角度來說，另一個我很讚賞的特徵就是它是一個非常顯式的（explicit）語言。但我不打算在這篇文章裏聊這個，我們還是先來看看 Value 和 Protocol，在聊這倆話題之前，我們先看看我們現在所處的編程語言／範式在歷史裏的位置。&lt;/p&gt;
+
+&lt;h3 id=&quot;fauxo&quot;&gt;FauxO&lt;/h3&gt;
+
+&lt;p&gt;OOP 是很優秀的一種編程範式，它很大程度的幫助我們復用代碼，而 OO 的模型也很好地減小了我們大腦對複雜世界構建時的負擔。不過 OOP 並非完美，隨著我們對世界建模的深入，複雜性也隨之增加。其實 Gary Bernhardt 曾在演講 &lt;a href=&quot;https://www.destroyallsoftware.com/talks/boundaries&quot;&gt;Boundaries&lt;/a&gt; 裏就總結過我們如何從 PP 到 OOP，再從 OOP 到 FP 的趨勢。這張表格我記憶深刻：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Mutation&lt;/th&gt;
+      &lt;th&gt;Data &amp;amp; Code&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Procedural&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Separated&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;OO&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Combined&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Functional&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;Separated&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;從 PP 到 OOP，我們隱藏了一些不必要的內部結構，但作為補償，我們不得不把數據和代碼（業務邏輯）合併在一起；而數據本身在 PP 和 OOP 裏，是可變的（mutable），即變量的傳遞是以引用（reference）。這就意味著數據是非顯式分享（implicit sharing），當我們構建的系統越來越複雜時可變性數據會讓我們更難去推理（reasoning）系統的狀態，而數據代碼的不分離又使得我們沒法更好得分離核心業務代碼和外圍代碼，依賴會越來越多，從而使單元測試更困難。這也是為什麼現在越來越多的語言和框架社區開始思考 FP 的原因之一。不過就像 Gary 說的一樣，FP 往往在建模方面沒有 OOP 來得更接近人們的思維方式，尤其是在用一個並非為 FP 所設計的編程語言的時候。而另一個考慮 FP 的原因是因為數據的可變性使得多線程程序很難保證沒有 bug。這個理由是人們經常提到的，但是我不認為它是真正的痛點。一些好的併發模型其實也是可以減少併發所致的潛在 bug 的。&lt;/p&gt;
+
+&lt;p&gt;如果你看了 Gary 的演講（非常推薦），他其實也提到了經典範式之外的第四種，即沒有 Mutation 但同時邏輯和相關數據是在一起的。他稱它為 FauxO。而恰好，今天我們要聊的範式就跟這 FauxO 相似，至少一部分相似。&lt;/p&gt;
+
+&lt;h3 id=&quot;oo-的難點&quot;&gt;OO 的難點&lt;/h3&gt;
+
+&lt;p&gt;多態和繼承是支持 OOP 語言必有的語言特性。就像《&lt;em&gt;松本行弘的程序世界&lt;/em&gt;》裏總結的那樣，目前編程語言有多種繼承方式，優劣可以簡單概括為下表：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;種類&lt;/th&gt;
+      &lt;th&gt;優&lt;/th&gt;
+      &lt;th&gt;劣&lt;/th&gt;
+      &lt;th&gt;代表語言&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;单一继承&lt;/td&gt;
+      &lt;td&gt;继承关系為簡單树结构&lt;/td&gt;
+      &lt;td&gt;無法通過繼承來共享實現（implementation）&lt;/td&gt;
+      &lt;td&gt;Smalltalk&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;多重继承&lt;/td&gt;
+      &lt;td&gt;可用繼承分享實現&lt;/td&gt;
+      &lt;td&gt;類關係複雜，繼承的優先順序和功能可能存在衝突&lt;/td&gt;
+      &lt;td&gt;C++, Python&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;單繼承 + 接口（Interface）&lt;/td&gt;
+      &lt;td&gt;類規範定義了方法聲明，從而使類接口相關的編程跟多重繼承一樣&lt;/td&gt;
+      &lt;td&gt;無法共享實現&lt;/td&gt;
+      &lt;td&gt;Java&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;其實我還想補充一下 Ruby 裏作為一個賣點的 Mix-in，坦率地說它只是一個較特殊的多重繼承，很大程度地減小了多重繼承的複雜類關係，但是依然存在繼承優先和衝突問題，而一旦衝突發生，它會以非顯式的方式發生。&lt;/p&gt;
+
+&lt;p&gt;我們是否能做得跟好呢？我覺得 Chris 的答案很棒。&lt;/p&gt;
+
+&lt;h2 id=&quot;value-和-protocol&quot;&gt;Value 和 Protocol&lt;/h2&gt;
+
+&lt;h3 id=&quot;value&quot;&gt;Value&lt;/h3&gt;
+
+&lt;p&gt;Swift 裏有除了所有原始類型（primitive type），&lt;code class=&quot;highlighter-rouge&quot;&gt;enum&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; 也都是值類型。所謂值類型，就是這些數據類型不可變（immutable），傳遞進函數或方法的時候，是直接傳入值，即拷貝。跟其相對的是引用類型（reference type），其特徵是可變（mutable），引用式傳遞。前面提過引用類型的問題，那我們似乎就只能更多地使用值類型來規避引用類型的風險了。所以 Swift 將 &lt;code class=&quot;highlighter-rouge&quot;&gt;enum&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; 升級為一等公民，這意味著你也可以對它們進行函數定義，對 &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; 你還可以定義其內部變量和常量。所以這樣一來，我們幾乎完全可以用它們來代替 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;。不過看得出來，蘋果官方文檔對於何時使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; 而非 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 的問題還是很克制的，而事實上 Swift 的很多原始類型都是用 &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; 寫的。我們在寫 Java 代碼時不是經常手動寫不可變類嗎？其實 &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; 是這種類的語法糖。當然因為它們是 Swift 的設計基礎，所以它不僅僅是語法糖，一般情況下性能方面比我們自己手寫不可變類要好。有了它們，我們這不是離 FauxO 更近了？&lt;/p&gt;
+
+&lt;h3 id=&quot;protocol&quot;&gt;Protocol&lt;/h3&gt;
+
+&lt;p&gt;Swift 依然是一個面向對象編程語言，不過這幾年的 WWDC 都強調它的 &lt;code class=&quot;highlighter-rouge&quot;&gt;protocol&lt;/code&gt;。其实 &lt;code class=&quot;highlighter-rouge&quot;&gt;protocol&lt;/code&gt; 跟 Java 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;interface&lt;/code&gt; 很像，主要區別在於:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;可定義字段／屬性，即 &lt;em&gt;field&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;可用 &lt;code class=&quot;highlighter-rouge&quot;&gt;mutating&lt;/code&gt; 定義方法是否會修改實現主&lt;/li&gt;
+  &lt;li&gt;可被多元組合（&lt;em&gt; protocol composition&lt;/em&gt;）&lt;/li&gt;
+  &lt;li&gt;可定義可選方法&lt;/li&gt;
+  &lt;li&gt;可被擴展（&lt;em&gt; protocol extensions&lt;/em&gt;），從而&lt;strong&gt;共享實現&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;當然不一樣的地方很多，我這裡列舉的只是我覺得會導致整個語言地貌不一樣的點。而其中我覺得最重要的就是最後一點。因為它解決了上一章節留下的一個問題，即如何愉快地使用類多重繼承，但同時又可以最大程度上減小多重繼承帶來的問題。Java 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;interface&lt;/code&gt; 開了個好頭，在此基礎上只要加上實現共享即可。雖然最新的 Java 可以在 &lt;code class=&quot;highlighter-rouge&quot;&gt;interface&lt;/code&gt; 裏加默認實現，但是它並不像 Swift &lt;code class=&quot;highlighter-rouge&quot;&gt;protocol&lt;/code&gt; 那樣支持追加式建模（retroactive modeling）。可以說 &lt;code class=&quot;highlighter-rouge&quot;&gt;protocol&lt;/code&gt; 在加以限制的基礎上最大限度地開放了自由度。默認實現方面可能唯一需要注意的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;protocal&lt;/code&gt; 裏定義的方法並不具有 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 的多態性。畢竟它可能會被 &lt;code class=&quot;highlighter-rouge&quot;&gt;enum&lt;/code&gt; 或 &lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt; 使用。&lt;/p&gt;
+
+&lt;p&gt;那我來再加一行：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;種類&lt;/th&gt;
+      &lt;th&gt;優&lt;/th&gt;
+      &lt;th&gt;劣&lt;/th&gt;
+      &lt;th&gt;代表語言&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;单一继承&lt;/td&gt;
+      &lt;td&gt;继承关系為簡單树结构&lt;/td&gt;
+      &lt;td&gt;無法通過繼承來共享實現（implementation）&lt;/td&gt;
+      &lt;td&gt;Smalltalk&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;多重继承&lt;/td&gt;
+      &lt;td&gt;可用繼承分享實現&lt;/td&gt;
+      &lt;td&gt;類關係複雜，繼承的優先順序和功能可能存在衝突&lt;/td&gt;
+      &lt;td&gt;C++, Python&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;單繼承 + 接口（Interface）&lt;/td&gt;
+      &lt;td&gt;定義了方法簽名，從而使類接口相關的編程跟多重繼承一樣&lt;/td&gt;
+      &lt;td&gt;無法共享實現&lt;/td&gt;
+      &lt;td&gt;Java&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;單繼承 + 協議（Protocol）&lt;/td&gt;
+      &lt;td&gt;定義了方法簽名或聲明，從而使類接口相關的編程跟多重繼承一樣&lt;/td&gt;
+      &lt;td&gt;暫時未發現，請發現的朋友賜教&lt;/td&gt;
+      &lt;td&gt;Swift&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;例子&quot;&gt;例子&lt;/h3&gt;
+
+&lt;p&gt;我本想自己寫一些例子，不過我覺得&lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2015/408/&quot;&gt;Protocol-Oriented Programming in Swift&lt;/a&gt;的例子其實很到位，尤其是他提供的 Playground 文件裏，有詳細的解說。所以這讓我原先寫個案例分析的安排顯得多餘，或許在之後我的項目裏有些心得我會專門寫一寫吧。不過原版的是 Swift 2 的，新版 Swift 不兼容，改一下並不困難，但網上也可以找到有別人改好的版本。&lt;/p&gt;
+
+&lt;p&gt;下面貼一下我改過的例子，你可以直接用 Playground 跑這些代碼。&lt;/p&gt;
+
+&lt;div class=&quot;language-swift highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CoreGraphics&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIKit&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;PlaygroundSupport&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;twoPi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;M_PI&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//: 先創建一個 protocol 類型來定義一些基本圖型命令&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 移動畫筆位置，但並不會在畫布上添加任何像素&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;move&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// 從當前點畫一條直線到參數點，並把畫筆位置更像至參數點位置&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;point&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// 畫圓弧&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addArc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//: 測試用 `Renderer`&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//:&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 它並不會真的 render 圖像，而是在命令行裏輸出作圖過程。這在開發時很管用，&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 而且很多時候光從圖像上是看不出是否有問題的，比如下面嵌套圖型的例子。&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;TestRenderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;move&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;moveTo(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;lineTo(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addArc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;arcAt(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;, radius: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;,&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+            &lt;span class=&quot;s&quot;&gt;&quot; startAngle: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;, endAngle: &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//: 下面我們來構建圖型&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Drawable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 將 `self` 傳給 `renderer` 使其顯示&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//: 定義多邊形和圓形&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Polygon&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Drawable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;move&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;corners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;corners&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;corners&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Circle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Drawable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addArc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                        &lt;span class=&quot;nv&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;twoPi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//: 定義 `Diagram`，其本質是一對 `Drawable`s&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Diagram&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Drawable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;mutating&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Drawable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Drawable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//: ## 追加式建模（Retroactive Modeling）&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//:&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: Here we extend `CGContext` to make it a `Renderer`.  This would&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: not be possible if `Renderer` were a base class rather than a&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: protocol.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 這裏我們對 `CGContext` 進行擴展使其成為 `Renderer`。&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 如果我們一開始沒有用 `protocol` 而是 `class` 的話，這裏是沒法擴展的&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGContext&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addArc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;arc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGMutablePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;arc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addArc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                   &lt;span class=&quot;nv&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;clockwise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nf&quot;&gt;addPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;circle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;187.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;333.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;93.75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;triangle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Polygon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;corners&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;187.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;427.25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;268.69&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;286.625&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;106.31&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;286.625&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)])&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;diagram&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Diagram&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;triangle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//: ## 嵌套圖型&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//:&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 如果 `Diagram` 是引用式傳遞的話，嵌套會導致無限遞歸。而值傳入就沒問題。&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 這裏為了能夠在圖型界面看出兩次作圖，我們將嵌入的圖縮小顯示。&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ScaledRenderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;move&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;move&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addArc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;nv&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;scaledCenter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;addArc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scaledCenter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;nv&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;startAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endAngle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 定義一個可以縮放 `Base` 實例的 `Drawable`，而 `Base` 也是一個 Drawable&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Scaled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Drawable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Drawable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Base&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;ScaledRenderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;// 定義畫布&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;drawingArea&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGRect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;375.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;667.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// `CoreGraphicsDiagramView` 是 `UIView`。&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 它會調用用戶定義的方法來在 `CGContext` 上生成淺藍色筆觸圖型。&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CoreGraphicsDiagramView&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIView&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGRect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIGraphicsGetCurrentContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;saveGState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;lightBlue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.222&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;green&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.617&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                                    &lt;span class=&quot;nv&quot;&gt;blue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.976&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cgColor&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setStrokeColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lightBlue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setLineWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strokePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;restoreGState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;CGContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 在 playgroud 裏添加 `CoreGraphicsDiagramView`&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showCoreGraphicsDiagram&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                                    &lt;span class=&quot;nv&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;@escaping&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;CGContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;diagramView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CoreGraphicsDiagramView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;frame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drawingArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;diagramView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;draw&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;draw&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;diagramView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;setNeedsDisplay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;PlaygroundPage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;liveView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;diagramView&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;c1&quot;&gt;// 現在我們把 `diagram` 自己添加進自己&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;diagram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Scaled&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;diagram&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 按 shift-cmd-Y 看命令行輸出&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;diagram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;TestRenderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 按 opt-cmd-Return 看圖型輸出&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;showCoreGraphicsDiagram&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Diagram&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;diagram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;原先的 playground 裏，作者其實把跟定義畫布相關的那部分代碼藏在了一個單獨的文件裏。我在上面的例子裏把它搬了出來，這樣一方面讀者可以直接複製粘貼這段代碼就可以把玩，另一方面它也很好地展示了在一個並非純淨的 POP 世界裏，POP 如何跟 OOP 交互。&lt;/p&gt;
+
+&lt;h2 id=&quot;結語&quot;&gt;結語&lt;/h2&gt;
+
+&lt;p&gt;Swift 是一門設計精良的語言，它的設計初衷就是引導程序員寫出更好的代碼，使代碼更加顯式，更少模稜兩可。Andy Matuschak 在他的演講&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;裏也提到了，我們寫 Swift 代碼就是一個遊戲，每個程序都有 Object 層和 Value 層，我們能放越多東西進 Value 層越好。Value 和 Protocol，這就是 Swift 給我們的最具價值的東西。&lt;/p&gt;
+
+&lt;p&gt;另外，文中提到的各種演講視頻都非常有價值，比看我這篇文章值 100 倍。&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;http://atp.fm/episodes/205&quot;&gt;205: PEOPLE DON’T USE THE WEIRD PARTS&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://realm.io/news/andy-matuschak-controlling-complexity/&quot;&gt;Controlling Complexity in Swift — or — Making Friends with Value Types&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">最近在學習 Swift，一開始我以為它像目前的一些支持 OOP 和 FP 的多範式語言一樣，可猝不及防它居然引入了一種新的範式，這種範式基於 Java 的 interface，但加了更多靈活的創新。我覺得學習語言不搞明白它的範式等於是沒學。畢竟語法是形，範式才是神。這才有了這篇文章。</summary></entry><entry><title type="html">2016 -&amp;gt; 2017</title><link href="https://conanblog.me/blog/2016/12/31/2016-2017/" rel="alternate" type="text/html" title="2016 -&gt; 2017" /><published>2016-12-31T21:50:38-05:00</published><updated>2016-12-31T21:50:38-05:00</updated><id>https://conanblog.me/blog/2016/12/31/2016-2017</id><content type="html" xml:base="https://conanblog.me/blog/2016/12/31/2016-2017/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;又到了一年總結經驗教訓和展望未來的時候。簡單總結就是有進步，但有很大的進步空間。2016年的目標尚未完成的當然有，不過就像我一貫說的那樣，目標定得越遠大，即使達不到，但到達的地方也會越高遠。這個開頭簡直廢話……&lt;/p&gt;
 
@@ -494,80 +845,4 @@ OpenVSwitch 的軟件框架基本都是我寫的。
 
 &lt;p&gt;In the progress, I figured out how to config my MIDI device and DAW. And this time, I finally correctly using quantization. The process also helped me to know better the editing tool in the DAW.&lt;/p&gt;
 
-&lt;p&gt;Thank you for your time and feedback :)&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">This post is the week 2 assignment for the course Introduction to Music Production. You can find my introduction and assignment 1 in here: Visualizing Sound.</summary></entry><entry><title type="html">Visualizing Sound</title><link href="https://conanblog.me/blog/2015/08/15/visualizing-sound/" rel="alternate" type="text/html" title="Visualizing Sound" /><published>2015-08-15T23:18:33-04:00</published><updated>2015-08-15T23:18:33-04:00</updated><id>https://conanblog.me/blog/2015/08/15/visualizing-sound</id><content type="html" xml:base="https://conanblog.me/blog/2015/08/15/visualizing-sound/">&lt;p&gt;&lt;img src=&quot;/images/20150815/wave-cover.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course &lt;a href=&quot;https://www.coursera.org/learn/music-production/home/welcome&quot;&gt;Introduction to Music Production&lt;/a&gt; is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..&lt;/p&gt;
-
-&lt;p&gt;This blog is for the week 1 lectures assignment. I would not consider this as teaching, this one will be more like a reviewing and reflecting.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;study&quot;&gt;Study&lt;/h2&gt;
-
-&lt;h3 id=&quot;why&quot;&gt;Why&lt;/h3&gt;
-
-&lt;p&gt;Let us start with why. Why do we need sound visualization? I think the point of sound visualization is to make vague problem clear. Sound has many aspects, in the first few lectures, we have learnt three essentials of them: &lt;em&gt;propagation&lt;/em&gt;, &lt;em&gt;amplitude&lt;/em&gt;, and &lt;em&gt;frequancy&lt;/em&gt;. I didn’t include &lt;em&gt;timbre&lt;/em&gt; here is because that timbre is a combination of different frequencies, it doesn’t sound like a essential to me. Another implicit essential about sound is time, I have to mention it because it will be one axis in some of our diagrams. When we are looking at a problem, we want to &lt;strong&gt;easily grasp the global overview, and at the meanwhile maintain the precision&lt;/strong&gt;. Luckily that mathematician and physicist has already built some handy tools (in here I considered a data representation methodology as a tool, but not a specific software).&lt;/p&gt;
-
-&lt;p&gt;A good case study would be DJing. When you are performing, we want to get the overview of the track, &lt;strong&gt;quickly&lt;/strong&gt;. You can of course hearing/scanning the next track with your headphone, but it is just not good enough and quick enough. I personally rely on the waveform display a lot. The following screenshot is from Serato DJ’s waveform section.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/20150815/waveform.png&quot; alt=&quot;Serato DJ Waveform&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;From the waveforms’ shape, I can tell:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;where are the kicks, hi-hats, and vocals&lt;/li&gt;
-  &lt;li&gt;section of the track&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;From the color of the waveforms, I can tell how the EQ changes cross the track. Quote from the Serato site:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The EQ Colored waveform option changes the waveform colors in Serato DJ to reflect your EQ changes. For example, taking out the bass will remove all the red from the waveform, taking out the high end will remove all the blue and taking the midrange out will remove all the green.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;what&quot;&gt;What&lt;/h3&gt;
-
-&lt;p&gt;What are these tools as in diagrams? The first is &lt;em&gt;Oscilloscope&lt;/em&gt;. It is only showing two aspects of sound: amplitude (Y axis) and time (X axis). The larger the range of Y axis, the higher the amplitude. For the time axis, the time window usually will be few millisecond in our case.&lt;/p&gt;
-
-&lt;p&gt;Frequency is also in the diagram, it is just implicit. The following animation is from &lt;a href=&quot;https://en.wikipedia.org/wiki/Oscilloscope&quot;&gt;Oscilloscope wikipedia page&lt;/a&gt;. You can see that within the same period of time, the more dense the waveform, the frequency is higher.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/20150815/CROtperdivisionincrease.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;The next is &lt;em&gt;spectrum&lt;/em&gt; analyzer. In the oscilloscope diagram, we can only observe relative frequency change, it cannot describe the frequency aspect accurately. We use spectrum analyzer for this. This time, the X axis is frequency and the Y axis is the amplitude. Remember Loudon mentioned that when people talking about 1K, 2K, 5K, we should have some idea on mapping these numbers to our hearing? I actually did try to feel the numbers. What I did is playing note using a Sin synth, which is also hooked to a spectrum analyzer. Here is what I found:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/20150815/1k.png&quot; alt=&quot;1K&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/20150815/2k.png&quot; alt=&quot;2K&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/20150815/5k.png&quot; alt=&quot;5K&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So what is middle c (C4) frequency?&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/20150815/midc.png&quot; alt=&quot;Middle C&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;The last one is &lt;em&gt;Sonogram&lt;/em&gt;. The &lt;em&gt;spectrum&lt;/em&gt; diagram is like a snapshot of the sound in that moment. We could not tell the changes over time. We use sonogram to see these dynamics. In sonogram, the X axis is the time, and the Y axis is the frequency. The third dimension is amplitude, which is represented by color.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;reflection&quot;&gt;Reflection&lt;/h2&gt;
-
-&lt;p&gt;Before the course, I never actually pay much attention on the waveforms. until after then, I realized I actually rely on waveforms or sound visualization a lot. In the post, I not only reviewed the things we have learnt, but also spent some time to explain my use case as a case study. To do that, I actually need to dig into the Serato DJ software manual. Just want to make sure the information I have provided is accurate. I have also tested the spectrum in my DAW. A lot of things are just making more sense now.&lt;/p&gt;
-
-&lt;p&gt;That is about it. &lt;strong&gt;Thank you for your reading, and you are welcome to leave feedback and criticize&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;extra&quot;&gt;Extra&lt;/h2&gt;
-
-&lt;p&gt;While I am searching around about sound visualization, I found an amazing video clip:&lt;/p&gt;
-
-&lt;iframe src=&quot;https://player.vimeo.com/video/111593305&quot; width=&quot;720&quot; height=&quot;307&quot; frameborder=&quot;0&quot; webkitallowfullscreen=&quot;&quot; mozallowfullscreen=&quot;&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;&lt;a href=&quot;https://vimeo.com/111593305&quot;&gt;CYMATICS: Science Vs. Music - Nigel Stanford&lt;/a&gt; from &lt;a href=&quot;https://vimeo.com/user1852409&quot;&gt;Nigel Stanford&lt;/a&gt; on &lt;a href=&quot;https://vimeo.com&quot;&gt;Vimeo&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;With the knowledge of the first 4 lectures and basic physics, we should be able to reveal the secrets in this video.&lt;/p&gt;
-
-&lt;p&gt;Here are the hints: vibration, longitudinal wave, camera ;)&lt;/p&gt;
-
-&lt;p&gt;&lt;small&gt;Cover image copyright by Daniel Palacios&lt;/small&gt;&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;Thank you for your time and feedback :)&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">This post is the week 2 assignment for the course Introduction to Music Production. You can find my introduction and assignment 1 in here: Visualizing Sound.</summary></entry></feed>

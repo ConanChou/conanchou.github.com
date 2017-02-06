@@ -197,9 +197,11 @@ $(document).ready(function() {
       );
   });
 
-  var disable_ts = getUrlParameter('ts') == '0';
-  if (disable_ts) {
+  var enable_screenshot = getUrlParameter('ss') == '1';
+  if (enable_screenshot) {
     $('#ts-div').hide();
+    TongWen.trans2Simp(document);
+    new QRCode(document.getElementById("qrcode"), 'https://conanblog.me');
   }
 
   ts_switch.onchange = function() {
