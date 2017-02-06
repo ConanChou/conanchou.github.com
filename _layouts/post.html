@@ -16,3 +16,8 @@ layout: default
     {% include disqus_comments.html %}
   {% endif %}
 </article>
+{% if jekyll.environment == "development" %}
+<script type="text/javascript" src="{{ root_url }}/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+{% endif %}

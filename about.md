@@ -20,4 +20,6 @@ permalink: /about/
 
 我會不定時更新這個網站，主要記錄一些學到的東西、想法和感悟。沒有特別指出的話，本站的內容均採用 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="創用 CC 授權條款" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款</a>授權。
 
-本站用靜態網站生成器 [Jekyll](https://jekyllrb.com/){:target="_blank"} 生成。皮膚由我設計和製作，將來會開源這個皮膚。
+如果是 iOS 用戶，你也可以考慮把這個網站保存到桌面，閱讀體驗會更好喲 ；）
+
+本站用靜態網站生成器 [Jekyll](https://jekyllrb.com/){:target="_blank"} 生成。皮膚由我設計和製作，將來或許會開源這個皮膚。

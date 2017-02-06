@@ -38,9 +38,9 @@ function addToTop() {
     $('#toTop').remove();
   }
   if ($('#disqus_thread').length == 0) {
-    $('.page-content').after("<div id='toTop'><a href='#'>▲</a></div>");
+    $('.page-content').after("<div id='toTop'><a href='#' title='Scroll to top'>▲</a></div>");
   } else {
-    $('#disqus_thread').before("<div id='toTop'><a href='#'>▲</a></div>");
+    $('#disqus_thread').before("<div id='toTop'><a href='#' title='Scroll to top'>▲</a></div>");
   }
 }
 
@@ -61,7 +61,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 
 function loadCategory(category) {
   $('#category-picker li').removeClass('active');
-  $('#'+category).toggleClass('active');
+  $('#category-picker #'+category).toggleClass('active');
   $('.post-list li').removeClass('hide');
   $('.post-list li').css('pointer-events', '');
   if (category != 'all') {
@@ -70,10 +70,22 @@ function loadCategory(category) {
   }
 }
 
+function scrollToAnchor(aid){
+    var aTag = $(aid.replace(/:/, '\\:'));
+    $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+}
+
 $(document).ready(function() {
   detectIframeInView();
   addToTop();
   loadCategory(getUrlParameter('category') || 'all');
+
+  $('body').on('click', '.footnote, .reversefootnote', function(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    scrollToAnchor($(this).attr("href"));
+  });
 
   var ts_switch = document.querySelector('#ts-switch');
   var ts_label = document.querySelector('#side-label');
@@ -185,9 +197,11 @@ $(document).ready(function() {
       );
   });
 
-  var disable_ts = getUrlParameter('ts') == '0';
-  if (disable_ts) {
+  var enable_screenshot = getUrlParameter('ss') == '1';
+  if (enable_screenshot) {
     $('#ts-div').hide();
+    TongWen.trans2Simp(document);
+    new QRCode(document.getElementById("qrcode"), 'https://conanblog.me');
   }
 
   ts_switch.onchange = function() {

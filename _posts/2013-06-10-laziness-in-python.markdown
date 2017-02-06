@@ -248,7 +248,8 @@ even: 4,6
 ```python
 In [13]: def groupby_odd_even(numbers):
    ....:     odd_even_filter = lambda x: 'even' if x % 2 == 0 else 'odd'
-   ....:     num_groups = groupby(sorted(numbers, key=odd_even_filter), odd_even_filter)
+   ....:     num_groups = groupby(sorted(numbers, key=odd_even_filter),
+   ....:                          odd_even_filter)
    ....:     for k, v in num_groups:
    ....:         print '%s: %s' % (k, ','.join(map(str, v)))
    ....:         
@@ -264,10 +265,13 @@ odd: 1,3,5,7
 In [15]: from itertools import ifilter, takewhile, count, imap, chain
 
 In [16]: def factors(n):
-   ....:     return ifilter(lambda x: n % x == 0, takewhile(lambda y: y <= n, count(1)))
+   ....:     return ifilter(lambda x: n % x == 0,
+   ....:                    takewhile(lambda y: y <= n, count(1)))
    ....:
 
-In [17]: reduce(lambda x, y: x.intersection(y), map(set, imap(factors, [9,15,81,60])))
+In [17]: reduce(lambda x, y: x.intersection(y),
+   ....:        map(set, imap(factors, [9,15,81,60])))
+   ....:
 Out[17]: set([1, 3])
 
 In [18]: set(chain.from_iterable(imap(factors, [9,15,81,60])))

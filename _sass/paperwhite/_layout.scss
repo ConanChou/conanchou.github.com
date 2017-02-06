@@ -440,3 +440,40 @@
     font-size: 1.5em;
   }
 }
+
+// table style
+table {
+  font-size: $base-font-size * 0.8;
+  margin-top: 1em;
+  margin-bottom: 1.75em;
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+
+  th {
+    border-bottom: 1px solid $text-color-gray;
+  }
+
+  th, td {
+    padding: 0.3em;
+  }
+}
+
+// footnotes
+.footnotes {
+  font-size: $base-font-size * 0.8;
+  border-top: 1px dotted $text-color-gray;
+  padding-top: 1.75em;
+  margin-top: 4em;
+}
+
+.footnote {
+  padding: 0 0.2em;
+}
+
+// qrcode
+#qrcode {
+  img {
+    margin: auto;
+  }
+}
