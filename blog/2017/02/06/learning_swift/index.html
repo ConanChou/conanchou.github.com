@@ -258,7 +258,7 @@
 <span class="kd">import</span> <span class="kt">PlaygroundSupport</span>
 <span class="k">let</span> <span class="nv">twoPi</span> <span class="o">=</span> <span class="kt">CGFloat</span><span class="p">(</span><span class="kt">M_PI</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
 
-<span class="c1">//: 先創建一個 protocol 類型來定義一些基本圖型命令</span>
+<span class="c1">//: 先創建一個 protocol 類型來定義一些基本圖形命令</span>
 <span class="kd">protocol</span> <span class="kt">Renderer</span> <span class="p">{</span>
     <span class="c1">// 移動畫筆位置，但並不會在畫布上添加任何像素</span>
     <span class="kd">func</span> <span class="nf">move</span><span class="p">(</span><span class="n">to</span> <span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span>
@@ -274,7 +274,7 @@
 <span class="c1">//: 測試用 `Renderer`</span>
 <span class="c1">//:</span>
 <span class="c1">//: 它並不會真的 render 圖像，而是在命令行裏輸出作圖過程。這在開發時很管用，</span>
-<span class="c1">//: 而且很多時候光從圖像上是看不出是否有問題的，比如下面嵌套圖型的例子。</span>
+<span class="c1">//: 而且很多時候光從圖像上是看不出是否有問題的，比如下面嵌套圖形的例子。</span>
 <span class="kd">struct</span> <span class="kt">TestRenderer</span> <span class="p">:</span> <span class="kt">Renderer</span> <span class="p">{</span>
     <span class="kd">func</span> <span class="nf">move</span><span class="p">(</span><span class="n">to</span> <span class="nv">p</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="s">"moveTo(</span><span class="se">\(</span><span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="se">)</span><span class="s">, </span><span class="se">\(</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="se">)</span><span class="s">)"</span><span class="p">)</span> <span class="p">}</span>
 
@@ -287,7 +287,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="c1">//: 下面我們來構建圖型</span>
+<span class="c1">//: 下面我們來構建圖形</span>
 <span class="kd">protocol</span> <span class="kt">Drawable</span> <span class="p">{</span>
     <span class="c1">// 將 `self` 傳給 `renderer` 使其顯示</span>
     <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">renderer</span><span class="p">:</span> <span class="kt">Renderer</span><span class="p">)</span>
@@ -326,9 +326,6 @@
 
 <span class="c1">//: ## 追加式建模（Retroactive Modeling）</span>
 <span class="c1">//:</span>
-<span class="c1">//: Here we extend `CGContext` to make it a `Renderer`.  This would</span>
-<span class="c1">//: not be possible if `Renderer` were a base class rather than a</span>
-<span class="c1">//: protocol.</span>
 <span class="c1">//: 這裏我們對 `CGContext` 進行擴展使其成為 `Renderer`。</span>
 <span class="c1">//: 如果我們一開始沒有用 `protocol` 而是 `class` 的話，這裏是沒法擴展的</span>
 <span class="kd">extension</span> <span class="kt">CGContext</span> <span class="p">:</span> <span class="kt">Renderer</span> <span class="p">{</span>
@@ -350,10 +347,10 @@
 
 <span class="k">var</span> <span class="nv">diagram</span> <span class="o">=</span> <span class="kt">Diagram</span><span class="p">(</span><span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="n">circle</span><span class="p">,</span> <span class="n">triangle</span><span class="p">])</span>
 
-<span class="c1">//: ## 嵌套圖型</span>
+<span class="c1">//: ## 嵌套圖形</span>
 <span class="c1">//:</span>
 <span class="c1">//: 如果 `Diagram` 是引用式傳遞的話，嵌套會導致無限遞歸。而值傳入就沒問題。</span>
-<span class="c1">//: 這裏為了能夠在圖型界面看出兩次作圖，我們將嵌入的圖縮小顯示。</span>
+<span class="c1">//: 這裏為了能夠在圖形界面看出兩次作圖，我們將嵌入的圖縮小顯示。</span>
 <span class="kd">struct</span> <span class="kt">ScaledRenderer</span> <span class="p">:</span> <span class="kt">Renderer</span> <span class="p">{</span>
     <span class="k">let</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">Renderer</span>
     <span class="k">let</span> <span class="nv">scale</span><span class="p">:</span> <span class="kt">CGFloat</span>
@@ -389,7 +386,7 @@
 <span class="k">let</span> <span class="nv">drawingArea</span> <span class="o">=</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mf">375.0</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mf">667.0</span><span class="p">)</span>
 
 <span class="c1">// `CoreGraphicsDiagramView` 是 `UIView`。</span>
-<span class="c1">// 它會調用用戶定義的方法來在 `CGContext` 上生成淺藍色筆觸圖型。</span>
+<span class="c1">// 它會調用用戶定義的方法來在 `CGContext` 上生成淺藍色筆觸圖形。</span>
 <span class="kd">class</span> <span class="kt">CoreGraphicsDiagramView</span> <span class="p">:</span> <span class="kt">UIView</span> <span class="p">{</span>
     <span class="k">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="k">let</span> <span class="nv">context</span> <span class="o">=</span> <span class="kt">UIGraphicsGetCurrentContext</span><span class="p">(){</span>
@@ -424,7 +421,7 @@
 <span class="c1">// 按 shift-cmd-Y 看命令行輸出</span>
 <span class="n">diagram</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="kt">TestRenderer</span><span class="p">())</span>
 
-<span class="c1">// 按 opt-cmd-Return 看圖型輸出</span>
+<span class="c1">// 按 opt-cmd-Return 看圖形輸出</span>
 <span class="nf">showCoreGraphicsDiagram</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="s">"Diagram"</span><span class="p">)</span> <span class="p">{</span> <span class="n">diagram</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
 
 </code></pre>

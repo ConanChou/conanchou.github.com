@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2017-02-06T00:28:12-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2017-02-06T09:47:43-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
 </subtitle><author><name>Conan</name></author><entry><title type="html">最近在學 Swift</title><link href="https://conanblog.me/blog/2017/02/06/learning_swift/" rel="alternate" type="text/html" title="最近在學 Swift" /><published>2017-02-06T00:26:00-05:00</published><updated>2017-02-06T00:26:00-05:00</updated><id>https://conanblog.me/blog/2017/02/06/learning_swift</id><content type="html" xml:base="https://conanblog.me/blog/2017/02/06/learning_swift/">&lt;p&gt;最近在學習 Swift，一開始我以為它像目前的一些支持 &lt;a href=&quot;https://en.wikipedia.org/wiki/Object-oriented%5C_programming&quot;&gt;OOP&lt;/a&gt; 和 &lt;a href=&quot;https://en.wikipedia.org/wiki/Functional%5C_programming&quot;&gt;FP&lt;/a&gt; 的多範式語言一樣，可猝不及防它居然引入了一種新的範式，這種範式基於 Java 的 &lt;code class=&quot;highlighter-rouge&quot;&gt;interface&lt;/code&gt;，但加了更多靈活的創新。我覺得學習語言不搞明白它的範式等於是沒學。畢竟語法是形，範式才是神。這才有了這篇文章。&lt;/p&gt;
 
 &lt;p&gt;給沒有耐心讀完的同學一句話概括一下，Swift 的設計基本就鼓勵更多地使用值類型，為了使值類型的應用更具可行性，它引入了比 Java &lt;code class=&quot;highlighter-rouge&quot;&gt;interface&lt;/code&gt; 更加靈活的 &lt;code class=&quot;highlighter-rouge&quot;&gt;protocol&lt;/code&gt; 機制。&lt;/p&gt;
@@ -161,7 +161,7 @@
 &lt;span class=&quot;kd&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;PlaygroundSupport&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;twoPi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;M_PI&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;//: 先創建一個 protocol 類型來定義一些基本圖型命令&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 先創建一個 protocol 類型來定義一些基本圖形命令&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// 移動畫筆位置，但並不會在畫布上添加任何像素&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;move&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -177,7 +177,7 @@
 &lt;span class=&quot;c1&quot;&gt;//: 測試用 `Renderer`&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//:&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//: 它並不會真的 render 圖像，而是在命令行裏輸出作圖過程。這在開發時很管用，&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//: 而且很多時候光從圖像上是看不出是否有問題的，比如下面嵌套圖型的例子。&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 而且很多時候光從圖像上是看不出是否有問題的，比如下面嵌套圖形的例子。&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;TestRenderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;move&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;moveTo(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
@@ -190,7 +190,7 @@
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;//: 下面我們來構建圖型&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 下面我們來構建圖形&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;protocol&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Drawable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// 將 `self` 傳給 `renderer` 使其顯示&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -229,9 +229,6 @@
 
 &lt;span class=&quot;c1&quot;&gt;//: ## 追加式建模（Retroactive Modeling）&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//:&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//: Here we extend `CGContext` to make it a `Renderer`.  This would&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//: not be possible if `Renderer` were a base class rather than a&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//: protocol.&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//: 這裏我們對 `CGContext` 進行擴展使其成為 `Renderer`。&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//: 如果我們一開始沒有用 `protocol` 而是 `class` 的話，這裏是沒法擴展的&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;extension&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGContext&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -253,10 +250,10 @@
 
 &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;diagram&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Diagram&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;elements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;circle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;triangle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;//: ## 嵌套圖型&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: ## 嵌套圖形&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//:&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//: 如果 `Diagram` 是引用式傳遞的話，嵌套會導致無限遞歸。而值傳入就沒問題。&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//: 這裏為了能夠在圖型界面看出兩次作圖，我們將嵌入的圖縮小顯示。&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//: 這裏為了能夠在圖形界面看出兩次作圖，我們將嵌入的圖縮小顯示。&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;ScaledRenderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Renderer&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGFloat&lt;/span&gt;
@@ -292,7 +289,7 @@
 &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;drawingArea&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGRect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;375.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;667.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// `CoreGraphicsDiagramView` 是 `UIView`。&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 它會調用用戶定義的方法來在 `CGContext` 上生成淺藍色筆觸圖型。&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 它會調用用戶定義的方法來在 `CGContext` 上生成淺藍色筆觸圖形。&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CoreGraphicsDiagramView&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIView&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;rect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;CGRect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;context&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;UIGraphicsGetCurrentContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
@@ -327,7 +324,7 @@
 &lt;span class=&quot;c1&quot;&gt;// 按 shift-cmd-Y 看命令行輸出&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;diagram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;TestRenderer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// 按 opt-cmd-Return 看圖型輸出&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 按 opt-cmd-Return 看圖形輸出&lt;/span&gt;
 &lt;span class=&quot;nf&quot;&gt;showCoreGraphicsDiagram&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Diagram&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;diagram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
