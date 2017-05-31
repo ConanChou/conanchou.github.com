@@ -91,7 +91,7 @@ import UIKit
 import PlaygroundSupport
 let twoPi = CGFloat(M_PI * 2)
 
-//: 先創建一個 protocol 類型來定義一些基本圖型命令
+//: 先創建一個 protocol 類型來定義一些基本圖形命令
 protocol Renderer {
     // 移動畫筆位置，但並不會在畫布上添加任何像素
     func move(to position: CGPoint)
@@ -107,7 +107,7 @@ protocol Renderer {
 //: 測試用 `Renderer`
 //:
 //: 它並不會真的 render 圖像，而是在命令行裏輸出作圖過程。這在開發時很管用，
-//: 而且很多時候光從圖像上是看不出是否有問題的，比如下面嵌套圖型的例子。
+//: 而且很多時候光從圖像上是看不出是否有問題的，比如下面嵌套圖形的例子。
 struct TestRenderer : Renderer {
     func move(to p: CGPoint) { print("moveTo(\(p.x), \(p.y))") }
 
@@ -120,7 +120,7 @@ struct TestRenderer : Renderer {
     }
 }
 
-//: 下面我們來構建圖型
+//: 下面我們來構建圖形
 protocol Drawable {
     // 將 `self` 傳給 `renderer` 使其顯示
     func draw(_ renderer: Renderer)
@@ -159,9 +159,6 @@ struct Diagram : Drawable {
 
 //: ## 追加式建模（Retroactive Modeling）
 //:
-//: Here we extend `CGContext` to make it a `Renderer`.  This would
-//: not be possible if `Renderer` were a base class rather than a
-//: protocol.
 //: 這裏我們對 `CGContext` 進行擴展使其成為 `Renderer`。
 //: 如果我們一開始沒有用 `protocol` 而是 `class` 的話，這裏是沒法擴展的
 extension CGContext : Renderer {
@@ -183,10 +180,10 @@ var triangle = Polygon(corners: [
 
 var diagram = Diagram(elements: [circle, triangle])
 
-//: ## 嵌套圖型
+//: ## 嵌套圖形
 //:
 //: 如果 `Diagram` 是引用式傳遞的話，嵌套會導致無限遞歸。而值傳入就沒問題。
-//: 這裏為了能夠在圖型界面看出兩次作圖，我們將嵌入的圖縮小顯示。
+//: 這裏為了能夠在圖形界面看出兩次作圖，我們將嵌入的圖縮小顯示。
 struct ScaledRenderer : Renderer {
     let base: Renderer
     let scale: CGFloat
@@ -222,7 +219,7 @@ struct Scaled<Base: Drawable> : Drawable {
 let drawingArea = CGRect(x: 0.0, y: 0.0, width: 375.0, height: 667.0)
 
 // `CoreGraphicsDiagramView` 是 `UIView`。
-// 它會調用用戶定義的方法來在 `CGContext` 上生成淺藍色筆觸圖型。
+// 它會調用用戶定義的方法來在 `CGContext` 上生成淺藍色筆觸圖形。
 class CoreGraphicsDiagramView : UIView {
     override func draw(_ rect: CGRect) {
         if let context = UIGraphicsGetCurrentContext(){
@@ -257,7 +254,7 @@ diagram.elements.append(Scaled(scale: 0.3, subject: diagram))
 // 按 shift-cmd-Y 看命令行輸出
 diagram.draw(TestRenderer())
 
-// 按 opt-cmd-Return 看圖型輸出
+// 按 opt-cmd-Return 看圖形輸出
 showCoreGraphicsDiagram(title: "Diagram") { diagram.draw($0) }
 
 ```
