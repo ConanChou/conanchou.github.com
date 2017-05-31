@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <script type="text/javascript">
+    var host = "conanblog.me";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+    window.location.protocol = "https";
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <title>Serverless</title>
+  <meta name="description" content="長週末的期間，我跟進了一下關於 Serverless 的新動向，動手做了一些小項目來加深對目前工具、方法和社區的了解，當然也順便搞定了 Clojure 在 Serverless 環境下的配置方法。跟一年前相比，目前的工具鏈、服務平台，越發成熟了。年前跟盎可交流的時候說要用 Serverless 做的一個項目，當時...">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://conanblog.me/blog/2017/05/31/serverless/">
+  <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
+  <link href="/stylesheets/switchery.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/logo@3x.png">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-lazyload-any/0.3.0/jquery.lazyload-any.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script>
+  <script type="text/javascript" src="/javascripts/switchery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/disqus_loader.min.js"></script>
+  <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33556525-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/" title="conan@notes:~/">Conan&#39;s Notes</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon" onclick = "void(0)">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <a href="https://conanblog.me/Unix-as-IDE--Chinese-/" target="_blank">Unix as IDE</a>
+      </div>
+    </nav>
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Serverless</h1>
+    <p class="post-meta"><time datetime="2017-05-31T00:00:00-04:00" itemprop="datePublished">May 31, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>長週末的期間，我跟進了一下關於 Serverless 的新動向，動手做了一些小項目來加深對目前工具、方法和社區的了解，當然也順便搞定了 Clojure 在 Serverless 環境下的配置方法。跟一年前相比，目前的工具鏈、服務平台，越發成熟了。年前跟盎可交流的時候說要用 Serverless 做的一個項目，當時看還有很多可行性的顧慮，如今我對它很有信心。</p>
+
+<h2 id="起源和發展">起源和發展</h2>
+
+<p>Serverless 又是一個類似 NoSQL 一樣誤導人的名字。其實把它叫做 FaaS（Function as a Service）更合適，私以為這是函數式編程對當今計算世界的另一個餽贈（手裡是錘子，看啥都是釘子）。不過言歸正傳，從一定距離看最近這十多年軟件行業，我意識到一個規律：<strong>一切能用軟件完成的事情，人們會不惜一切代價把它變成軟件</strong>。硬件也逃離不了這個命運，像各種虛擬機，從編程語言運行環境的虛擬化，到 OS 虛擬化，再到通信連路的虛擬化，它們實際上都是在模擬硬件。這種事情初聽起來像是脫褲子放屁，何況這類技術初期都有很多性能問題，可為什麼人們還是孜孜不倦地繼續注入智力呢？多年前淺薄如我，沒有看到短週期快速迭代的魅力，習慣 REPL<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 之後有一天頓悟了，這不就是硬件軟件化所帶來的最大優勢嘛。隨之而來還有非常吸引人的自動化／可編程化。所以當我看到 OpenAI 在遊戲裡練習自動駕駛，我就非常確信這個領域的發展會再加速。</p>
+
+<p>回到 FaaS，我們不得不提比它早出現一些時間的 DevOps 運動和 Microservice。當然這兩件事情都是站在了虛擬化技術這個巨人的肩膀上。前者講求<strong>開發、測試、運維人員身份統一，或至少能界線模糊</strong>；後者講求<strong>將業務邏輯且分成近乎可丟棄的小型網絡服務</strong>。雖然 DevOps 運動沒有明確提倡 Microservice，但這幾乎成為標配，原因很簡單，開發人員盤子裡的菜更多了，能吃的量有限，縮小規模有助於有效迭代，又或不迭代、直接重寫。這兩件事隨後產生了一系列有趣的反應。</p>
+
+<p>首先職責界線模糊會迫使軟件開發者和運維人員更多的溝通協作，這催熟了很多運維工具鏈和服務平台。多年來在很多公司裡，運維人員的工作相對沒那麼多變——一旦初期平台搭建穩定後，便不需要做太多事情，之後的工作僅僅是監測和維護。但是越來越多以科技為主導的公司無法滿足於一塵不變的硬件基礎設施，運維要跟得上開發的日新月異。讓我認識到這個現狀的還是不久前的一段小插曲。我之前所在公司的老上司加入了一家管理著300～400億美元的對衝基金，主管架構／基礎設施。我幫他做過一個數據中心 SDN 項目，當時 SDN 的版圖還不明朗，我們算是第一批吃螃蟹的人，最後項目很成功，合作很愉快，他便邀請我加入他的新冒險。在交流<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>過程中我得知，因為他們的體量大，計算資源一方面短缺，一方面也不夠靈活。常常出現一個小組的資源不夠用，而另一個小組有富餘；又或是一天收到十多個小組的架構變更需求。他們原先的運維團隊還比較傳統，有大量對網絡協議、Linux 內核了解透徹卻缺乏大型軟件開發經驗的人員。但是新的需求已經不僅僅是搭建並維護起基礎設施供各個模型團隊用，更多的是要基礎設施更具彈性和靈活性。要做到這一點，開發者和運維人員就需要有足夠的信息交流，無論是人與人間的還是代碼層面的。因此架構代碼化和可被代碼化（自動化）的架構在這個情境下變得至關重要，代碼是這種信息交流的精確媒介。而這也是為什麼在他們公司傳統運維工程師需要更多軟件技能，而軟件工程師也同樣需要了解必要的架構知識。</p>
+
+<p>其次是 Microservice，它的進展不只如此，新的 FaaS 外衣讓它脫胎換骨。坦白說，它跟多年前討論的 SOA 沒有什麼本質區別。只是服務更小巧專精，但該有的還是都有——麻雀雖小五臟俱全。不難想像，一個網絡服務開發者不得不開始學習和考慮CAP、負載均衡、SDP（service discovery protocol）等等，當然也或者是運維團隊寫好 boilerplate code 或配置模板。但我們不難發現這底下藏著不少 overhead。且不說重複的架構組件，就光是那些架構代碼就很不 DRY，扔給哪個有理想的軟件工程師會受得了呢。更何況，此前我也跟很多朋友交流過這個問題，我們即便很願意學習架構知識，但是真正做起產品來，我們能外包多少非核心業務就外包多少，這些基礎設施／架構尤其如此。另一方面，Microservice 的推行需要全團隊的支持，尤其在現存代碼很 monolithic 的團隊，但凡有異議，這件事就很難推行，反對者會輕易把經驗積累的試錯過程看成是 Microservice 的弊端。所以我認為從開發者角度看， Microservice 終將是過度性的，它當然不會消失，也許它會成為眾多 Serverless 平台的基石，但對開發者是透明的。Serverless／FaaS 有可能是目前最好的答案。</p>
+
+<h3 id="優勢">優勢</h3>
+
+<p>做過 Microservice 項目的朋友知道，其實核心代碼只佔非常少的量，外圍有大量的 boilerplate code。架構相關的暫且不提，它還有像處理 API／RPC 之類的代碼。而 FaaS 的亮點之一就在於它將這些 boilerplate code 推到了服務提供商／運維團隊，而開發者可以集中精力寫業務邏輯，寫更接近於計算本質的代碼。然而這並非意味著開發者又回到了之前工作方式，因為 FaaS 會問開發者兩個很重要的問題，最多用多少內存，最長跑多長時間。這是兩個很聰明的問題，開發者即便在開發時就要對運行資源和財務做出決定，並對決定做出相應的優化。這樣一來 DevOps 的代價就很低了。</p>
+
+<p>FaaS 的另一個優勢就是真正意義上的按使用收費，Function 不跑就不用給錢。當年 Cloud Computing 剛成為 buzz word 的時候，我看到有種解釋是“像自來水一樣使用計算資源”，不過事實上，雖然相比較傳統的服務器購買和租用，它確實降低了運維成本，但事實上我們還是需要，比方說，預付資源以降低單位成本。而且所謂彈性架構其實也是有一定的顆粒度的。FaaS 更接近這種自來水的解釋。而企業也真正有望將運維開銷從 CAPEX<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>（資本支出）轉化為 OPEX<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup>（運營支出）。</p>
+
+<h3 id="潛在問題">潛在問題</h3>
+
+<p>那 FaaS 的缺點是啥呢？我現在能預見的有這麼幾點。</p>
+<ul>
+  <li>很難在本地測試，單元測試不難，但集成測試幾乎不可能。最終我們也許不得不在雲裡配置四個環境，dev、testing、staging 和 prod。技術上來說完全沒問題，問題在於開發成本，如果平台能減免部分費用，相信也算是個解決方案，不過我覺得這個不太可能發生…</li>
+  <li>有時無法確定那兩個問題的答案，這意味著開發者有可能只能靠猜測。畢竟測試數據和真實數據可能有區別。但這不是 FaaS 獨有的問題，這個依賴於經驗積累。</li>
+  <li>錯綜複雜的服務依賴。類似軟件包依賴的問題也很有可能出現在 FaaS 裏，但可能沒那麼嚴重，畢竟規模比包管理器處理的要小很多。雖然目前 provisioning 工具已經具備資源依賴處理的功能，但是面對 FaaS，這些是否足夠還要繼續觀察。</li>
+</ul>
+
+<h2 id="結語">結語</h2>
+
+<p>FaaS 會有坑，但我對它的走向很樂觀。</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p><a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">Read–eval–print loop</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>因為老上司邀請太多次，還特別安排我跟他們 CTO 吃飯見面，我不得不答應去公司聊聊項目，但其實就是連蒙帶騙走了一遍面試流程，見了來自多個部門十多個人。加此標注特別說明對目前雇主表忠心，並非我想跳槽。雖然他們要解決的問題很誘人，可因為跟我的職業計劃和理想不相符，所以我還是婉拒了他們。 <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p><a href="https://en.wikipedia.org/wiki/Capital_expenditure">Capital expenditure</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p><a href="https://en.wikipedia.org/wiki/Operating_expense">Operating expense</a> <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  
+    
+
+  <div id="disqus_thread"></div>
+  <script>
+    disqusLoader( '#disqus_thread',
+      { laziness: 0,
+        scriptUrl: '//conannotes.disqus.com/embed.js' });
+
+    // var disqus_config = function () {
+    //   this.page.url = 'https://conanblog.me/blog/2017/05/31/serverless/';
+    //   this.page.identifier = 'https://conanblog.me/blog/2017/05/31/serverless/';
+    // };
+    //
+    // (function() {
+    //   var d = document, s = d.createElement('script');
+    //
+    //   s.src = 'https://conannotes.disqus.com/embed.js';
+    //
+    //   s.setAttribute('data-timestamp', +new Date());
+    //   (d.head || d.body).appendChild(s);
+    // })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+  
+</article>
+
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Made by <a href="https://twitter.com/conanchou" target="_blank">Conan</a>, with love and curiosity.
+      </div>
+
+      <!-- <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/conanchou"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/conanchou"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+        </ul>
+      </div> -->
+
+      <div class="footer-col footer-col-2">
+        <p>Programming Language, Open Source, Design, Music, and everything in between.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+</footer>
+
+<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_s2t-d27f0ad57a0f47750d3e861a7405162f6fabf05a17c0e27c758b77a180e219d7.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_t2s-d93925ae251ab1993d8d61db4fbef14dfac804ba9e8af108f9d94851eef7cb84.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_ps2t-3976433ff99f4ca8453c2871ac34e10abaa11dbca47621c622d90e220d92ecca.js"></script>
+<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
+<script type="text/javascript" src="/assets/main-7ba572a40a00f8b14ac2c40da7d5f70cfa15336c5c6da2d8182d2257ad89aed3.js"></script>
+<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
+<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  </body>
+
+</html>
