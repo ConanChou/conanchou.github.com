@@ -75,9 +75,16 @@ function scrollToAnchor(aid){
     $('html,body').animate({scrollTop: aTag.offset().top},'slow');
 }
 
+function goBackTOC() {
+  if ($('#markdown-toc').length) {
+    $('.post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6').css("cursor", "pointer");
+  }
+}
+
 $(document).ready(function() {
   detectIframeInView();
   addToTop();
+  goBackTOC();
   loadCategory(getUrlParameter('category') || 'all');
 
   $('body').on('click', '.footnote, .reversefootnote', function(event) {
@@ -104,6 +111,21 @@ $(document).ready(function() {
     event.stopImmediatePropagation();
 
     $("html, body").stop().animate({scrollTop:0}, '500', 'swing');
+  });
+
+  $('body').on('click', '#markdown-toc a', function(event) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    var newLoadedHtml = $(this).attr("href");
+    history.pushState(null, newLoadedHtml, newLoadedHtml);
+    $("html, body").stop().animate({scrollTop: $(newLoadedHtml).offset().top - 20}, '500', 'swing');
+  });
+
+  $('body').on('click', ".post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6", function(event) {
+    var toc = $('#markdown-toc');
+    if (toc.length) {
+      $("html, body").stop().animate({scrollTop: $(toc).offset().top - 20}, '500', 'swing');
+    }
   });
 
   $('body').on('click', '.post-link, .site-title, .page-link, a[href^="/"]', function(event) {
@@ -151,6 +173,7 @@ $(document).ready(function() {
             }, 600, function() {
               $(this).addClass('page-content').removeClass('page-content-clone');
               addToTop();
+              goBackTOC();
             });
           }
         );
