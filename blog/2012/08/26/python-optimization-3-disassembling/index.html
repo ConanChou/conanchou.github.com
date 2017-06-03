@@ -12,10 +12,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-  <title>Python 調優筆記·理性主義調優</title>
   <meta name="description" content="上次我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來...">
-
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://127.0.0.1/blog/2012/08/26/python-optimization-3-disassembling/" />
+  <meta property="og:title" content="Python 調優筆記·理性主義調優" />
+  <meta property="og:description" content="上次我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來..." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@ConanChou" />
+  <meta name="twitter:title" content="Python 調優筆記·理性主義調優" />
+  <meta name="twitter:description" content="上次我們學會了如何使用造影工具，使用它們的目的自然是設法找到代碼「慢」的理由。不過在上次的博文裏對於那段代碼慢的分析也是建立在我們有一定經驗的基礎上的。那我們總有第一次，如果第一次我們碰到這樣的瓶頸我們是不是就不知道該如何優化了呢？答案顯然是否定的。計算機作爲一門人造科學，可以說是完全在數學和邏輯的基礎上堆砌起來..." />
+  <meta name="twitter:image" content="/assets/logo@3x.png" />
+  <meta property="og:image" content="/assets/logo@3x.png" />
+  <title>Python 調優筆記·理性主義調優</title>
   <link rel="stylesheet" href="/assets/main.css">
   <link rel="canonical" href="https://conanblog.me/blog/2012/08/26/python-optimization-3-disassembling/">
   <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
@@ -45,6 +53,9 @@
 
   
 </head>
+  <div id="wx_pic" style="margin:0 auto;display:none;">
+    <img src="/assets/logo@3x.png" />
+  </div>
 
 
   <body>
