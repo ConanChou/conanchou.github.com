@@ -354,6 +354,10 @@
     font-weight: 400;
   }
 
+  sup {
+    line-height: 1em;
+  }
+  
   a {
     color: $text-color;
     text-decoration: underline;
