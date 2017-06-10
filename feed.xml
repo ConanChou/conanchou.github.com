@@ -1,5 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2017-06-03T11:44:47-04:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">Serverless</title><link href="https://conanblog.me/blog/2017/05/31/serverless/" rel="alternate" type="text/html" title="Serverless" /><published>2017-05-31T00:00:00-04:00</published><updated>2017-05-31T00:00:00-04:00</updated><id>https://conanblog.me/blog/2017/05/31/serverless</id><content type="html" xml:base="https://conanblog.me/blog/2017/05/31/serverless/">&lt;p&gt;長週末的期間，我跟進了一下關於 Serverless 的新動向，動手做了一些小項目來加深對目前工具、方法和社區的了解，當然也順便搞定了 Clojure 在 Serverless 環境下的配置方法。跟一年前相比，目前的工具鏈、服務平台，越發成熟了。年前跟盎可交流的時候說要用 Serverless 做的一個項目，當時看還有很多可行性的顧慮，如今我對它很有信心。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2017-06-10T16:42:22-04:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">Electron + ClojureScript + Reagent  + nREPL</title><link href="https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/" rel="alternate" type="text/html" title="Electron + ClojureScript + Reagent  + nREPL" /><published>2017-06-10T00:00:00-04:00</published><updated>2017-06-10T00:00:00-04:00</updated><id>https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl</id><content type="html" xml:base="https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/">&lt;p&gt;正在進行的 Savant 項目就是這個前端技術架構做開發的，配置麻煩了一點，但是一旦配好了你將擁有爽爆了的 Live Coding 的開發體驗。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Electron + ClojureScript + Reagent&lt;/code&gt;部分已經有人做了——&lt;a href=&quot;https://github.com/karad/lein_template_descjop&quot; target=&quot;_blank&quot;&gt;descjop&lt;/a&gt;，直接拿來用就好。想要了解細節的話可以看這個系列文章 &lt;a href=&quot;https://owensd.io/2017/02/06/clojurescript-electron/&quot; target=&quot;_blank&quot;&gt;CLOJURESCRIPT + ELECTRON&lt;/a&gt;，雖然不是出自同一作者，但是思路一致。可是 descjop 只用了 Figwheel 的默認 REPL，所以這只解決了一半的問題，跟目前流行的 IDE／編輯器結合最好的方案還是通過 nREPL，這個我在&lt;a href=&quot;/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/&quot;&gt;之前的文章&lt;/a&gt;提到過。配法類似，需要在 &lt;code class=&quot;highlighter-rouge&quot;&gt;project.clj&lt;/code&gt; 裏加兩行。一個是 dependency：&lt;/p&gt;
+
+&lt;div class=&quot;language-clj highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:dependencies&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;org.clojure/clojure&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.8.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;org.clojure/clojurescript&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.9.473&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:exclusions&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;org.apache.ant/ant&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;org.clojure/core.async&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.2.395&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reagent&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.6.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ring/ring-core&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.5.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figwheel&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.5.9&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;com.cemerick/piggieback&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.2.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;加的是最後一行。還有就是 Figwheel 的配置：&lt;/p&gt;
+
+&lt;div class=&quot;language-clj highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:figwheel&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:http-server-root&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;public&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+             &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:ring-handler&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figwheel-middleware/app&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+             &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:server-port&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3449&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+             &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:nrepl-port&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7002&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;也是最後一行。接著按照 descjop 官方文檔說的運行：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lein descjop-figwheel
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;之後就跟之我之前的文章一樣了，用 Cursive 或 Emacs 之類的連接&lt;code class=&quot;highlighter-rouge&quot;&gt;7002&lt;/code&gt;端口並運行：&lt;/p&gt;
+
+&lt;div class=&quot;language-clj highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;'figwheel-sidecar.repl-api&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cljs-repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Happy Live Coding!&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">正在進行的 Savant 項目就是這個前端技術架構做開發的，配置麻煩了一點，但是一旦配好了你將擁有爽爆了的 Live Coding 的開發體驗。</summary></entry><entry><title type="html">Serverless</title><link href="https://conanblog.me/blog/2017/05/31/serverless/" rel="alternate" type="text/html" title="Serverless" /><published>2017-05-31T00:00:00-04:00</published><updated>2017-05-31T00:00:00-04:00</updated><id>https://conanblog.me/blog/2017/05/31/serverless</id><content type="html" xml:base="https://conanblog.me/blog/2017/05/31/serverless/">&lt;p&gt;長週末的期間，我跟進了一下關於 Serverless 的新動向，動手做了一些小項目來加深對目前工具、方法和社區的了解，當然也順便搞定了 Clojure 在 Serverless 環境下的配置方法。跟一年前相比，目前的工具鏈、服務平台，越發成熟了。年前跟盎可交流的時候說要用 Serverless 做的一個項目，當時看還有很多可行性的顧慮，如今我對它很有信心。&lt;/p&gt;
 
 &lt;h2 id=&quot;起源和發展&quot;&gt;起源和發展&lt;/h2&gt;
 
@@ -773,47 +809,4 @@ OpenVSwitch 的軟件框架基本都是我寫的。
 &lt;h2 id=&quot;2015-2016&quot;&gt;2015-&amp;gt;2016&lt;/h2&gt;
 
 &lt;p&gt;就這樣吧，一篇沒什麼營養的總結，寫在 2015 的最後一天。對來年我也沒什麼高大上的願景，
-踏踏實實做好眼前事兒吧。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">Ableton Live 9 Automation How-To</title><link href="https://conanblog.me/blog/2015/08/30/ableton-live-9-automation-how-to/" rel="alternate" type="text/html" title="Ableton Live 9 Automation How-To" /><published>2015-08-30T15:53:32-04:00</published><updated>2015-08-30T15:53:32-04:00</updated><id>https://conanblog.me/blog/2015/08/30/ableton-live-9-automation-how-to</id><content type="html" xml:base="https://conanblog.me/blog/2015/08/30/ableton-live-9-automation-how-to/">&lt;blockquote&gt;
-  &lt;p&gt;Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course &lt;a href=&quot;https://www.coursera.org/learn/music-production/home/welcome&quot;&gt;Introduction to Music Production&lt;/a&gt; is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This is the 3rd week assignment. In this one, I am going to demonstrate the automation in Ableton Live 9. Similar to previous tutorial, I will also divide this topic into several sub-topics. The audio track used in the examples is Lion original mix by Dannic. I will only play the first few bars.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;automation-recording&quot;&gt;Automation Recording&lt;/h2&gt;
-
-&lt;p&gt;Animation recording in Ableton Live is very easy. You just need to remember to enable the &lt;em&gt;Automation Arm&lt;/em&gt; button before hit the record button. The following short video shows how to do so.&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/K4yK6W0vdOk&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;h2 id=&quot;automation-editing&quot;&gt;Automation Editing&lt;/h2&gt;
-
-&lt;p&gt;In this section I am going to show you how to:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Basic editing&lt;/li&gt;
-  &lt;li&gt;use the &lt;em&gt;Draw Mode Switch&lt;/em&gt; (aka pencil tool)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;general-editing&quot;&gt;General Editing&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Create: click the place you want to add a point on the automation line&lt;/li&gt;
-  &lt;li&gt;Move: drag the point you want move, release at the place you want&lt;/li&gt;
-  &lt;li&gt;Delete: just click on the point you don’t want&lt;/li&gt;
-  &lt;li&gt;Curve Automation Line: When mouse close (not over yet) to the automation line, the line will turn to blue color. Hold Option/Alt key and click drag up and down&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/JMPnozZmyxI&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;Tip: hold command key and click drag can be helpful if you want to precisely adjust the value of the point. So when doing so, you can only move the point up and down, and the value changing sensitivity will be lower.&lt;/p&gt;
-
-&lt;h3 id=&quot;pencil-tool&quot;&gt;Pencil Tool&lt;/h3&gt;
-
-&lt;p&gt;In &lt;em&gt;Clip View&lt;/em&gt; pencil tool can be used to draw MIDI and envelopes; in &lt;em&gt;Arrangement View&lt;/em&gt; we can use it for automation line editing. By default, the drawing will be very rigid. The edit size depends on the grid size. However if you want to draw freely, you can hold the Option/Alt key and draw. The command key tip also works with pencil tool.&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/_2s91azSfXQ&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;h2 id=&quot;reflection&quot;&gt;Reflection&lt;/h2&gt;
-
-&lt;p&gt;After this assignment, I have better understanding of automation, and also have a solid knowledge how should I utilizing Ableton Live automation functions.&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">Hi, I am Conan, a programmer in New York. I taught myself DJing. After awhile I started to look into music theories and DAW (Ableton Live 9 in my case), I wish I can play my own works in parties one day. I think the course Introduction to Music Production is a perfect starting point for music production. I am looking forward to learning from Loudon and you guys and gals. English is not my mother tongue, please bear with me..</summary></entry></feed>
+踏踏實實做好眼前事兒吧。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
