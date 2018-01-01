@@ -1,5 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2017-06-10T16:50:47-04:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">Electron + ClojureScript + Reagent  + nREPL</title><link href="https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/" rel="alternate" type="text/html" title="Electron + ClojureScript + Reagent  + nREPL" /><published>2017-06-10T00:00:00-04:00</published><updated>2017-06-10T00:00:00-04:00</updated><id>https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl</id><content type="html" xml:base="https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/">&lt;p&gt;正在進行的 Savant 項目就是這個前端技術架構做開發的，配置麻煩了一點，但是一旦配好了你將擁有爽爆了的 Live Coding 的開發體驗。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2018-01-01T16:43:57-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">2017 -&amp;gt; 2018</title><link href="https://conanblog.me/blog/2018/01/01/2017-2018/" rel="alternate" type="text/html" title="2017 -&gt; 2018" /><published>2018-01-01T00:00:00-05:00</published><updated>2018-01-01T00:00:00-05:00</updated><id>https://conanblog.me/blog/2018/01/01/2017-2018</id><content type="html" xml:base="https://conanblog.me/blog/2018/01/01/2017-2018/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;今年，2017，我的狀態有過波動。感覺做了很多無用功，但仔細想想也並非如此。&lt;/p&gt;
+
+&lt;h2 id=&quot;生活&quot;&gt;生活&lt;/h2&gt;
+
+&lt;p&gt;今年我們去了好幾個地方，年初去了 DC，看望辦辦的好友，我也順便散散心，到處逛逛。這趟旅行倒是有一點我一個人的時間。因為天太冷，我也就找了個碰頭方便的星巴克寫代碼，當然是寫自己的東西，不然跟上班有啥區別呢。不過還是 on call 了一會兒。倒並沒有因此不開心。畢竟是換了一個環境，有那麼幾個瞬間我覺得做自由職業者挺好的。至少不用回到我的坑，陪伴我的之後左邊整天嗡嗡的服務器機架。（我懷疑我的情緒不穩定是不是因為這噪音，我也甚至很擔心我很在意的聽力）&lt;/p&gt;
+
+&lt;p&gt;夏天我們去了路易斯安那，第一天就被淋成落湯雞，兩人相依趟著洪水走了好幾個小時才回到賓館。我們笑說著，也算是共患難過了。我很喜歡辦辦的一點就是她是清醒樂觀派，對，不是那種無腦樂觀派。我們去那裡是為了辦辦找了很久的 Cajun 食物，當然去了之後才了解到還有別的說法。知道了不少當地的地理歷史知識。總的來說應該算是一趟有意思的旅行。我們在大概一大半的時間就基本把能玩的都玩遍了，不過也好，留下一些時間休息。&lt;/p&gt;
+
+&lt;p&gt;秋天我們還去了三番，沒找到太多好吃的東西，不過倒是好好體會了一下自然風貌和人文氣息。我最鍾意的還是 Amoeba 音像店和 City Lights 書店。這個習慣可能從小就養成了，去得最多的地方就是書店和音像店。從並不富足的零花錢裡省出 1.27 元買口袋書，應該是從那時開始的。Strand 書店可以媲美 City Lights，不過還沒有在紐約看到像 Amoeba 收藏量這麼大的音像店。&lt;/p&gt;
+
+&lt;p&gt;我們的小家算是弄得差不多了。辦辦在裝飾/裝修家的理念上跟我的還是蠻一致的，我們也都很開放思維，即便有細微的分歧也都能商量出共識。具體細節就不多說了，不過有一個理念我覺得值得一提，我們都不喜歡電視，就像 Daft Punk 的曲子說的一樣 Television Rules the Nation，它只會把你的思考關掉，被動信息接收是一件很恐怖的事情。我們認為書和音樂才應該是主宰客廳的東西，所以我們家沒有電視，只有書櫃、黑膠和音響。&lt;/p&gt;
+
+&lt;h2 id=&quot;工作&quot;&gt;工作&lt;/h2&gt;
+
+&lt;p&gt;年初時其實狀態還可以，那時候永強還沒有離職。我們協力將公司的數據庫換了。那段時間學習/做了很多事情。他鐵了心要離開也是沒有辦法的事情，我也知道原委，我只能盡力挽留，但同時也盡可能能多多地把他積攢的經驗學過來。那段時間還是蠻充實的，其中有段時間因為太忙，都沒有去 Gym。可到了快年底的時候，由於雇主在身份問題配合上的拖拉，引發了我再次對自己不自由狀態的清醒意識，於是情緒很不穩定。好在後來跟辦辦說說後，被疏通了不少。年底漸漸又拉回了狀態。不過在此期間，該幹的活兒還是一如既往完成的。我想這是該有的職業素養。&lt;/p&gt;
+
+&lt;p&gt;從各方面講，我都不算是一個經驗老道的架構師。更何況在創業公司，所謂架構師就意味著你啥事都得做。而且就目前公司的情況看，每個人都要能獨當好幾面，不能掉鏈子。所以壓力還是挺大的。2018 要更多地學習。更關鍵的是要積極思考，不能被問題牽著鼻子走。當然有些東西是來自經驗的，沒有經驗就只能多讀書學習了。公司的創始人也是資源豐富，我也希望新的一年能多多和公司的同事和顧問們學習。當然最重要的一點，我會在文末說，因為這一點不僅僅侷限於工作方面。&lt;/p&gt;
+
+&lt;h2 id=&quot;學習&quot;&gt;學習&lt;/h2&gt;
+
+&lt;p&gt;今年學習的東西主要分三塊，除了編程相關的，還有音樂和讀書。&lt;/p&gt;
+
+&lt;h3 id=&quot;編程&quot;&gt;編程&lt;/h3&gt;
+
+&lt;p&gt;前半年有在做那個項目，用了 ClojureScript 和 Electron。寫起來還是不太習慣，畢竟這是我第一次用 FP 寫大項目，而且 Electron 的世界我也很陌生，往往一個問題要先去了解 Electron JS 版，然後再想 ClojureScript 的解決方案。不過這就是學習邊緣技術的代價吧，挺好。&lt;/p&gt;
+
+&lt;p&gt;年末的時候有個想法就是希望用用戶手機端做爬蟲，測了一下 iOS WebKit，可以訪問 DOM，也跟 JS 交互，感覺這條路還是可行的。至於我之前抱怨的 Cookie 問題，我總覺得是我代碼寫得有問題。所以打算真正做的時候再好好 debug。&lt;/p&gt;
+
+&lt;h3 id=&quot;書&quot;&gt;書&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/34470814-ffa2a0a0-ef07-11e7-84eb-80ea728e8f11.png&quot; alt=&quot;2017books&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;今年讀的書不多，但感覺總體質量還是不錯的。上圖中我用黃框標出的書都是我心中的前三名，也是花了最長時間讀的書。留下了不少筆記和想法。&lt;/p&gt;
+
+&lt;p&gt;此外我想把訂閱的 WIRED 和 nautil.us 也算進來。在一個讀書群裡我看到一個很受啟發的觀點，不必在意讀的媒介，期刊也好書也好，我們是不是能用“能否引發思考“類似的問題來作為判定“讀書”的標準。&lt;/p&gt;
+
+&lt;h3 id=&quot;音樂&quot;&gt;音樂&lt;/h3&gt;
+
+&lt;p&gt;今年感覺最大的收穫就是意識到音樂的學習就像學習外語一樣，要聽要練，帶腦子的那種。即便現在的科技已經可以讓不會樂器的人也能做音樂，但是要寫出好的作品還是需要紮實的基礎。所以今年一方面慢慢學習（爵士）樂理，一方面在鋼琴上練習爵士音階。音樂製作方面，我在看一本關於鼓的書，節奏和韻律在流行樂裡非常重要。年末的時候我又重新訂閱了 Computer Music 和 Future Music 兩本雜誌，不求緊跟潮流，只希望能學到更多音樂編寫和製作上的技巧。&lt;/p&gt;
+
+&lt;h2 id=&quot;2018&quot;&gt;2018&lt;/h2&gt;
+
+&lt;p&gt;我要感謝兩個給我啟發的人，一個是辦辦，一個是 Life 3.0 的作者 Max Tegmark。從 2018 開始，我希望開始培養兩個習慣：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;記錄未知，並及時調研，花適當時間搞到適當明白的程度&lt;/li&gt;
+  &lt;li&gt;在仔細想過我如何做能夠改善狀況前，不再抱怨任何事情&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;辦辦有個習慣，她有個 ToDo List，記錄了各種她想要搞明白的事情。有空時她就會挑一個徹查，直到弄得差不多明白了。當然這個也是按照她自己的興趣愛好來記錄的。這個行為讓我很慚愧，我這才意識到我已經很久沒有這麼好奇心驅動了。這是一個警鐘。我不能再這樣下去了。&lt;/p&gt;
+
+&lt;p&gt;Max Tegmark 在 2014 年有個新年願望：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I was no longer allowed to complain about anything without putting some serious thought into what I could personally do about it&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我覺得這是一個非常睿智的願望，是人成熟後才會意識到這價值的願望。而這一點就是我前文提到的“不僅僅侷限於工作”的重要一點。&lt;/p&gt;
+
+&lt;p&gt;另外，我想回一趟家，看望多年沒見的父母和長輩。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">Electron + ClojureScript + Reagent  + nREPL</title><link href="https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/" rel="alternate" type="text/html" title="Electron + ClojureScript + Reagent  + nREPL" /><published>2017-06-10T00:00:00-04:00</published><updated>2017-06-10T00:00:00-04:00</updated><id>https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl</id><content type="html" xml:base="https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/">&lt;p&gt;正在進行的 Savant 項目就是這個前端技術架構做開發的，配置麻煩了一點，但是一旦配好了你將擁有爽爆了的 Live Coding 的開發體驗。&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Electron + ClojureScript + Reagent&lt;/code&gt;部分已經有人做了——&lt;a href=&quot;https://github.com/karad/lein_template_descjop&quot; target=&quot;_blank&quot;&gt;descjop&lt;/a&gt;，直接拿來用就好。想要了解細節的話可以看這個系列文章 &lt;a href=&quot;https://owensd.io/2017/02/06/clojurescript-electron/&quot; target=&quot;_blank&quot;&gt;CLOJURESCRIPT + ELECTRON&lt;/a&gt;，雖然不是出自同一作者，但是思路一致。可是 descjop 只用了 Figwheel 的默認 REPL，所以這只解決了一半的問題，跟目前流行的 IDE／編輯器結合最好的方案還是通過 nREPL，這個我在&lt;a href=&quot;/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/&quot;&gt;之前的文章&lt;/a&gt;提到過。配法類似，需要在 &lt;code class=&quot;highlighter-rouge&quot;&gt;project.clj&lt;/code&gt; 裏加兩行。一個是 dependency：&lt;/p&gt;
 
@@ -738,75 +799,4 @@ reagent
 它影響著美國人的行為模式。&lt;strong&gt;當在一個社會裡，人與機構要為自己以往的言行負責任時，
 人們才會意識到“積累”的重要性，從而才有真正的“運營”。&lt;/strong&gt;&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">最近又有一些自媒體的假新聞被忽然炒熱，比如最近一篇說蘋果收購特斯拉的。不管是愚人節假新聞被挖墳，
 還是挖墳、傳播者無腦。假新聞、標題黨這兩年已經泛濫，自媒體更是搞臭了自己的名聲。
-表面看，這事兒一半關於內容制造者的人品，另一半關於讀者和傳播者素質，我相信 Fenng 的這篇文章已經做了很“給力”的討論。</summary></entry><entry><title type="html">2015 -&amp;gt; 2016</title><link href="https://conanblog.me/blog/2015/12/31/2015-2016/" rel="alternate" type="text/html" title="2015 -&gt; 2016" /><published>2015-12-31T13:53:55-05:00</published><updated>2015-12-31T13:53:55-05:00</updated><id>https://conanblog.me/blog/2015/12/31/2015-2016</id><content type="html" xml:base="https://conanblog.me/blog/2015/12/31/2015-2016/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;又是一年忙忙碌碌，可能光從這兩年的博客發表數量就可以看出來。今年跨年，是該稍微寫一點東西了，
-免得以後忘記這兩年都幹了些啥。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;工作&quot;&gt;工作&lt;/h2&gt;
-
-&lt;p&gt;2013 年中，我加入了一家為金融公司做私有雲的創業公司。開始的一年多做得非常開心。
-因為做的東西很有挑戰，我到現在還記得加入的第二天就接到了一個獨立任務──寫一個 in-memory
-graph database，而且不能太臃腫，因為要放進 OpenVSwitch 交換機里跑。之後幹了半個禮拜，
-在我離開這家公司時，這個項目依然還在我們數據中心的每一台交換機里運行著。當然其實後來整個
-OpenVSwitch 的軟件框架基本都是我寫的。
-這也是那一年半里我每天工作的重心。在這個過程中，我的搭檔──一名網絡工程專家，
-以及我的上司──一名總是比我多想一步的實時高頻系統專家，都給予了很多的鼓勵和幫助，
-不論是硬技術方面的還是軟技術方面的。之後，有了一些人事方面的變動，我老闆跳槽了，
-於是我便慢慢變成了個自由人，我也越來越多地涉及到公司產品的其它部份，
-尤其是數據庫和數據中心方面的項目。好的不好的事、物都經歷過，這些都是寶貴的經驗。
-在我離開的時候，公司好幾個組的夥伴都來跟我說願做我的推薦人，這就讓我很感動。
-這種肯定是為我踐行的最好的禮物。&lt;/p&gt;
-
-&lt;p&gt;2015 年中，我決定跳槽了。過去的兩年，我成長了，公司也成長了，它再也不是一家創業公司；然而我還是
-喜歡創業公司。一次機緣巧合的機會，我去哥大參加一個清華北美地區校友會組織的座談會（應該是我人生
-中最接近清華的一次吧，哈哈），結識了一位同是嘉賓的哥大教授。那會兒他剛剛和他的一個博士學生建立了一
-個有學術背景的創業公司。當中略過幾次吃飯聊天，大半年之後我便加入了他的公司。現在我剛剛加入這家
-公司一個多月吧，它還跟小嬰兒似的，還有很多待做的事情，從架構到功能，從 UI/UX 到代碼。
-當然這一切都得建立在團隊對我的信任上。我相信這只是個時間問題。希望 2016 年我能幫助它成長得更好。&lt;/p&gt;
-
-&lt;h2 id=&quot;生活&quot;&gt;生活&lt;/h2&gt;
-
-&lt;p&gt;2014 年初的時候，我邂逅了她，我現在的妻子。她很美，也比我聰明。在我眼裡她無限接近于完美。
-我經常偷樂，沒想到我這德行還能追到這麼好的姑娘。在她的細心照料下，我的生活有了質的飛越，
-身上的毛病也少了。我很感謝她，在迷茫的時候她幫我解惑，她的支持給我繼續執行的勇氣，
-另外她還容忍我玩電子音樂、夢話說程序語言設計，還耐心聽我嘮叨那些偏門冷知識。
-來年我依然會努力照顧好她，不給她惹麻煩 ;)&lt;/p&gt;
-
-&lt;p&gt;去年回了一次國，時間上也是匆匆忙忙，并沒有來得及見朋友。父母和祖輩都去看望過。都還好，
-只是許久不見，他們都老了。我爸雖然還壯實，但是跟我記憶里的樣子已經不一樣了。
-忍不住就想起朱自清的《背影》。想到就心疼和無奈。剛認識我老婆那會兒，她問我可有我爸媽的照片，
-我那時才意識到我沒有我爸的照片，這麼多年我腦子里還是那個開車送我上學時的他。我爸還不會視頻聊天，
-所以這些年一直都是我打網絡電話給他，可是每次都是匆匆幾句話。近幾年，歲月改變了他，想來開始
-掛念孩子家人了，才多了幾通十幾分鐘的電話。最近我媽那邊傳來消息，說是外公快不行了，六七年了，
-她一個人照料得了癌症的外公。也是非常不容易。想想要不是你們的辛苦，我哪裡有這般無憂的生活？
-希望未來我能常回家看看吧。&lt;/p&gt;
-
-&lt;p&gt;對了，我要減肥了，BMI逼近正常和肥胖的那條交界線了。&lt;/p&gt;
-
-&lt;h2 id=&quot;學習&quot;&gt;學習&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/20151231/2016resolution.png&quot; alt=&quot;2016 Resolution&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;這幾年學習倒是沒斷過，工作必須要學的和自己感興趣的。這一點還算欣慰。2015 年初我在 GoodReads
-上定下一年 30 本書的挑戰，年末看看自己才差不多完成了一半。不過沒完成挑戰倒沒什麼要緊的，
-想想我讀的書畢竟不是暢銷小說，知識密度大多了。
-其實左邊這幅圖片的背景就是我今年翻閱過的書籍的一部份。&lt;/p&gt;
-
-&lt;p&gt;今年還在 coursera 上上了一些伯克利音樂學院的課，深受啟發。我又看到來年有一些新課，找個時間還是
-會再去上一上。&lt;/p&gt;
-
-&lt;p&gt;學習方面繼續保持吧。現在唯一覺得時間不太夠用，之後等生活進一步穩定下來應該會有更多時間吧。&lt;/p&gt;
-
-&lt;h2 id=&quot;創業&quot;&gt;創業&lt;/h2&gt;
-
-&lt;p&gt;創業的夢一直在做，想法也一直有，也經常和朋友們分享。再積累幾年，我會再回來的。
-今年國內的資本市場也是動盪的一年。一旦錯過一個好窗口，就有可能錯過整片江山。
-我曾投資的一家公司就遇到了不小的麻煩。不管怎樣，兄弟繼續加油！&lt;/p&gt;
-
-&lt;h2 id=&quot;2015-2016&quot;&gt;2015-&amp;gt;2016&lt;/h2&gt;
-
-&lt;p&gt;就這樣吧，一篇沒什麼營養的總結，寫在 2015 的最後一天。對來年我也沒什麼高大上的願景，
-踏踏實實做好眼前事兒吧。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
+表面看，這事兒一半關於內容制造者的人品，另一半關於讀者和傳播者素質，我相信 Fenng 的這篇文章已經做了很“給力”的討論。</summary></entry></feed>
