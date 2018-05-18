@@ -9,12 +9,12 @@ permalink: /about/
 我是 Conan，現擔任創業公司 [NimbleDroid](https://nimbledroid.com){:target="_blank"} 的架構師，常居紐約。
 在加入這次冒險之前，我曾創業過數次，是 GitCafe 和 Artlans 的 Partner。
 
-業餘時間我喜歡[看書](https://www.goodreads.com/user/show/18814676-conan){:target="_blank"}，也試著做一些[音樂](https://soundcloud.com/sanji_music){:target="_blank"}。當然也會搗鼓[代碼](https://github.com/ConanChou){:target="_blank"}
+業餘時間我喜歡[看書](https://www.goodreads.com/user/show/18814676-conan){:target="_blank"}，也試著做一些[音樂](https://soundcloud.com/sanji_music){:target="_blank"}。當然也會搗鼓[代碼](https://github.com/ConanChou){:target="_blank"}。
 
 我對大部分科技、視覺藝術、音樂和書相關的話題都很感興趣，很喜歡和志同道合的朋友交流合作。
 我一般活躍在推特（[@ConanChou](http://twitter.com/conanchou){:target="_blank"}），歡迎來找我。
 
-另外我的 Keybase 是：[keybase.io/conanchou](https://keybase.io/conanchou){:target="_blank"}
+另外我的 Keybase 是：[keybase.io/conanchou](https://keybase.io/conanchou){:target="_blank"}。
 
 
 ## 關於本站
