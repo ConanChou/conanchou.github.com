@@ -3,7 +3,7 @@ layout: post
 title: "不是格子人生"
 date: 2015-07-20 12:08:48 -0400
 comments: true
-categories: [life, thought]
+categories: [life, hack, thought]
 ---
 
 ![](/images/20150720/zen.jpeg)
@@ -75,3 +75,5 @@ categories: [life, thought]
 
 <small>說明：封面圖片我也不知道版權屬誰，是從這裡拿到的：[the Abysmal Centre](https://theabysmal.wordpress.com/tag/zen-mind-beginners-mind/)。
 暫時先用了，如有問題請聯繫我，我會徹下。</small>
+
+
