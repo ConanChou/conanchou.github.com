@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="//www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: arch | conan @ notes:~/]]></title>
+  <link href="https://conanblog.me/categories/arch/atom.xml" rel="self"/>
+  <link href="https://conanblog.me/"/>
+  <updated>2016-12-31T22:27:42-05:00</updated>
+  <id>https://conanblog.me/</id>
+  <author>
+    <name><![CDATA[Conan]]></name>
+    <email><![CDATA[conanchou1412@gmail.com]]></email>
+  </author>
+  <generator uri="//octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Raspberry Pi 下載盒]]></title>
+    <link href="https://conanblog.me/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box/"/>
+    <updated>2013-02-20T17:03:00-05:00</updated>
+    <id>https://conanblog.me/blog/raspberry-pi/bittorrent/arch/linux/2013/02/20/raspberry-pi-as-a-bittorrent-box</id>
+    <content type="html"><![CDATA[<p><a href="https://conanblog.me/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/">上一篇日誌</a>我在篇尾大致說了一下我用 Raspberry Pi 做 Bit Torrent（BT）下載盒。這次不是蛋疼，而確實是爲了節省地球資源。簡單做個記錄，另外我也想說說我發現的問題和困惑。<!--more--></p>
+
+<h2 id="section">環境搭建</h2>
+
+<p>OS 環境就跟上一篇日誌說的一樣，應用程序我隨便挑了個 Transmission。它有 daemon 模式跑，有簡單好用的 Web UI，最主要的是它也支持 Private Tracker（在國外下載東西還是這種類型的比較安全）：</p>
+
+<p><code>bash
+$ sudo su
+$ pacman -S transmission-cli
+</code></p>
+
+<p>daemon 模式執行：</p>
+
+<p><code>bash
+$ cp /usr/lib/systemd/system/transmission.service /etc/systemd/system/
+$ cp /usr/lib/tmpfiles.d/transmission.conf /etc/tmpfiles.d/
+$ groupadd transmission
+$ gpasswd -a conan transmission
+</code></p>
+
+<p>修改<code>/etc/tmpfiles.d/transmission.conf</code>，將<code>user</code>和<code>group</code>替換成我們剛剛設置的‘conan’和‘transmission’。接着啓用剛剛的配置：</p>
+
+<p><code>bash
+$ systemd-tmpfiles --create transmission.conf
+$ systemctl daemon-reload
+</code></p>
+
+<p>別忘了把<code>/run/transmission</code>的權限設置成<code>777</code>：</p>
+
+<p><code>bash
+$ chmod 777 /run/transmission
+</code></p>
+
+<p>硬件方面，我不可能往我4GB的小SD卡裏面存儲，所以我用了一塊自供電的外接硬盤。將它<code>mount</code>起來，其方法很多，可以手動mount也可以修改<code>/etc/fstab</code>自動化mount。這個示例裏我就從簡，手動添加了（因爲這塊硬盤是NTFS的，之後我需要格式化一下，所以只是暫時使用）：</p>
+
+<p><code>bash
+$ mkdir /mnt/disk500
+$ mount /dev/sda1 /mnt/disk500
+</code></p>
+
+<p>將<code>disk500</code>裏的「Downloads」軟連接到<code>~/Downloads</code>：</p>
+
+<p><code>bash
+$ ln -s /mnt/disk500/Downloads/ ~/Downloads
+</code></p>
+
+<h2 id="section-1">使用情況</h2>
+
+<p>這樣就可以通過<a href="http://127.0.0.1:9091">http://127.0.0.1:9091</a>來管理下載了。下面是效果圖。</p>
+
+<p><img src="https://conanblog.me/images/20130220/WebUI.png" alt="Web UI" title="Web UI" /></p>
+
+<p><img src="https://conanblog.me/images/20130220/peers.png" alt="Peers" title="Peers" /></p>
+
+<p>速度還不錯吧，再來看一下內存和CPU使用情況：</p>
+
+<p><img src="https://conanblog.me/images/20130220/top.png" alt="top" title="top" /></p>
+
+<p>可以發現，其實 Transmission 內存使用並沒有很嚇人，反而是 NTFS 用掉了很多CPU資源，這也是爲什麼我上面說到要格式化這塊硬盤的原因。</p>
+
+<p>最後我持續關注了下載速度，遇到了我之前也遇到過的一個問題，就是速度時上時下的，波動特別大。我之前用 Transmission 就會這樣，還時不時斷網，後來換了別的 BT 客戶端就沒這樣過，所以我想這應該是 Transmission 某些設置的問題。我也嘗試去找一些解決方案，可是基本都不是很有效。求高人答疑解惑。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Raspberry Pi + Arch + WiFi + Sound + Go 簡記]]></title>
+    <link href="https://conanblog.me/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi/"/>
+    <updated>2013-02-17T17:11:00-05:00</updated>
+    <id>https://conanblog.me/blog/raspberry-pi/hack/arch/linux/go/2013/02/17/play-with-raspberry-pi</id>
+    <content type="html"><![CDATA[<p>原文地址：<a href="http://goo.gl/RSj7A">http://goo.gl/RSj7A</a></p>
+
+<p>Tl;dr. <a href="http://www.raspberrypi.org/">Raspberry Pi</a> 剛剛在 HN 上紅起來的時候，我就果斷通過 ebay 從英國買了一隻。那是上學期的事情了，由於<a href="http://www.conanblog.me/life/where-are-we/">種種原因</a>，我直到最近才真正玩起來。寫這篇簡記有兩個目的，一爲了以後自己查閱配置方法方便，二爲了給明睿交差（太無聊可以直接看最後一節……）。<!--more--></p>
+
+<ul id="markdown-toc">
+  <li><a href="#section" id="markdown-toc-section">硬件</a></li>
+  <li><a href="#section-1" id="markdown-toc-section-1">軟件</a>    <ul>
+      <li><a href="#section-2" id="markdown-toc-section-2">操作系统</a></li>
+      <li><a href="#section-3" id="markdown-toc-section-3">分區擴容</a></li>
+    </ul>
+  </li>
+  <li><a href="#section-4" id="markdown-toc-section-4">打印分區表</a></li>
+  <li><a href="#section-5" id="markdown-toc-section-5">刪除第二個分區</a></li>
+  <li><a href="#section-6" id="markdown-toc-section-6">新建一個分區</a></li>
+  <li><a href="#section-7" id="markdown-toc-section-7">!!! 第一個扇區號必須和上面刪除的分區的起始扇區號一樣，這裏的話是186368 !!!</a></li>
+  <li><a href="#section-8" id="markdown-toc-section-8">保存剛剛的操作並退出</a>    <ul>
+      <li><a href="#section-9" id="markdown-toc-section-9">系統常規設置</a></li>
+      <li><a href="#section-10" id="markdown-toc-section-10">聲音</a>        <ul>
+          <li><a href="#vlc" id="markdown-toc-vlc">VLC</a></li>
+        </ul>
+      </li>
+      <li><a href="#wifi" id="markdown-toc-wifi">WiFi</a></li>
+      <li><a href="#go" id="markdown-toc-go">Go</a></li>
+      <li><a href="#section-11" id="markdown-toc-section-11">後記</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="section">硬件</h2>
+
+<p>Pi 本身我是買了 Model B，它跟 A 的區別只是 B 有倆 USB 口和 512MB 內存，而 A 只有一個 USB 口和 256MB 内存。東西運到的時候除了機子本身什麼都沒有，所以其他東西你得自己配。</p>
+
+<p>最基本的是電源，理論上說，電腦 USB 口直接供电就应该可以驱动 Pi 了，可是網上有些黑客表示有起不動的現象，用測電壓的儀器測了板子，當插上一些設備後，不達5伏。所以我建議在選擇電源時可以挑高一點電壓的，比如<a href="http://www.amazon.com/gp/product/B004EYSKM8/ref=oh_details_o05_s00_i00?ie=UTF8&amp;psc=1">摩托羅拉的SPN5504型充電器</a>，它的輸出規格是5.1V，850mA。補充一句，這塊板子的最高設計電壓是5.25V。我用的這個充電器的電流還是比較小，經測試，跑不動無電源供給的外接硬盤。</p>
+
+<p>除此之外，我還買了一個迷你 WiFi 網卡，<a href="http://www.amazon.com/gp/product/B005CLMJLU/ref=oh_details_o06_s00_i00?ie=UTF8&amp;psc=1">Edimax EW-7811Un</a>。有了 WiFi，我就可以不用非得拿一根網線接着用了，比較方便。</p>
+
+<p>其它硬件我就不一一說了，不太算是必須品，大致是殼子、各種線（我現在只用ssh鏈接）和麪包板以及各種小電子元件（這些是用來做別的擴展的）。</p>
+
+<h2 id="section-1">軟件</h2>
+
+<p>由於硬件的計算能力非常有限，我選擇了 Arch Linux 作爲操作系統。非常輕量級，而且給你更多的支配權。</p>
+
+<h3 id="section-2">操作系统</h3>
+
+<p>Arm 版的可以在 Pi 的<a href="http://www.raspberrypi.org/downloads">官網下載</a>。這個系統裏也沒有GUI，正和我意。值得強調的是這個鏡像是hard-float ABI的，啓動非常快。</p>
+
+<p>下載好鏡像後先檢查下 checksum：</p>
+
+<p><code>bash
+$ sha1sum ~/Downloads/archlinux-hf-2013-02-11.zip
+</code></p>
+
+<p>解壓：</p>
+
+<p><code>bash
+$ unzip ~/Downloads/archlinux-hf-2013-02-11.zip
+</code></p>
+
+<p>在插入SD卡之前，用 <code lang="bash">df -h</code> 查看當前掛載的磁盤，再插入SD卡再查看。找出你的SD卡名字，就是像 <code>/dev/mmcblk0p1</code> 或 <code>/dev/sdd1</code> 這樣的盤符。記住名字並卸載該盤符（如果這個SD卡裏有多個分區，保證卸載該SD卡下的所有盤符）,這裏我們假設是<code>mmcblk0p1</code>这个盘：</p>
+
+<p><code>bash
+$ unmount /dev/mmcblk0p1
+</code></p>
+
+<p>卸载后就可以将镜像拷贝到刚刚的SD卡裏了：</p>
+
+<p><code>bash
+$ sudo dd bs=4M if=/path/to/your/image/arch-linux.img of=/dev/mmcblk0p1
+</code></p>
+
+<h3 id="section-3">分區擴容</h3>
+
+<p>OS 的安裝其實到這裏就算結束了，但是因爲原鏡像是2GB的，如果你的SD卡大於2GB，其他的空間就用不到了，要用就得對SD卡上的分區擴容。擴容的工具很多，有命令行的也有圖形界面的。GParted 就挺好用的，如果對命令行工具不太熟悉，它是個很好的選擇。不過在這篇簡記裏我要裝個逼：</p>
+
+<p>&#8220;` bash
+$ sudo fdisk -uc /dev/mmcblk0</p>
+
+<h1 id="section-4">打印分區表</h1>
+<p>Command (m for help): p</p>
+
+<p>Disk /dev/mmcblk0: 3904 MB, 3904897024 bytes
+64 heads, 32 sectors/track, 3724 cylinders, total 7626752 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x0004f23a</p>
+
+<pre><code>    Device Boot      Start         End      Blocks   Id  System /dev/mmcblk0p1   *        2048      186367       92160    c  W95 FAT32 (LBA) /dev/mmcblk0p2          186368     3667967     1740800   83  Linux
+</code></pre>
+
+<h1 id="section-5">刪除第二個分區</h1>
+<p>Command (m for help): d
+Partition number (1-4): 2</p>
+
+<h1 id="section-6">新建一個分區</h1>
+<p>Command (m for help): n
+Command action
+   e   extended
+   p   primary partition (1-4)
+p
+Partition number (1-4): 2</p>
+
+<h1 id="section-7">!!! 第一個扇區號必須和上面刪除的分區的起始扇區號一樣，這裏的話是186368 !!!</h1>
+<p>First sector (186368-7626751, default 186368): 186368
+Last sector, +sectors or +size{K,M,G} (186368-7626751, default 7626751): 
+Using default value 7626751</p>
+
+<h1 id="section-8">保存剛剛的操作並退出</h1>
+<p>Command (m for help): w
+The partition table has been altered!</p>
+
+<p>Calling ioctl() to re-read partition table.
+Syncing disks.
+&#8220;`</p>
+
+<p>檢查下磁盤，然後再擴容：</p>
+
+<p><code>bash
+$ sudo e2fsck -f /dev/mmcblk0p2
+$ sudo resize2fs -p /dev/mmcblk0p2
+</code></p>
+
+<h3 id="section-9">系統常規設置</h3>
+
+<p>Arch 起來之後裏面基本上啥都沒有，所以得根據自己的喜好調教一下。本着極簡主義的原則，我做了如下調整。先以 root 身份登錄。</p>
+
+<p>Pi 用 SD 卡做主盤，其實就相當與 SSD 了，爲了延長 SD 卡的壽命，我把系統的<code>atime</code>記錄取消掉了，只要修改<code>/etc/fstab</code>:</p>
+
+<p><code>
+# 
+# /etc/fstab: static file system information
+#
+# &lt;file system&gt;        &lt;dir&gt;         &lt;type&gt;    &lt;options&gt;          &lt;dump&gt; &lt;pass&gt;
+devpts                 /dev/pts      devpts    defaults            0      0
+shm                    /dev/shm      tmpfs     nodev,nosuid        0      0
+/dev/mmcblk0p1  /boot           vfat    defaults        0       0
+/dev/mmcblk0p2  /               ext4    defaults,noatime        0       0
+tmpfs           /var/log        tmpfs   defaults,noatime,mode=0755,size=5%      0       0
+</code></p>
+
+<p>升級系統：</p>
+
+<p><code>bash
+$ pacman -Syu
+</code></p>
+
+<p>如果它說要先升級<code>pacman</code>，就讓它升，升完後再來一次，這樣整個系統都更新了。</p>
+
+<p>修改默認 root 的密碼：</p>
+
+<p><code>bash
+$ passwd root
+</code></p>
+
+<p>修改默認主機名，默認是叫<code>alarmpi</code>，你可以修改<code>/etc/hostname</code>裏的此默認值。</p>
+
+<p>Arch 默認是沒有<code>sudo</code>的，安一個：</p>
+
+<p><code>bash
+$ pacman -S sudo
+$ visudo
+</code></p>
+
+<p>爲了只讓<code>sudo</code>用戶組的用戶有執行<code>sudo</code>的權限，我們還得修改一下 <code>/etc/sudoers</code>文件，用你最喜歡的文本編輯器打開，並去掉<code>%sudo ALL=(ALL) ALL</code>這一行前面的註釋，保存並關閉。</p>
+
+<p>創建新用戶並設置密碼：</p>
+
+<p><code>bash
+$ useradd -m -g users -s /bin/bash conan
+$ passwd conan
+</code></p>
+
+<p>将新用户加入到<code>sudo</code>用戶組：</p>
+
+<p><code>bash
+$ sudo usermod -aG sudo conan
+</code></p>
+
+<p>禁止<code>root</code>通過ssh登錄，打開<code>/etc/ssh/sshd_config</code>，找到<code>PermitRootLogin</code>並把它的值改成‘no’。重啓<code>sshd</code>:</p>
+
+<p><code>bash
+$ systemctl restart sshd
+</code></p>
+
+<p>修改時區設置：</p>
+
+<p><code>bash
+$ tzselect
+$ export TZ='America/New_York'
+$ source /etc/profile
+</code></p>
+
+<p>安裝<code>Vim</code>和<code>python2</code>：</p>
+
+<p><code>bash
+$ pacman -S vim python2
+</code></p>
+
+<p>常規設置這樣就差不多了，更新並重啓一下系統（再次更新是以防因爲以上變動之後有些包找不到）：</p>
+
+<p><code>bash
+$ pacman -Syu
+$ reboot
+</code></p>
+
+<h3 id="section-10">聲音</h3>
+
+<p>安裝<code>alsa</code>相關包：</p>
+
+<p><code>bash
+$ sudo su
+$ pacman -S alsa-firmware alsa-lib alsa-plugins alsa-utils mpg123
+</code></p>
+
+<p>掛載聲音模塊：</p>
+
+<p><code>bash
+$ modprobe snd_bcm2835
+</code></p>
+
+<p>將聲音模塊放進內核模塊，這樣它會自啓動：</p>
+
+<p><code>bash
+$ vi /etc/modules-load.d/snd_bcm2835.conf
+</code></p>
+
+<p>文件裏寫：</p>
+
+<p><code>bash
+# Put snd_bcm2835.ko in kernel modules
+snd_bcm2835
+</code></p>
+
+<p>因爲 Pi 的音頻可以從 analog 和 HDMI 兩個通道出來，所以我們可以做個選擇，從<a href="http://www.raspberrypi-spy.co.uk/2012/06/raspberry-pi-speakers-analog-sound-test/">官網的信息</a>看，你可以用 <code>amixer cset numid=3 &lt;n&gt;</code> 這個命令來制定通道，其中<code>&lt;n&gt;</code>可以是 0、1、2，意思是：0=auto, 1=analog, 2=hdmi。</p>
+
+<p>測試一下是否有效：</p>
+
+<p><code>bash
+$ speaker-test -c 2
+</code></p>
+
+<p>沒問題的話你應該可以聽到一些噪音。當然你也可以通過官網的方法測試：</p>
+
+<p><code>bash
+$ wget http://www.freespecialeffects.co.uk/soundfx/sirens/police_s.wav
+$ aplay police_s.wav
+</code></p>
+
+<p>如果遇到這樣的報錯：</p>
+
+<p><code>bash
+ALSA lib confmisc.c:768:(parse_card) cannot find card '0'
+ALSA lib conf.c:4246:(_snd_config_evaluate) function snd_func_card_driver returned error: No such file or directory
+ALSA lib confmisc.c:392:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:4246:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1251:(snd_func_refer) error evaluating name
+ALSA lib conf.c:4246:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:4725:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2217:(snd_pcm_open_noupdate) Unknown PCM default
+aplay: main:696: audio open error: No such file or directory
+</code></p>
+
+<p>你需要把用戶加到<code>audio</code>用戶組裏：</p>
+
+<p><code>bash
+$ usermod -G audio -a conan
+$ su -l conan
+</code></p>
+
+<h4 id="vlc">VLC</h4>
+
+<p>安裝 VLC 純粹是因爲我<code>scp</code>了一份「白金迪斯科」到 Pi，發現居然解碼失敗了……以及 VLC 有個網頁端的控制接口，挺方便，可惜就是太 heavy 了。</p>
+
+<p><code>bash
+$ pacman -S vlc pulseaudio pulseaudio-alsa libao
+</code></p>
+
+<p>安裝完後把<code>/etc/libao.conf</code>裏的<code>alsa</code>換成<code>pulse</code>。之後再跑，你可能會遇到一些錯誤，那是因爲有些包還沒裝，仔細看下錯誤信息再補上就好了。上面的安裝我也不是一次到位的，也是跑跑補補，只是在寫簡記的時候重新 compile 了命令記錄。</p>
+
+<p>爲了使用網頁控制接口，你得在<code>/usr/share/vlc/lua/http/.hosts</code>裏加上可訪問的 IP，在這裏我就開放了本地網絡的訪問權：</p>
+
+<p><code>bash
+# local network
+192.168.2.0/24
+</code></p>
+
+<p>這樣應該就好了，來聽首歌試試：</p>
+
+<p><code>bash
+$ vlc --intf http --http-host 192.168.2.11 --http-port 8080 /home/conan/hikari-loveletter.mp3
+</code></p>
+
+<p>打開 Web Interface 就只需要：</p>
+
+<p><code>bash
+$ vlc --extraintf=http
+</code></p>
+
+<h3 id="wifi">WiFi</h3>
+
+<p>Edimax EW-7811Un 是基於 Realtek 8192CU 的 WiFi 網卡。這一款在 Raspberry Pi 社区里非常有人气，因为它能被 Pi 的小電力驅動。不過貌似它的驅動程序卻還沒有成爲 alarmpi 的標配，我聽說它的驅動已經成爲 Raspbian 的標配（基於 debian 的 Pi Linux 分支），估計 alarmpi 也快了吧。不過在此之前還是得自己擼。擼之前我建議參考這篇簡記的同學先用<code>lsmod</code>查看一下當前已經掛載的模塊，如果有叫<code>8192cu</code>的，那麼恭喜你，你不用自己擼了，直接跳過本章節吧！</p>
+
+<p>安裝前還是先更新、安裝一些必要的工具：</p>
+
+<p><code>bash
+$ sudo su
+$ pacman -Syu
+$ pacman -S util-linux base-devel unzip
+$ reboot
+</code></p>
+
+<p><code>util-linux</code>包其實是已經安裝過的了，但是在這裏我們或許得重裝一下，這是爲了避免<code>util-linux</code>的c重啓後不能登錄的小 bug，如果重啓後不能登錄了，就<code>ssh</code>上，再重裝<code>util-linux</code>。</p>
+
+<p>從另一臺機子下載 <a href="http://218.210.127.131/downloads/downloadsView.aspx?Langid=1&amp;PNid=21&amp;PFid=48&amp;Level=5&amp;Conn=4&amp;DownTypeID=3&amp;GetDown=false&amp;Downloads=true#2772">RTL8192CU 驅動源碼</a>(因爲這個極品的網站裏源碼是js搞的，不太容易弄直接下載地址，所以得有個有圖形界面的機子來下)。將下載好的 zip 包上傳到 Pi 裏：</p>
+
+<p><code>bash
+$ scp ~/Downloads/RTL8192xC_USB_linux_v3.4.3_4369.20120622.zip conan@192.168.2.11:/home/conan/
+</code></p>
+
+<p>下面再次回到 Pi 裏，解壓源碼：</p>
+
+<p><code>bash
+$ sudo su
+$ unzip RTL819xC_USB_linux_v3.4.3_4369.20120622.zip
+$ cd RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/
+$ tar -xvf rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622.tar.gz
+$ cd rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622
+$ vim Makefile
+</code></p>
+
+<p>這裏我們要修改一下編譯所基於的架構，首先找到<code>CONFIG_PLATFORM_I386_PC = y</code>，將‘y’改成‘n’；加上<code>CONFIG_PLATFORM_ARM_BCM2708 = y</code>，在架構配置區塊下面加上下面的代碼：</p>
+
+<p><code>bash
+ifeq ($(CONFIG_PLATFORM_ARM_BCM2708), y)
+EXTRA_CFLAGS += -DCONFIG_LITTLE_ENDIAN
+ARCH := arm
+CROSS_COMPILE :=
+KVER  := $(shell uname -r)
+KSRC := /lib/modules/$(KVER)/build
+endif
+</code></p>
+
+<p>保存後就可以出來編譯了：</p>
+
+<p><code>bash
+$ make
+</code></p>
+
+<p>不出意外，這裏應該就編譯成功了，我第一次跑的時候失敗了，原因是我下錯了源代碼包……成功後在一坨新生成的文件裏有個叫<code>8192cu.ko</code>的。這就是那個將要被掛載到內核的新模塊。</p>
+
+<p>按理說這裏只要再<code>make install</code>就好了，可是官方的 install 腳本好像有點問題，不過還是有參考意義的，至少它描述了你大概要做哪些事情來安裝新的組件。</p>
+
+<p><code>bash
+$ cp 8192cu.ko /lib/modules/$(uname -r)/kernel/net/wireless
+$ depmod -a
+$ insmod 8192cu.ko
+$ install -p -m 644 ~/RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622/8192cu.ko /lib/modules/($uname -r)/kernel/drivers/net/wireless/
+</code></p>
+
+<p>驅動裝完後我們還得看看有沒有衝突的驅動，用<code>mkinitcpio -M</code>查看。如果发现列表里有<code>rtl8192cu</code>，我們得禁用它才能保證新的驅動正常工作：</p>
+
+<p><code>bash
+$ echo "blacklist rtl8192cu" &gt; /etc/modprobe.d/blacklist-rtl8192cu.conf
+</code></p>
+
+<p>重啓並登錄後先看看驱动模块能不能用，如果有問題就再回到之前的部分仔細走一遍：</p>
+
+<p><code>bash
+$ sudo su
+$ rmmod 8192cu
+$ modprobe 8192cu
+$ ip link set wlan0 up
+</code></p>
+
+<p>接着就可以裝網絡管理軟件來自動化鏈接 WiFi 了，我用的是<code>netcfg</code>，先安裝必要的工具：</p>
+
+<p><code>bash
+$ pacman -S wireless_tools netcfg
+</code></p>
+
+<p>安裝好後有些文件要配置一下，首先是創建 profile 文件：</p>
+
+<p><code>bash
+$ cp /etc/network.d/examples/wireless-wpa /etc/network.d/conan_wireless
+$ vim /etc/network.d/conan_wireless
+</code></p>
+
+<p>更具自己網絡的情況填寫好相應信息，當然這裏我用的是wpa方式連的，其他模式都在<code>examples</code>目錄下，具體信息可以看 <a href="https://wiki.archlinux.org/index.php/Netcfg#Configuration">Arch wiki</a>。</p>
+
+<p><code>/etc/conf.d/netcfg</code>也要做些修改，因爲 WiFi 的 DHCP 可能有些慢，所以最好把等待時間設置長一點，加一句<code>DHCP_TIMEOUT=30</code>；其他的配置可以更具自己的喜好自由調整。</p>
+
+<p>最後終於可以連 WiFi 了：</p>
+
+<p><code>bash
+$ netcfg /etc/network.d/conan_wireless
+</code></p>
+
+<p>這個過程中可能會看到錯誤，但是之後如果出現了‘Done’，那就應該是連上了，可以<code>ifconfig</code>看一下。</p>
+
+<p>最後我們要把 WiFi 鏈接自動化：</p>
+
+<p><code>bash
+$ systemctl enable net-auto-wireless.service
+</code></p>
+
+<h3 id="go">Go</h3>
+
+<p>在 arm 上編譯 Go 我純粹是吃飽了撐着，因爲發現在 Pi 上编译还比较 tricky，所以記錄一下。先裝上必要的軟件：</p>
+
+<p><code>bash
+$ pacman -S mercurial gcc
+</code></p>
+
+<p>下載源碼：</p>
+
+<p><code>bash
+$ hg clone -u release https://code.google.com/p/go /usr/local/go
+</code></p>
+
+<p>編譯流程跟<a href="http://golang.org/doc/install/source">官網說的</a>差不多，只是在編譯之前要設置一些環境變量：</p>
+
+<p><code>bash
+$ export GOARCH="arm"
+$ export GOARM="5"
+$ export GOOS="linux"
+$ export GOPATH="/usr/local/go/bin"
+</code></p>
+
+<p>下面接着正常編譯流程：</p>
+
+<p><code>bash
+$ cd /usr/local/go/src
+$ ./all.bash
+</code></p>
+
+<p>跑完后應該會有類似這樣的信息：</p>
+
+<p>&#8220;`
+ALL TESTS PASSED</p>
+
+<hr />
+<p>Installed Go for linux/amd64 in /home/you/go.
+Installed commands in /home/you/go/bin.
+<em>** You need to add /home/you/go/bin to your $PATH. **</em>
+&#8220;`</p>
+
+<p>當然也有可能測試沒有完全通過的，我就遇到過，但是 bin 已經編譯成功了。這時候只需要把環境變量裏的<code>PATH</code>更新一下就可以了：</p>
+
+<p><code>bash
+$ export PATH=$PATH:/usr/local/go/bin
+</code></p>
+
+<p>最後跑個「喂世界」程序測試下。建一個<code>hello.go</code>：</p>
+
+<p>&#8220;`go
+package main</p>
+
+<p>import “fmt”</p>
+
+<p>func main() {
+    fmt.Printf(“hello, world\n”)
+}
+&#8220;`</p>
+
+<p>走起：</p>
+
+<p><code>bash
+$ go run hello.go
+hello, world
+</code></p>
+
+<h2 id="section-11">後記</h2>
+
+<p>這篇簡記基本只是一個關於 Raspberry Pi 的 setup，可能明睿更多的是希望看到各種性能相關的測評。我想性能什麼的是在預料之中的，肯定跟我們的本本沒法比啦，在編譯 Go 的時候連<code>rand</code>的測試都超時了。但是作爲一個玩具，還是挺不錯的。有了它我現在可以更節能了，下載不用整夜開着能跑「暗黑3」和「星際爭霸2」的 Linux 主機了。聽個音樂和有聲讀物也不用特意開電腦，手機還能方便操控。連着硬盤做文件stream或分享也挺方便。其實最好的一點是換SD卡方便。現在一個卡是 Arch，回頭再做張卡弄媒體中心，要用什麼就換什麼。</p>
+
+<p>至於麪包板以及擴展的一些 Hack 我還沒玩得起來，材料還在路上，不過我已經有些想法了。比如做些指示燈和語音輸出，把平時需要關注的信息用這些媒介傳遞給我，簡單說就是把以前的 pull 換成 push。</p>
+
+<p>綜上所述，玩這個肯定是蛋非常疼的。</p>
+]]></content>
+  </entry>
+  
+</feed>

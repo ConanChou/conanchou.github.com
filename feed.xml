@@ -1,5 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2018-01-02T15:29:51-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">2017 -&amp;gt; 2018</title><link href="https://conanblog.me/blog/2018/01/01/2017-2018/" rel="alternate" type="text/html" title="2017 -&gt; 2018" /><published>2018-01-01T00:00:00-05:00</published><updated>2018-01-01T00:00:00-05:00</updated><id>https://conanblog.me/blog/2018/01/01/2017-2018</id><content type="html" xml:base="https://conanblog.me/blog/2018/01/01/2017-2018/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2018-05-17T23:40:15-04:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">我也看了老羅的發佈會</title><link href="https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/" rel="alternate" type="text/html" title="我也看了老羅的發佈會" /><published>2018-05-17T00:00:00-04:00</published><updated>2018-05-17T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf</id><content type="html" xml:base="https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/">&lt;p&gt;一個高中同學忽然給我留言，說老羅這次糗大了。跟我算不上熟，他大概以為混跡科技圈的人都在黑老羅，因為很多自媒體黑，以為我也會不看好老羅吧。&lt;/p&gt;
+
+&lt;p&gt;其實我挺喜歡老羅的，不算粉，但至少欣賞他的風格。他敢做敢言，最要命的是他的自嘲。所以不知不覺，雖然人在國外，也不用他們的產品，我竟每年會收看他的單口相聲。&lt;/p&gt;
+
+&lt;p&gt;去年 WWDC 的時候有推友表示不需要浪費時間看發佈會，完了之後看看新聞即可。我表態過我能看發佈會就一定會看，因為我不要別人咀嚼過的信息，我要有自己的判斷。所以我回道，我還沒看老羅的發佈會。之後，花了一晚上看了一遍。&lt;/p&gt;
+
+&lt;p&gt;講真的並沒有那麼糟，是可以看出來準備倉促。但當我看到很多人對他們提出的 TNT 有質疑和嘲笑時，我倒反而放心了許多。從歷史數據來看，大多數好想法在當時看來都是愚蠢可笑的。但好想法都有一個共性，就是從 first principle 推導，是合乎邏輯的。&lt;/p&gt;
+
+&lt;p&gt;Google Assistant，在語音識別技術已經非常成熟的今天，做到 context awareness 依然花了多年，事實上到底效果有多好我們還得測，畢竟是前兩天 Google IO 剛剛公佈的。Elon Musk 去年宣布啟動的人腦接口項目還很久遠。在這樣一個背景下，TNT 巧妙地繞過了很高很大的技術障礙。畢竟你想，他們沒有 Google 的技術積累，用巧勁是唯一的出路。&lt;/p&gt;
+
+&lt;p&gt;從 Siri 和 Amazon Echo 開始，各家大廠都爭相研發語音助手。但我們平心而論，這些語音助手們，沒有一個 killer app，事實上大多數都非常雞肋。那既然如今的 AI 輔助還沒有那麼聰明，人觸摸屏幕又那麼自然，那為什麼人不能向前邁一步來做一下引導呢？&lt;/p&gt;
+
+&lt;p&gt;想法是一方面，執行是另一方面。錘子手機已經做了六年了，十年是個檻。我不太擔心他們的執行力，但依然希望他們能做好。因為我希望看到中國也能有更多有匠人情懷的公司，和一些精心打磨過的產品。&lt;/p&gt;
+
+&lt;p&gt;And FYI,&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Haters are confused fans.   by @JackPaul&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Conan</name></author><summary type="html">一個高中同學忽然給我留言，說老羅這次糗大了。跟我算不上熟，他大概以為混跡科技圈的人都在黑老羅，因為很多自媒體黑，以為我也會不看好老羅吧。</summary></entry><entry><title type="html">Life 3.0 筆記，的一部分</title><link href="https://conanblog.me/blog/2018/05/16/life-3-0-notes/" rel="alternate" type="text/html" title="Life 3.0 筆記，的一部分" /><published>2018-05-16T00:00:00-04:00</published><updated>2018-05-16T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/05/16/life-3-0-notes</id><content type="html" xml:base="https://conanblog.me/blog/2018/05/16/life-3-0-notes/">&lt;p&gt;2017 年底，終於斷斷續續啃完了這本書——《 Life 3.0 》。我從中學到不少東西，覺得值得一讀。作者是 Max Tegmark，宇宙學家，現在是 MIT 的教授。同時他還跟其他人一起成立了兩個科研機構，一個是 Foundational Questions Institute，一個是 Future of Life Institute (FLI)。前者是為基礎物理學和宇宙學服務的，而後者則是為 AI 安全領域服務的。而之所以有這本書，還是因為後者的成功創立。我也是從 Elon Musk 的 twitter 上知道了這本書，Elon 曾資助了 FLI 1千萬美元。正是 Max 對未來人工智能的種種擔憂，他決定要為此做點什麼，才有了後來的這些故事。我在&lt;a href=&quot;/blog/2018/01/01/2017-2018/&quot;&gt;前一篇日誌&lt;/a&gt;裡提到過，我應當向 Max 學習。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;書的開篇就講了一個假想的科技公司 Omega 開發了一個名叫 Prometheus 的人工智能編程系統的故事，由此作者引出了英國數學家 Irving Good 在 1965 年關於 intelligence explosion 的討論：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Let an ultraintelligent machine be defined as a machine that can far surpass all the intellectual activities of any man however clever. Since the design of machines is one of these intellectual activities, an ultraintelligent machine could design even better machines; there would then unquestionably be an ‘intelligence explosion,’ and the intelligence of man would be left far behind. Thus the first ultraintelligent machine is the last invention that man need ever make, provided that the machine is docile enough to tell us how to keep it under control.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;簡言之，當一個超智機器被創造出來後，人類就不再需要其他發明，因為這個超智機器可以設計出比人類設計得更好的機器。而此 Prometheus 的命名意謂深刻，它將會像神話中描述的那樣，給人類帶來“火種”。&lt;/p&gt;
+
+&lt;p&gt;當然這個故事只是一個美好的願想。接著作者就開始進入正題了，第一章點題並澄清討論詞彙定義和範疇。基本上所有嚴肅的科學類讀物都是這個套路吧。作者闡明了對生命的定義，進而有了像 1.0、2.0、3.0 這樣的階段。就像寫 LISP 的人一樣，研究物理/數學的人非常喜歡抽象和昇華概念，從而更加接近問題的本質，Max 認為我們對生命的定義應該寬泛一點，他認為生命的本質一種能在保持自身的複雜度（即信息）的同時進行繁衍或複製的行程。 &lt;strong&gt;1.0，軟硬件都得靠演化；2.0，硬件靠演化，但軟件可以通過學習來設計，我們人類就處於這一階段；3.0，可想而知，軟硬件都能被設計&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;從物質到智能&quot;&gt;從物質到智能&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hydrogen…, given enough time, turns into people. 
+– Edward Robert Harrison, 1995&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;一些簡單的物質是如何 &lt;em&gt;記憶&lt;/em&gt;、 &lt;em&gt;計算&lt;/em&gt; 甚至 &lt;em&gt;學習&lt;/em&gt;，進而產生智力的。雖然我是計算機科學專業畢業的，但講真的我在看這本書之前都一直有這些模糊的疑問，存儲記憶、計算和學習的本質到底又是什麼。看了這一章後我覺得茅塞頓開。&lt;/p&gt;
+
+&lt;h3 id=&quot;智力&quot;&gt;智力&lt;/h3&gt;
+
+&lt;p&gt;作者對智力的定義非常寬泛，這樣有助於我們理解智力：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;intelligence = ability\ to\ accomplish\ complex\ goals&lt;/script&gt;
+
+&lt;p&gt;如今的人工智能傾向於狹窄領域的智能，而人類的卻很廣博。從 AI 到 AGI (Artificial General Intelligence) 還有很長的路。&lt;/p&gt;
+
+&lt;h3 id=&quot;記憶&quot;&gt;記憶&lt;/h3&gt;
+
+&lt;p&gt;記憶的本質是記錄某種狀態，所以只要某種物質能夠保持一些穩定狀態，就可以用來作為記憶體。沙盤、石板、紙張、電開關、RNA、大腦等等，這些都是可被用作記憶的東西。而 &lt;strong&gt;信息本身也是獨立於物質的&lt;/strong&gt;。值得一提的是人腦記憶的獲取方式有別於我們現在的計算機存儲設備，我們獲取記憶是根據”what“，而計算機的是根據”where“，即尋址。我們這種獲取記憶的方式是自動關聯的，有點像搜索引擎，我們想一個東西，相關聯的信息會自己冒出來。這種獲取記憶的方式其實並不僅僅只有人腦有，物理學家 John Hopfield 在他 1982 的一篇著名論文裡就展示了互聯的神經元也具有這種特性。作者說這種特性在任何多狀態的物理記憶體上都能重現，舉的例子是有兩個谷的平面，一個在 \(\sqrt{2}\) 的位置，而另一個在 \(\pi\) 的位置。這時如果放一個小球在 3 的位置，它會滾落到 \(\pi\) 的位置，於是自動關聯的獲取方式就湧現出來了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/35475776-27c759d0-0372-11e8-858d-c634e161706c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;為此我還專門找來了&lt;a href=&quot;http://www.pnas.org/content/79/8/2554.full.pdf&quot; target=&quot;_blank&quot;&gt;那篇論文&lt;/a&gt;， &lt;strong&gt;其本質就是在存在多個局部極值的函數上，以輸入值查詢最接近的局部極值&lt;/strong&gt;。很多物理系統有這個特性，而互聯神經恰好也具備這種特性，具體的數學模型可見論文的等式 3 和 4。&lt;/p&gt;
+
+&lt;h3 id=&quot;計算&quot;&gt;計算&lt;/h3&gt;
+
+&lt;p&gt;這些理解起來很簡單，那計算呢？計算就是把某個信息或狀態轉化成另一個信息或狀態的過程。計算這種過程對物質的要求就是既不能太死板也不能太靈動，太死板了沒法產生狀態的改變，而太靈動了又沒法穩定狀態。作者提到 &lt;em&gt;计算素&lt;/em&gt; 这个概念，一种假想的可编程的物质材料，計算的最小單位，用以构建计算。在計算機裡就有符合這種條件的東西，比如 NAND 門。你可以用 NAND 構建一個正經計算機，而事實上 Noam Nisan 和 Shimon Schocken 就在&lt;a href=&quot;http://nand2tetris.org&quot; target=&quot;_blank&quot;&gt;一門公開課上教你怎麼做&lt;/a&gt;，或者你也可以用 NOR 門。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/35475754-85b50caa-0371-11e8-9b97-e72955fe6549.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;除了這些實例，Stephen Wolfram 和 Alan Turing 都曾提出不同的計算模型。所以另一個很重要的事實是，&lt;strong&gt;計算也是獨立於物質的&lt;/strong&gt;。因而我們也逐漸看到了 &lt;strong&gt;計算的本質，或計算和物質的關係：計算是物質在時空中排列的模式&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;學習&quot;&gt;學習&lt;/h3&gt;
+
+&lt;p&gt;講完記憶和計算，就該講學習了。有了上面的理解，學習就變得直截了當了，學習就是我們重複地將某種信息輸入到可塑性記憶體裡，直到記住。比上說一個平面軟土，如果我們不斷在一些地方放置小鐵球，那塊地方就會凹進去，於是下次我們把小鐵球放在一個靠近小坑的地方，小球會因為重力滾落到曾經放了好多次小鐵球的位置，於是這個軟土平面就學會了這些位置。而類似的 John Hopfield 論文裡的互聯神經網也具備這種特性。而如今留下的機器學習其實原理就類似。只是用了更加簡單的一個模型，即非互聯神經網絡，而是單向分層互聯網絡。每個節點對輸入點加權平均，有時還加一些常量，最後再通過一個激活函數把自己的結果轉化後傳送給下一層的節點們。局部的計算是很簡單的，但是整個網絡缺呈現出了一種學習能力。而更神奇的是單層網計算 \(n\) 個數相乘需要 \(2^n\) 個節點，而如果是深網的話只需要 \(4n\) 個節點。所以可想而知我們的大腦是有多麼驚人的計算能力，神經元不光互聯，而且信息流不是單向的。人腦的機制要複雜得多，目前我們還只是一知半解。&lt;/p&gt;
+
+&lt;p&gt;經過上面三個部分的論述，我們知道了 &lt;strong&gt;記憶、計算和學習都是獨立於物質的，也就是說生物組織不是必要的&lt;/strong&gt;。想到這兒，那我們離 Life 3.0 還遠嗎？&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;接下來作者用三章討論了近期的挑戰，智能大爆炸以及其後果。基本上作者概述了方方面面的可能性。經過這三章的洗禮，作者的腦洞已經是填不上了，可能是數學、物理學家的職業習慣，在接下來的一章他開始討論生命的極限，進而談及人類的星際遷徙、星際關係等。這些討論中，都閃爍著這個時代思考者們的先進思想，在讀的時候你彷彿能看見精神矍鑠的長者眼睛裡睿智的光。但我並不打算花更多篇幅寫，這些都是開放性的討論，我還是想從知識性的角度去總結這本書。當然這幾章裡面也有很多 facts 可以說，但是離主旨還是遠了點。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;終極目的&quot;&gt;終極目的&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The mystery of human existence lies not in just staying alive , but in finding something to live for. 
+– Fyodor Dostoyevsky, The Brothers Karamazov&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;對目的的討論很重要，因為我們幾乎可以肯定，智能爆炸後，人類的境遇如何完全取決於人類和超智能生物的終極目的的匹配程度。如果相左，可想而知超智能生物會跟三體文明一樣“我消滅你，與你何干”。&lt;/p&gt;
+
+&lt;p&gt;說到目的性，&lt;strong&gt;所有的經典物理定律都表現出了目的性，大自然發生的每個事件基本都可歸納為最大化或最小化某個量。而從數學的角度來描述物理，要麼是預測未來，要麼是最大化某些東西。&lt;/strong&gt;此前我從沒有注意到這個規律，可能只是潛意識裡有痕跡，所以當讀到作者用白底黑字的話明明白白寫出來是，還是不禁拍案叫絕。那這個宇宙的終極目的是什麼？我們會自然而然地想到熱寂吧，想到這樣一個結局，就像作者說的，確實著實令人抑鬱。更令人沮喪和意外的是，我原以為生命的存在可以讓熵減小，但是作者分析其實宇宙產生生命有助於讓熵增大。不然你家為什麼會變亂，地球上的石油為什麼會被開採進而變成散落在各處的石油製品？而人類呢，最終會消失，但卻幫助了宇宙加快了熱寂過程。絕望之時，作者筆鋒一轉，但是我們還有萬有引力——讓這個宇宙不那麼無聊；而且作者的同事 Jeremy England 還有另一個好消息，就是物熱力學除了有熱寂這個傾向性，還有一個叫做 dissipation-driven adaption 的傾向性，是說粒子有對自身編排以最大化能量吸收的傾向。沒有太糟糕。所以大自然/物理學展現出了這種目的性，它是目的性的根源。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;粒子的這種自編排最大化吸收能量的傾向會衍生出另一種宏觀傾向性，即對自身的複製，在這種傾向性的影響下一段時間後，有一些物質的編排能很好地複製自身，我們稱這種類似的編排為生命。&lt;/strong&gt;生命的出現將物理定律世界簡單的逆熵目的性轉化成了複製和生育，然而逆熵的目標並沒有消失，生命本身就是達成逆熵的一種手段。讀到這兒我意識到熱寂的終點不會改變，逆熵、生命、自組織的物質都有生命期限，但我們的意識讓這個世界“變得”有趣美好。&lt;/p&gt;
+
+&lt;p&gt;生命的演化向著越來越複雜的方向發展，於是生命最早的自我複製的目的性就被一些有助益自我複製的簡單規則代替了，這些規則就是我們說的&lt;em&gt;感覺&lt;/em&gt;。在寫這篇文章的時候，我正好在讀《自私的基因》，基因便是那個自我複製體，而我們根據感覺是為了更快的反應速度。當基因將主控權交給大腦後，大部分時候大腦雖然會根據感覺完成複製的基因的使命，但是大腦也有違背基因賦予的使命的時候，比如我們使用節育技術。這個違背並不是我們選擇如此，而是設計使然，因為&lt;strong&gt;感覺才是我們身體的主人，而不是基因&lt;/strong&gt;。事實上 Robert Wright 的 &lt;em&gt;Why Buddhism is True&lt;/em&gt; 也是對這個觀點的佐證。於是我們離開了物理學，穿過了生物學，走進了心理學。&lt;/p&gt;
+
+&lt;h2 id=&quot;本不该有的结语&quot;&gt;本不该有的结语&lt;/h2&gt;
+
+&lt;p&gt;這稿子已經躺在我草稿箱裡快發霉了。書也看完很久了也還沒寫完，就先放這些吧。如果將來我又回來複習，或許會回來填坑。除此之外，如果你對目前我所講述的內容還感興趣的話，應該去看看這本書。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Done is better than good.
+  ― Elizabeth Gilbert, Big Magic: Creative Living Beyond Fear&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Conan</name></author><summary type="html">2017 年底，終於斷斷續續啃完了這本書——《 Life 3.0 》。我從中學到不少東西，覺得值得一讀。作者是 Max Tegmark，宇宙學家，現在是 MIT 的教授。同時他還跟其他人一起成立了兩個科研機構，一個是 Foundational Questions Institute，一個是 Future of Life Institute (FLI)。前者是為基礎物理學和宇宙學服務的，而後者則是為 AI 安全領域服務的。而之所以有這本書，還是因為後者的成功創立。我也是從 Elon Musk 的 twitter 上知道了這本書，Elon 曾資助了 FLI 1千萬美元。正是 Max 對未來人工智能的種種擔憂，他決定要為此做點什麼，才有了後來的這些故事。我在前一篇日誌裡提到過，我應當向 Max 學習。</summary></entry><entry><title type="html">2017 -&amp;gt; 2018</title><link href="https://conanblog.me/blog/2018/01/01/2017-2018/" rel="alternate" type="text/html" title="2017 -&gt; 2018" /><published>2018-01-01T00:00:00-05:00</published><updated>2018-01-01T00:00:00-05:00</updated><id>https://conanblog.me/blog/2018/01/01/2017-2018</id><content type="html" xml:base="https://conanblog.me/blog/2018/01/01/2017-2018/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;今年，2017，我的狀態有過波動。感覺做了很多無用功，但仔細想想也並非如此。&lt;/p&gt;
 
@@ -704,99 +804,4 @@ cljs.user=&amp;gt;
 
 &lt;p&gt;今天手賤，又忘了保存帖子，於是只能又重寫了壹遍……&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">剛剛開始了壹個新 side project，這次打算用
 reagent
-做這個項目。我是直接用了 reagent 的默認模板：</summary></entry><entry><title type="html">談民科</title><link href="https://conanblog.me/blog/2016/02/20/crank-and-autodidacticism/" rel="alternate" type="text/html" title="談民科" /><published>2016-02-20T11:54:51-05:00</published><updated>2016-02-20T11:54:51-05:00</updated><id>https://conanblog.me/blog/2016/02/20/crank-and-autodidacticism</id><content type="html" xml:base="https://conanblog.me/blog/2016/02/20/crank-and-autodidacticism/">&lt;p&gt;近幾年「民科」這個詞的曝光度越來越大，有關的言論也是越來越多。兩件事情讓我最近一段時間一直思考關於「民科」的事兒。一是王垠寫了篇幫 Java 洗白的博客，雖然很多觀點我是讚同的，但依然不敢同意他的種種論調，尤其是他文章中出現了三次民科，而且對其嗤之以鼻。於是我就想起了第二件事，我也曾被一個 PhD 在讀生室友扣過民科的帽子，因為我曾經天真地認為某兩種植物屬於同一科。而今天就在寫這篇文章之前，正巧有個群也聊了相關的話題。所以打算寫下我的一些想法。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;首先要解決我腦子里一直存在的一個困惑：怎麼定義民科？&lt;/p&gt;
-
-&lt;p&gt;綜合&lt;a href=&quot;https://zh.wikipedia.org/wiki/民间科学家&quot;&gt;維基百科&lt;/a&gt;和跟朋友們的討論，我覺得民科大致需要符合以下幾個特征：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;极少接受过（甚至拒绝）正规科技学习及训练&lt;/li&gt;
-  &lt;li&gt;理论知识及学术素养匮乏&lt;/li&gt;
-  &lt;li&gt;热衷于相关领域研究&lt;/li&gt;
-  &lt;li&gt;製造已經解決某些重大問題的因特網言論，炒作多過學術&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;然而令我困惑的是，我之前提到的王垠和那位 PhD 在讀生也常把民科掛嘴邊，可似乎他們說的民科跟這個定義似乎有些不一樣。似乎他們指的更多的是「那些非科班出身的人，且正好有錯誤或不被他們認同的觀點」。所以這範圍一下就被擴大了，而事實上很多網民也確實在用這種擴大化的定義 。&lt;/p&gt;
-
-&lt;p&gt;我的那個例子連我自己都不會用「科學」來形容，純屬猜測，也不怪被人恥笑。而王垠說的這些人牽強地說還是有些符合上面歸納的四點的，我一開始這麼想。可後來覺得這經不起推敲，畢竟計算機科學跟其他自然科學還是有區別，我在舊博客里也寫到過，我稱之為人造科學。所以第一個特征並不符合。而第四點其實也是很主觀的。&lt;/p&gt;
-
-&lt;p&gt;今天受到前輩點撥，或許這一群很容易被歸類為「民科」的人應該被歸類到&lt;a href=&quot;https://zh.wikipedia.org/wiki/自主學習&quot;&gt;「自主學習主義」&lt;/a&gt;。這樣的一個群體其實是非常尷尬的群體，因為自己研究研究也就算了，可有了新發現還不能說，說了就會被貼標籤扣帽子。而且這帽子扣得還是因人而異，有些人因為其名望高，所以世人就跪舔，而有些人出生草根就被恥笑。想想 &lt;a href=&quot;https://en.wikipedia.org/wiki/Srinivasa_Ramanujan&quot;&gt;Srinivasa Ramanujan&lt;/a&gt;，我們應當反省自己的言行。你可能會說這也只是特例而已，這種人滿民科界（實指自主學習者）又能找到幾個，那我來說兩個小故事。&lt;/p&gt;
-
-&lt;p&gt;第一個是關於海森堡的&lt;a href=&quot;https://zh.wikipedia.org/wiki/不确定性原理&quot;&gt;不確定原理&lt;/a&gt;，有人質疑它的正確性。於是就做了個假想實驗，說假設有這麼個盒子，盒子上有個帶快門的小孔，箱子里有若干光子。再假設這個快門足夠快可以一次只放跑一個光子，&lt;script type=&quot;math/tex&quot;&gt;\Delta {t}&lt;/script&gt; 足夠小，而少了一個光子也可以用理想的秤稱量 &lt;script type=&quot;math/tex&quot;&gt;\Delta {m}&lt;/script&gt;，這麼一來那個光子的質量也就是 &lt;script type=&quot;math/tex&quot;&gt;m&lt;/script&gt;，再根據質能方程 &lt;script type=&quot;math/tex&quot;&gt;E=mc^2&lt;/script&gt;，可以輕鬆得到 &lt;script type=&quot;math/tex&quot;&gt;\Delta {E}&lt;/script&gt;。這麼一來海森堡的不確定原理公式 &lt;script type=&quot;math/tex&quot;&gt;\Delta {E} \times \Delta {t} &gt; h/2\pi&lt;/script&gt; 就不成立了。&lt;/p&gt;
-
-&lt;p&gt;第二個是關於超光速的。還是一個假想實驗，如果假設能製造一根長達一光年的棍子，A和B站在棍子兩端，A用棍子戳B一下，動能的傳遞能在瞬間完成，這就自然實現了超光速。&lt;/p&gt;
-
-&lt;p&gt;這倆都有問題你們看出來了嗎？&lt;/p&gt;
-
-&lt;p&gt;第一個的話，如何稱量 &lt;script type=&quot;math/tex&quot;&gt;\Delta {m}&lt;/script&gt;呢，拿個彈簧秤好了，設置一個零點，然後看箱子位移多少。那假設位移是 &lt;script type=&quot;math/tex&quot;&gt;\Delta {q}&lt;/script&gt;，這樣箱子就在引力場里移動了 &lt;script type=&quot;math/tex&quot;&gt;\Delta {q}&lt;/script&gt;。但根據廣義相對論的紅移效應，時間的快慢也會相應改變 &lt;script type=&quot;math/tex&quot;&gt;\Delta {T}&lt;/script&gt;。再根據公式最後還是能推導出 &lt;script type=&quot;math/tex&quot;&gt;\Delta {T} \Delta {E} &gt; h&lt;/script&gt;。這反而再次證明了理論的正確性。&lt;/p&gt;
-
-&lt;p&gt;而第二個這個實驗的假設也得重新思考。理想的剛體並不存在，棍子會縣收縮再伸展，動能在棍子內部只能以機械波的速度傳遞，從而低於光速。&lt;/p&gt;
-
-&lt;p&gt;這兩個雖然第二個看起來更小兒科一點，但其實其錯誤是很相似的。在今天，可能很多人都會把他們叫做民科。只是剛剛說的第一個故事是發生在1930年第六屆索爾維會議，而這個假想實驗正是著名的&lt;a href=&quot;https://en.wikipedia.org/wiki/Bohr–Einstein_debates&quot;&gt;愛因斯坦光盒實驗&lt;/a&gt;。通過這兩個故事我其實是想說，拋開人物、標籤，故事是一樣的，不一樣的只是自己。&lt;/p&gt;
-
-&lt;p&gt;忽然我就想起了 Paul Graham 的那篇&lt;a href=&quot;http://www.douban.com/note/344097029/&quot;&gt;《不能說的話》&lt;/a&gt; (&lt;em&gt;&lt;a href=&quot;http://www.paulgraham.com/say.html&quot;&gt;What you can’t say&lt;/a&gt;&lt;/em&gt;)，雖然歷史在一遍遍重演，這幾乎是一種自然規律，但我還是不禁感歎，這樣的現象是多麼可悲的事情。我認為對待言論要動腦思考敞開胸懷，不要傲慢不要偏見，即便是小眾論調也要公平對待，更加不要因為別人的出生或經歷而妄下斷言。對於異議不要動輒就是貼標籤，相反你應該嘗試駁倒對方，更不要因為自己的傲慢與偏見來給別人貼標籤。時不時地逆潮流思考也是有好處的，內省的思辨往往能讓我們保持清醒。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">近幾年「民科」這個詞的曝光度越來越大，有關的言論也是越來越多。兩件事情讓我最近一段時間一直思考關於「民科」的事兒。一是王垠寫了篇幫 Java 洗白的博客，雖然很多觀點我是讚同的，但依然不敢同意他的種種論調，尤其是他文章中出現了三次民科，而且對其嗤之以鼻。於是我就想起了第二件事，我也曾被一個 PhD 在讀生室友扣過民科的帽子，因為我曾經天真地認為某兩種植物屬於同一科。而今天就在寫這篇文章之前，正巧有個群也聊了相關的話題。所以打算寫下我的一些想法。</summary></entry><entry><title type="html">一些關於假新聞和標題黨的想法</title><link href="https://conanblog.me/blog/2016/01/03/we-media-fake-news/" rel="alternate" type="text/html" title="一些關於假新聞和標題黨的想法" /><published>2016-01-03T11:03:16-05:00</published><updated>2016-01-03T11:03:16-05:00</updated><id>https://conanblog.me/blog/2016/01/03/we-media-fake-news</id><content type="html" xml:base="https://conanblog.me/blog/2016/01/03/we-media-fake-news/">&lt;p&gt;最近又有一些自媒體的假新聞被忽然炒熱，比如最近一篇說蘋果收購特斯拉的。不管是愚人節假新聞被挖墳，
-還是挖墳、傳播者無腦。假新聞、標題黨這兩年已經泛濫，自媒體更是搞臭了自己的名聲。
-表面看，這事兒一半關於內容制造者的人品，另一半關於讀者和傳播者素質，我相信 Fenng 的&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MjM5ODIyMTE0MA==&amp;amp;mid=401811966&amp;amp;idx=1&amp;amp;sn=76a53dbe421dcba15e923ce79d832eb0&amp;amp;scene=5&amp;amp;srcid=01032MbUPhPM67o8GPanOOSd#rd&quot;&gt;這篇文章&lt;/a&gt;已經做了很“給力”的討論。&lt;/p&gt;
-
-&lt;p&gt;前不久我也在 Twitter 上跟幾個推友討論了相關話題。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/20160103/twitter.png&quot; alt=&quot;為保護推友隱私，已經把推號和頭像遮掉&quot; /&gt;&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;我這篇推文雖然得到了很多人的贊同，然而我覺得這並不是問題的全貌和根本。那根本是什麼？我覺得是誠信缺失。
-你可能覺得這豈不是廢話，可是我想說的不僅僅是造假自媒體和惡意傳播者的誠信缺失，更是社會誠信缺失的問題。&lt;/p&gt;
-
-&lt;p&gt;在進入到分析之前我想先分享一下誠信較高的社會裡自媒體是如何生存的。拿 Medium 來說吧，
-它是目前運營得最成功的博客平台之一。他們公司也很早就開始想如何犒勞寫手/作家。
-按照點擊量付正相關的酬勞似乎合情合理，畢竟他們是互聯網公司，流量和用戶數就能直接和間接
-給他們帶來經濟利益。
-不過他們第一個槍斃了這個想法，因為這種模式極有可能讓人們忽視真正高質量的文章。
-所以是毋庸置疑的情懷牌，當然不光文章質量有情懷，整個網站的 UI/UX 也是處處體現情懷。
-這裡就不多說了，感興趣的同學可以自己去仔細體驗。&lt;/p&gt;
-
-&lt;p&gt;而發文的那些專業與非專業的作者們對 Medium 的態度呢？大多數人覺得 Medium 是一個提高知名度的平台，
-他們用它來 &lt;strong&gt;建立&lt;/strong&gt; 自己的公眾形像和聲譽，最終從這些知名度和公眾形像中，他們能獲得一定的經濟利益。
-當然 Medium 也會給一些明星作家一定的報酬，而我覺得這也是建立在之前這些明星作家們的 &lt;strong&gt;積累&lt;/strong&gt; 之上。
-而其它類似的自媒體平台也是大同小異。&lt;/p&gt;
-
-&lt;p&gt;所以你看，&lt;strong&gt;在誠信較好社會，人們更加講求運營，一種積累的過程。行為和經濟利益之間往往不是直接的關系。&lt;/strong&gt;
-注意！（請用老羅的方式念）這一點很重要，因為在誠信較缺失的社會體系裡，
-行為和經濟利益之間的關系往往是更直接的。&lt;/p&gt;
-
-&lt;p&gt;那再來看看在華人社會比較流行的這些自媒體平台。朋友圈、微博、以及類似 Medium 的平台簡書。
-他們有一個共同點。這也多虧了老羅的發布會我才意識到。就是“打賞”這個功能。我並不是不喜歡這個功能，
-事實上我自己也做過產品，換我我也會加同樣的功能。
-之所以加這個功能，說明產品經理們已經意識到了某種更深層的脈動。順便插一句，
-在寫這篇文章做調查時我也發現了一些美國的創業公司試圖給 Medium 添加類似“打賞”的功能，可是最終都
-因響應不強烈，不了了之了。&lt;/p&gt;
-
-&lt;p&gt;接著說回這個打賞的事兒。華人相對來說不喜歡分享，“自掃門前雪”、“肥水不流外人田”、
-“多一事不如少一事”、“槍打出頭鳥”等思想已經深深影響著我們的行為。
-而對於大多數中國網民來說，生活雖不到艱難的地步，但也沒有閑到天天有時間寫文章。
-尤其是一些中產，有思想有知識，但是沒時間做沒有報酬的“閑事”。
-所以產品經理們為了換得更多的質量相對高的內容（從而得到更多用戶和流量），
-他們要把“閑事”變成“稍正的事”。&lt;/p&gt;
-
-&lt;p&gt;情懷牌在這個時候就不管用了，表面上，作家/寫手要養家糊口、或賺點外快。
-實際上，想想之前我說的行為和經濟利益的關系，
-在誠信相對缺失的社會，寫作這種行為和經濟利益如果還是間接關系，還有多少人買賬？
-必須要直接，而且要赤裸裸地直接，要有視覺和數字的直觀衝擊。&lt;/p&gt;
-
-&lt;p&gt;那誠信在這兒起什麼作用？誠信是現金的緩衝帶，越沒有信任就越是要“一手交錢一手交貨”，
-越有信任就越可以“賒賬”。可誠信這東西怎麼來呢？靠 &lt;strong&gt;積累&lt;/strong&gt;。
-人都是社會動物，不可避免地會相互模仿，
-當“積累”這種“吃力不討好”的方式在一個社會裡被一些不誠信的“抄近路”的方式打敗時，
-人們自然會學習“抄近路”，直到人們發現“抄近路”的弊端大於利益時才會罷休。這不可避免，即便是現在已經
-很誠信的社會在早期也面臨過這樣的歷史進程。&lt;/p&gt;
-
-&lt;p&gt;要改變這一現狀並非易事，在經濟條件好，更富足的社會，這會簡單一些，畢竟更多人追求情懷。
-說這個並沒有什麼意義，因為強國幾乎是共識。而我想說的是用經濟體系引導社會意識。
-我覺得馬雲想要建立支付信用體系就是一個很好的開端。其實美國社會很大程度地建立在信用體系之上，
-它影響著美國人的行為模式。&lt;strong&gt;當在一個社會裡，人與機構要為自己以往的言行負責任時，
-人們才會意識到“積累”的重要性，從而才有真正的“運營”。&lt;/strong&gt;&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">最近又有一些自媒體的假新聞被忽然炒熱，比如最近一篇說蘋果收購特斯拉的。不管是愚人節假新聞被挖墳，
-還是挖墳、傳播者無腦。假新聞、標題黨這兩年已經泛濫，自媒體更是搞臭了自己的名聲。
-表面看，這事兒一半關於內容制造者的人品，另一半關於讀者和傳播者素質，我相信 Fenng 的這篇文章已經做了很“給力”的討論。</summary></entry></feed>
+做這個項目。我是直接用了 reagent 的默認模板：</summary></entry></feed>
