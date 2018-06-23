@@ -1,5 +1,88 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2018-05-18T10:43:29-04:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">我也看了老羅的發佈會</title><link href="https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/" rel="alternate" type="text/html" title="我也看了老羅的發佈會" /><published>2018-05-17T00:00:00-04:00</published><updated>2018-05-17T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf</id><content type="html" xml:base="https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/">&lt;p&gt;一個高中同學忽然給我留言，說老羅這次糗大了。跟我算不上熟，他大概以為混跡科技圈的人都在黑老羅，因為很多自媒體黑，以為我也會不看好老羅吧。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2018-06-22T22:20:29-04:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">讀書</title><link href="https://conanblog.me/blog/2018/06/22/reading_books/" rel="alternate" type="text/html" title="讀書" /><published>2018-06-22T00:00:00-04:00</published><updated>2018-06-22T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/06/22/reading_books</id><content type="html" xml:base="https://conanblog.me/blog/2018/06/22/reading_books/">&lt;blockquote&gt;
+  &lt;p&gt;It is what you read when you don’t have to that determines what you will be when you can’t help it.
+— Oscar Wilde&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;這是一篇我想到哪兒就寫到哪兒的讀書相關的心得和小竅門的筆記，這些有可能對其他人也有用，而且肯定還有更好的想法，所以寫下來拋磚引玉。🤓&lt;/p&gt;
+
+&lt;h2 id=&quot;書非借不能讀也&quot;&gt;書非借不能讀也&lt;/h2&gt;
+
+&lt;p&gt;大概我遇到的每個愛書的人都遇到過「買書如山倒，讀書如抽絲」的情況。我也花了好久才弄明白怎麼回事。這裏面其實有兩個問題：一個是你很努力，但是你讀不完所有的書；一個是你其實還沒有努力。前者是世界的問題，後者是自己的問題。&lt;/p&gt;
+
+&lt;p&gt;對於沒辦法改變的問題，你只能調整心態面對它。所以我告訴自己：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;我不需要讀所有的書籍。&lt;/li&gt;
+  &lt;li&gt;Pareto principle&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;在讀書/選書上也照樣適用。我可以選讀某些領域最有代表性的著作。&lt;/li&gt;
+  &lt;li&gt;難讀的書就暫時放下，我總是可以找到其它書來獲得類似的知識，又或是等心境對了重拾那本書。&lt;/li&gt;
+  &lt;li&gt;不要太挑剔，任何一本書都有它的價值。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;而第二個問題其實就是衆所周知的拖延症。古有黃生借書說，今有 Parkinson’s law&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;。其實這些都無不告訴我們一個道理，就是要給讀書設個期限。如果期限過了你還想繼續讀會很麻煩的話，你多半會爭取在期限內讀完。所以從去年開始我经常借書來看。&lt;/p&gt;
+
+&lt;p&gt;紐約公共圖書館的借書證是免費的，而且藏書量足夠大，即便是沒有的書你也可以申請讓圖書館引進。不過借的實體書可能破舊，而且你還不能在書上寫寫畫畫，所以我都借電子版。可以無縫銜接發送到 Kindle 上。讀書筆記會被自動存起來，即便書到期了，你還是能看到那些記錄供日後回味和參考。&lt;/p&gt;
+
+&lt;p&gt;但讀書效率高了並不意味著我應該讀更多書，我曾一度一整年業餘時間都在讀書，而計劃的其它事情都沒做。所以我覺得更高效地讀書應該服務其他更具創造性的活動。愛因斯坦這句話說得很對：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Reading, after a certain age, diverts the mind too much from its creative pursuits. Any man who reads too much and uses his own brain too little falls into lazy habits of thinking.
+— Albert Einstein&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;跳出語言學習模式&quot;&gt;跳出語言學習模式&lt;/h2&gt;
+
+&lt;p&gt;無論你是否在國外生活，讀原著總是能有方方面面的好處。語言是思考的工具，所以讀原著往往能幫助你更好地同步作者的想法，而如今很難有翻譯得像《集異壁》&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;那麼好的書了。另外有些國家引進翻譯的書會有刪減，這比糟糕的翻譯還要討厭，因為很多時候你並不知道一本譯製書有無刪減。而如果你在國外生活，額外的好處是你還能從中找到社交時的談資和詞彙。&lt;/p&gt;
+
+&lt;p&gt;所以高中開始我也讀英文原著了，不過這幾年讀得更多，一方面外語水平提高了，但最主要的還是因為得知上文提到的刪減問題。可是像我這種，語言能力一般的外語學習者，很容易在讀書時拘泥於詞彙的學習。而事實上大部分時候，尤其在掃讀階段，詞彙並不重要。我意識到這一點還是因為聽有聲書，書的內容一模一樣，聽的時候就能聽到主旨和綱領，看的時候在無意識間就會迷失了方向。而事實上，那些你不懂的詞彙不會因為你停止閱讀而記得更牢，反而是因為在很多情境下讀到或聽到而記得更牢。&lt;/p&gt;
+
+&lt;h2 id=&quot;有聲書&quot;&gt;有聲書&lt;/h2&gt;
+
+&lt;p&gt;剛剛提到了有聲書，其實另一個提高自己閱讀效率的方式就是它。不過用好有聲書並不像想像的那麼直接了當。有段時間，我對聽有聲書特別困惑，因為我聽著聽著就神遊了，等意識到的時候就已經不知道在說啥了。後來請教了推友 @gttnnn，她的方法是用軟件給有聲書定時暫停，暫停時自己需要紀錄或回想剛剛那一段講了什麼。後來我自己也試了一下，能很好地減少走神的問題。（可以直接用 iOS 自帶的鬧鈴功能，它當中有一個選項是到時間自動停止當前播放。）&lt;/p&gt;
+
+&lt;p&gt;再後來，我發現了對我讀英文原著更加有效的辦法，就是對照文字版同時聽書。這樣做的好處是：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;迫使自己跳出情不自禁的語言學習模式&lt;/li&gt;
+  &lt;li&gt;學習正確的發音&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;不過有聲書並不便宜，畢竟是需要播音藝術家表演的。好在很多也能從圖書館借到。&lt;/p&gt;
+
+&lt;h2 id=&quot;書源&quot;&gt;書源&lt;/h2&gt;
+
+&lt;p&gt;有好些省錢買書的途徑，中國大陸的買書網站我就不用多說了，每年很多促銷活動，抓住時機下手就好了，我一般都是在&lt;a href=&quot;https://amazon.cn&quot;&gt;中亞&lt;/a&gt;買。中文書的話還有一個是台灣的 &lt;a href=&quot;https://readmoo.com&quot;&gt;Readmoo&lt;/a&gt;，他們只賣繁體書，但是內容上應該是沒有刪減的，時常也有折扣。&lt;/p&gt;
+
+&lt;p&gt;英文書的話我主要還是在亞馬遜買，或者從圖書館借。經常從&lt;a href=&quot;https://amazon.com&quot;&gt;美亞&lt;/a&gt;買書的朋友可能知道，他們平時並沒有很多官方發起的大促銷活動。但事實上，作者和出版社每年都會不定期地在各平台打折，而很多時候這些消息並不是廣而告之的。後來我找到了一個服務 &lt;a href=&quot;https://www.bookbub.com&quot;&gt;BookBub&lt;/a&gt;，他們會把你感興趣的書的打折信息及時發給你。所以近期我基本上所有的英文書籍都是以 1.99 ～ 2.99 刀的價格買的。&lt;/p&gt;
+
+&lt;p&gt;而圖書館的話我還想多說兩句，其實北美這邊圖書館基本都是這樣，不一定非得在紐約。其他地方的朋友也可以去查查當地的情況，但我相信很多地方都有類似的設施。&lt;/p&gt;
+
+&lt;p&gt;有聲書的話我現在基本還是依賴圖書館，但是最近越發想要找個性價比高的聽書服務了。因為借閱一些比較流行的書的時候經常要等上好幾個禮拜甚至數月。&lt;/p&gt;
+
+&lt;p&gt;很多時候讀書的狀態和慾望是可遇不可求的，上面的一些辦法雖然省錢，但是作為讀者來說是很被動的。所以不要一味追求省錢，遇到想讀又能立即讀的書就買吧，不要浪費了自己的衝動 😁&lt;/p&gt;
+
+&lt;h2 id=&quot;筆記&quot;&gt;筆記&lt;/h2&gt;
+
+&lt;p&gt;我的筆記多半為隨想，直接寫在 Kindle 裡。看紙質書的話之前用過一些掃描文本的工具 App 做筆記，不過並不是很方便。而且這些筆記散落在各處，別說管理了，連回顧都難。所以一直蠻頭痛這個的，這才打算寫個 App 來解決自己讀書筆記難的各種痛點⋯目前我有個腳本可以自動把接入電腦的 Kindle 裡的筆記錄入 ElasticSearch，算能湊合用。我開源了其中的一部分， Kindle clipping 的 parser，有需要的朋友可以拿去玩：&lt;a href=&quot;https://clojars.org/kce-clj&quot;&gt;&lt;img src=&quot;https://img.shields.io/clojars/v/kce-clj.svg&quot; alt=&quot;Clojars Project&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;大概就先這樣，路過看到這篇的朋友你們有什麼好方法嗎？或者遇到過什麼問題？不妨分享一下，看看大家有沒有辦法一起解決 🤪&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;即 80/20 法則。&lt;a href=&quot;https://en.wikipedia.org/wiki/Pareto_principle&quot;&gt;wiki&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;work expands so as to fill the time available for its completion. &lt;a href=&quot;https://en.wikipedia.org/wiki/Parkinson's_law&quot;&gt;wiki&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;&lt;em&gt;Gödel, Escher, Bach&lt;/em&gt; (GEB). &lt;a href=&quot;https://en.wikipedia.org/wiki/Gödel,_Escher,_Bach&quot;&gt;wiki&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">It is what you read when you don’t have to that determines what you will be when you can’t help it.
+— Oscar Wilde</summary></entry><entry><title type="html">我也看了老羅的發佈會</title><link href="https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/" rel="alternate" type="text/html" title="我也看了老羅的發佈會" /><published>2018-05-17T00:00:00-04:00</published><updated>2018-05-17T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf</id><content type="html" xml:base="https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/">&lt;p&gt;一個高中同學忽然給我留言，說老羅這次糗大了。跟我算不上熟，他大概以為混跡科技圈的人都在黑老羅，因為很多自媒體黑，以為我也會不看好老羅吧。&lt;/p&gt;
 
 &lt;p&gt;其實我挺喜歡老羅的，不算粉，但至少欣賞他的風格。他敢做敢言，最要命的是他的自嘲。所以不知不覺，雖然人在國外，也不用他們的產品，我竟每年會收看他的單口相聲。&lt;/p&gt;
 
@@ -710,98 +793,4 @@
       &lt;p&gt;&lt;a href=&quot;http://amzn.to/1RyUlN8&quot;&gt;Last Night a DJ Saved My Life: The History of the Disc Jockey&lt;/a&gt; by Bill Brewster &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">Reagent 的 Figwheel REPL 方案</title><link href="https://conanblog.me/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/" rel="alternate" type="text/html" title="Reagent 的 Figwheel REPL 方案" /><published>2016-03-06T11:42:03-05:00</published><updated>2016-03-06T11:42:03-05:00</updated><id>https://conanblog.me/blog/2016/03/06/reagent-figwheel-repl-with-nrepl</id><content type="html" xml:base="https://conanblog.me/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/">&lt;p&gt;剛剛開始了壹個新 side project，這次打算用
-&lt;a href=&quot;https://github.com/reagent-project/reagent&quot;&gt;reagent&lt;/a&gt;
-做這個項目。我是直接用了 reagent 的默認模板：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lein new reagent myproject
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;開發的時候用 &lt;code class=&quot;highlighter-rouge&quot;&gt;lein figwheel&lt;/code&gt; 運行，當瀏覽器指向默認的開發地址 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:3449&lt;/code&gt;
-時，Figwheel 的
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop&quot;&gt;REPL&lt;/a&gt;
-就會出現，然後調試起來簡直不能更爽。不過這個 Figwheel REPL 有個問題，就是不支持歷史回溯，
-不像 &lt;a href=&quot;https://github.com/clojure/tools.nrepl&quot;&gt;nREPL&lt;/a&gt;，你不能上下鍵調歷史，更不能 &lt;kbd&gt;ctrl&lt;/kbd&gt; + &lt;kbd&gt;r&lt;/kbd&gt; 搜索歷史。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;這個肯定不能忍啊，經過壹番搗鼓，算摸出個方案。記錄下來以免之後忘了……
-其實方案很直白，就是在 nREPL 裏用 Figwheel REPL。
-如果是直接用 Figwheel Leiningen 模板的，可以按照
-&lt;a href=&quot;https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl&quot;&gt;這份 wiki&lt;/a&gt;
-配置壹下。如果是用 reagent 的默認模板，其實這些配置是已經配置好了的。
-我也是看了 &lt;code class=&quot;highlighter-rouge&quot;&gt;project.clj&lt;/code&gt; 的配置才意識到的，壹開始還改了半天配置，走了些彎路，直到看到這壹段：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:figwheel {:http-server-root &quot;public&quot;
-           :server-port 3449
-           :nrepl-port 7002
-           :nrepl-middleware [&quot;cemerick.piggieback/wrap-cljs-repl&quot;
-                              ]
-           :css-dirs [&quot;resources/public/css&quot;]
-           :ring-handler khm-clj.handler/app}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;有 nREPL 相關的配置，看來是 reagent 已經配置了 nREPL，其實啟動後仔細看 STDOUT 也能看到：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Figwheel: Starting nREPL server on port: 7002
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;接下來只需要連上 nREPL 就好了。&lt;a href=&quot;https://cursive-ide.com&quot;&gt;Cursive&lt;/a&gt; 的話可以參考
-&lt;a href=&quot;https://cursive-ide.com/userguide/repl.html&quot;&gt;這份文檔&lt;/a&gt; 配置遠程 nREPL，
-我在文末的動圖裏也會演示。而純命令行的就更簡單了，直接&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lein repl :connect 7002
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;連接成功就已經成功壹半了，最後還剩兩條命令，壹是加載 &lt;code class=&quot;highlighter-rouge&quot;&gt;figwheel-sidecar.repl-api&lt;/code&gt;，
-壹是調用 &lt;code class=&quot;highlighter-rouge&quot;&gt;cljs-repl&lt;/code&gt;，調用之後 &lt;code class=&quot;highlighter-rouge&quot;&gt;namespace&lt;/code&gt; 會被自動從 &lt;code class=&quot;highlighter-rouge&quot;&gt;user&lt;/code&gt; 換到 &lt;code class=&quot;highlighter-rouge&quot;&gt;cljs.user&lt;/code&gt;：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conan@crmbp ~/workspace/khm-clj $ lein repl :connect 7002
-Connecting to nREPL at 127.0.0.1:7002
-REPL-y 0.3.7, nREPL 0.2.12
-Clojure 1.8.0
-Java HotSpot(TM) 64-Bit Server VM 1.8.0_65-b17
-    Docs: (doc function-name-here)
-          (find-doc &quot;part-of-name-here&quot;)
-  Source: (source function-name-here)
- Javadoc: (javadoc java-object-or-class-here)
-    Exit: Control+D or (exit) or (quit)
- Results: Stored in vars *1, *2, *3, an exception in *e
-
-user=&amp;gt; (use 'figwheel-sidecar.repl-api)
-nil
-user=&amp;gt; (cljs-repl)
-Launching ClojureScript REPL for build: app
-Figwheel Controls:
-          (stop-autobuild)                ;; stops Figwheel autobuilder
-          (start-autobuild [id ...])      ;; starts autobuilder focused on optional ids
-          (switch-to-build id ...)        ;; switches autobuilder to different build
-          (reset-autobuild)               ;; stops, cleans, and starts autobuilder
-          (reload-config)                 ;; reloads build config and resets autobuild
-          (build-once [id ...])           ;; builds source one time
-          (clean-builds [id ..])          ;; deletes compiled cljs target files
-          (print-config [id ...])         ;; prints out build configurations
-          (fig-status)                    ;; displays current state of system
-  Switch REPL build focus:
-          :cljs/quit                      ;; allows you to switch REPL to another build
-    Docs: (doc function-name-here)
-    Exit: Control+C or :cljs/quit
- Results: Stored in vars *1, *2, *3, *e holds last exception object
-Prompt will show when Figwheel connects to your application
-To quit, type: :cljs/quit
-nil
-cljs.user=&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;最後我們來測試壹下：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/13558112/f083e61a-e3c9-11e5-9556-80eaab79b6a2.gif&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;今天手賤，又忘了保存帖子，於是只能又重寫了壹遍……&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">剛剛開始了壹個新 side project，這次打算用
-reagent
-做這個項目。我是直接用了 reagent 的默認模板：</summary></entry></feed>
+&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
