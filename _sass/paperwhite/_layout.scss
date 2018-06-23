@@ -357,7 +357,7 @@
   sup {
     line-height: 1em;
   }
-  
+
   a {
     color: $text-color;
     text-decoration: underline;
@@ -444,7 +444,16 @@
     font-size: 1.5em;
   }
 }
+#loadMore {
+  text-align: center;
+  margin-bottom: 2em;
+  padding-top: 2em;
 
+  a {
+    font-size: 1.5em;
+    text-decoration: none;
+  }
+}
 // table style
 table {
   font-size: $base-font-size * 0.8;
