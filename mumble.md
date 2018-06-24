@@ -1,8 +1,10 @@
 ---
 layout: page
-title: Tweets
-permalink: /tweets/
+title: Mumble
+permalink: /mumble/
 ---
+
+Just random thoughts and interesting discoveries.
 
 <a class="twitter-timeline"
     href="https://twitter.com/ConanChou?ref_src=twsrc%5Etfw"

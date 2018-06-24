@@ -1,14 +1,16 @@
 ---
 layout: page
-title: Photos
-permalink: /photos/
-
+title: Light
+permalink: /light/
 ---
+
+Me mess around light and photo editing Apps.
+
 {% assign link = '{{link}}' %}
 {% assign image = '{{image}}' %}
 
 <div id="instafeed"></div>
-<div id="loadMore"><a href="https://www.instagram.com/conanchou/" title="Follow my feed">∞</a></div>
+<div id="loadMore"><a href="https://www.instagram.com/conanchou/" title="Follow my feed" target="_blank">∞</a></div>
 <script type="text/javascript">
     var feed = new Instafeed({
         get: 'user',
