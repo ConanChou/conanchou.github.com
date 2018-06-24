@@ -12,20 +12,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <meta name="description" content="用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch clone 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。">
+  <meta name="description" content="Programming Language, Open Source, Design, Music, and everything in between.">
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://conanblog.me/blog/2012/08/23/write-octopress-in-another-box/" />
-  <meta property="og:title" content="用另一臺計算機寫 Octopress" />
-  <meta property="og:description" content="用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch clone 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。" />
+  <meta property="og:url" content="https://conanblog.me/light/" />
+  <meta property="og:title" content="Light" />
+  <meta property="og:description" content="Programming Language, Open Source, Design, Music, and everything in between." />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@ConanChou" />
-  <meta name="twitter:title" content="用另一臺計算機寫 Octopress" />
-  <meta name="twitter:description" content="用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch clone 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。" />
+  <meta name="twitter:title" content="Light" />
+  <meta name="twitter:description" content="Programming Language, Open Source, Design, Music, and everything in between." />
   <meta name="twitter:image" content="https://conanblog.me/assets/logo@3x.png" />
   <meta property="og:image" content="https://conanblog.me/assets/logo@3x.png" />
-  <title>用另一臺計算機寫 Octopress</title>
+  <title>Light</title>
   <link rel="stylesheet" href="/assets/main.css">
-  <link rel="canonical" href="https://conanblog.me/blog/2012/08/23/write-octopress-in-another-box/">
+  <link rel="canonical" href="https://conanblog.me/light/">
   <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
   <link href="/stylesheets/switchery.min.css" rel="stylesheet" />
   <link rel="shortcut icon" type="image/png" href="/favicon.png">
@@ -112,94 +112,32 @@
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <article class="post">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">用另一臺計算機寫 Octopress</h1>
-    <p class="post-meta"><time datetime="2012-08-23T23:26:00-04:00" itemprop="datePublished">Aug 23, 2012</time></p>
+    <h1 class="post-title">Light</h1>
   </header>
 
-  <div class="post-content" itemprop="articleBody">
-    <p>用 Octopress 寫博客已經有幾天了，一直都在家裏的臺機上寫。今天想在我的小黑上寫點東西的時候我就只是把 Github 上所有的 branch <code class="highlighter-rouge">clone</code> 下來，裝了改裝的東西，可是折騰半天不能從小黑上發佈。去 doc 里面看了一下，也没有这方面的记录。於是決定刨根。<!--more--></p>
+  <div class="post-content">
+    <p>Me mess around light and photo editing Apps.</p>
 
-<p>Octopress 的運行機制很簡單，就是用類似 <code class="highlighter-rouge">make</code> 的 <code class="highlighter-rouge">rake</code> 將寫好的 <code class="highlighter-rouge">markdown</code> 文件轉化成 HTML 文件，皮膚什麼的都也一併生成好，然後再把生成好的一堆靜態文件 <code class="highlighter-rouge">push</code> 到 Github 或其他類似的地方。我想不能推送的話應該是可以從 Rakefile 裏找到答案。果不其然：</p>
+<div id="instafeed"></div>
+<div id="loadMore"><a href="https://www.instagram.com/conanchou/" title="Follow my feed" target="_blank">∞</a></div>
+<script type="text/javascript">
+    var feed = new Instafeed({
+        get: 'user',
+        userId: '5440990',
+        clientId: '38e7796038704acab4925a0c3cf4a1e0',
+        accessToken: '5440990.1677ed0.7c6c3ccbffb548c9a87c39cc1e81cb22',
+        template: '<a href="{{link}}" target="_blank"><img src="{{image}}" /></a>',
+        });
+    feed.run();
+</script>
 
-<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">mkdir</span> <span class="n">deploy_dir</span>
-<span class="n">cd</span> <span class="s2">"</span><span class="si">#{</span><span class="n">deploy_dir</span><span class="si">}</span><span class="s2">"</span> <span class="k">do</span>
-  <span class="nb">system</span> <span class="s2">"git init"</span>
-  <span class="nb">system</span> <span class="s2">"echo 'My Octopress Page is coming soon &amp;hellip;' &gt; index.html"</span>
-  <span class="nb">system</span> <span class="s2">"git add ."</span>
-  <span class="nb">system</span> <span class="s2">"git commit -m </span><span class="se">\"</span><span class="s2">Octopress init</span><span class="se">\"</span><span class="s2">"</span>
-  <span class="nb">system</span> <span class="s2">"git branch -m gh-pages"</span> <span class="k">unless</span> <span class="n">branch</span> <span class="o">==</span> <span class="s1">'master'</span>
-  <span class="nb">system</span> <span class="s2">"git remote add origin </span><span class="si">#{</span><span class="n">repo_url</span><span class="si">}</span><span class="s2">"</span>
-  <span class="n">rakefile</span> <span class="o">=</span> <span class="no">IO</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="kp">__FILE__</span><span class="p">)</span>
-  <span class="n">rakefile</span><span class="p">.</span><span class="nf">sub!</span><span class="p">(</span><span class="sr">/deploy_branch(\s*)=(\s*)(["'])[\w-]*["']/</span><span class="p">,</span> <span class="s2">"deploy_branch</span><span class="se">\\</span><span class="s2">1=</span><span class="se">\\</span><span class="s2">2</span><span class="se">\\</span><span class="s2">3</span><span class="si">#{</span><span class="n">branch</span><span class="si">}</span><span class="se">\\</span><span class="s2">3"</span><span class="p">)</span>
-  <span class="n">rakefile</span><span class="p">.</span><span class="nf">sub!</span><span class="p">(</span><span class="sr">/deploy_default(\s*)=(\s*)(["'])[\w-]*["']/</span><span class="p">,</span> <span class="s2">"deploy_default</span><span class="se">\\</span><span class="s2">1=</span><span class="se">\\</span><span class="s2">2</span><span class="se">\\</span><span class="s2">3push</span><span class="se">\\</span><span class="s2">3"</span><span class="p">)</span>
-  <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="kp">__FILE__</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
-    <span class="n">f</span><span class="p">.</span><span class="nf">write</span> <span class="n">rakefile</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>很顯然，這個 <code class="highlighter-rouge">deploy_dir</code> 也是一個單獨的 git 目錄。追溯其根源，也就是默認設置，就是 「_deploy」 目錄。而這個目錄是被 「.gitignore」 排除的。這就難怪爲什麼單純的 <code class="highlighter-rouge">clone</code> 沒法工作了。于是完整的 <code class="highlighter-rouge">clone</code> 过程如下（包含註解）：</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>;: go to the dir you want to put your octopress repo
-<span class="gp">$ </span><span class="nb">cd</span> ~/Documents
-
-<span class="gp">$ </span>;: clone repo from your exists octopress repo
-<span class="gp">$ </span>git clone git@github.com:ConanChou/conanchou.github.com.git octopress
-<span class="gp">$ </span><span class="nb">cd </span>octopress
-
-<span class="gp">$ </span>;: get the <span class="nb">source </span>branch
-<span class="gp">$ </span>git checkout -b <span class="nb">source </span>origin/source
-
-<span class="gp">$ </span>;: add original octopress repo to remote <span class="k">for </span>updates
-<span class="gp">$ </span>git remote add octopress https://github.com/imathis/octopress.git
-
-<span class="gp">$ </span>;: clone the master branch to _deploy dir
-<span class="gp">$ </span>git clone git@github.com:ConanChou/conanchou.github.com.git _deploy
-
-<span class="gp">$ </span>;: install bundles
-<span class="gp">$ </span>gem install bundler
-<span class="gp">$ </span>bundle install
-<span class="gp">$ </span>rake install
-</code></pre>
-</div>
-
-<p>Happy hacking!</p>
 
   </div>
 
-  
-    
-
-  <div id="disqus_thread"></div>
-  <script>
-    disqusLoader( '#disqus_thread',
-      { laziness: 0,
-        scriptUrl: '//conannotes.disqus.com/embed.js' });
-
-    // var disqus_config = function () {
-    //   this.page.url = 'https://conanblog.me/blog/2012/08/23/write-octopress-in-another-box/';
-    //   this.page.identifier = 'https://conanblog.me/blog/2012/08/23/write-octopress-in-another-box/';
-    // };
-    //
-    // (function() {
-    //   var d = document, s = d.createElement('script');
-    //
-    //   s.src = 'https://conannotes.disqus.com/embed.js';
-    //
-    //   s.setAttribute('data-timestamp', +new Date());
-    //   (d.head || d.body).appendChild(s);
-    // })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
-
-  
 </article>
-
 
       </div>
     </main>
