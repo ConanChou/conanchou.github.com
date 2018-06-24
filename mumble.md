@@ -2,6 +2,7 @@
 layout: page
 title: Mumble
 permalink: /mumble/
+order: 2
 ---
 
 Just random thoughts and interesting discoveries.

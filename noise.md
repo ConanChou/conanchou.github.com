@@ -2,7 +2,7 @@
 layout: page
 title: Noise
 permalink: /noise/
-
+order: 4
 ---
 
 Me fiddle around sound and notes.

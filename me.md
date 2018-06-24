@@ -2,6 +2,7 @@
 layout: page
 title: Me
 permalink: /me/
+order: 1
 ---
 
 

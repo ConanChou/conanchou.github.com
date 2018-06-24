@@ -2,6 +2,7 @@
 layout: page
 title: Light
 permalink: /light/
+order: 3
 ---
 
 Me mess around light and photo editing Apps.
