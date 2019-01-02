@@ -1,5 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2018-06-25T14:06:59-04:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">讀書</title><link href="https://conanblog.me/blog/2018/06/22/reading_books/" rel="alternate" type="text/html" title="讀書" /><published>2018-06-22T00:00:00-04:00</published><updated>2018-06-22T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/06/22/reading_books</id><content type="html" xml:base="https://conanblog.me/blog/2018/06/22/reading_books/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2019-01-01T20:55:26-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">2018 ➡ 2019</title><link href="https://conanblog.me/blog/2019/01/01/2018-2019/" rel="alternate" type="text/html" title="2018 ➡ 2019" /><published>2019-01-01T00:00:00-05:00</published><updated>2019-01-01T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/01/01/2018-2019</id><content type="html" xml:base="https://conanblog.me/blog/2019/01/01/2018-2019/">&lt;blockquote&gt;
+  &lt;p&gt;人生的故事不會按照我的設計發展，我唯一能做到的是適應它，但這不會改變我的固執。人生會在這種拔河中繼續，在這場比賽結束時，我希望結果會令人滿意。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;這一年的年終總結，我打算換一個寫法。來說說這一年來，還在我腦中留下深刻印記的一些事件和對話。當然我把讀書也視作一種「對話」。&lt;/p&gt;
+
+&lt;h2 id=&quot;〇&quot;&gt;〇&lt;/h2&gt;
+
+&lt;p&gt;2018年春天的時候回國看望家人，算是完成了去年的一个目标。期間見幾位老朋友的時候送了維克多·弗蘭克爾的《活出生命的意義》&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;，我也順便重讀了一遍。現在已經不記得以前讀收穫了什麼，但我記得這次的收穫——無論在何種惡劣的環境下，人們始終擁有選擇的自由。即便是在集中營這種沒有自由的地方，你還是可以自由地選擇以什麼樣的心境去面對挑戰。&lt;/p&gt;
+
+&lt;p&gt;這個道理對現在的我很重要，為了等 GC 我不得不放棄了太多自由，更加小心地為人處事。曾經這些都是苦惱，但自從想通後，這些煩人的事一下子都變成了我成長的補劑。&lt;/p&gt;
+
+&lt;h2 id=&quot;壹&quot;&gt;壹&lt;/h2&gt;
+
+&lt;p&gt;人終究是人，還是喜歡看得見摸得著的東西；更甚，人有著與生俱來的自負，我們更喜歡更像人，我們同類，做出來的東西。去年讀了 David Sax 的書 &lt;em&gt;The Revenge of Analog: Real Things and Why They Matter&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;。這讓我明白了一些看不明白的事情。那些看得見摸得著的東西讓我們覺得有擁有感，而我們喜歡這種感覺。所以越來越多的人，包括我，喜歡收集黑膠唱片。流音樂服務的確有更多歌曲，可是畢竟它們不屬於我。一封實體信件更有溫度，一張實體照片更具收藏價值。而從經濟學的角度去分析這個趨勢，也確實是實體經濟更有生命力。&lt;/p&gt;
+
+&lt;p&gt;「我們更喜歡更像人做出來的東西」能幫助我理解很多藝術創作有意識地加入瑕疵的原因。正是這些不完美，才看起來、聽起來更有人味。这也是给完美主义者的一课，现在越来越多艺术家用电脑辅助创作，可以把东西做到非常完美，但这些「完美的作品」不会比一遍錄完的作品更被人喜歡。而且这些艺术家们很有可能被困在完美的陷阱里。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Done is better than perfect.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;這也是 &lt;em&gt;Big Magic&lt;/em&gt; 一書裡提到的一個觀點，下一段小節我會繼續說到這本書。&lt;/p&gt;
+
+&lt;p&gt;（寫到這裡的時候我不禁聯想到了那個「人更傾向於相信同類做的判斷，即便機器已經在某些方面的判斷更優秀」的研究。以及幾年前读到的一篇文章《自大的基因：关于人类对地外文明的探索》&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;。虽然有些跑题，但還是想說我們經常會被這種自大遮住雙目）&lt;/p&gt;
+
+&lt;h2 id=&quot;貳&quot;&gt;貳&lt;/h2&gt;
+
+&lt;p&gt;「靈感來造訪我的時候，我要一把抓住，我要向她證明我有資格跟她合作」，這是看 Elizabeth Gilbert 的書 &lt;em&gt;Big Magic: Creative Living Beyond Fear&lt;/em&gt;&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; 時學習到的。任何藝術形式的創作都是這樣，也包括編程。不要遲疑不決，要致力於執行。&lt;/p&gt;
+
+&lt;p&gt;事實上我覺得作者給我的另一個建議更重要，不要將自己的生計寄託於自己的愛好和創造性，否則很可能會把熱情耗盡、嚇跑創造力。相反，愛好應當像情人一樣，你也許只是下班後會跟她短暫私會，但那更熱烈。這一點使我更加堅定財富小自由的路線（並不是傳統意義上的財富自由，僅僅是足夠多的消极收入能支付得起我們正常的生活開支），唯獨那樣你才真的能從朝九晚五的鴿子間走出來，獲得相對的自由，即能養活自己又能釋放你的創造力。事實上「上班」這種規訓本來也就是工業革命之後才在資本主義世界盛行的，我想要的只是像古人一樣自由。&lt;/p&gt;
+
+&lt;h2 id=&quot;弎&quot;&gt;弎&lt;/h2&gt;
+
+&lt;p&gt;堅持不渝、致力執行。&lt;/p&gt;
+
+&lt;p&gt;幾年前我資助合作的一家公司受到 BBC 的採訪，節目播放後就有一位特立獨行的女士聯繫上了我們以尋求合作，至今我們還保持著往來。她的非常矚目的特質就是「堅持不渝、致力執行」，我非常佩服她。多年來她一直研究亞洲文化和古代藝術鑑賞，已經是我父輩的年紀了又打算攻讀拉丁美洲文化和古代藝術鑑賞。用她的話說是自己拉丁語好，大半輩子下來還是覺得中日韓的語言太難學了。她工作中經常需要幫博物館拍賣和籌劃展覽，在一次交流中我隨意聊到了如何把文化和科技結合，她覺得這是個好想法，4年過去了，她還在推進這件事。&lt;/p&gt;
+
+&lt;p&gt;今年會面時我說我很佩服她的執行力和堅持不懈的精神，她告訴我了幾個故事。她說讓別人答應她一件事並不難，只是需要花點時間。那天下午她約我去看一個韓國書畫藝術家的個展，在見我之前她非常想見見另一個住在曼哈頓藝術家，可是人家並不想見面。於是她去買了曼哈頓一家很有名的甜點，登門拜訪，最終那個藝術家還是只能見了。她用類似軟磨硬泡的辦法，得到了和艾未未的合作機會。&lt;/p&gt;
+
+&lt;p&gt;後來回想，其實最早她約我多次也是被我婉拒了，直到最後一次拒絕。&lt;/p&gt;
+
+&lt;h2 id=&quot;肆&quot;&gt;肆&lt;/h2&gt;
+
+&lt;p&gt;「那些猶太人都做著這種生意」&lt;/p&gt;
+
+&lt;p&gt;這是有一次跟一個朋友聊項目的時候說的一些題外話，她應該算是個老紐約人了，「這種生意」就是說的投資地產。無獨有偶，那陣子我在讀 John Z. Sonmez 的 &lt;em&gt;Soft Skills: The Software Developer’s Life Manual&lt;/em&gt;&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;。作者提到了很多我很認同的點，但跟這個小節有關的是地產投資。年頭和年中的兩次股市調整讓我覺得手頭的閒錢應該分散去一些更保險的去處，事實上後來的一些分析也不看好明年的走向，尤其是加息之後。這當然是個家庭決議，我們在快年底的時候就正式開始了房產投資。辦辦是這個過程的中堅力量。&lt;/p&gt;
+
+&lt;p&gt;說時遲那時快，年底的股票市場很糟，不過我的運氣不錯，一波騷操作躲過了聖誕前夜的大血崩，又及時調整，趕上了後來的一波漲勢。但是我們的 Wealthfront 和 Betterment 已經虧損了不少。雖說還是遲了一點，但我們的投資房產已經快接近過戶了，算是及時吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;伍&quot;&gt;伍&lt;/h2&gt;
+
+&lt;p&gt;「Conan，資本只有兩個途徑獲取，繼承和槓桿」&lt;/p&gt;
+
+&lt;p&gt;這是我之前的一個老闆在股份問題上跟我說的一句話，他是個很精明的猶太人，「股份就是一種槓桿」。幾年前跳槽到這邊的動機完全是為了早些拿到 GC，但事與願違。可運氣好，公司被收購了，聽說母公司還有可能會上市，於是到手的股份就真的值錢了。Real talk，我希望公司發展得好，這樣我能更早達到「財富小自由」。&lt;/p&gt;
+
+&lt;h2 id=&quot;陸&quot;&gt;陸&lt;/h2&gt;
+
+&lt;p&gt;「我們合作一把」&lt;/p&gt;
+
+&lt;p&gt;這是父親跟我一次聊天時說的話。這不僅僅是一個合作意向，對我來說更是一個肯定。這一年我跟他的交流更多了，隨著我年紀和閱歷的增加，我意識到父親的很多商業決策都是正確的。他年輕時走過不少彎路起起落落，我很像從他那兒汲取經驗教訓。而且不知怎的，我也開始對他的領域更感興趣了。我們將會合作做一些事情，對此我很開心和激動。最近的一次談話，我們說到了「視野」問題，正巧那會兒我在讀 Ray Dalio 的書 &lt;em&gt;Principles: Life and Work&lt;/em&gt;&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;，前 1/3 的傳記很有意思，我能意識到「視野」在他一生中的重要性，正巧提到，便買了一本送給了爸。&lt;/p&gt;
+
+&lt;h2 id=&quot;柒&quot;&gt;柒&lt;/h2&gt;
+
+&lt;p&gt;真實的感覺很好。&lt;/p&gt;
+
+&lt;p&gt;年頭重溫了一些王小波的雜文，很真實。讀 &lt;em&gt;Principles&lt;/em&gt; 的時候也看到很多關於真實的觀點。我很喜歡這些真實，但周遭並不是那樣，也許真輪到我了，我也不能那麼真實。不過這不影響我喜歡和嘗試去真實甚至去影響周圍的人真實。&lt;/p&gt;
+
+&lt;h2 id=&quot;2019--&quot;&gt;2019 -&lt;/h2&gt;
+
+&lt;p&gt;去年讓我意識到很多事情不會按照自己計畫地發展，我們只能去適應這些變化，我們可以選擇我們面對它們的心理，不論好壞，畢竟我們只是大時代下的小土豆。我們唯有踏實過活，真實對人對己才能減少讓我們頭痛的東西。所以在去年的那些對自己的要求的基礎上，我想加上&lt;strong&gt;對真實的追求&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;親人、朋友和推友中有很多博學而智慧的人，我想像他們一樣。首先我得讀更多類似牛津通識讀本那樣的書籍，我想，至少別太無知。我希望通過書本和交流，學習更多這個世界如何運作。&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2R0EUoC&quot; target=&quot;_blank&quot;&gt;Man’s Search for Meaning&lt;/a&gt; by Viktor E. Frankl &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2R2sxID&quot; target=&quot;_blank&quot;&gt;The Revenge of Analog: Real Things and Why They Matter&lt;/a&gt; by David Sax &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;北師大天文係的天文學講師高爽老師的一次線下分享：&lt;a href=&quot;https://mp.weixin.qq.com/s/oP-N3vIKIQME5MTytI_l_A&quot; target=&quot;_blank&quot;&gt;自大的基因：關於人類對地外文明的探索&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2RqnxNr&quot; target=&quot;_blank&quot;&gt;Big Magic: Creative Living Beyond Fear&lt;/a&gt; by Elizabeth Gilbert &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2VqOUpw&quot; target=&quot;_blank&quot;&gt;Soft Skills: The software developer’s life manual&lt;/a&gt; by John Sonmez &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:6&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2SrXxyp&quot; target=&quot;_blank&quot;&gt;Principles: Life and Work&lt;/a&gt; by Ray Dalio &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">人生的故事不會按照我的設計發展，我唯一能做到的是適應它，但這不會改變我的固執。人生會在這種拔河中繼續，在這場比賽結束時，我希望結果會令人滿意。</summary></entry><entry><title type="html">讀書</title><link href="https://conanblog.me/blog/2018/06/22/reading_books/" rel="alternate" type="text/html" title="讀書" /><published>2018-06-22T00:00:00-04:00</published><updated>2018-06-22T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/06/22/reading_books</id><content type="html" xml:base="https://conanblog.me/blog/2018/06/22/reading_books/">&lt;blockquote&gt;
   &lt;p&gt;It is what you read when you don’t have to that determines what you will be when you can’t help it.
 — Oscar Wilde&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -766,31 +861,4 @@
 
 &lt;p&gt;C小調：&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.bilibili.com/video/av5220294&quot;&gt;Tilka - Love&lt;/a&gt;&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">當音樂遇上開源</title><link href="https://conanblog.me/blog/2016/04/03/music-meets-open-source/" rel="alternate" type="text/html" title="當音樂遇上開源" /><published>2016-04-03T00:03:27-04:00</published><updated>2016-04-03T00:03:27-04:00</updated><id>https://conanblog.me/blog/2016/04/03/music-meets-open-source</id><content type="html" xml:base="https://conanblog.me/blog/2016/04/03/music-meets-open-source/">&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/14236501/0051f722-f9e5-11e5-8dd8-6ec43da87e4c.jpg&quot; alt=&quot;Moog Modular Synth&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;頁首的這幅圖片是那台非常經典的 &lt;a href=&quot;https://en.wikipedia.org/wiki/Moog_modular_synthesizer&quot;&gt;Moog Modular Synthesizer&lt;/a&gt;，&lt;a href=&quot;https://en.wikipedia.org/wiki/Giorgio_Moroder&quot;&gt;Giovanni Giorgio&lt;/a&gt; 用它把『未來的聲音』 帶進人們的音樂、人們的生活，從而有了 synth disco。那時候他並不知道自己做了一件多麼開創先河的事情。下面放一首跟我的這段話相關的曲子，有興趣的同學也可以去看看 &lt;a href=&quot;http://www.randomaccessmemories.com&quot;&gt;The Collabrators Series&lt;/a&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=eYDvxo-M0OQ&quot;&gt;Giorgio 的訪問&lt;/a&gt;。&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;iframe width=&quot;100%&quot; height=&quot;166&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/130363831&amp;amp;color=ff5500&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;而接下來我要說的，我覺得，並不亞於 Giorgio 的創舉：讓音樂創作和開源相遇。&lt;/p&gt;
-
-&lt;p&gt;玩電子音樂的朋友可能已經知道我要說的東西了，就是像 &lt;a href=&quot;https://splice.com&quot;&gt;Splice&lt;/a&gt; 和 &lt;a href=&quot;https://blend.io/feed&quot;&gt;Blend&lt;/a&gt; 之類的平台，類似給音樂制作人/DJ/愛好者們用的 &lt;a href=&quot;https://en.wikipedia.org/wiki/GitHub&quot;&gt;GitHub&lt;/a&gt;。有了它們，你不光可以和世界各地的音樂制作人合作項目，工程文件就像源代碼一樣可以被 fork。這將會是繼 Jazz 之後又一個最美好的時代。或許這樣的平臺是受啓發於 GitHub 或 Daft Punk 的新專輯，但我想說這是一種必然趨勢。&lt;/p&gt;
-
-&lt;p&gt;人，說到底還是社會動物，喜歡合作。在寫代碼上如此，在音樂上的合作也已是數不甚數。合作不僅僅能夠帶來技術的交流和傳承，還能激發靈感進而帶來創新和快樂。近代有個爵士樂裡起源的詞用來描述這種音樂合作——&lt;a href=&quot;https://en.wikipedia.org/wiki/Jam_session&quot;&gt;Jam&lt;/a&gt;。這些平台正是順應了人類這一本能。&lt;/p&gt;
-
-&lt;p&gt;然而，人總愛給自己找麻煩，就像在很多年有些人對開源持懷疑態度類似，對於音樂，版權問題仿佛一直是個很頭疼的問題。在 &lt;a href=&quot;https://en.wikipedia.org/wiki/Sean_Parker#Napster&quot;&gt;Sean Parker&lt;/a&gt; 和 &lt;a href=&quot;https://en.wikipedia.org/wiki/Steve_Jobs&quot;&gt;Steve Jobs&lt;/a&gt; 的幫助之下，雖然我們從無到有地實現了消費數字音樂版權，可是卻有一個更深層次的問題被積壓和惡化，就是版權化之後死無生氣的音樂創作領域。一旦再創作被限制，創新也會擱淺。&lt;/p&gt;
-
-&lt;p&gt;而在幕後悄悄解決這個問題的正是 DJ 們，或者更准確地說，早期的電台 DJ 們和之後的 Club DJ 以及地下音樂制作人們&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;。唱片公司最開始可是沒給這些 DJ 好日子過，直到後來他們發現凡是被 DJ 放過、改過的曲子都能大賣。從此放松態度，這一路發展到現在，我們經常會發現，原來一些 &lt;a href=&quot;https://en.wikipedia.org/wiki/Remix&quot;&gt;Remix&lt;/a&gt; 反而能給唱片公司帶來更多利益。其實在這一點上音樂行業和電子游戲行業非常像。Chris Dixon
-的文章 &lt;a href=&quot;https://medium.com/software-is-eating-the-world/lessons-from-the-pc-video-game-industry-3350bb7713de#.omszygo22&quot;&gt;Lessons from the PC video game industry&lt;/a&gt; 就很好地揭示了遊戲產業的發展模式，同樣也適用於音樂產業。&lt;/p&gt;
-
-&lt;p&gt;在這樣的一個大背景下，這樣的開放式合作平台應運而生。對於普通消費者來說這或許沒什麼直接影響(或許我們應該感恩更好的音樂)，不過對於音樂人來說，應該慶幸自己生在這麼美好的時代。開放給我們帶來過文藝復興和 Linux，有什麼理由讓我不相信開放能給我們更好的音樂呢？&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;http://amzn.to/1RyUlN8&quot;&gt;Last Night a DJ Saved My Life: The History of the Disc Jockey&lt;/a&gt; by Bill Brewster &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;http://www.bilibili.com/video/av5220294&quot;&gt;Tilka - Love&lt;/a&gt;&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
