@@ -1,5 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2019-01-01T21:26:18-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">2018 ⇝ 2019</title><link href="https://conanblog.me/blog/2019/01/01/2018-2019/" rel="alternate" type="text/html" title="2018 ⇝ 2019" /><published>2019-01-01T00:00:00-05:00</published><updated>2019-01-01T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/01/01/2018-2019</id><content type="html" xml:base="https://conanblog.me/blog/2019/01/01/2018-2019/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2019-01-25T10:49:11-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">寫給幫助測試 AutoTheme 的你們</title><link href="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/" rel="alternate" type="text/html" title="寫給幫助測試 AutoTheme 的你們" /><published>2019-01-25T00:00:00-05:00</published><updated>2019-01-25T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers</id><content type="html" xml:base="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/">&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/51755901-b58e7300-208d-11e9-84e6-b8ce2dd36246.png&quot; alt=&quot;AutoTheme Poster&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;非常感謝你們的熱心幫助！&lt;/p&gt;
+
+&lt;p&gt;這篇文章主要是想告訴首批測試朋友現在 App 開發到什麼程度，有哪些已知問題，當然還有如何安裝。&lt;/p&gt;
+
+&lt;h2 id=&quot;這個-app-有什麼用&quot;&gt;這個 App 有什麼用&lt;/h2&gt;
+
+&lt;p&gt;首先這是一個餐單欄應用。菜單裡有個很直接的切換主題的功能，用於在深/淺主題間切換。就像上面做的圖一樣，事實上那張圖是兩張截屏。從 Preferences 裡，你可以預設深/淺兩種主題的 Highlight 和 Accent 兩個的顏色。切換主題時，這兩種顏色配置會自動被切換。&lt;/p&gt;
+
+&lt;h2 id=&quot;如何安裝&quot;&gt;如何安裝&lt;/h2&gt;
+
+&lt;p&gt;我還沒有買蘋果開發者帳號，因此現在的測試版還沒有 sign。所以測試的朋友安裝就要麻煩一點了。下載後如果直接打開 App 的話可能會看到這個：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/51755893-b1faec00-208d-11e9-8b10-cfde9edd8c3f.png&quot; alt=&quot;install issue&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;需要先关掉一下 macOS Gatekeeper&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;。在 Terminal 下輸入：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo spctl --master-disable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;把 App 放進 Applications 文件夾後再打開應該就可以用了。此時可以再把 Gatekeeper 開啟：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo spctl --master-enable
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;考慮到這一步可能讓一些同學不是很舒服，所以不勉強哈。&lt;/p&gt;
+
+&lt;h2 id=&quot;已知問題&quot;&gt;已知問題&lt;/h2&gt;
+
+&lt;p&gt;在開發過程中，我意識到蘋果官方似乎在糾結這兩種顏色的設計，包括顏色本身和 API 的設計，我所使用的 API 在macOS 10.14（也許更早一點的版本）之前 &lt;code class=&quot;highlighter-rouge&quot;&gt;yellow&lt;/code&gt; 是可以用的，但是最近的系統版本不能用了，而 API 裡 &lt;code class=&quot;highlighter-rouge&quot;&gt;yellow&lt;/code&gt; 被取消了，新加了 &lt;code class=&quot;highlighter-rouge&quot;&gt;gold&lt;/code&gt;，然而新加的這個也不能用。所以想了一個 fallback 方案，就是用 AppleScript 操作系統設置，但是缺點是換黃色的時候會有個選擇顏色的下拉菜單閃現⋯⋯目前還不知道怎麼解決，如果大家有啥想法歡迎來信討論 😅&lt;/p&gt;
+
+&lt;h2 id=&quot;roadmap&quot;&gt;Roadmap&lt;/h2&gt;
+
+&lt;p&gt;理想狀況下我想繼續做以下功能：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;根據當地地理位置的日落時間自動更換深/淺主題&lt;/li&gt;
+  &lt;li&gt;I18N&lt;/li&gt;
+  &lt;li&gt;快捷鍵&lt;/li&gt;
+  &lt;li&gt;讓用戶自訂義 Highlight color？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;同學們如果有啥想法也可以給我來信！&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Gatekeeper_(macOS)&quot;&gt;Gatekeeper&lt;/a&gt;，以及&lt;a href=&quot;http://osxdaily.com/2016/09/27/allow-apps-from-anywhere-macos-gatekeeper/&quot;&gt;如何關閉和開啓它&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">2018 ⇝ 2019</title><link href="https://conanblog.me/blog/2019/01/01/2018-2019/" rel="alternate" type="text/html" title="2018 ⇝ 2019" /><published>2019-01-01T00:00:00-05:00</published><updated>2019-01-01T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/01/01/2018-2019</id><content type="html" xml:base="https://conanblog.me/blog/2019/01/01/2018-2019/">&lt;blockquote&gt;
   &lt;p&gt;人生的故事不會按照我的設計發展，我唯一能做到的是適應它，但這不會改變我的固執。人生會在這種拔河中繼續，在這場比賽結束時，我希望結果會令人滿意。&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -820,45 +873,4 @@
 
 &lt;p&gt;有時我會情緒不穩定，這樣不好。來年我要努力做好情緒的調節和控制。我覺得我可以首先從打遊戲開始，畢竟有些遊戲真的是難到很想摔手柄……&lt;/p&gt;
 
-&lt;p&gt;最後希望我們儘快把新家弄好吧，然後野獸和公主幸福地生活。鬼扯……好就先這樣。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">音樂筆記 070116</title><link href="https://conanblog.me/blog/2016/07/08/music-notes-070116/" rel="alternate" type="text/html" title="音樂筆記 070116" /><published>2016-07-08T22:17:34-04:00</published><updated>2016-07-08T22:17:34-04:00</updated><id>https://conanblog.me/blog/2016/07/08/music-notes-070116</id><content type="html" xml:base="https://conanblog.me/blog/2016/07/08/music-notes-070116/">&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/16710021/56c13cfc-45ef-11e6-96e7-f886154a8b8f.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;有一個事實，分析過去五年裏的上千首電子舞曲後可以發現，絕大多數曲子是A小調、D小調或E小調的（分別占42%，21%，16%）。&lt;/p&gt;
-
-&lt;p&gt;有幾個原因可能共同促使這樣的不平均分布：&lt;/p&gt;
-
-&lt;!--more--&gt;
-&lt;ul&gt;
-  &lt;li&gt;首先A小調的平行大調是C大調，這一對平行大小調是沒有升降符的，換句話說就是純白鍵—簡單。&lt;/li&gt;
-  &lt;li&gt;而最近幾年裏越來越多的 club DJ 同時也是音樂制作人，所以他們將一些音樂理論帶進現場的表演中，開始流行的一個技巧是 harmonic mix，就是要匹配曲子的調性。而為了讓自己的作品有更大可能性被大多數 DJ 播放，很多音樂制作人選擇用可以和主流電子舞曲容易匹配的調子，所以就有更多人用A小調。&lt;/li&gt;
-  &lt;li&gt;而E小調和D小調，一方面能給我們更多創新空間，又跟主流A小調有所區別，同時和聲又較其它調子更接近A小調，所以也有不少人用這倆。你可以看到篇首的 Camelot Easymix Wheel 中，D Minor 和 E Minor 就在 A Minor 的兩邊。這個輪盤是提煉過的結果，其實放到鋼琴鍵盤上看就更明白了。如下圖：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/16710068/9e98bf68-45f0-11e6-93af-a0f1fb1e7486.png&quot; alt=&quot;A Minor Scale&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/16710086/11084d7a-45f1-11e6-80c9-36602bf0f391.png&quot; alt=&quot;D Minor Scale&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/16710087/165f4b5c-45f1-11e6-9b88-635b6ab051db.png&quot; alt=&quot;E Minor Scale&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;可見 D Minor 和 E Minor 分別與 A Minor 只有一個黑鍵的區別。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;最後一點也是音樂創作中最容易忽視又最重要的一點（領悟到這一點全是因為 David Byrne 寫的那本 How music works）—音樂的創作跟演奏環境分不開。很多古典樂節慢、音也長，和弦較爵士和諧也更簡單，因為演奏環境大多在類似大教堂的地方，回響會更久，所以簡化和弦，拉長音節可以讓演奏和回聲更和諧。而電子舞曲演奏地點通常空間小、嘈雜，幾乎沒有回聲。而作為舞曲音樂必須有更具穿透力的鼓點（強有力的低頻）。目前 club 音響系統中重低音工作區間是50到65赫茲，而A小調根音的A1音正好在55赫茲。（在這個頻率區間的還有降A1、升A1和B1）當然空間小了節奏也可以更快，不必擔心跟回聲和聲的事兒。當然沒了回聲這種藝術表現手法也不行，於是 club DJ 和制作人多出了一堆音頻效果器，比如reverb、echo、pingpong delay等等。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;綜上所述，就是為什麽這麽多電子舞曲用A小調、D小調和E小調。&lt;/p&gt;
-
-&lt;p&gt;至於為什麽是小調而不是大調？我也不知道…不過這幾乎是個常識，絕大多數電子舞曲都是小調的，旋律部分可能會用平行大調。&lt;/p&gt;
-
-&lt;p&gt;人們對小調的認識通常有誤區，一般教材會說大調是開心的感覺，小調是悲傷的感覺。但是！這個定義是狹隘的，相較大調，小調應該是給人更嚴肅或更專註的感覺。而事實上有很多小調曲子依然給人陽光、上揚的情緒帶動。隨手舉幾個栗子（順便安利一下本 Up 主的視頻，逃……）：&lt;/p&gt;
-
-&lt;p&gt;降B小調：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.bilibili.com/video/av5232799&quot;&gt;The Him - Feels Like Home&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;F小調：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.bilibili.com/video/av5205694&quot;&gt;Heren - Here &amp;amp; Now&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;C小調：&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.bilibili.com/video/av5220294&quot;&gt;Tilka - Love&lt;/a&gt;&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;最後希望我們儘快把新家弄好吧，然後野獸和公主幸福地生活。鬼扯……好就先這樣。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
