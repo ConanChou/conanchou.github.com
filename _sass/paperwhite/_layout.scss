@@ -128,6 +128,9 @@
   #category-picker {
     border-top:1px solid black;
     border-bottom: 1px solid black;
+    @media (prefers-color-scheme: dark) {
+        border-color: $grey-color-picker;
+    }
     overflow:auto;
     padding: 1em 0.5em;
     font-size: $base-font-size * 0.8;
@@ -140,6 +143,9 @@
       margin: 0.2em;
       line-height: 1em;
       border: 1px solid black;
+      @media (prefers-color-scheme: dark) {
+          border-color: $grey-color-picker;
+      }
       border-radius: 1em;
       transition: all .3s ease-in-out;
       -webkit-transition: all .3s ease-in-out;
@@ -149,6 +155,9 @@
 
       &:hover {
         background-color: $text-color;
+        @media (prefers-color-scheme: dark) {
+            background-color: $grey-color-picker;
+        }
         a {
           color: $text-color-white;
           text-decoration: none;
@@ -158,6 +167,9 @@
 
     .active {
       background-color: $text-color;
+      @media (prefers-color-scheme: dark) {
+          background-color: $grey-color-picker;
+      }
       a {
         color: $text-color-white;
         text-decoration: none;
@@ -165,6 +177,8 @@
     }
 
   }
+
+
   ul li a {
     display: block;
     padding: 0.2em 0.4em 0.3em 0.4em;
@@ -176,6 +190,7 @@
     -o-transition: all .3s ease-in-out;
   }
 }
+
 
 
 /**
