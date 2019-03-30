@@ -20,6 +20,15 @@ $grey-color:       #828282 !default;
 $grey-color-light: lighten($grey-color, 40%) !default;
 $grey-color-dark:  darken($grey-color, 25%) !default;
 
+// Dark mode
+$text-color-dark:       #c8c8c8 !default;
+$text-color-gray-dark:  #888 !default;
+$text-color-white-dark: #000 !default;
+$filter-color-dark:     #4c4c4c !default;
+$text-color-hover-dark: #989898 !default;
+$background-color-dark: #323232 !default;
+$brand-color-dark:      #D5851D !default;
+
 // Width of the content area
 $content-width:    700px !default;
 

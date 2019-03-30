@@ -28,6 +28,9 @@
   only screen and (                min-resolution: 2dppx) {
     background-image: url(/assets/logo@3x.png);
   }
+  @media (prefers-color-scheme: dark) {
+    filter: invert(100%);
+  }
 
   text-indent : -9999px;
   margin-top: 20px;
@@ -50,6 +53,12 @@
     // Gaps between nav items, but not on the last one
     &:not(:last-child) {
       margin-right: 20px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .page-link {
+      color: $text-color-dark;
     }
   }
 
@@ -369,6 +378,16 @@
     &:hover {
       color: $text-color-hover;
       text-decoration: none;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    a {
+      color: $text-color-dark;
+
+      &:hover {
+        color: $text-color-hover-dark;
+      }
     }
   }
 

@@ -22,6 +22,17 @@ body {
   font-kerning: normal;
 }
 
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: $background-color-dark;
+        color: $text-color-dark;
+    }
+    blockquote {
+      color: text-color-dark;
+    }
+
+}
 
 
 /**
@@ -100,7 +111,15 @@ a {
     text-decoration: none;
   }
 }
+@media (prefers-color-scheme: dark) {
+  a {
+    color: $text-color-dark;
 
+    &:hover {
+      color: $text-color-hover-dark;
+    }
+  }
+}
 
 
 /**
@@ -131,7 +150,15 @@ code {
   border: 1px solid $grey-color-light;
   border-radius: 3px;
   background-color: #efefef;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #272727;
+    border: 1px solid $grey-color-dark;
+  }
 }
+
+
+
 
 code {
   padding: 1px 5px;
