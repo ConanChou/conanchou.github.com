@@ -49,3 +49,7 @@ assets:
     - "tongwen*.js"
   sources:
     - javascripts
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:name
