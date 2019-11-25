@@ -174,6 +174,7 @@ $(document).ready(function() {
               $(this).addClass('page-content').removeClass('page-content-clone');
               addToTop();
               goBackTOC();
+	      MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
             });
           }
         );
