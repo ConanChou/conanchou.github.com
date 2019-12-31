@@ -1,5 +1,148 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2019-11-25T00:28:55-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">寫給幫助測試 AutoTheme 的你們</title><link href="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/" rel="alternate" type="text/html" title="寫給幫助測試 AutoTheme 的你們" /><published>2019-01-25T00:00:00-05:00</published><updated>2019-01-25T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers</id><content type="html" xml:base="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/">&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/51755901-b58e7300-208d-11e9-84e6-b8ce2dd36246.png&quot; alt=&quot;AutoTheme Poster&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2019-12-31T01:16:09-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">2010 ⇝ 2020</title><link href="https://conanblog.me/blog/2019/12/31/2010-2020/" rel="alternate" type="text/html" title="2010 ⇝ 2020" /><published>2019-12-31T00:00:00-05:00</published><updated>2019-12-31T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/12/31/2010-2020</id><content type="html" xml:base="https://conanblog.me/blog/2019/12/31/2010-2020/">&lt;blockquote&gt;
+  &lt;p&gt;我想除了又老又胖，我並不那麼介意變老。我應該不會拒絕從頭到尾把生活再過一遍：只是希望獲得惟有作家才有的特權，在再版的生活中修正初版的錯誤。生活的悲哀之處在於，我們總是老得太快，而又聰明得太慢。等到你不再修正的時候，你也就不在了。
+——查理·芒格&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;零&quot;&gt;零&lt;/h3&gt;
+
+&lt;p&gt;年初的時候，岳父岳母來紐約過春節。辦辦很開心，倒不僅僅是因為回家就有飯吃，更多的因為父母能在身邊。我也很開心，我成長的家庭也曾有過和睦相處的時間，但已成往事。辦辦跟她父母的那些互動對我來說是一種親切的陌生。當我漸漸融入她的家庭時，我感受到了滿滿的溫暖。春節後爸媽就回國了，沒多久有次我打開衣櫥，看到岳母大人給我熨的襯衫，不禁掛念起他們。&lt;/p&gt;
+
+&lt;p&gt;再後來跟母親視頻通話，她說起岳父岳母跟她說很滿意倆孩子在這邊的生活，母親講得開心，我聽後也很開心。我希望我們能經常和家人團聚。不光是跟岳父岳母，還有我的父母親，即便他們已不在一起。他倆近兩年也都開了些刀，可我都沒法回去。這也是為什麼我和辦辦在努力佈局被動收入，我們已經把青春花在立足他鄉異國，我們不想花更多時間在無謂的競爭上，我們想獲得更多的自由，自由支配我們的時間，能經常回去看看父母，做我們真正想做的。&lt;/p&gt;
+
+&lt;h3 id=&quot;壹&quot;&gt;壹&lt;/h3&gt;
+
+&lt;p&gt;「有沒有番茄炒雞蛋？」&lt;/p&gt;
+
+&lt;p&gt;這是 Lans 在忙完一整天 PAX 遊戲展後，我們一起在波士頓的一家中餐館點餐時問的。他能連續吃上好幾頓番茄炒雞蛋。闊別多年，一直在追夢的他好像沒啥變化，剛認識他的時候是因為一個創業圈江湖騙子，我們也算一起闖蕩江湖過。在出租車裡我們再次說到那段經歷，開懷大笑。但當年，我們幾個都嚇得夠嗆。他是我認識的最好的設計師、插畫師，他總是充滿了創意和激情。他從小愛遊戲，我們短暫的合作之後他便一直在做遊戲設計相關的工作。這些年裡，他去過幾次 TEDx Talks，做的幾個遊戲要麼在全球下載榜單上綻放光彩，要麼就是拿了什麼獎。這次見面後分別不久，他們就又簽約了 Team17。他大概是我認識的朋友中最純粹的追夢人，他的快樂不在物質、不在身份、不在褒獎，他純粹為了自己喜愛的手藝而前行。&lt;/p&gt;
+
+&lt;p&gt;「我希望有機會跟你一起做點什麼」這是有次他跟我聊天時說的。我把這句話當作是一種認可，我會一直努力，希望當這一天到來的時候我配得起。&lt;/p&gt;
+
+&lt;h3 id=&quot;貳&quot;&gt;貳&lt;/h3&gt;
+
+&lt;p&gt;十多年前我買了人生中第一個單反相機，尼康 D90。在那之後，我就再也沒有升級過機身，只是換了一些鏡頭。因為在我學習攝影的早年，讀到過一個用 D90 的專業攝影師的故事，他為國家地理雜誌拍了很多好照片。每次我有升級衝動的時候，我都會想起那個故事，即便日子如此久遠，我已經忘了那個攝影師的名字。直到今年年初，我看到了萊卡的廣告片 &lt;em&gt;&lt;a href=&quot;https://vimeo.com/351515355&quot; target=&quot;_blank&quot;&gt;The Hunt&lt;/a&gt;&lt;/em&gt;。&lt;/p&gt;
+
+&lt;p&gt;加上當時辦辦以為自己有法令紋而感到焦慮，覺得應該多留下一些照片影像。於是這就給我買萊卡的正當性提供了「素材」。在萊卡 SOHO 旗艦店裡跟老伯聊了不少，也把玩了一下。辦辦見我愛不釋手，就同意並資助了我。於是我擁有了一台官方二手 Leica M10 + Summilux-M 35mm f/1.4 鏡頭。我高興壞了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611212-1dceba00-2b65-11ea-9ec6-e8930f700bb5.JPG&quot; alt=&quot;internal 0e12c01ca273744741d42debb77a9d04 L1001049&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611211-1dceba00-2b65-11ea-86c2-689d6a358f6c.JPG&quot; alt=&quot;IMG_2369&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611259-8027ba80-2b65-11ea-97d5-f32cc3e7f274.jpg&quot; alt=&quot;IMG_0190-1-1&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611210-1dceba00-2b65-11ea-89de-013ffeca57d9.JPG&quot; alt=&quot;IMG_2259&quot; /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611274-946bb780-2b65-11ea-9c53-8764e4949384.jpg&quot; alt=&quot;IMG_0197-1-1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可能是剛剛拿到新相機的創作熱情高漲，拍了一些放到了網上，得到了不少很正面的反饋，我知道現在的重心並不是好好運營 Instagram，但我要是有機會的話還是想能經常放一些小作品。有那些讚許自然很好，不過最令我開心的時候是年末時，翻看已經好幾百 GB 的照片庫。全部都是我和辦辦的生活點滴。裡面其實有不少我很喜歡的瞬間，可是因為她並不樂於拋頭露面，我也就沒有上傳那些到萬維網。&lt;/p&gt;
+
+&lt;p&gt;有一次小白問我為啥喜歡萊卡，我說「就是那種 connect 的感覺，跟那個時代，跟那個手藝人之類的？」他告訴我哈蘇有個廣告片就講了那種 connect 的感覺。我在寫上一段的時候才意識到我為什麼想要買萊卡。但是我會在章節柒裡寫。&lt;/p&gt;
+
+&lt;h3 id=&quot;參&quot;&gt;參&lt;/h3&gt;
+
+&lt;p&gt;讀書一直是我們生活中一個很重要的事情。可能我以前也提到過，我們家裡沒有電視。即便如此，在忙碌嘈雜的大都會生活，有時我們會失去閱讀和慢思考的心境和機會，更何況現在還有更讓人上癮的互聯網。這種讀書的需求不知不覺便讓我和辦辦產生了共識：不如每年安排幾次隱修之旅。&lt;/p&gt;
+
+&lt;p&gt;今年我們安排了三次，雖然其中一次的主要目的並不是讀書，但效果是一樣的。在節奏慢、靠近自然、沒有時間表和行程安排的情況下，只要休息天數足夠長，我們總能把幾個一直困擾我們的問題從潛意識裡拽出來，曬曬太陽、分析清楚，又或者是那本正在讀的書到底在說什麼、超脫於字面它還能給我哪些啟示。&lt;/p&gt;
+
+&lt;p&gt;今年秋天關於比爾·蓋茨的紀錄片 &lt;em&gt;Inside Bill’s Brain: Decoding Bill Gates&lt;/em&gt; 上線了。看了之後發現原來比爾·蓋茨也經常安排這樣的隱修。怎麼說呢，「Heroes think alike」😜&lt;/p&gt;
+
+&lt;h3 id=&quot;肆&quot;&gt;肆&lt;/h3&gt;
+
+&lt;p&gt;「如果我不能為她過好最後幾個生日，我會後悔一輩子。」&lt;/p&gt;
+
+&lt;p&gt;我當時這樣想。那是在辦辦的 X-光片查出陰影之後，而再過幾天就是她30歲生日。我們都各自去網上搜索了那個陰影。搜索的結果是，如果是個問題的話，那將是個生離死別的問題。那些天我很忐忑，但我還是會表現得很樂觀，我怕她給自己的心裡暗示會真的影響健康。背地裡卻偷偷擦眼淚。&lt;/p&gt;
+
+&lt;p&gt;眼看著她的生日就要來了，我想幫她好好過一個生日。如果最糟糕的事情發生了，我就真沒有什麼可以將就馬虎的餘地了。雖然以往我也會幫她訂好她最愛口味的蛋糕，但多半會省掉點蠟燭許願的環節。我倆都是缺乏儀式感的人。但我想這一次不能馬虎，要有蠟燭、要有許願。我想我知道她會許什麼願。那天她雙手合十閉著眼睛許了很久的願。&lt;/p&gt;
+
+&lt;p&gt;後來母親請專家幫忙看了片子，辦辦也做了複查，是虛驚一場。我們都鬆了一口氣。這也許是給她和我最好的生日禮物，經過這麼一遭，我懂得了離別終有一天會來，做到離別之際沒有悔恨便是最好。&lt;/p&gt;
+
+&lt;h3 id=&quot;伍&quot;&gt;伍&lt;/h3&gt;
+
+&lt;p&gt;「『Debt Free』，這是你想寫在蛋糕上的字嗎？」店員問我道。&lt;/p&gt;
+
+&lt;p&gt;我們想了些辦法讓錢為我們打工。今年九月的時候，月被動收入已經能夠覆蓋月全部負債了，包括我們現在的自住房的按揭貸款。雖然我們知道這只是邁向「財富小自由」的第一步，但也足以為此慶祝一番。所以一天也等不了，去買個冰淇淋蛋糕，畫上綠色的「Debt Free」！&lt;/p&gt;
+
+&lt;p&gt;我們顯然不滿足於能自由回國、自由跳槽。沒有時間，有了這些自由也沒用。債務還是會把你困在你的鴿子間裡。這無疑會讓我之後的創業更輕鬆，有更多選擇。&lt;/p&gt;
+
+&lt;h3 id=&quot;陸&quot;&gt;陸&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;在他看來，世間宇宙萬物都是一個相互作用的整體，人類所有的知識都是對這一整體研究的部分嘗試，只有把這些知識結合起來，並貫穿在一個思想框架中，才能對正確的認知和決策起到幫助作用。所以他提倡要學習在所有學科中真正重要的理論，並在此基礎上形成所謂的「普世智慧」，以此為利器去研究商業投資領域的重要問題。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;這是《窮查理寶典：查理·芒格的智慧箴言錄》裡開篇的一段話。其實我已經撞見過這本書很多次了，只是今年才翻開它。這是一本大部頭，還有不少生詞，為了不產生理解偏差，還找來了中文譯本對照著讀。所以讀得很慢，倒也給了我不少時間思考。雖然這麼說有點不要臉，但我真的覺得我有很多想法跟他一致，但顯然他是一個極具個人魅力的導師，成熟而博學。他真的做到了正心、修身、齊家、治業、助天下。&lt;/p&gt;
+
+&lt;p&gt;這本書喚醒了我潛意識裡那些縹緲的意識，給我展示了新的視野和方向。他也給我豎立了一個新的標竿，不對，是多個標竿，包括他、以及他索仰望並追求的像富蘭克林和西塞羅這樣的先賢。這些也都是我所仰望的。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;如果我要擁有一種觀點，如果我不能夠比全世界最聰明、最有能力、最有資格反駁這個觀點的人更能夠證否自己，我就不配擁有這個觀點。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;這是舉一個「標竿」的例子，這麼嚴苛的要求恐怕對誰而言都是困難的，但在今天滿世界都是大大小小的 echo chamber，我們不應當努力朝那個方向努力嗎？所以當查理真正地持有某個觀點時，他的想法既原創、獨特又幾乎從不犯錯。&lt;/p&gt;
+
+&lt;p&gt;這本書是值得時不時重新翻閱的，包括書裡的引注都值得深挖。真是個大坑，但是值得。&lt;/p&gt;
+
+&lt;h3 id=&quot;柒&quot;&gt;柒&lt;/h3&gt;
+
+&lt;p&gt;最近我又在重讀 &lt;em&gt;Steve Jobs&lt;/em&gt; 了。這也許是 fanboy 的偏見，我覺得喬布斯的個人經歷和思想值得反覆咀嚼，即便說他經常會把別人的想法取來自用又不給別人 credit，但也正因為此，他汲取並內化了很多想法的精華。&lt;/p&gt;
+
+&lt;p&gt;他在重返蘋果之後，組織了一次很成功的廣告企劃，那就是 &lt;em&gt;Think different&lt;/em&gt;。下面的這段視頻就是那次企劃的一次對內會議視頻，他告訴了我，我為什麼在看完 &lt;em&gt;The hunt&lt;/em&gt; 之後產生了購買慾望。&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/keCwRdbwNQY&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;他對 Think different 主題應該是有著強烈共鳴的，我們在他的人生軌跡裡看得清清楚楚。這不光是人生決策層面的，還可以是具體到應對具體的事上面。到具體的事上面就體現在思考的角度上。比如說 Macintosh 的小市場份額本該是一個劣勢，但在蘋果跟各大音樂公司談合作的時候，他因為理解到音樂公司對擁抱電子化很遲疑，但是又想試試，於是他用這樣本該是劣勢的東西作為談判籌碼。我在這個案例裡學到的不光是談判技巧。&lt;/p&gt;
+
+&lt;p&gt;這次重讀我還有另一個感悟，我會在文末寫。&lt;/p&gt;
+
+&lt;h3 id=&quot;捌&quot;&gt;捌&lt;/h3&gt;
+
+&lt;p&gt;今年一整年我都在寫子彈筆記，一開始是試圖找回自己，之後慢慢清晰起來，知道面對一些無法改變的現實，所以只能從自己方面做努力。面對可見的未來，我似乎會變得更加忙碌，但我不想因此犧牲哪怕一點我的家庭生活，事實上家庭需要花比我想像得多的心力去經營。所以年底我又撿起了 GTD，趁換新電腦開始實踐 PARA&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+
+&lt;p&gt;昨天跟 Jack 他們吃飯聊天，我坦誠說了一些我對於創造的渴求、其程度甚至到偏激的一些想法，今天就在我訂閱的一個 YouTuber 的頻道看到一個關於焦慮和創造的推心置腹的視頻&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;。我這才意識到原來我應該是有些焦慮吧。我不覺得我現在需要專業人士的幫助，但至少我應該要多加注意。另一方面，辦辦和我的密友們都很好。我可以找他們傾訴。&lt;/p&gt;
+
+&lt;h3 id=&quot;玖&quot;&gt;玖&lt;/h3&gt;
+
+&lt;p&gt;每到離別時，我都很傷心。&lt;/p&gt;
+
+&lt;p&gt;年末我以舊換新了陪伴我7年的 Macbook Pro，磨蹭了兩個禮拜才把它寄出去。聖誕節前我每週去三次的沙拉店也關門了，因後知後覺，卻沒有跟那些店員朋友們鄭重告別。奶奶做的布拖鞋已經磨穿了，在最近一次隱修之旅後，好好地拍了照片才捨得扔掉這份心意。再回想，還有很多說和沒說「再見」卻再也不會見的朋友沒有鄭重道別。&lt;/p&gt;
+
+&lt;p&gt;今天以前我總覺得好像要認真道別以畫上句點，可是我想明白了，不是所有事情都需要句點的。沒有結束，endless，也是一種很好的狀態。再說，我們不就是在一次次離別中成長的嗎？&lt;/p&gt;
+
+&lt;h3 id=&quot;2020--&quot;&gt;2020 -&lt;/h3&gt;
+
+&lt;p&gt;新的一年我想正視對音樂的愛好，不應該覺得有負罪感，大大方方地花一些時間去學去玩。我也想好好學習和實踐 iOS 和 macOS 平台的開發，爭取能落實一些項目。閱讀，自然是以後台進程的形式一直存在的，我對這個世界的理解還遠遠不夠。&lt;/p&gt;
+
+&lt;p&gt;2019很動盪，總覺得一場風暴正在醞釀。我希望世界和平，這樣我才能繼續過我的平凡人生，陪伴在我的家人身邊，讀更多書、做更多感興趣的事情。&lt;/p&gt;
+
+&lt;h2 id=&quot;十年&quot;&gt;十年&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;找出你最擅長的事情，然後持之以恆、樂此不疲地去把它做好。
+——西蒙·馬克斯&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;前兩天我打開 Apple Music，看到了 “The Songs That Defined the 2010s” 榜單。那時我才意識到今年的年末有些不一樣。又一個十年。&lt;/p&gt;
+
+&lt;p&gt;我不禁想，這十年自己做了些什麼，好像我還是我，沒怎麼變，雖有些成就，但覺得自己遠可以做得更好。但為了寫總結，我還是翻出了這十年的博客存檔。翻閱到七八年前的帖子時，我覺得換作今天的我，肯定不會跟這個傢伙做朋友。十年前的我，更平庸、更無知而淺薄，最關鍵的是，我還曾如此得瑟。這麼看十年來我並非沒有長進。但我也同樣羨慕那時的初生牛犢不畏虎。&lt;/p&gt;
+
+&lt;p&gt;舊博文裡有一篇專門寫了10000小時理論，十年後的2019，Billie Eillish 獲得了蘋果年度全球藝術家音樂獎（Apple Music Award of global artist of the year）。我記得在一個採訪中攝像機拍到了她和她哥當時作曲的房間門上寫著「10000 hours」，以督促自己。雖然後來普林斯頓大學的研究表明10000小時理論並不真的能在各種領域奏效&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;。而且從 Billie 的事例中也可以看出除了努力，他們特殊的教育和家庭氛圍也起到了關鍵性作用。我覺得刻意練習只是表象，真正起作用的是——專注。而我讀 &lt;em&gt;Steve Jobs&lt;/em&gt; 的另一個收穫也正是「專注」。&lt;/p&gt;
+
+&lt;p&gt;縱觀這十年的紀錄，有幾個領域似乎是我時常會提到的：編程、創業、閱讀、音樂、設計、攝影。在寫這篇博文之前，我很焦慮，因為我覺得我把精力分散得太開了。這篇博文不是一天一時寫完的，在寫作的這一個多禮拜裡，我思考、找密友聊。最終我釋然了一些，「分散」不意味著「不專注」或「浪費」了，因為這些點可以被串起來，就像喬布斯2005年在斯坦福大學的畢業典禮講話說的第一個故事「connecting the dots」那樣。&lt;/p&gt;
+
+&lt;p&gt;下個十年，我應該非常努力地將一些點連結起來。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71610811-3689a080-2b62-11ea-84c9-638aafb83246.JPG&quot; alt=&quot;IMG_0485-1&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://praxis.fortelabs.co/the-p-a-r-a-method-a-universal-system-for-organizing-digital-information-75a9da8bfb37/&quot; target=&quot;_blank&quot;&gt;The PARA Method: A Universal System for Organizing Digital Information&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=6G7U1N2MssI&quot; target=&quot;_blank&quot;&gt;Anxiety and the Creative&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.businessinsider.com/new-study-destroys-malcolm-gladwells-10000-rule-2014-7&quot; target=&quot;_blank&quot;&gt;New Study Destroys Malcolm Gladwell’s 10,000 Hour Rule&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">我想除了又老又胖，我並不那麼介意變老。我應該不會拒絕從頭到尾把生活再過一遍：只是希望獲得惟有作家才有的特權，在再版的生活中修正初版的錯誤。生活的悲哀之處在於，我們總是老得太快，而又聰明得太慢。等到你不再修正的時候，你也就不在了。
+——查理·芒格</summary></entry><entry><title type="html">寫給幫助測試 AutoTheme 的你們</title><link href="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/" rel="alternate" type="text/html" title="寫給幫助測試 AutoTheme 的你們" /><published>2019-01-25T00:00:00-05:00</published><updated>2019-01-25T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers</id><content type="html" xml:base="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/">&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/51755901-b58e7300-208d-11e9-84e6-b8ce2dd36246.png&quot; alt=&quot;AutoTheme Poster&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;非常感謝你們的熱心幫助！&lt;/p&gt;
 
@@ -821,56 +964,4 @@
       &lt;p&gt;&lt;a href=&quot;https://realm.io/news/andy-matuschak-controlling-complexity/&quot;&gt;Controlling Complexity in Swift — or — Making Friends with Value Types&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">最近在學習 Swift，一開始我以為它像目前的一些支持 OOP 和 FP 的多範式語言一樣，可猝不及防它居然引入了一種新的範式，這種範式基於 Java 的 interface，但加了更多靈活的創新。我覺得學習語言不搞明白它的範式等於是沒學。畢竟語法是形，範式才是神。這才有了這篇文章。</summary></entry><entry><title type="html">2016 -&amp;gt; 2017</title><link href="https://conanblog.me/blog/2016/12/31/2016-2017/" rel="alternate" type="text/html" title="2016 -&gt; 2017" /><published>2016-12-31T21:50:38-05:00</published><updated>2016-12-31T21:50:38-05:00</updated><id>https://conanblog.me/blog/2016/12/31/2016-2017</id><content type="html" xml:base="https://conanblog.me/blog/2016/12/31/2016-2017/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;又到了一年總結經驗教訓和展望未來的時候。簡單總結就是有進步，但有很大的進步空間。2016年的目標尚未完成的當然有，不過就像我一貫說的那樣，目標定得越遠大，即使達不到，但到達的地方也會越高遠。這個開頭簡直廢話……&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;h2 id=&quot;工作&quot;&gt;工作&lt;/h2&gt;
-
-&lt;p&gt;說說工作先。加入新的公司有一年多幾個月。開始的一些事情其實有些動搖我的念頭，甚至有些後悔自己當初過來的決定。這也是為什麼我在去年的年終總結的時候說需要贏得團隊的信任需要一個過程的言外之意。而確實，磨合、溝通和信任不是一紙協議就能搞定的。經過一年的努力，這個在去年定下的大目標相信是完成得不錯的。&lt;/p&gt;
-
-&lt;p&gt;工作細節方面，今年實踐了 Docker 以及一些 Docker 相關的技術，而我對它的態度也是從好奇轉向不推薦，而後又漸漸中立。好奇那會兒多半是因為各種軟硬文，在家裡的小環境裡面嘗試過之後確實發現了它的優勢確實誘人。環境獨立這樣的特性自然不用說，我更加喜歡它對軟件架構的影響，這種模塊化服務／微服務驅動的架構在運維方面有著非常大的優勢。但這個優勢的獲取並非易事，容器開關與組合、彈性規模在Docker技術框架下都很簡單，可容器內軟件必須要能做到足夠的擼棒性才能利用起 Docker 的技術框架。這在一開始並沒有朝這麼走的創業公司中是有實踐難度的。想想也是，本來一個“很簡單”的東西，直接那現有框架做做也就幾天功夫，去他媽的可擴展性，未來的事情等有未來再說。所以我的思路也調整了一下，現在可以欠技術債，但要一直紀錄需要改變的地方或更好實踐的方式。並經常審視，並摸清實施計畫和細節。這樣等到時機成熟，說下手就可以下手。另外，在軟件開發過程中，code review 要為之前說的這個實施計畫做鋪墊。這個方式在 2016 中的工作是奏效的，當然還有上升空間，那就是怎樣在團隊內部做佈道，思路上來說首先還要從團隊內部的分享文化開始著手吧。&lt;/p&gt;
-
-&lt;p&gt;與 Docker 相關的，我們在一個核心子項目中採用了 LXC，總的來說我對 LXC／LXD 項目更加鍾意。它們比較平易近人，不強迫你的軟件架構做太多調整。我們事實上成功將 VM 替換下來了。與 Docker 相比，它更 hackable，更 Linux。&lt;/p&gt;
-
-&lt;p&gt;另外今年也實踐了 &lt;em&gt;ChatOps&lt;/em&gt;，我為公司做了一個運維機器人並繼承到了我們的 Slack、Github 和 AWS 等第三方服務上。首先這個解了我對新技術動向和趨勢的饞（最早的時候本來想給自己的小社團 &lt;em&gt;1682&lt;/em&gt; 做機器人來著），另一方面它也確實為我們的工作帶來了不少便利。你可以想像它是把命令行帶進了工作聊天群組，但是不一樣的就是，它是另一層抽象。這就大大加速和便利了團隊內部的 Ops 相關任務，不了解命令行的設計師想要測試個前端方案也不用再麻煩團隊裡的其他成員來做測試部署了。&lt;/p&gt;
-
-&lt;p&gt;工作方面的收獲當然不僅如此，大概就先放這些吧。&lt;/p&gt;
-
-&lt;h2 id=&quot;生活和學習&quot;&gt;生活和學習&lt;/h2&gt;
-
-&lt;p&gt;其實我想過把生活和學習分開說，可是發現其實生活中有一大塊是圍繞著學習的，所以還是合併一下吧。&lt;/p&gt;
-
-&lt;p&gt;今年一件大事是我們終於把房買了，我們都很滿意的一套。因為我當時工作比較忙，辦辦花了很多心思操持買房的事情，要給她一朵大大的紅花！當然也要感謝爸爸媽媽們的支持。&lt;/p&gt;
-
-&lt;p&gt;我跟辦辦已經結婚一週年了，不過今年我們卻有長達5個月不在一起，她因為簽證問題不得不回國一段時間，所以講真的這一長段時間基本沒有什麼生活，因為一個人也不太願意出去玩，這段時間花了大半的時候學習有關音樂的東西，曾經只做做 loop，為表演修修曲子，今年終於做了自己的曲子，而且這次挑戰了更難的旋律性曲子，非舞曲。這應該算是今年學習的最大成就。從無到有做一首曲子學了很多東西。新的一年打算花一些時間學習更多 synth，如果有時間想要做一些完成度比較高的舞曲。&lt;/p&gt;
-
-&lt;p&gt;SoundCloud:&lt;/p&gt;
-
-&lt;iframe width=&quot;100%&quot; height=&quot;166&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/278237122&amp;amp;color=ff5500&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;網易雲音樂：&lt;/p&gt;
-
-&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;amp;id=430787469&amp;amp;auto=0&amp;amp;height=66&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;說到一週年，我們一週年的那天風雨大作，在去訂好的飯店的路上還下起了冰雹，想來也是個值得記錄的軼事。&lt;/p&gt;
-
-&lt;p&gt;今年另一個比較大的成就是堅持去健身房，從辦辦回國之後，我就誇下海口說要去健身房，要練出辣身材。好事是前半句話我做到了，當中要謝謝跟我一起健身的 gym buddy 永強；後半句話是練了一陣子才意識到以我們的體質其實這個不是一兩年就能做到的事情。不管怎樣，我從一個俯臥撐只能做三五個的弱雞，到20個一組做4組的稍強的弱雞，已經是很值得沾沾自喜一下的了。不過革命尚未成功，明年要繼續。另外，今年夏天開始，跟我的好朋友 Roman 一起攀岩，雖然當中有過斷斷續續，但我們一直堅持到冬天閉館為止。我們到年末的時候也已經明顯地意識到自己的狀態很好。現在我們已經可以挑戰一些技術性的線路了。十個等級我們現在應該差不多是在五六級的樣子。攀岩是一項對技術、思維、體能都有要求的運動，每次 session 下來你的左右腦思維模式都會得到鍛鍊。我相信這項運動我還會繼續，它首先很有趣，另一方面它也是對我去健身房的一種督促，畢竟身體機能跟不上，很多技巧性動作也做不了。&lt;/p&gt;
-
-&lt;p&gt;還有一件比較有成就感的事情就是今年電焊了好些個東西，當中包括跟辦辦一起做的多功能電子鬧鈴，當然也有後來的 ErgoDox 鍵盤。趁此機會也學習了一些電子硬件相關的知識，為我的 IoT 項目打打基礎。說到這一趴，我還挺為自己找了這樣的老婆自豪的。用朋友的話說，她跟外面那些妖豔貨色不一樣。是真的，你見過多少女神還跟你一起玩電焊打電動還學習天文望遠鏡的？記得肖侃兄弟說，那是雅趣，我覺得挺好。喔對了，她回國那幾個月也沒閒著，周遊列國，還學習了不少歐洲文化、藝術和歷史。最討厭跟這種好學生交朋友了，壓力太大了真是……&lt;/p&gt;
-
-&lt;p&gt;關於天文望遠鏡，這裏要鳴謝木星的耐心指導，他在百忙之餘給我寫了三封長文，非常細緻而全面地介紹了天文觀測入門者應該懂得的關於天文望遠鏡的知識，且淺顯易懂。搬了新家後，我們應該會有更好的場地去觀星了 ：）&lt;/p&gt;
-
-&lt;h2 id=&quot;2017&quot;&gt;2017&lt;/h2&gt;
-
-&lt;p&gt;2016年年初，我在GoodRead上定下今年12本書的目標，年中達成了，於是就把難度加大，把目標定到了20本，最後果然沒有達成。所以2017繼續努力看書吧，依然定20本。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/480759/21580056/24d89b74-cfa4-11e6-9b18-16952ad166d0.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;2016年底，我就已經開始策劃做一個手機 App，其實心裡也有個小的目標，就是希望能做那個領域裡數一數二的App，最好再拿個什麼獎。跟書有關的一款 App，現在先賣個關子。&lt;/p&gt;
-
-&lt;p&gt;有時我會情緒不穩定，這樣不好。來年我要努力做好情緒的調節和控制。我覺得我可以首先從打遊戲開始，畢竟有些遊戲真的是難到很想摔手柄……&lt;/p&gt;
-
-&lt;p&gt;最後希望我們儘快把新家弄好吧，然後野獸和公主幸福地生活。鬼扯……好就先這樣。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
+&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">最近在學習 Swift，一開始我以為它像目前的一些支持 OOP 和 FP 的多範式語言一樣，可猝不及防它居然引入了一種新的範式，這種範式基於 Java 的 interface，但加了更多靈活的創新。我覺得學習語言不搞明白它的範式等於是沒學。畢竟語法是形，範式才是神。這才有了這篇文章。</summary></entry></feed>
