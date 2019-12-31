@@ -24,8 +24,8 @@ lang: zh
 permalink: /blog/:year/:month/:day/:title/
 twitter_username: conanchou
 github_username: conanchou
-disqus:
-  shortname: conannotes
+# disqus:
+  # shortname: conannotes
 google_analytics: UA-33556525-1
 sass:
   style: compressed
