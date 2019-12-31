@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2019-12-31T01:16:09-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2019-12-31T10:05:03-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
 </subtitle><author><name>Conan</name></author><entry><title type="html">2010 ⇝ 2020</title><link href="https://conanblog.me/blog/2019/12/31/2010-2020/" rel="alternate" type="text/html" title="2010 ⇝ 2020" /><published>2019-12-31T00:00:00-05:00</published><updated>2019-12-31T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/12/31/2010-2020</id><content type="html" xml:base="https://conanblog.me/blog/2019/12/31/2010-2020/">&lt;blockquote&gt;
   &lt;p&gt;我想除了又老又胖，我並不那麼介意變老。我應該不會拒絕從頭到尾把生活再過一遍：只是希望獲得惟有作家才有的特權，在再版的生活中修正初版的錯誤。生活的悲哀之處在於，我們總是老得太快，而又聰明得太慢。等到你不再修正的時候，你也就不在了。
 ——查理·芒格&lt;/p&gt;
@@ -84,7 +84,7 @@
 
 &lt;p&gt;他在重返蘋果之後，組織了一次很成功的廣告企劃，那就是 &lt;em&gt;Think different&lt;/em&gt;。下面的這段視頻就是那次企劃的一次對內會議視頻，他告訴了我，我為什麼在看完 &lt;em&gt;The hunt&lt;/em&gt; 之後產生了購買慾望。&lt;/p&gt;
 
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/keCwRdbwNQY&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;https://www.youtube.com/embed/keCwRdbwNQY&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
 &lt;p&gt;他對 Think different 主題應該是有著強烈共鳴的，我們在他的人生軌跡裡看得清清楚楚。這不光是人生決策層面的，還可以是具體到應對具體的事上面。到具體的事上面就體現在思考的角度上。比如說 Macintosh 的小市場份額本該是一個劣勢，但在蘋果跟各大音樂公司談合作的時候，他因為理解到音樂公司對擁抱電子化很遲疑，但是又想試試，於是他用這樣本該是劣勢的東西作為談判籌碼。我在這個案例裡學到的不光是談判技巧。&lt;/p&gt;
 
