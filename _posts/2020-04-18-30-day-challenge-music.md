@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 一個月挑戰——作曲
-categories: [life, thought, summary]
+categories: [music]
 ---
 
 我一個月完成了三首完整的曲子，這個過程充滿焦慮、挫敗、驚喜和樂趣。
