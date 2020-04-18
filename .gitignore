@@ -3,3 +3,5 @@ _site/
 .asset-cache/
 .jekyll-metadata
 _deploy/
+docs
+mainlib.db
