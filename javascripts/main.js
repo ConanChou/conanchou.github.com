@@ -151,6 +151,11 @@ $(document).ready(function() {
   function viewLoaded(response, pageContentClone) {
     $("html, body").stop().animate({scrollTop:0}, '500', 'swing', function() {
       document.title = $(response).filter("title").text();
+      const cat = getUrlParameter('category') || 'all';
+      if (cat !== 'all') {
+        loadCategory(getUrlParameter('category') || 'all');
+        $('#category-picker').slideToggle('fast');
+      } 
       pageContentClone.css('opacity', 0);
       if (ts_switch.checked) {
           TongWen.trans2Trad(document);
