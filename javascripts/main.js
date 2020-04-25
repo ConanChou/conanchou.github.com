@@ -71,8 +71,10 @@ function loadCategory(category) {
 }
 
 function scrollToAnchor(aid){
+    history.pushState(null, aid, aid);
     var aTag = $(aid.replace(/:/, '\\:'));
-    $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+    $('html,body').animate({scrollTop: aTag.offset().top - 100},'slow');
+    aTag.animate({ "background-color": "#ffc"}).delay(2000).animate({ "background-color": "transparent"});
 }
 
 function goBackTOC() {
