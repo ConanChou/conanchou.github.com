@@ -3,6 +3,7 @@ layout: post
 title: Electron + ClojureScript + Reagent  + nREPL
 comments: true
 categories: [tech, clojurescript, clojure, electron]
+tweet_id: 873655361491935234
 ---
 
 正在進行的 Savant 項目就是這個前端技術架構做開發的，配置麻煩了一點，但是一旦配好了你將擁有爽爆了的 Live Coding 的開發體驗。

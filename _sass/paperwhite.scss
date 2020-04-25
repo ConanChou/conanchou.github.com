@@ -1,6 +1,7 @@
 // Define defaults for each variable.
 
 $base-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Roboto, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", "Microsoft Jhenghei", sans-serif;
+$code-font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 $base-font-size:   1.1em !default;
 $base-font-weight: 200 !default;
 $small-font-size:  $base-font-size * 0.7 !default;
@@ -17,6 +18,7 @@ $background-color: #fefefe !default;
 $brand-color:      #2a7ae2 !default;
 
 $grey-color:       #828282 !default;
+$grey-color-super-light: lighten($grey-color, 45%) !default;
 $grey-color-light: lighten($grey-color, 40%) !default;
 $grey-color-dark:  darken($grey-color, 25%) !default;
 $grey-color-picker:  darken($grey-color, 5%) !default;

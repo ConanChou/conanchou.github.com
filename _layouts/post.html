@@ -12,10 +12,41 @@ layout: default
     {{ content }}
   </div>
 
+  <ul class="categories">
+    {% for category in page.categories %}
+      <li><a class="page-link" href="/?category={{ category }}">#{{ category }}</a></li>
+    {% endfor %}
+  </ul>
+
+</article>
+
+<div class="ending">
+  <div id="discussion-btn-group">
+  {% if page.tweet_id == null %}
+    <a title="Discuss on Twitter" href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text=@ConanChou" target="_blank" class="discussion-btn">Discuss on Twitter ▶</a>
+    <a title="View Discussions" href="https://twitter.com/search?q={{ site.url }}{{ page.url }}" target="_blank" class="discussion-btn">View Discussions ▶</a>
+  {% else %}
+    <a title="Discuss on Twitter" href="https://twitter.com/intent/tweet?in_reply_to={{ page.tweet_id }}" target="_blank" class="discussion-btn">Discuss on Twitter ▶</a>
+    <a title="View Discussions" href="https://twitter.com/avc/status/{{ page.tweet_id }}" target="_blank" class="discussion-btn">View Discussions ▶</a>
+  {% endif %}
+  </div>
   {% if site.disqus.shortname %}
     {% include disqus_comments.html %}
   {% endif %}
-</article>
+  <div class="post-nav">
+    <div>
+      {% if page.previous.url %}
+      <a title="Previous Post: {{ page.previous.title }}" href="{{ page.previous.url }}">◀<span id="prev-span">{{ page.previous.title }}</span></a>
+      {% endif %}
+    </div>
+    <div class="post-nav-next">
+      {% if page.next.url %}
+      <a title="Next Post: {{ page.next.title }}" href="{{ page.next.url }}"> <span id="next-span">{{ page.next.title }}</span>▶</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
 {% if jekyll.environment == "development" %}
 <script type="text/javascript" src="{{ root_url }}/javascripts/qrcode.min.js"></script>
 <div id="qrcode"></div>

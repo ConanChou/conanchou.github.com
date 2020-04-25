@@ -3,6 +3,7 @@ layout: post
 title: 寫給幫助測試 AutoTheme 的你們
 comments: true
 categories: [macOS, side-project, tech]
+tweet_id: 1088831495844872192
 ---
 
 ![AutoTheme Poster](https://user-images.githubusercontent.com/480759/51755901-b58e7300-208d-11e9-84e6-b8ce2dd36246.png)

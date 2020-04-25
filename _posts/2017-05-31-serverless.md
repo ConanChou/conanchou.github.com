@@ -3,6 +3,7 @@ layout: post
 title: Serverless
 comments: true
 categories: [tech, serverless, architecture]
+tweet_id: 869938527215259649
 ---
 
 長週末的期間，我跟進了一下關於 Serverless 的新動向，動手做了一些小項目來加深對目前工具、方法和社區的了解，當然也順便搞定了 Clojure 在 Serverless 環境下的配置方法。跟一年前相比，目前的工具鏈、服務平台，越發成熟了。年前跟盎可交流的時候說要用 Serverless 做的一個項目，當時看還有很多可行性的顧慮，如今我對它很有信心。

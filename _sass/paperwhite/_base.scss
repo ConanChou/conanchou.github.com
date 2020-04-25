@@ -145,11 +145,11 @@ blockquote {
  */
 pre,
 code {
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: $code-font-family;
   font-size: 0.85em;
   border: 1px solid $grey-color-light;
   border-radius: 3px;
-  background-color: #efefef;
+  background-color: $grey-color-super-light;
 
   @media (prefers-color-scheme: dark) {
     background-color: #272727;

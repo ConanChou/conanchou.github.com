@@ -3,6 +3,7 @@ layout: post
 title: 我也看了老羅的發佈會
 comments: true
 categories: [tech, news, thought]
+tweet_id: 998923154406957057
 --- 
 
 

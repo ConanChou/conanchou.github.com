@@ -81,7 +81,7 @@
       text-align: center;
 
       > svg path {
-        fill: $grey-color-dark;
+        fill: $text-color-gray-dark;
       }
     }
 
@@ -104,6 +104,10 @@
         margin-right: 0;
       }
       margin-left: 20px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      background-color: $background-color-dark;
     }
   }
 }
@@ -294,6 +298,9 @@
     @include media-query($on-palm) {
       > h2 {
         white-space: normal;;
+      }
+      .home-post-meta {
+        display: none; 
       }
     }
     @include media-query($on-laptop) {
@@ -522,5 +529,99 @@ table {
 #qrcode {
   img {
     margin: auto;
+  }
+}
+
+#discussion-btn-group {
+  text-align: center;
+  padding-top: 6em;
+  padding-bottom: 4em;
+
+  .discussion-btn {
+    background-color: $grey-color-light;
+    color: $text-color;
+    border: none;
+    padding: 0.6em 2em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 1em;
+    min-width: 10em;
+    
+    @include media-query($on-palm) {
+      margin-right: 0;
+      margin-top: 1em;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      filter: invert(100%);
+    }
+
+    &:hover {
+      color: $text-color
+    }
+  }
+}
+
+.categories {
+  list-style: none;
+  margin: 0px;
+  padding: 2em 0 1em 0;
+  font-family: $code-font-family;
+  font-size: 0.8em;
+  font-weight: lighter;
+
+  li {
+    float: left;
+    padding-right: 0.5em;
+    a {
+      color: $text-color-gray;
+
+      @media (prefers-color-scheme: dark) {
+        filter: invert(100%);
+      }
+    }
+  }
+}
+
+.post-nav {
+  margin: 1em 0 1em 0;
+  display: flex;
+
+  @include media-query($on-palm) {
+    display: block;
+
+    .post-nav-next {
+      padding-top: 1em;
+    }
+  }
+  
+
+  div {
+    /* flex-grow, flex-shrink, flex-basis */
+    flex: 1 1 0;
+    #prev-span {
+      padding-left: 0.2em;
+    }
+    #next-span {
+      padding-right: 0.2em;
+    }
+  }
+
+  .post-nav-next {
+    text-align: right;
+  }
+}
+
+.ending {
+  opacity: 0.4;
+  transition: 0.7s;
+
+  &:hover {
+    opacity: 1; 
+  }
+
+  @include media-query($on-palm) {
+    opacity: 1;
   }
 }
