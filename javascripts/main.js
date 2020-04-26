@@ -44,7 +44,7 @@ function addToTop() {
   }
 }
 
-var getUrlParameter = function getUrlParameter(sParam) {
+function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
@@ -57,7 +57,44 @@ var getUrlParameter = function getUrlParameter(sParam) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
     }
-};
+}
+
+function updateHistory(newUrl) {
+    var mergedUrl = new URL(window.location.href);
+    var url = new URL(window.location.origin + newUrl);
+    var key = null;
+    var value = null;
+
+    if (mergedUrl.pathname === '/' && newUrl === '/') {
+      key = "category";
+      value = "all";
+    } else if (newUrl.indexOf("?") !== -1) {
+      key = newUrl.split("?")[1].split("=")[0];
+      value = newUrl.split("?")[1].split("=")[1];
+    }
+    if (key !== null && value !== null) {
+      var params = new URLSearchParams(mergedUrl.search.slice(1));
+      params.set(key, value);
+      mergedUrl.search = params.toString();
+    }
+    if (newUrl.indexOf("#") !== 0) {
+      mergedUrl.pathname = url.pathname;
+    } 
+    mergedUrl.hash = url.hash;
+
+    history.pushState(null, mergedUrl.href, mergedUrl.href);
+}
+
+function setUrlTail(param) {
+    var mergedUrl = new URL(window.location.href);
+    var key = param.split("?")[1].split("=")[0];
+    var value = param.split("?")[1].split("=")[1];
+
+    var params = new URLSearchParams(mergedUrl.search.slice(1));
+    params.set(key, value);
+    mergedUrl.search = params.toString();
+    history.pushState(null, mergedUrl.href, mergedUrl.href);
+}
 
 function loadCategory(category) {
   $('#category-picker li').removeClass('active');
@@ -71,7 +108,7 @@ function loadCategory(category) {
 }
 
 function scrollToAnchor(aid){
-    history.pushState(null, aid, aid);
+    updateHistory(aid);
     var aTag = $(aid.replace(/:/, '\\:'));
     $('html,body').animate({scrollTop: aTag.offset().top - 100},'slow');
     aTag.animate({ "background-color": "#ffc"}).delay(2000).animate({ "background-color": "transparent"});
@@ -98,7 +135,13 @@ $(document).ready(function() {
 
   var ts_switch = document.querySelector('#ts-switch');
   var ts_label = document.querySelector('#side-label');
-  var init = new Switchery(ts_switch);
+  var switchery = new Switchery(ts_switch);
+
+  if (getUrlParameter("lang") === "sc") {
+    TongWen.trans2Simp(document);
+    ts_label.innerHTML = "简";
+    switchery.setPosition(true);
+  }
 
   var scrollTimer = null;
   $(window).on('scroll', function() {
@@ -118,9 +161,9 @@ $(document).ready(function() {
   $('body').on('click', '#markdown-toc a', function(event) {
     event.preventDefault();
     event.stopImmediatePropagation();
-    var newLoadedHtml = $(this).attr("href");
-    history.pushState(null, newLoadedHtml, newLoadedHtml);
-    $("html, body").stop().animate({scrollTop: $(newLoadedHtml).offset().top - 20}, '500', 'swing');
+    var newUrl = $(this).attr("href");
+    updateHistory(newUrl);
+    $("html, body").stop().animate({scrollTop: $(newUrl).offset().top - 20}, '500', 'swing');
   });
 
   $('body').on('click', ".post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6", function(event) {
@@ -134,9 +177,9 @@ $(document).ready(function() {
     event.preventDefault();
     event.stopImmediatePropagation();
 
-    var newLoadedHtml = $(this).attr("href");
+    var newUrl = $(this).attr("href");
+    updateHistory(newUrl);
 
-    history.pushState(null, newLoadedHtml, newLoadedHtml);
     var pageContentClone = $('.page-content').clone();
     pageContentClone.addClass('page-content-clone').removeClass('page-content');
     $.ajax({url: $(this).attr("href"), success: function(response) {
@@ -239,17 +282,19 @@ $(document).ready(function() {
       if (ts_switch.checked) {
           TongWen.trans2Trad(document);
           ts_label.innerHTML = "繁";
+          setUrlTail("?lang=tc");
       } else {
           TongWen.trans2Simp(document);
           ts_label.innerHTML = "简";
+          setUrlTail("?lang=sc");
       }
   };
 
   $('body').on('click', '#category-picker a', function(event) {
     event.preventDefault();
     event.stopImmediatePropagation();
-    var newLoadedHtml = $(this).attr("href");
-    history.pushState(null, newLoadedHtml, newLoadedHtml);
+    var newUrl = $(this).attr("href");
+    updateHistory(newUrl);
     loadCategory(getUrlParameter('category') || 'all');
   })
 
