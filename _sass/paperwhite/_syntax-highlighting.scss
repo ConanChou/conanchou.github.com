@@ -34,8 +34,10 @@
 
    .highlighter-rouge & {
      // background-color: #f7f7f7;
-     margin-left: -2em;
-     margin-right: -2em;
+     margin-left: calc(-1em - 15px);
+     margin-right: calc(-1em - 15px);
+     margin-left: -webkit-calc(-1em - 15px);
+     margin-right: -webkit-calc(-1em - 15px);
    }
 
    code {
