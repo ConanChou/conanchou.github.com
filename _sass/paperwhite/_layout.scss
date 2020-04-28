@@ -539,9 +539,16 @@ table {
 }
 
 @keyframes highlight {
-  0% { background-color: #ffffcc; }
+  0% { background-color: rgba(255, 255, 0, 0.3); }
   100% { background-color: transparent; }
 }
+
+// @media (prefers-color-scheme: dark) {
+//   @keyframes highlight {
+//     0% { background-color: #808040; }
+//     100% { background-color: transparent; }
+//   }
+// }
 
 // qrcode
 #qrcode {

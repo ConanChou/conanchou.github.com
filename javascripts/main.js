@@ -111,7 +111,7 @@ function scrollToAnchor(aid){
     updateHistory(aid);
     var aTag = $(aid.replace(/:/, '\\:'));
     $('html,body').animate({scrollTop: aTag.offset().top - 100},'slow');
-    aTag.animate({ "background-color": "#ffc"}).delay(2000).animate({ "background-color": "transparent"});
+    aTag.animate({ "background-color": "rgba(255, 255, 0, 0.3)"}).delay(2000).animate({ "background-color": "transparent"});
 }
 
 function goBackTOC() {
