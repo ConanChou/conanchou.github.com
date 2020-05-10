@@ -474,7 +474,7 @@
     margin-bottom: $spacing-unit / 2;
   }
 
-  img {
+  img:not(p a img) {
     max-width: calc(100% + 2em + 30px);
     margin-left: calc(-1em - 15px);
     margin-right: calc(-1em - 15px);
