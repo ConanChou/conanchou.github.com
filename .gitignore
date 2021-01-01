@@ -5,3 +5,4 @@ _site/
 _deploy/
 docs
 mainlib.db
+.DS_Store
