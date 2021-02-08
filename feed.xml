@@ -1,5 +1,130 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2020-12-31T23:10:07-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">2020 ⇝ 2021</title><link href="https://conanblog.me/blog/2020/12/31/2020-2021/" rel="alternate" type="text/html" title="2020 ⇝ 2021" /><published>2020-12-31T00:00:00-05:00</published><updated>2020-12-31T00:00:00-05:00</updated><id>https://conanblog.me/blog/2020/12/31/2020-2021</id><content type="html" xml:base="https://conanblog.me/blog/2020/12/31/2020-2021/">&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/103432645-9325fe00-4bb0-11eb-914c-a7cb02756ef8.jpg&quot; alt=&quot;最近拍的一張「望天」的照片，能讓我放鬆心情&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="https://conanblog.me/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2021-02-08T14:48:48-05:00</updated><id>https://conanblog.me//</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
+</subtitle><author><name>Conan</name></author><entry><title type="html">「透明盒子計畫」網站設計時的一些考慮</title><link href="https://conanblog.me/blog/2021/02/08/tldr-ink/" rel="alternate" type="text/html" title="「透明盒子計畫」網站設計時的一些考慮" /><published>2021-02-08T00:00:00-05:00</published><updated>2021-02-08T00:00:00-05:00</updated><id>https://conanblog.me/blog/2021/02/08/tldr-ink</id><content type="html" xml:base="https://conanblog.me/blog/2021/02/08/tldr-ink/">&lt;p&gt;在朋友們在 Clubhouse 衝浪的時候，我為「透明盒子計畫」做了一個網站—— &lt;a href=&quot;https://tldr.ink&quot;&gt;TLDR.ink&lt;/a&gt;。網站不光是她的網絡 ID，這也將使「盒子」變得更透明。我想在不久的將來做一些獨立研究，研究進程可以在這個網站上展現。就像人們在 twitch 上看直播一樣，只是這個會被用來直播文獻閱讀和思考。&lt;/p&gt;
+
+&lt;h2 id=&quot;後端&quot;&gt;後端&lt;/h2&gt;
+
+&lt;p&gt;因為一年前才開始使用 Zettelkasten 方法做筆記&lt;sup id=&quot;fnref:0&quot;&gt;&lt;a href=&quot;#fn:0&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;，這當中倒騰了很多方法/流程/系統/軟件，我甚至還有用紙筆記錄的系統。最近才慢慢穩定下來，目前的筆記都是記錄在 markdown 文本文件裡的，用 &lt;a href=&quot;https://en.wikipedia.org/wiki/Help:Link&quot;&gt;wikilink&lt;/a&gt; 互連，使用的工具是 &lt;a href=&quot;https://obsidian.md&quot;&gt;Obsidian&lt;/a&gt;。當然，因為是純文本，我偶爾也會用 Vim（Vimwiki）。&lt;/p&gt;
+
+&lt;p&gt;Vimwiki 和 Obsidian 應該算是我心中最接近完美的筆記方案，即便它們都還有很多可提升的空間。但軟件而非服務、純文本、超鏈接和反向鏈結，這幾個是必不可少的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;「軟件而非服務」的好處顯而易見，妳不會被服務商挾持，也不會有那些 creepy 的隱私問題。&lt;/li&gt;
+  &lt;li&gt;純文本，這意味著內容與樣式的脫離，也就意味著後續的可擴展性很強。妳可以輕鬆寫一些小腳本將它們轉化成妳想要的格式。&lt;/li&gt;
+  &lt;li&gt;超鏈接和反向鏈結，想法本就是互連的，非線性的。將想法轉換成文字，只會損失掉一些信息。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;所以從網站的功能性來說，就是要將我的那些有很多超連結的 markdown 文本轉化成可用於瀏覽的 HTML 文件。這似乎不難，我很快就找到一個叫 obsidian-html 的開源軟件（現已改名為 obeo），它基本可以勝任這項工作，但因為是一個非常小眾又年輕的項目，有很多 bug 和設計不周的地方，所以我 fork 了一份改出了一個&lt;a href=&quot;https://github.com/ConanChou/obsidian-html&quot;&gt;我需要的版本&lt;/a&gt;。跟原版比比較大的不同是&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;生成的 HTML 文件內用 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 而非 &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt;，原因我會在後面說&lt;/li&gt;
+  &lt;li&gt;增加子目錄的支持&lt;/li&gt;
+  &lt;li&gt;增加內嵌圖片等多媒體文件的支持&lt;/li&gt;
+  &lt;li&gt;增加對子目錄生成排序目錄的支持&lt;/li&gt;
+  &lt;li&gt;增加對文件 front matter metadata 的支持，生成同名 JSON 文件&lt;/li&gt;
+  &lt;li&gt;修正了反向鏈結探測的 bug&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;這樣我就有了一堆靜態文件。而網站的邏輯就很簡單了——按需獲取文件並展示在用戶面前。&lt;/p&gt;
+
+&lt;h2 id=&quot;網站設計&quot;&gt;網站設計&lt;/h2&gt;
+
+&lt;p&gt;既然邏輯並不複雜，我就把更多的精力放在了交互設計和優化細節上。&lt;/p&gt;
+
+&lt;h3 id=&quot;形式&quot;&gt;形式&lt;/h3&gt;
+
+&lt;p&gt;紙質 Zettelkasten 的一個好處是你可以將卡片排在桌上，一目了然。在電腦裡，最接近的體驗可能也只有 &lt;a href=&quot;https://en.wikipedia.org/wiki/Tiling_window_manager&quot;&gt;Tiling window manager&lt;/a&gt; 了。所以我想實現的就是近似的那種多列 tile 板式。為什麼是多列式？因為我們人類的掃視寬度是有限的，恰當的列寬有更好的閱讀體驗&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;。有了寬度限制，那我們能一次看多個文檔的方法就只有多列式了。&lt;/p&gt;
+
+&lt;p&gt;然而多列板式有極限，也就是屏幕的寬度，以我的16吋筆電為例，我最多只能看到三個文檔，而以我紙質卡片筆記系統的經驗，我通常需要同時查看3-10個卡片。正在我為此犯愁的時候我看到了 &lt;a href=&quot;https://notes.andymatuschak.org/About_these_notes&quot;&gt;Andy Matuschak 的筆記頁&lt;/a&gt;，他巧妙地將頁面重疊，但露出豎列的標題欄。這種做法雖依舊無法跟紙質卡片相比，但標題大多數時候是可以給大腦的緩存一些 hint 的，前提是標題起得比較能概括筆記（事實上 Andy 也在他的筆記裡&lt;a href=&quot;https://notes.andymatuschak.org/z3KmNj3oKKSTJfqdfSEBzTQiCVGoC4GfK3rYW&quot;&gt;提到了這一點&lt;/a&gt;），我便借鑑了這樣的處理方式。這也是為什麼我要將 oboe 生成 HTML 裡的 &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt; 都換成 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/107266421-7ed8ea80-6a13-11eb-9c77-a9926bb82bb8.png&quot; alt=&quot;bright&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;考慮到之後我會將單張卡片或序列卡片分享到&lt;a href=&quot;https://twitter.com/ReadThinkShare&quot;&gt;官方 Twitter&lt;/a&gt;。所以需要兩個功能：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;網址必須跟內容一一對應，即網址要能重現我所看到的卡片排列順序&lt;/li&gt;
+  &lt;li&gt;我應能方便去掉不想在序列中的卡片，當然這也會更新網址，反映最新的序列&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;之後我或許也會做方便分享的隱藏功能。&lt;/p&gt;
+
+&lt;h3 id=&quot;暗夜模式&quot;&gt;暗夜模式&lt;/h3&gt;
+
+&lt;p&gt;再來就是暗夜模式，我現在還是沒有自由身的社畜，所以經常只有等到晚上才有一點時間寫點東西、做點像這樣的 side project。所以暗夜模式是一個必需品。因為偶爾混跡設計圈，見不少人對非純黑有批評。我就嘗試了用純黑做背景，但是效果不好，主要是對比度讓我的眼睛不適。所以最終我還是改用了某種深灰。&lt;/p&gt;
+
+&lt;p&gt;我繪製的大多數插畫都是以淺色為背景的。我很快就意識到在暗夜模式下格外刺眼。於是我都將這些插圖做了處理，在暗夜模式下自動降低對比度。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/107266481-957f4180-6a13-11eb-9fc0-b2dd1a515eec.png&quot; alt=&quot;dark&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;動效&quot;&gt;動效&lt;/h3&gt;
+
+&lt;p&gt;之前在做一個習作&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;的時候，有個設計師朋友吐槽說變化沒有 transition/animation。其實我也想加，只是真不知道哪個 macOS API 可以實現切換動效。這次的是網站，相對實現起來也容易很多。&lt;/p&gt;
+
+&lt;h3 id=&quot;私心&quot;&gt;私心&lt;/h3&gt;
+
+&lt;p&gt;喔對了，說到這我才想起來，我設想的網站使用者僅是我自己。我知道大部分人並不會把網上的誰當回事，假想服務遊客很可能是空轉，所以服務好我是第一位的。當然我也比較挑剔，能讓我滿足的設計多少也能滿足大多數遊客吧。網站中的一些資源鏈接是指向我的內網服務器的，又或者是指向我的 Kindle app 內部地址的，所以這些鏈接可能對訪客並沒有幫助，但頁面內也有足夠多的信息去手動獲取相關的書文。&lt;/p&gt;
+
+&lt;p&gt;網站的另一個討好自己的功能就是快捷鍵，我的日常工作基本都在小黑窗裡完成，習慣用鍵盤 navigate。所以網站裡也做了簡易的快捷鍵&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tab&lt;/code&gt; 選取鏈接或關閉卡片按鈕&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;return&lt;/code&gt; 點擊&lt;/li&gt;
+  &lt;li&gt;左右箭頭鍵或&lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;l&lt;/code&gt;向前或向後滾動卡片&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;最後一個我私人的小喜好就是字體排印符號的使用。比如：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/107266622-c790a380-6a13-11eb-91df-ca598f9d18e2.png&quot; alt=&quot;divider&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;§&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;※&lt;/code&gt; 分別是分節符號&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;和參考符號&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;，我用它們來分割文章章節，以及主體和腳註。&lt;/p&gt;
+
+&lt;h2 id=&quot;自動化&quot;&gt;自動化&lt;/h2&gt;
+
+&lt;p&gt;筆記即思考，既然是思考，我如果還老是惦記著保存、推送至網站這些無關的操作，勢必會影響筆記和效率。所以我寫了腳本監聽筆記文件的改動，每過一段時間便會自動推送至網站。所以如果看到有寫了半句話的筆記，那多半並非是我馬虎，只是妳看「直播」時畫面定格在了半睜眼。&lt;/p&gt;
+
+&lt;h2 id=&quot;收穫&quot;&gt;收穫&lt;/h2&gt;
+
+&lt;p&gt;跟「透明盒子計畫」相關的收穫且不說，就說技術本身的吧。我的本職工作並不涉及設計與前端開發，只是我一直對它們保持一定程度的關注。借此機會，我正好把玩了一下一直想學的 VueJS 和 TypeScript，還發現了超級適合我這種不怎麼寫 CSS 的人的工具——TailwindCSS。要感謝這些工具，我才能在短短一週多的時間裡把想法實現出來。&lt;/p&gt;
+
+&lt;p&gt;除此之外，就像汽車製造商會把參加 F1 學到的技術下放到大眾產品上一樣，我也在摳細節的時候學到了一些新東西，可以挪用到我的博客上。比如這個符號 &lt;code class=&quot;highlighter-rouge&quot;&gt;↩&lt;/code&gt;，在手機上查看時會顯示成跟周圍格格不入的 emoji ↩。後來我發現有兩種方法可以強制顯示字符，一種方法是在這個字符後面加一個空 Unicode 字符 &lt;code class=&quot;highlighter-rouge&quot;&gt;\uFE0E&lt;/code&gt;；另一個方法就是限制這個字符的 Font-Family，排除 iOS 系統含有 emoji 的字體。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;還有一些東西沒有提，那些基本都是從我的博客帶過去的想法，比如腳註跳轉的細節之類的。再比如前文提到的分享功能，多半會借鑑本站的方式。之後肯定也會有進一步的改動和優化，如果值得寫一下的話會再寫一篇更新。&lt;/p&gt;
+
+&lt;p&gt;最後說一下用到的技術，以免有同學好奇：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;VueJS 3 with TypeScript&lt;/li&gt;
+  &lt;li&gt;TailwindCSS&lt;/li&gt;
+  &lt;li&gt;bash&lt;/li&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:0&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://cbp.tldr.ink/#/essays/透明盒子计划.html&quot;&gt;Zettelkasten 簡介&lt;/a&gt; &lt;a href=&quot;#fnref:0&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;因為我的使用目的跟原作者的想法不同，我就不去提交 PR 了，不過我還是會盡可能把上游的修改並進來。所以如果妳恰好也有類似的需求，可以使用我的版本。 &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;The Elements of Typographic Style Applied to the Web, 2.1.2 &lt;a href=&quot;http://webtypography.net/2.1.2&quot;&gt;Choose a comfortable measure&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/&quot;&gt;AutoTheme&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;目前 Safari 並不支持這些按鍵，可能之後會修一下。畢竟 Safari 不是我的主力瀏覽器 &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:5&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Section_sign&quot;&gt;Section sign&lt;/a&gt; &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:6&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Reference_mark&quot;&gt;Reference mark&lt;/a&gt; &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">在朋友們在 Clubhouse 衝浪的時候，我為「透明盒子計畫」做了一個網站—— TLDR.ink。網站不光是她的網絡 ID，這也將使「盒子」變得更透明。我想在不久的將來做一些獨立研究，研究進程可以在這個網站上展現。就像人們在 twitch 上看直播一樣，只是這個會被用來直播文獻閱讀和思考。</summary></entry><entry><title type="html">2020 ⇝ 2021</title><link href="https://conanblog.me/blog/2020/12/31/2020-2021/" rel="alternate" type="text/html" title="2020 ⇝ 2021" /><published>2020-12-31T00:00:00-05:00</published><updated>2020-12-31T00:00:00-05:00</updated><id>https://conanblog.me/blog/2020/12/31/2020-2021</id><content type="html" xml:base="https://conanblog.me/blog/2020/12/31/2020-2021/">&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/103432645-9325fe00-4bb0-11eb-914c-a7cb02756ef8.jpg&quot; alt=&quot;最近拍的一張「望天」的照片，能讓我放鬆心情&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;We learn from history that we do not learn from history. （由歷史得知，我們不會以史為鑒）&lt;/p&gt;
@@ -689,40 +814,4 @@
 
 &lt;p&gt;我覺得這是一個非常睿智的願望，是人成熟後才會意識到這價值的願望。而這一點就是我前文提到的“不僅僅侷限於工作”的重要一點。&lt;/p&gt;
 
-&lt;p&gt;另外，我想回一趟家，看望多年沒見的父母和長輩。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">Electron + ClojureScript + Reagent  + nREPL</title><link href="https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/" rel="alternate" type="text/html" title="Electron + ClojureScript + Reagent  + nREPL" /><published>2017-06-10T00:00:00-04:00</published><updated>2017-06-10T00:00:00-04:00</updated><id>https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl</id><content type="html" xml:base="https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/">&lt;p&gt;正在進行的 Savant 項目就是這個前端技術架構做開發的，配置麻煩了一點，但是一旦配好了你將擁有爽爆了的 Live Coding 的開發體驗。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Electron + ClojureScript + Reagent&lt;/code&gt;部分已經有人做了——&lt;a href=&quot;https://github.com/karad/lein_template_descjop&quot; target=&quot;_blank&quot;&gt;descjop&lt;/a&gt;，直接拿來用就好。想要了解細節的話可以看這個系列文章 &lt;a href=&quot;https://owensd.io/2017/02/06/clojurescript-electron/&quot; target=&quot;_blank&quot;&gt;CLOJURESCRIPT + ELECTRON&lt;/a&gt;，雖然不是出自同一作者，但是思路一致。可是 descjop 只用了 Figwheel 的默認 REPL，所以這只解決了一半的問題，跟目前流行的 IDE／編輯器結合最好的方案還是通過 nREPL，這個我在&lt;a href=&quot;/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/&quot;&gt;之前的文章&lt;/a&gt;提到過。配法類似，需要在 &lt;code class=&quot;highlighter-rouge&quot;&gt;project.clj&lt;/code&gt; 裏加兩行。一個是 dependency：&lt;/p&gt;
-
-&lt;div class=&quot;language-clj highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:dependencies&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;org.clojure/clojure&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.8.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;org.clojure/clojurescript&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.9.473&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:exclusions&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;org.apache.ant/ant&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;org.clojure/core.async&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.2.395&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reagent&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.6.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ring/ring-core&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.5.1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figwheel&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.5.9&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-                 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;com.cemerick/piggieback&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0.2.2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;加的是最後一行。還有就是 Figwheel 的配置：&lt;/p&gt;
-
-&lt;div class=&quot;language-clj highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:figwheel&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:http-server-root&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;public&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:ring-handler&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figwheel-middleware/app&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:server-port&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3449&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-             &lt;/span&gt;&lt;span class=&quot;no&quot;&gt;:nrepl-port&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7002&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;也是最後一行。接著按照 descjop 官方文檔說的運行：&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;lein descjop-figwheel
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;之後就跟之我之前的文章一樣了，用 Cursive 或 Emacs 之類的連接&lt;code class=&quot;highlighter-rouge&quot;&gt;7002&lt;/code&gt;端口並運行：&lt;/p&gt;
-
-&lt;div class=&quot;language-clj highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;'figwheel-sidecar.repl-api&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cljs-repl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Happy Live Coding!&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html">正在進行的 Savant 項目就是這個前端技術架構做開發的，配置麻煩了一點，但是一旦配好了你將擁有爽爆了的 Live Coding 的開發體驗。</summary></entry></feed>
+&lt;p&gt;另外，我想回一趟家，看望多年沒見的父母和長輩。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
