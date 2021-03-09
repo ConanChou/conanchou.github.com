@@ -1,818 +1,664 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh"><generator uri="https://jekyllrb.com/" version="3.3.1">Jekyll</generator><link href="https://conanblog.me/feed.xml" rel="self" type="application/atom+xml" /><link href="https://conanblog.me/" rel="alternate" type="text/html" hreflang="zh" /><updated>2021-02-23T21:16:44-05:00</updated><id>https://conanblog.me/feed.xml</id><title type="html">Conan’s Notes</title><subtitle>Programming Language, Open Source, Design, Music, and everything in between.
-</subtitle><author><name>Conan</name></author><entry><title type="html">「透明盒子計畫」網站設計時的一些考慮</title><link href="https://conanblog.me/blog/2021/02/08/tldr-ink/" rel="alternate" type="text/html" title="「透明盒子計畫」網站設計時的一些考慮" /><published>2021-02-08T00:00:00-05:00</published><updated>2021-02-08T00:00:00-05:00</updated><id>https://conanblog.me/blog/2021/02/08/tldr-ink</id><content type="html" xml:base="https://conanblog.me/blog/2021/02/08/tldr-ink/">&lt;p&gt;在朋友們在 Clubhouse 衝浪的時候，我為「透明盒子計畫」做了一個網站—— &lt;a href=&quot;https://tldr.ink&quot;&gt;TLDR.ink&lt;/a&gt;。網站不光是她的網絡 ID，這也將使「盒子」變得更透明。我想在不久的將來做一些獨立研究，研究進程可以在這個網站上展現。就像人們在 twitch 上看直播一樣，只是這個會被用來直播文獻閱讀和思考。&lt;/p&gt;
-
-&lt;h2 id=&quot;後端&quot;&gt;後端&lt;/h2&gt;
-
-&lt;p&gt;因為一年前才開始使用 Zettelkasten 方法做筆記&lt;sup id=&quot;fnref:0&quot;&gt;&lt;a href=&quot;#fn:0&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;，這當中倒騰了很多方法/流程/系統/軟件，我甚至還有用紙筆記錄的系統。最近才慢慢穩定下來，目前的筆記都是記錄在 markdown 文本文件裡的，用 &lt;a href=&quot;https://en.wikipedia.org/wiki/Help:Link&quot;&gt;wikilink&lt;/a&gt; 互連，使用的工具是 &lt;a href=&quot;https://obsidian.md&quot;&gt;Obsidian&lt;/a&gt;。當然，因為是純文本，我偶爾也會用 Vim（Vimwiki）。&lt;/p&gt;
-
-&lt;p&gt;Vimwiki 和 Obsidian 應該算是我心中最接近完美的筆記方案，即便它們都還有很多可提升的空間。但軟件而非服務、純文本、超鏈接和反向鏈結，這幾個是必不可少的。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;「軟件而非服務」的好處顯而易見，妳不會被服務商挾持，也不會有那些 creepy 的隱私問題。&lt;/li&gt;
-  &lt;li&gt;純文本，這意味著內容與樣式的脫離，也就意味著後續的可擴展性很強。妳可以輕鬆寫一些小腳本將它們轉化成妳想要的格式。&lt;/li&gt;
-  &lt;li&gt;超鏈接和反向鏈結，想法本就是互連的，非線性的。將想法轉換成文字，只會損失掉一些信息。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;所以從網站的功能性來說，就是要將我的那些有很多超連結的 markdown 文本轉化成可用於瀏覽的 HTML 文件。這似乎不難，我很快就找到一個叫 obsidian-html 的開源軟件（現已改名為 obeo），它基本可以勝任這項工作，但因為是一個非常小眾又年輕的項目，有很多 bug 和設計不周的地方，所以我 fork 了一份改出了一個&lt;a href=&quot;https://github.com/ConanChou/obsidian-html&quot;&gt;我需要的版本&lt;/a&gt;。跟原版比比較大的不同是&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;生成的 HTML 文件內用 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt; 而非 &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt;，原因我會在後面說&lt;/li&gt;
-  &lt;li&gt;增加子目錄的支持&lt;/li&gt;
-  &lt;li&gt;增加內嵌圖片等多媒體文件的支持&lt;/li&gt;
-  &lt;li&gt;增加對子目錄生成排序目錄的支持&lt;/li&gt;
-  &lt;li&gt;增加對文件 front matter metadata 的支持，生成同名 JSON 文件&lt;/li&gt;
-  &lt;li&gt;修正了反向鏈結探測的 bug&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;這樣我就有了一堆靜態文件，這些靜態文件並非完整是 HTML，只是局部。而網站的邏輯就很簡單了——按需獲取文件並展示在用戶面前。這種方式也是 DHH 的 RoR 社區和 Phoenix 社區正在嘗試的一個 Web 發展「新方向」。&lt;/p&gt;
-
-&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;React is so 2019. HTML + minimum JS is 2020 😄✌️&lt;/p&gt;&amp;mdash; DHH (@dhh) &lt;a href=&quot;https://twitter.com/dhh/status/1275902566719610880?ref_src=twsrc%5Etfw&quot;&gt;June 24, 2020&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-
-&lt;h2 id=&quot;網站設計&quot;&gt;網站設計&lt;/h2&gt;
-
-&lt;p&gt;既然邏輯並不複雜，我就把更多的精力放在了交互設計和優化細節上。&lt;/p&gt;
-
-&lt;h3 id=&quot;形式&quot;&gt;形式&lt;/h3&gt;
-
-&lt;p&gt;紙質 Zettelkasten 的一個好處是你可以將卡片排在桌上，一目了然。在電腦裡，最接近的體驗可能也只有 &lt;a href=&quot;https://en.wikipedia.org/wiki/Tiling_window_manager&quot;&gt;Tiling window manager&lt;/a&gt; 了。所以我想實現的就是近似的那種多列 tile 板式。為什麼是多列式？因為我們人類的掃視寬度是有限的，恰當的列寬有更好的閱讀體驗&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;。有了寬度限制，那我們能一次看多個文檔的方法就只有多列式了。&lt;/p&gt;
-
-&lt;p&gt;然而多列板式有極限，也就是屏幕的寬度，以我的16吋筆電為例，我最多只能看到三個文檔，而以我紙質卡片筆記系統的經驗，我通常需要同時查看3-10個卡片。正在我為此犯愁的時候我看到了 &lt;a href=&quot;https://notes.andymatuschak.org/About_these_notes&quot;&gt;Andy Matuschak 的筆記頁&lt;/a&gt;，他巧妙地將頁面重疊，但露出豎列的標題欄。這種做法雖依舊無法跟紙質卡片相比，但標題大多數時候是可以給大腦的緩存一些 hint 的，前提是標題起得比較能概括筆記（事實上 Andy 也在他的筆記裡&lt;a href=&quot;https://notes.andymatuschak.org/z3KmNj3oKKSTJfqdfSEBzTQiCVGoC4GfK3rYW&quot;&gt;提到了這一點&lt;/a&gt;），我便借鑑了這樣的處理方式。這也是為什麼我要將 oboe 生成 HTML 裡的 &lt;code class=&quot;highlighter-rouge&quot;&gt;id&lt;/code&gt; 都換成 &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/107266421-7ed8ea80-6a13-11eb-9c77-a9926bb82bb8.png&quot; alt=&quot;bright&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;考慮到之後我會將單張卡片或序列卡片分享到&lt;a href=&quot;https://twitter.com/ReadThinkShare&quot;&gt;官方 Twitter&lt;/a&gt;。所以需要兩個功能：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;網址必須跟內容一一對應，即網址要能重現我所看到的卡片排列順序&lt;/li&gt;
-  &lt;li&gt;我應能方便去掉不想在序列中的卡片，當然這也會更新網址，反映最新的序列&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;之後我或許也會做方便分享的隱藏功能。&lt;/p&gt;
-
-&lt;h3 id=&quot;暗夜模式&quot;&gt;暗夜模式&lt;/h3&gt;
-
-&lt;p&gt;再來就是暗夜模式，我現在還是沒有自由身的社畜，所以經常只有等到晚上才有一點時間寫點東西、做點像這樣的 side project。所以暗夜模式是一個必需品。因為偶爾混跡設計圈，見不少人對非純黑有批評。我就嘗試了用純黑做背景，但是效果不好，主要是對比度讓我的眼睛不適。所以最終我還是改用了某種深灰。&lt;/p&gt;
-
-&lt;p&gt;我繪製的大多數插畫都是以淺色為背景的。我很快就意識到在暗夜模式下格外刺眼。於是我都將這些插圖做了處理，在暗夜模式下自動降低對比度。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/107266481-957f4180-6a13-11eb-9fc0-b2dd1a515eec.png&quot; alt=&quot;dark&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;動效&quot;&gt;動效&lt;/h3&gt;
-
-&lt;p&gt;之前在做一個習作&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;的時候，有個設計師朋友吐槽說變化沒有 transition/animation。其實我也想加，只是真不知道哪個 macOS API 可以實現切換動效。這次的是網站，相對實現起來也容易很多。&lt;/p&gt;
-
-&lt;h3 id=&quot;私心&quot;&gt;私心&lt;/h3&gt;
-
-&lt;p&gt;喔對了，說到這我才想起來，我設想的網站使用者僅是我自己。我知道大部分人並不會把網上的誰當回事，假想服務遊客很可能是空轉，所以服務好我是第一位的。當然我也比較挑剔，能讓我滿足的設計多少也能滿足大多數遊客吧。網站中的一些資源鏈接是指向我的內網服務器的，又或者是指向我的 Kindle app 內部地址的，所以這些鏈接可能對訪客並沒有幫助，但頁面內也有足夠多的信息去手動獲取相關的書文。&lt;/p&gt;
-
-&lt;p&gt;網站的另一個討好自己的功能就是快捷鍵，我的日常工作基本都在小黑窗裡完成，習慣用鍵盤 navigate。所以網站裡也做了簡易的快捷鍵&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;tab&lt;/code&gt; 選取鏈接或關閉卡片按鈕&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;return&lt;/code&gt; 點擊&lt;/li&gt;
-  &lt;li&gt;左右箭頭鍵或&lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;l&lt;/code&gt;向前或向後滾動卡片&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;最後一個我私人的小喜好就是字體排印符號的使用。比如：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/107266622-c790a380-6a13-11eb-91df-ca598f9d18e2.png&quot; alt=&quot;divider&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;§&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;※&lt;/code&gt; 分別是分節符號&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;和參考符號&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt;，我用它們來分割文章章節，以及主體和腳註。&lt;/p&gt;
-
-&lt;h2 id=&quot;自動化&quot;&gt;自動化&lt;/h2&gt;
-
-&lt;p&gt;筆記即思考，既然是思考，我如果還老是惦記著保存、推送至網站這些無關的操作，勢必會影響筆記和效率。所以我寫了腳本監聽筆記文件的改動，每過一段時間便會自動推送至網站。所以如果看到有寫了半句話的筆記，那多半並非是我馬虎，只是妳看「直播」時畫面定格在了半睜眼。&lt;/p&gt;
-
-&lt;h2 id=&quot;收穫&quot;&gt;收穫&lt;/h2&gt;
-
-&lt;p&gt;跟「透明盒子計畫」相關的收穫且不說，就說技術本身的吧。我的本職工作並不涉及設計與前端開發，只是我一直對它們保持一定程度的關注。借此機會，我正好把玩了一下一直想學的 VueJS 和 TypeScript，還發現了超級適合我這種不怎麼寫 CSS 的人的工具——TailwindCSS。要感謝這些工具，我才能在短短一週多的時間裡把想法實現出來。&lt;/p&gt;
-
-&lt;p&gt;除此之外，就像汽車製造商會把參加 F1 學到的技術下放到大眾產品上一樣，我也在摳細節的時候學到了一些新東西，可以挪用到我的博客上。比如這個符號 &lt;code class=&quot;highlighter-rouge&quot;&gt;↩&lt;/code&gt;，在手機上查看時會顯示成跟周圍格格不入的 emoji ↩。後來我發現有兩種方法可以強制顯示字符，一種方法是在這個字符後面加一個空 Unicode 字符 &lt;code class=&quot;highlighter-rouge&quot;&gt;\uFE0E&lt;/code&gt;；另一個方法就是限制這個字符的 Font-Family，排除 iOS 系統含有 emoji 的字體。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;還有一些東西沒有提，那些基本都是從我的博客帶過去的想法，比如腳註跳轉的細節之類的。再比如前文提到的分享功能，多半會借鑑本站的方式。之後肯定也會有進一步的改動和優化，如果值得寫一下的話會再寫一篇更新。&lt;/p&gt;
-
-&lt;p&gt;最後說一下用到的技術，以免有同學好奇：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;VueJS 3 with TypeScript&lt;/li&gt;
-  &lt;li&gt;TailwindCSS&lt;/li&gt;
-  &lt;li&gt;bash&lt;/li&gt;
-  &lt;li&gt;Python&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:0&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://cbp.tldr.ink/#/essays/透明盒子计划.html&quot;&gt;Zettelkasten 簡介&lt;/a&gt; &lt;a href=&quot;#fnref:0&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;因為我的使用目的跟原作者的想法不同，我就不去提交 PR 了，不過我還是會盡可能把上游的修改並進來。所以如果妳恰好也有類似的需求，可以使用我的版本。 &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;The Elements of Typographic Style Applied to the Web, 2.1.2 &lt;a href=&quot;http://webtypography.net/2.1.2&quot;&gt;Choose a comfortable measure&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/&quot;&gt;AutoTheme&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:4&quot;&gt;
-      &lt;p&gt;目前 Safari 並不支持這些按鍵，可能之後會修一下。畢竟 Safari 不是我的主力瀏覽器 &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:5&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Section_sign&quot;&gt;Section sign&lt;/a&gt; &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:6&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Reference_mark&quot;&gt;Reference mark&lt;/a&gt; &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">在朋友們在 Clubhouse 衝浪的時候，我為「透明盒子計畫」做了一個網站—— TLDR.ink。網站不光是她的網絡 ID，這也將使「盒子」變得更透明。我想在不久的將來做一些獨立研究，研究進程可以在這個網站上展現。就像人們在 twitch 上看直播一樣，只是這個會被用來直播文獻閱讀和思考。</summary></entry><entry><title type="html">2020 ⇝ 2021</title><link href="https://conanblog.me/blog/2020/12/31/2020-2021/" rel="alternate" type="text/html" title="2020 ⇝ 2021" /><published>2020-12-31T00:00:00-05:00</published><updated>2020-12-31T00:00:00-05:00</updated><id>https://conanblog.me/blog/2020/12/31/2020-2021</id><content type="html" xml:base="https://conanblog.me/blog/2020/12/31/2020-2021/">&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/103432645-9325fe00-4bb0-11eb-914c-a7cb02756ef8.jpg&quot; alt=&quot;最近拍的一張「望天」的照片，能讓我放鬆心情&quot; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;We learn from history that we do not learn from history. （由歷史得知，我們不會以史為鑒）&lt;/p&gt;
-
-  &lt;p&gt;― Georg Hegel&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;一月份開始，我便開始戴著口罩通勤。那時候美國還不以為然。直到三月，我們正式開始了「禁足」生活。&lt;/p&gt;
-
-&lt;p&gt;其實我和辦辦都是好靜的人，我們把家佈置得十分自給。若不是要上班，我們可以在家好幾個禮拜不出門，家裡有很多書和唱片、有陽台也有天台，泡一壺茶就是一天。所以疫情並沒有讓我們無法適從，事實上它給了我們更多機會「向內看」，關注自己的內心世界。&lt;/p&gt;
-
-&lt;p&gt;說來很巧，二月初受老朋友之邀去參加她主持策展的藝術展 Measure Your Existence（量度妳的存在）的開幕式。所展內容是藝術家們對佛教概念「無常」的詩性解讀。那是我2020年最後一次參加社交活動、最後一次看展、最後一次面對面跟朋友交流。曾經的常態也已變化。也是從那個展，我開始有意識地思考關於存在。&lt;/p&gt;
-
-&lt;p&gt;無常。&lt;/p&gt;
-
-&lt;h2 id=&quot;零&quot;&gt;零&lt;/h2&gt;
-
-&lt;p&gt;像是回應&lt;a href=&quot;/blog/2019/12/31/2010-2020/&quot;&gt;2010 ⇝ 2020&lt;/a&gt;，年初便參加了 Andrew Huang 的 Monthly 課程，用一個月學習音樂製作，完成了&lt;a href=&quot;/blog/2020/04/18/30-day-challenge-music/&quot;&gt;三首曲子&lt;/a&gt;的大作業。除了音樂本身的快樂，「完成」給我的成就感，我明白了想太多而不行動的危害，它可能把人變成一個只會吹牛的草包、拾人牙慧的「學者」，毀其一生。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;「即刻行動」，尤其是對從事創作和腦力工作的人來說。有時我們會因為「沒有靈感/沒有想法」而止步不前，但其實只要妳決定坐下來，打開檯燈、把自己置於那束光下，妳慢慢就能搞明白下一步是什麼。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;這也給我的新年開了個好頭。&lt;/p&gt;
-
-&lt;h2 id=&quot;壹&quot;&gt;壹&lt;/h2&gt;
-
-&lt;p&gt;讀書時做筆記這件事情一直困擾著我。幾年前跟老高一家在我家天台喝茶聊天就談到過這個，再早些時候，跟 Angke 也聊到過。他倆都是愛讀書的人。今年讓我收穫最大的一本書就是 Sönke Ahrens 的 &lt;em&gt;How to Take Smart Notes&lt;/em&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
-
-&lt;p&gt;這本書所介紹的讀書、筆記、寫作方法來自於非常高產的德國社會學家 Niklas Luhmann。他用 Zettelkästen（卡片盒）方法紀錄和管理所讀所想&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;，用跟卡片盒「對話」&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;的方式思考和研究。在過去的一年裡我當然是實踐了這一方法，並深感受益匪淺、知曉恨晚。&lt;/p&gt;
-
-&lt;p&gt;當時研究這個方法本想「借來」用在自己的產品上，不過似乎很快，筆記領域的產品就多多少少有了 Zettelkästen 的鏈接功能。不過我並沒有因此而沮喪，隨著實踐的深入，我又有了一些新的想法，再說此法的精髓並不僅僅是鏈接。況且能解決讀書筆記的這一困擾就已經是巨大的收穫了。&lt;/p&gt;
-
-&lt;h2 id=&quot;貳&quot;&gt;貳&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Writing is, without dispute, the best facilitator for thinking, reading, learning, understanding and generating ideas we have.（毋庸置疑，寫作是我們思考、閱讀、學習、理解和產生想法的最佳引導）&lt;/p&gt;
-
-  &lt;p&gt;― Sönke Ahrens&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;受上面這本書的影響，尤其是「書寫使複雜的思考成為可能」，我開始了一個 newsletter（短報通訊）——&lt;a href=&quot;https://clearbox.substack.com&quot; target=&quot;_blank&quot;&gt;透明盒子計劃&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;我沒有高調地公開宣傳，主要是我不想喧賓奪主，我的目的是通過書寫整理和思考已經讀過的材料，其次是在寬廣的人間宇宙放出善意的信號、期待結交良友，最後才是運營「公眾號」。運營是個魔咒，上心了容易誤入歧途。剛開始的時候看到訂閱數竄升確實挺上頭，但後來意識到我失去了平衡。所以現在在運營方面，我還真的是很隨意。就像這篇總結的開頭說的一樣，這一年我更關注自己的內心。&lt;/p&gt;
-
-&lt;p&gt;所以這是第一次公開我跟透明盒子的關係，但應該也是僅此一次，看到這篇文章的人多半是對我有所關注的好朋友，下面是我這個小星系的蟲洞入口，歡迎來玩：&lt;/p&gt;
-
-&lt;iframe src=&quot;https://clearbox.substack.com/embed&quot; width=&quot;100%&quot; height=&quot;320&quot; style=&quot;border:1px solid #EEE; background:white;&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
-
-&lt;h2 id=&quot;參&quot;&gt;參&lt;/h2&gt;
-
-&lt;p&gt;去年年末說正視自己的那些費神耗力的興趣愛好，今年還真是誰也沒落下。或許是被算法了，或許是攝影愛好者的必經之路，今年我也開始玩膠片攝影了。思考了再拍、手動洗膠片、等它晾乾，我很喜歡這種「慢慢」的感覺，不同於不惜光陰，它不會給我帶來焦慮，反而是那種專注於當下的平靜。&lt;/p&gt;
-
-&lt;p&gt;目前受限於家裡的空間，沒法在家做放大。跟膠片和膠片相機不一樣，自己放大的人更少，雖說玩膠片的年輕人越來越多。希望玩放大的也多一些，別等我能玩的時候都死掉了。&lt;/p&gt;
-
-&lt;p&gt;今年讀了很多攝影相關的書，看了很多作品集。我想這是昇華這項愛好的一年。這一年我對攝影又多了一些理解，不僅僅是技術層面的，更多的是文化層面的。也許是一張張照片背後的厚重歷史，讓我對這項藝術更加敬畏。&lt;/p&gt;
-
-&lt;p&gt;說到書，今年生日時收到了一本書，是辦辦精心挑選的 MoMA 攝影館藏合集。或許年紀大了就容易感動，她在卡片上對我說「You have me with you on journeys to anywhere.（任何旅途，你都有我相伴。）」&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;照片的價值不在於妳按下快門的那一剎那，而在於30年、50年後妳的再度凝視。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我在一個視頻網站上見過孫女開箱過世祖父的相機收藏，那一大箱寶貝裡最珍貴的就是相冊。在那裡她找到了自己小時候玩耍時被祖父拍下的瞬間，她找到了她最愛的一張照片。我也想做那樣的兒子、丈夫、父親和祖父。&lt;/p&gt;
-
-&lt;h2 id=&quot;肆&quot;&gt;肆&lt;/h2&gt;
-
-&lt;p&gt;我參與過數次創業項目，其中有兩家公司做得比較突出，都得到了好幾輪風險投資。然而這兩家都遇到了風險投資帶來的運營事故，雖然好在最後都化解了。不方便說太多細節，但我可以說，好的風險投資機構太稀有了，即便我們合作的都是一線大投資機構。因為這些投資機構的工作失職，我們的利益在過程中有不少損失。今年的事故也是如此。這個圈子也許依然太浮躁。&lt;/p&gt;
-
-&lt;p&gt;因為很快我就能獲得自由，有次父親與我談起未來的打算。我說，&lt;/p&gt;
-
-&lt;p&gt;「我不想融資，做什麼『改變世界』的東西。我只想好好做幾個產品，哪怕只服務好幾百、幾千個用戶。」&lt;/p&gt;
-
-&lt;p&gt;「你的想法很好，踏實。」&lt;/p&gt;
-
-&lt;p&gt;我很開心。也許是因為他並不像母親一樣經常稱讚我，所以對於他每一次的正面評價，我都格外珍重。當然也可能是因為他是個成功的商人。&lt;/p&gt;
-
-&lt;p&gt;在如此動蕩不安的今年，「能經常跟家人團聚」似乎變得尤其珍貴。所以說到未來的打算，我與父親的想法不謀而合。事實上從兩年前我跟辦辦就開始規劃未來的生活方式，部署支撐那種生活方式的物質方案。雖然目前離我們的目標還有距離，但我們已經有一定規模的被動收入，離「經常團聚，讀讀雜書，做做自己想做的項目，到處走走」更近了。在那一天到來之前，我們會積極努力地繼續準備。&lt;/p&gt;
-
-&lt;h2 id=&quot;伍&quot;&gt;伍&lt;/h2&gt;
-
-&lt;p&gt;我們家終於還是買了電視。倒不是因為別的，只是我倆平時沒看電視的需求，而且我們不喜歡市面上的那些很有存在感的電視機。很巧的是在美國也正式進入疫情期之前，我們看上了一款，平時不看時可以當作畫框，顯示畫作或攝影作品&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;。正好用來放一些我拍的照片。&lt;/p&gt;
-
-&lt;p&gt;在電視被安裝好的時候，也是紐約正式開始禁足令的時候。起初我們經常用它追蹤新聞，後來我們更多地用它來做家庭娛樂。我們今年看了三四部電視劇和哈利·波特七部曲。也許電視無法帶給我書房能給的知識和視野，但它帶來了只有我倆才能聽懂的梗和更多的默契。觀影中的討論是很療癒的時刻。&lt;/p&gt;
-
-&lt;h2 id=&quot;陸&quot;&gt;陸&lt;/h2&gt;
-
-&lt;p&gt;這是在看 Tyler Shields 訪談時記下的。有關問詢的勇氣。&lt;/p&gt;
-
-&lt;p&gt;主持人分享了一個故事。他的大兒子生日那天，他們去了 Harry Potter 主題樂園。他跟他兒子說信不信我們能移到每個隊伍的前面。於是他們每次排隊的時候都問前面的人能不能讓他們先上，因為今天是小男孩兒的生日。他說，如果對方不同意，最糟糕也就是繼續在這兒排隊，他們的票並不會被沒收。最終很多人都同意讓給他們。&lt;/p&gt;
-
-&lt;p&gt;Tyler 也分享了他早年給各種名人打電話問問題的經歷。但凡接了的都不會掛斷和拒絕回答。&lt;/p&gt;
-
-&lt;p&gt;我們往往對 no 的恐懼太大，以至於我們不喜歡去嘗試。於是我們喪失了獲得更多 yes 的機會。&lt;/p&gt;
-
-&lt;h2 id=&quot;2021&quot;&gt;2021&lt;/h2&gt;
-
-&lt;p&gt;明年也許是更艱難的一年。向內看似乎一切繼續就好，可能多一點行動力會更好。不過向外看可能很不樂觀。希望人類經得住考驗，希望政治家們不要把車往溝裡開。希望我們都身心健康。&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.goodreads.com/book/show/34507927-how-to-take-smart-notes&quot; target=&quot;_blank&quot;&gt;How to Take Smart Notes: One Simple Technique to Boost Writing, Learning and Thinking – for Students, Academics and Nonfiction Book Writers&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://clearbox.substack.com/p/coming-soon&quot; target=&quot;_blank&quot;&gt;透明盒子计划&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;http://luhmann.surge.sh/communicating-with-slip-boxes&quot; target=&quot;_blank&quot;&gt;Communicating with Slip Boxes&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:4&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.samsung.com/us/televisions-home-theater/tvs/the-frame/highlights/&quot; target=&quot;_blank&quot;&gt;The Frame TV&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">一個月挑戰——作曲</title><link href="https://conanblog.me/blog/2020/04/18/30-day-challenge-music/" rel="alternate" type="text/html" title="一個月挑戰——作曲" /><published>2020-04-18T00:00:00-04:00</published><updated>2020-04-18T00:00:00-04:00</updated><id>https://conanblog.me/blog/2020/04/18/30-day-challenge-music</id><content type="html" xml:base="https://conanblog.me/blog/2020/04/18/30-day-challenge-music/">&lt;p&gt;我一個月完成了三首完整的曲子，這個過程充滿焦慮、挫敗、驚喜和樂趣。&lt;/p&gt;
-
-&lt;p&gt;先交代一下背景，我沒有專門學過音樂，受過的音樂教育就是中國三線城市的那種音樂教育——音樂課只有學期開始有幾堂的那種。因為頻繁轉校，簡譜、五線譜各學了一半（因為那時候有些學校還在教簡譜）。參加過合唱團，鋼琴、架子鼓都接觸過一點點，但並沒有什麼拿得出手的樂器。大學時代接觸了一下編曲軟件，學了一點指彈吉他。來紐約後的幾年自學了 DJ，後來下班後會去一些酒吧餐廳打工放歌。放歌期間買了 Ableton 做了一些 loop 在現場用。期間好的沒學會，卻學會了燒合成器和效果器。二十幾年的時間裡間歇自學一點樂理，畢竟這個也不是主業。其餘也就是從古典到流行亂聽吧。這些年只寫過一首鋼琴曲，還廢了老鼻子勁&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;。可一直想好好學習怎麼做出一首完整的曲子來。去年十二月底左思右想還是報了個作曲編曲班，也跟辦辦商量，取得了她的支持，畢竟上課、做作業會佔用很多業餘時間。&lt;/p&gt;
-
-&lt;p&gt;課程一共要做三次大作業，一次一首。第一首給的時候相對長一點，但後面兩首差不多只有一個禮拜左右的時間。下面就按時間順序貼出這次的三個作品。雖然知道有非常多的提升空間，但我還是忍住不去修改和完善，以誠實地展現非專業人士在一個月裡面能做出什麼樣的東西來。&lt;/p&gt;
-
-&lt;h2 id=&quot;funky-night&quot;&gt;funky night&lt;/h2&gt;
-
-&lt;p&gt;第一首，主要是學習老師介紹的一種常規工作流程，就是從和弦進行開始，然後一點點增加配器和結構。這裡面老師也是教了一些合成器，希望我們在第一個作業裡實踐。雖然是以合成器和電子樂器為主，我當時還是心大、想挑戰，決定用合成器去模擬真實樂器。然而後來發現步子跨大了，捏好 bass 和吉他的音色和彈奏的自然感覺後，已經沒多少時間了。其實應該花更多時間在音樂本身上的。而曲子風格方面，我太喜歡 Daft Punk 和 Justice 這種 French House/nudisco 类型的曲子了，於是瘋狂想模仿。當然最後沒有那麼理想，但至少我很喜歡吉他 bass、還有那些復古的合成器🤪&lt;/p&gt;
-
-&lt;iframe width=&quot;100%&quot; height=&quot;166&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; allow=&quot;autoplay&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/801085948&amp;amp;color=%23050505&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&amp;amp;show_teaser=true&quot;&gt;&lt;/iframe&gt;
-
-&lt;h2 id=&quot;kitchen-belly-dance&quot;&gt;kitchen belly dance&lt;/h2&gt;
-
-&lt;p&gt;第二首的主要目的是學習怎麼對採樣處理以及更深入的合成器，所以作業是要求我們用身邊的東西錄音，盡量只用那些採樣來完成第二首曲子。為了同學間的學習更加有效，老師自然是建議大家採樣同一類型環境，比方說廚房。我當然也是這樣做的。採樣了各種鍋碗瓢盆、洗碗機、微波爐和煤氣灶。最後這首曲子裡所有的音色都來自我家廚房。比如說裡面的旋律性樂器就是拿微波爐的嗶嗶聲做的，close hi-hat 和 kick 都是拿煤氣灶打火的聲音做的，而 riser 則是用瓶子灌水的聲音做的，還有一些效果音則是通過軿湊幾個錄音來完成的。我對這首曲子還是挺滿意的，因為有第一個作業的基礎，我在第二首曲子裡處理採樣和合成音色更加有感覺，音樂方面因為沒有想要刻意模仿誰而更加自由歡脫😌&lt;/p&gt;
-
-&lt;iframe width=&quot;100%&quot; height=&quot;166&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; allow=&quot;autoplay&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/801113590&amp;amp;color=%23050505&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&amp;amp;show_teaser=true&quot;&gt;&lt;/iframe&gt;
-
-&lt;h2 id=&quot;freedom&quot;&gt;freedom&lt;/h2&gt;
-
-&lt;p&gt;第三首主要是學習對樂器和人聲的錄製。沒錯，最要命的部分是要寫歌詞，我是一個聽音樂不聽詞只專注於音樂的人，一時半會兒很難寫出什麼像樣的東西。於是就相信什麼「寫自己心裡當時最想要的」之類的鬼話，寫了兩段寫不下去了。於是就這麼磨蹭了幾天，眼看時間不夠了，就裡外裡用那一小段好了，至少是押韻的。而且因為前面的一個月一直都是熬夜上課做作業，抵抗力下降感冒了，於是錄唱的時候嗓子也不好了，有些音唱不上去。然而曲子我還是有好好做的，最後一個作業我多少還是想向同學和老師們展現一點中國元素。於是就在裡面加了一點古箏和合成器的一唱一和。當然也現學現用，把敲擊吉他的聲音也用第二個作業裡學到的方法做成了打擊樂組。最後看大家的反應效果還不錯🥳&lt;/p&gt;
-
-&lt;iframe width=&quot;100%&quot; height=&quot;166&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; allow=&quot;autoplay&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/801128077&amp;amp;color=%23050505&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&amp;amp;show_teaser=true&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;最後一次作業得到了老師的稱讚，我覺得算是對這30天努力一個非常好的句點。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/79671463-5c31c880-8198-11ea-948b-663880937c11.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;時隔數月，回去按順序聽下來能看到自己的成長，對此我很開心。我學到了很多，音樂和技術技巧方面的這次就先不分享了，以免太冗長。這個過程中我最大的感悟就是「即刻行動」，尤其是對從事創作和腦力工作的人來說。有時我們會因為「沒有靈感/沒有想法」而止步不前，但其實只要妳決定坐下來，打開檯燈、把自己置於那束光下，妳慢慢就能搞明白下一步是什麼。這似乎是一個老掉牙的感悟，每個人都知道，但是我想說的是「知道」和「懂得/領悟」是兩碼事。通過這段經歷，我身體力行了這個道理。我想我以後也會更多的受益於這個感悟。&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;寫給半年沒有見面的辦辦的曲子，&lt;a href=&quot;https://soundcloud.com/conanchou/memory?in=conanchou/sets/my-tracks&quot; target=&quot;_blank&quot;&gt;Memory&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">我一個月完成了三首完整的曲子，這個過程充滿焦慮、挫敗、驚喜和樂趣。</summary></entry><entry><title type="html">2010 ⇝ 2020</title><link href="https://conanblog.me/blog/2019/12/31/2010-2020/" rel="alternate" type="text/html" title="2010 ⇝ 2020" /><published>2019-12-31T00:00:00-05:00</published><updated>2019-12-31T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/12/31/2010-2020</id><content type="html" xml:base="https://conanblog.me/blog/2019/12/31/2010-2020/">&lt;blockquote&gt;
-  &lt;p&gt;我想除了又老又胖，我並不那麼介意變老。我應該不會拒絕從頭到尾把生活再過一遍：只是希望獲得惟有作家才有的特權，在再版的生活中修正初版的錯誤。生活的悲哀之處在於，我們總是老得太快，而又聰明得太慢。等到你不再修正的時候，你也就不在了。
-——查理·芒格&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;零&quot;&gt;零&lt;/h3&gt;
-
-&lt;p&gt;年初的時候，岳父岳母來紐約過春節。辦辦很開心，倒不僅僅是因為回家就有飯吃，更多的是因為父母能在身邊。我也很開心，我成長的家庭也曾有過和睦相處的時間，但已成往事。辦辦跟她父母的那些互動對我來說是一種親切的陌生。當我漸漸融入她的家庭時，我感受到了滿滿的溫暖。春節後爸媽就回國了，沒多久有次我打開衣櫥，看到岳母大人給我熨的襯衫，不禁掛念起他們。&lt;/p&gt;
-
-&lt;p&gt;再後來跟母親視頻通話，她說起岳父岳母跟她說很滿意倆孩子在這邊的生活，母親講得開心，我聽後也很開心。我希望我們能經常和家人團聚。不光是跟岳父岳母，還有我的父母親，即便他們已不在一起。他倆近兩年也都開了些刀，可我都沒法回去。這也是為什麼我和辦辦在努力佈局被動收入，我們已經把青春花在立足他鄉異國，我們不想花更多時間在無謂的競爭上，我們想獲得更多的自由，自由支配我們的時間，能經常回去看看父母，做我們真正想做的。&lt;/p&gt;
-
-&lt;h3 id=&quot;壹&quot;&gt;壹&lt;/h3&gt;
-
-&lt;p&gt;「有沒有番茄炒雞蛋？」&lt;/p&gt;
-
-&lt;p&gt;這是 Lans 在忙完一整天 PAX 遊戲展後，我們一起在波士頓的一家中餐館點餐時問的。他能連續吃上好幾頓番茄炒雞蛋。闊別多年，一直在追夢的他好像沒啥變化，剛認識他的時候是因為一個創業圈江湖騙子，我們也算一起闖蕩江湖過。在出租車裡我們再次說到那段經歷，開懷大笑。但當年，我們幾個都嚇得夠嗆。他是我認識的最好的設計師、插畫師，他總是充滿了創意和激情。他從小愛遊戲，我們短暫的合作之後他便一直在做遊戲設計相關的工作。這些年裡，他去過幾次 TEDx Talks，做的幾個遊戲要麼在全球下載榜單上綻放光彩，要麼就是拿了什麼獎。這次見面後分別不久，他們就又簽約了 Team17。他大概是我認識的朋友中最純粹的追夢人，他的快樂不在物質、不在身份、不在褒獎，他純粹為了自己喜愛的手藝而前行。&lt;/p&gt;
-
-&lt;p&gt;「我希望有機會跟你一起做點什麼」這是有次他跟我聊天時說的。我把這句話當作是一種認可，我會一直努力，希望當這一天到來的時候我配得起。&lt;/p&gt;
-
-&lt;h3 id=&quot;貳&quot;&gt;貳&lt;/h3&gt;
-
-&lt;p&gt;十多年前我買了人生中第一個單反相機，尼康 D90。在那之後，我就再也沒有升級過機身，只是換了一些鏡頭。因為在我學習攝影的早年，讀到過一個用 D90 的專業攝影師的故事，他為國家地理雜誌拍了很多好照片。每次我有升級衝動的時候，我都會想起那個故事，即便日子如此久遠，我已經忘了那個攝影師的名字。直到今年年初，我看到了萊卡的廣告片 &lt;em&gt;&lt;a href=&quot;https://vimeo.com/351515355&quot; target=&quot;_blank&quot;&gt;The Hunt&lt;/a&gt;&lt;/em&gt;。&lt;/p&gt;
-
-&lt;p&gt;加上當時辦辦以為自己有法令紋而感到焦慮，覺得應該多留下一些照片影像。於是這就給我買萊卡的正當性提供了「素材」。在萊卡 SOHO 旗艦店裡跟老伯聊了不少，也把玩了一下。辦辦見我愛不釋手，就同意並資助了我。於是我擁有了一台官方二手 Leica M10 + Summilux-M 35mm f/1.4 鏡頭。我高興壞了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611212-1dceba00-2b65-11ea-9ec6-e8930f700bb5.JPG&quot; alt=&quot;internal 0e12c01ca273744741d42debb77a9d04 L1001049&quot; /&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611211-1dceba00-2b65-11ea-86c2-689d6a358f6c.JPG&quot; alt=&quot;IMG_2369&quot; /&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611259-8027ba80-2b65-11ea-97d5-f32cc3e7f274.jpg&quot; alt=&quot;IMG_0190-1-1&quot; /&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611210-1dceba00-2b65-11ea-89de-013ffeca57d9.JPG&quot; alt=&quot;IMG_2259&quot; /&gt;
-&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71611274-946bb780-2b65-11ea-9c53-8764e4949384.jpg&quot; alt=&quot;IMG_0197-1-1&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;可能是剛剛拿到新相機的創作熱情高漲，拍了一些放到了網上，得到了不少很正面的反饋，我知道現在的重心並不是好好運營 Instagram，但我要是有機會的話還是想能經常放一些小作品。有那些讚許自然很好，不過最令我開心的時候是年末時，翻看已經好幾百 GB 的照片庫。全部都是我和辦辦的生活點滴。裡面其實有不少我很喜歡的瞬間，可是因為她並不樂於拋頭露面，我也就沒有上傳那些到萬維網。&lt;/p&gt;
-
-&lt;p&gt;有一次小白問我為啥喜歡萊卡，我說「就是那種 connect 的感覺，跟那個時代，跟那個手藝人之類的？」他告訴我哈蘇有個廣告片就講了那種 connect 的感覺。我在寫上一段的時候才意識到我為什麼想要買萊卡。但是我會在章節柒裡寫。&lt;/p&gt;
-
-&lt;h3 id=&quot;參&quot;&gt;參&lt;/h3&gt;
-
-&lt;p&gt;讀書一直是我們生活中一個很重要的事情。可能我以前也提到過，我們家裡沒有電視。即便如此，在忙碌嘈雜的大都會生活，有時我們會失去閱讀和慢思考的心境和機會，更何況現在還有更讓人上癮的互聯網。這種讀書的需求不知不覺便讓我和辦辦產生了共識：不如每年安排幾次隱修之旅。&lt;/p&gt;
-
-&lt;p&gt;今年我們安排了三次，雖然其中一次的主要目的並不是讀書，但效果是一樣的。在節奏慢、靠近自然、沒有時間表和行程安排的情況下，只要休息天數足夠長，我們總能把幾個一直困擾我們的問題從潛意識裡拽出來，曬曬太陽、分析清楚，又或者是那本正在讀的書到底在說什麼、超脫於字面它還能給我哪些啟示。&lt;/p&gt;
-
-&lt;p&gt;今年秋天關於比爾·蓋茨的紀錄片 &lt;em&gt;Inside Bill’s Brain: Decoding Bill Gates&lt;/em&gt; 上線了。看了之後發現原來比爾·蓋茨也經常安排這樣的隱修。怎麼說呢，「Heroes think alike」😜&lt;/p&gt;
-
-&lt;h3 id=&quot;肆&quot;&gt;肆&lt;/h3&gt;
-
-&lt;p&gt;「如果我不能為她過好最後幾個生日，我會後悔一輩子。」&lt;/p&gt;
-
-&lt;p&gt;我當時這樣想。那是在辦辦的 X-光片查出陰影之後，而再過幾天就是她30歲生日。我們都各自去網上搜索了那個陰影。搜索的結果是，如果是個問題的話，那將是個生離死別的問題。那些天我很忐忑，但我還是會表現得很樂觀，我怕她給自己的心裡暗示會真的影響健康。背地裡卻偷偷擦眼淚。&lt;/p&gt;
-
-&lt;p&gt;眼看著她的生日就要來了，我想幫她好好過一個生日。如果最糟糕的事情發生了，我就真沒有什麼可以將就馬虎的餘地了。雖然以往我也會幫她訂好她最愛口味的蛋糕，但多半會省掉點蠟燭許願的環節。我倆都是缺乏儀式感的人。但我想這一次不能馬虎，要有蠟燭、要有許願。我想我知道她會許什麼願。那天她雙手合十閉著眼睛許了很久的願。&lt;/p&gt;
-
-&lt;p&gt;後來母親請專家幫忙看了片子，辦辦也做了複查，是虛驚一場。我們都鬆了一口氣。這也許是給她和我最好的生日禮物，經過這麼一遭，我懂得了離別終有一天會來，做到離別之際沒有悔恨便是最好。&lt;/p&gt;
-
-&lt;h3 id=&quot;伍&quot;&gt;伍&lt;/h3&gt;
-
-&lt;p&gt;「『Debt Free』，這是你想寫在蛋糕上的字嗎？」店員問我道。&lt;/p&gt;
-
-&lt;p&gt;我們想了些辦法讓錢為我們打工。今年九月的時候，月被動收入已經能夠覆蓋月全部負債了，包括我們現在的自住房的按揭貸款。雖然我們知道這只是邁向「財富小自由」的第一步，但也足以為此慶祝一番。所以一天也等不了，去買個冰淇淋蛋糕，畫上綠色的「Debt Free」！&lt;/p&gt;
-
-&lt;p&gt;我們顯然不滿足於能自由回國、自由跳槽。沒有時間，有了這些自由也沒用。債務還是會把你困在你的鴿子間裡。這無疑會讓我之後的創業更輕鬆，有更多選擇。&lt;/p&gt;
-
-&lt;h3 id=&quot;陸&quot;&gt;陸&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;在他看來，世間宇宙萬物都是一個相互作用的整體，人類所有的知識都是對這一整體研究的部分嘗試，只有把這些知識結合起來，並貫穿在一個思想框架中，才能對正確的認知和決策起到幫助作用。所以他提倡要學習在所有學科中真正重要的理論，並在此基礎上形成所謂的「普世智慧」，以此為利器去研究商業投資領域的重要問題。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;這是《窮查理寶典：查理·芒格的智慧箴言錄》裡開篇的一段話。其實我已經撞見過這本書很多次了，只是今年才翻開它。這是一本大部頭，還有不少生詞，為了不產生理解偏差，還找來了中文譯本對照著讀。所以讀得很慢，倒也給了我不少時間思考。雖然這麼說有點不要臉，但我真的覺得我有很多想法跟他一致，但顯然他是一個極具個人魅力的導師，成熟而博學。他真的做到了正心、修身、齊家、治業、助天下。&lt;/p&gt;
-
-&lt;p&gt;這本書喚醒了我潛意識裡那些縹緲的意識，給我展示了新的視野和方向。他也給我豎立了一個新的標竿，不對，是多個標竿，包括他、以及他索仰望並追求的像富蘭克林和西塞羅這樣的先賢。這些也都是我所仰望的。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;如果我要擁有一種觀點，如果我不能夠比全世界最聰明、最有能力、最有資格反駁這個觀點的人更能夠證否自己，我就不配擁有這個觀點。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;這是舉一個「標竿」的例子，這麼嚴苛的要求恐怕對誰而言都是困難的，但在今天滿世界都是大大小小的 echo chamber，我們不應當努力朝那個方向努力嗎？所以當查理真正地持有某個觀點時，他的想法既原創、獨特又幾乎從不犯錯。&lt;/p&gt;
-
-&lt;p&gt;這本書是值得時不時重新翻閱的，包括書裡的引注都值得深挖。真是個大坑，但是值得。&lt;/p&gt;
-
-&lt;h3 id=&quot;柒&quot;&gt;柒&lt;/h3&gt;
-
-&lt;p&gt;最近我又在重讀 &lt;em&gt;Steve Jobs&lt;/em&gt; 了。這也許是 fanboy 的偏見，我覺得喬布斯的個人經歷和思想值得反覆咀嚼，即便說他經常會把別人的想法取來自用又不給別人 credit，但也正因為此，他汲取並內化了很多想法的精華。&lt;/p&gt;
-
-&lt;p&gt;他在重返蘋果之後，組織了一次很成功的廣告企劃，那就是 &lt;em&gt;Think different&lt;/em&gt;。下面的這段視頻就是那次企劃的一次對內會議視頻，他告訴了我，我為什麼在看完 &lt;em&gt;The hunt&lt;/em&gt; 之後產生了購買慾望。&lt;/p&gt;
-
-&lt;iframe src=&quot;https://www.youtube.com/embed/keCwRdbwNQY&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;他對 Think different 主題應該是有著強烈共鳴的，我們在他的人生軌跡裡看得清清楚楚。這不光是人生決策層面的，還可以是具體到應對具體的事上面。到具體的事上面就體現在思考的角度上。比如說 Macintosh 的小市場份額本該是一個劣勢，但在蘋果跟各大音樂公司談合作的時候，他因為理解到音樂公司對擁抱電子化很遲疑，但是又想試試，於是他用這樣本該是劣勢的東西作為談判籌碼。我在這個案例裡學到的不光是談判技巧。&lt;/p&gt;
-
-&lt;p&gt;這次重讀我還有另一個感悟，我會在文末寫。&lt;/p&gt;
-
-&lt;h3 id=&quot;捌&quot;&gt;捌&lt;/h3&gt;
-
-&lt;p&gt;今年一整年我都在寫子彈筆記，一開始是試圖找回自己，之後慢慢清晰起來，知道面對一些無法改變的現實，所以只能從自己方面做努力。面對可見的未來，我似乎會變得更加忙碌，但我不想因此犧牲哪怕一點我的家庭生活，事實上家庭需要花比我想像得多的心力去經營。所以年底我又撿起了 GTD，趁換新電腦開始實踐 PARA&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
-
-&lt;p&gt;昨天跟 Jack 他們吃飯聊天，我坦誠說了一些我對於創造的渴求、其程度甚至到偏激的一些想法，今天就在我訂閱的一個 YouTuber 的頻道看到一個關於焦慮和創造的推心置腹的視頻&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;。我這才意識到原來我應該是有些焦慮吧。我不覺得我現在需要專業人士的幫助，但至少我應該要多加注意。另一方面，辦辦和我的密友們都很好。我可以找他們傾訴。&lt;/p&gt;
-
-&lt;h3 id=&quot;玖&quot;&gt;玖&lt;/h3&gt;
-
-&lt;p&gt;每到離別時，我都很傷心。&lt;/p&gt;
-
-&lt;p&gt;年末我以舊換新了陪伴我7年的 Macbook Pro，磨蹭了兩個禮拜才把它寄出去。聖誕節前我每週去三次的沙拉店也關門了，因後知後覺，卻沒有跟那些店員朋友們鄭重告別。奶奶做的布拖鞋已經磨穿了，在最近一次隱修之旅後，好好地拍了照片才捨得扔掉這份心意。再回想，還有很多說和沒說「再見」卻再也不會見的朋友沒有鄭重道別。&lt;/p&gt;
-
-&lt;p&gt;今天以前我總覺得好像要認真道別以畫上句點，可是我想明白了，不是所有事情都需要句點的。沒有結束，endless，也是一種很好的狀態。再說，我們不就是在一次次離別中成長的嗎？&lt;/p&gt;
-
-&lt;h3 id=&quot;2020--&quot;&gt;2020 -&lt;/h3&gt;
-
-&lt;p&gt;新的一年我想正視對音樂的愛好，不應該覺得有負罪感，大大方方地花一些時間去學去玩。我也想好好學習和實踐 iOS 和 macOS 平台的開發，爭取能落實一些項目。閱讀，自然是以後台進程的形式一直存在的，我對這個世界的理解還遠遠不夠。&lt;/p&gt;
-
-&lt;p&gt;2019很動盪，總覺得一場風暴正在醞釀。我希望世界和平，這樣我才能繼續過我的平凡人生，陪伴在我的家人身邊，讀更多書、做更多感興趣的事情。&lt;/p&gt;
-
-&lt;h2 id=&quot;十年&quot;&gt;十年&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;找出你最擅長的事情，然後持之以恆、樂此不疲地去把它做好。
-——西蒙·馬克斯&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;前兩天我打開 Apple Music，看到了 “The Songs That Defined the 2010s” 榜單。那時我才意識到今年的年末有些不一樣。又一個十年。&lt;/p&gt;
-
-&lt;p&gt;我不禁想，這十年自己做了些什麼，好像我還是我，沒怎麼變，雖有些成就，但覺得自己遠可以做得更好。但為了寫總結，我還是翻出了這十年的博客存檔。翻閱到七八年前的帖子時，我覺得換作今天的我，肯定不會跟這個傢伙做朋友。十年前的我，更平庸、更無知而淺薄，最關鍵的是，我還曾如此得瑟。這麼看十年來我並非沒有長進。但我也同樣羨慕那時的初生牛犢不畏虎。&lt;/p&gt;
-
-&lt;p&gt;舊博文裡有一篇專門寫了10000小時理論，十年後的2019，Billie Eillish 獲得了蘋果年度全球藝術家音樂獎（Apple Music Award of global artist of the year）。我記得在一個採訪中攝像機拍到了她和她哥當時作曲的房間門上寫著「10000 hours」，以督促自己。雖然後來普林斯頓大學的研究表明10000小時理論並不真的能在各種領域奏效&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;。而且從 Billie 的事例中也可以看出除了努力，他們特殊的教育和家庭氛圍也起到了關鍵性作用。我覺得刻意練習只是表象，真正起作用的是——專注。而我讀 &lt;em&gt;Steve Jobs&lt;/em&gt; 的另一個收穫也正是「專注」。&lt;/p&gt;
-
-&lt;p&gt;縱觀這十年的紀錄，有幾個領域似乎是我時常會提到的：編程、創業、閱讀、音樂、設計、攝影。在寫這篇博文之前，我很焦慮，因為我覺得我把精力分散得太開了。這篇博文不是一天一時寫完的，在寫作的這一個多禮拜裡，我思考、找密友聊。最終我釋然了一些，「分散」不意味著「不專注」或「浪費」了，因為這些點可以被串起來，就像喬布斯2005年在斯坦福大學的畢業典禮講話說的第一個故事「connecting the dots」那樣。&lt;/p&gt;
-
-&lt;p&gt;下個十年，我應該非常努力地將一些點連結起來。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/71610811-3689a080-2b62-11ea-84c9-638aafb83246.JPG&quot; alt=&quot;IMG_0485-1&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://praxis.fortelabs.co/the-p-a-r-a-method-a-universal-system-for-organizing-digital-information-75a9da8bfb37/&quot; target=&quot;_blank&quot;&gt;The PARA Method: A Universal System for Organizing Digital Information&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=6G7U1N2MssI&quot; target=&quot;_blank&quot;&gt;Anxiety and the Creative&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://www.businessinsider.com/new-study-destroys-malcolm-gladwells-10000-rule-2014-7&quot; target=&quot;_blank&quot;&gt;New Study Destroys Malcolm Gladwell’s 10,000 Hour Rule&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">我想除了又老又胖，我並不那麼介意變老。我應該不會拒絕從頭到尾把生活再過一遍：只是希望獲得惟有作家才有的特權，在再版的生活中修正初版的錯誤。生活的悲哀之處在於，我們總是老得太快，而又聰明得太慢。等到你不再修正的時候，你也就不在了。 ——查理·芒格</summary></entry><entry><title type="html">寫給幫助測試 AutoTheme 的你們</title><link href="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/" rel="alternate" type="text/html" title="寫給幫助測試 AutoTheme 的你們" /><published>2019-01-25T00:00:00-05:00</published><updated>2019-01-25T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers</id><content type="html" xml:base="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/">&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/51755901-b58e7300-208d-11e9-84e6-b8ce2dd36246.png&quot; alt=&quot;AutoTheme Poster&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;非常感謝你們的熱心幫助！&lt;/p&gt;
-
-&lt;p&gt;這篇文章主要是想告訴首批測試朋友現在 App 開發到什麼程度，有哪些已知問題，當然還有如何安裝。&lt;/p&gt;
-
-&lt;h2 id=&quot;這個-app-有什麼用&quot;&gt;這個 App 有什麼用&lt;/h2&gt;
-
-&lt;p&gt;首先這是一個餐單欄應用。菜單裡有個很直接的切換主題的功能，用於在深/淺主題間切換。就像上面做的圖一樣，事實上那張圖是兩張截屏。從 Preferences 裡，你可以預設深/淺兩種主題的 Highlight 和 Accent 兩個的顏色。切換主題時，這兩種顏色配置會自動被切換。&lt;/p&gt;
-
-&lt;h2 id=&quot;如何安裝&quot;&gt;如何安裝&lt;/h2&gt;
-
-&lt;p&gt;我還沒有買蘋果開發者帳號，因此現在的測試版還沒有 sign。所以測試的朋友安裝就要麻煩一點了。下載後如果直接打開 App 的話可能會看到這個：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/51755893-b1faec00-208d-11e9-8b10-cfde9edd8c3f.png&quot; alt=&quot;install issue&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;需要先关掉一下 macOS Gatekeeper&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;。在 Terminal 下輸入：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo spctl --master-disable
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;把 App 放進 Applications 文件夾後再打開應該就可以用了。此時可以再把 Gatekeeper 開啟：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo spctl --master-enable
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;考慮到這一步可能讓一些同學不是很舒服，所以不勉強哈。&lt;/p&gt;
-
-&lt;h2 id=&quot;已知問題&quot;&gt;已知問題&lt;/h2&gt;
-
-&lt;p&gt;在開發過程中，我意識到蘋果官方似乎在糾結這兩種顏色的設計，包括顏色本身和 API 的設計，我所使用的 API 在macOS 10.14（也許更早一點的版本）之前 &lt;code class=&quot;highlighter-rouge&quot;&gt;yellow&lt;/code&gt; 是可以用的，但是最近的系統版本不能用了，而 API 裡 &lt;code class=&quot;highlighter-rouge&quot;&gt;yellow&lt;/code&gt; 被取消了，新加了 &lt;code class=&quot;highlighter-rouge&quot;&gt;gold&lt;/code&gt;，然而新加的這個也不能用。所以想了一個 fallback 方案，就是用 AppleScript 操作系統設置，但是缺點是換黃色的時候會有個選擇顏色的下拉菜單閃現⋯⋯目前還不知道怎麼解決，如果大家有啥想法歡迎來信討論 😅&lt;/p&gt;
-
-&lt;h2 id=&quot;roadmap&quot;&gt;Roadmap&lt;/h2&gt;
-
-&lt;p&gt;理想狀況下我想繼續做以下功能：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;根據當地地理位置的日落時間自動更換深/淺主題&lt;/li&gt;
-  &lt;li&gt;I18N&lt;/li&gt;
-  &lt;li&gt;快捷鍵&lt;/li&gt;
-  &lt;li&gt;讓用戶自訂義 Highlight color？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;同學們如果有啥想法也可以給我來信！&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Gatekeeper_(macOS)&quot;&gt;Gatekeeper&lt;/a&gt;，以及&lt;a href=&quot;http://osxdaily.com/2016/09/27/allow-apps-from-anywhere-macos-gatekeeper/&quot;&gt;如何關閉和開啓它&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry><entry><title type="html">2018 ⇝ 2019</title><link href="https://conanblog.me/blog/2019/01/01/2018-2019/" rel="alternate" type="text/html" title="2018 ⇝ 2019" /><published>2019-01-01T00:00:00-05:00</published><updated>2019-01-01T00:00:00-05:00</updated><id>https://conanblog.me/blog/2019/01/01/2018-2019</id><content type="html" xml:base="https://conanblog.me/blog/2019/01/01/2018-2019/">&lt;blockquote&gt;
-  &lt;p&gt;人生的故事不會按照我的設計發展，我唯一能做到的是適應它，但這不會改變我的固執。人生會在這種拔河中繼續，在這場比賽結束時，我希望結果會令人滿意。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;這一年的年終總結，我打算換一個寫法。來說說這一年來，還在我腦中留下深刻印記的一些事件和對話。當然我把讀書也視作一種「對話」。&lt;/p&gt;
-
-&lt;h2 id=&quot;〇&quot;&gt;〇&lt;/h2&gt;
-
-&lt;p&gt;2018年春天的時候回國看望家人，算是完成了去年的一个目标。期間見幾位老朋友的時候送了維克多·弗蘭克爾的《活出生命的意義》&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;，我也順便重讀了一遍。現在已經不記得以前讀收穫了什麼，但我記得這次的收穫——無論在何種惡劣的環境下，人們始終擁有選擇的自由。即便是在集中營這種沒有自由的地方，你還是可以自由地選擇以什麼樣的心境去面對挑戰。&lt;/p&gt;
-
-&lt;p&gt;這個道理對現在的我很重要，為了等 GC 我不得不放棄了太多自由，更加小心地為人處事。曾經這些都是苦惱，但自從想通後，這些煩人的事一下子都變成了我成長的補劑。&lt;/p&gt;
-
-&lt;h2 id=&quot;壹&quot;&gt;壹&lt;/h2&gt;
-
-&lt;p&gt;人終究是人，還是喜歡看得見摸得著的東西；更甚，人有著與生俱來的自負，我們更喜歡更像人，我們同類，做出來的東西。去年讀了 David Sax 的書 &lt;em&gt;The Revenge of Analog: Real Things and Why They Matter&lt;/em&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;。這讓我明白了一些看不明白的事情。那些看得見摸得著的東西讓我們覺得有擁有感，而我們喜歡這種感覺。所以越來越多的人，包括我，喜歡收集黑膠唱片。流音樂服務的確有更多歌曲，可是畢竟它們不屬於我。一封實體信件更有溫度，一張實體照片更具收藏價值。而從經濟學的角度去分析這個趨勢，也確實是實體經濟更有生命力。&lt;/p&gt;
-
-&lt;p&gt;「我們更喜歡更像人做出來的東西」能幫助我理解很多藝術創作有意識地加入瑕疵的原因。正是這些不完美，才看起來、聽起來更有人味。这也是给完美主义者的一课，现在越来越多艺术家用电脑辅助创作，可以把东西做到非常完美，但这些「完美的作品」不会比一遍錄完的作品更被人喜歡。而且这些艺术家们很有可能被困在完美的陷阱里。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Done is better than perfect.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;這也是 &lt;em&gt;Big Magic&lt;/em&gt; 一書裡提到的一個觀點，下一段小節我會繼續說到這本書。&lt;/p&gt;
-
-&lt;p&gt;（寫到這裡的時候我不禁聯想到了那個「人更傾向於相信同類做的判斷，即便機器已經在某些方面的判斷更優秀」的研究。以及幾年前读到的一篇文章《自大的基因：关于人类对地外文明的探索》&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;。虽然有些跑题，但還是想說我們經常會被這種自大遮住雙目）&lt;/p&gt;
-
-&lt;h2 id=&quot;貳&quot;&gt;貳&lt;/h2&gt;
-
-&lt;p&gt;「靈感來造訪我的時候，我要一把抓住，我要向她證明我有資格跟她合作」，這是看 Elizabeth Gilbert 的書 &lt;em&gt;Big Magic: Creative Living Beyond Fear&lt;/em&gt;&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; 時學習到的。任何藝術形式的創作都是這樣，也包括編程。不要遲疑不決，要致力於執行。&lt;/p&gt;
-
-&lt;p&gt;事實上我覺得作者給我的另一個建議更重要，不要將自己的生計寄託於自己的愛好和創造性，否則很可能會把熱情耗盡、嚇跑創造力。相反，愛好應當像情人一樣，你也許只是下班後會跟她短暫私會，但那更熱烈。這一點使我更加堅定財富小自由的路線（並不是傳統意義上的財富自由，僅僅是足夠多的消极收入能支付得起我們正常的生活開支），唯獨那樣你才真的能從朝九晚五的鴿子間走出來，獲得相對的自由，即能養活自己又能釋放你的創造力。事實上「上班」這種規訓本來也就是工業革命之後才在資本主義世界盛行的，我想要的只是像古人一樣自由。&lt;/p&gt;
-
-&lt;h2 id=&quot;弎&quot;&gt;弎&lt;/h2&gt;
-
-&lt;p&gt;堅持不渝、致力執行。&lt;/p&gt;
-
-&lt;p&gt;幾年前我資助合作的一家公司受到 BBC 的採訪，節目播放後就有一位特立獨行的女士聯繫上了我們以尋求合作，至今我們還保持著往來。她的非常矚目的特質就是「堅持不渝、致力執行」，我非常佩服她。多年來她一直研究亞洲文化和古代藝術鑑賞，已經是我父輩的年紀了又打算攻讀拉丁美洲文化和古代藝術鑑賞。用她的話說是自己拉丁語好，大半輩子下來還是覺得中日韓的語言太難學了。她工作中經常需要幫博物館拍賣和籌劃展覽，在一次交流中我隨意聊到了如何把文化和科技結合，她覺得這是個好想法，4年過去了，她還在推進這件事。&lt;/p&gt;
-
-&lt;p&gt;今年會面時我說我很佩服她的執行力和堅持不懈的精神，她告訴我了幾個故事。她說讓別人答應她一件事並不難，只是需要花點時間。那天下午她約我去看一個韓國書畫藝術家的個展，在見我之前她非常想見見另一個住在曼哈頓藝術家，可是人家並不想見面。於是她去買了曼哈頓一家很有名的甜點，登門拜訪，最終那個藝術家還是只能見了。她用類似軟磨硬泡的辦法，得到了和艾未未的合作機會。&lt;/p&gt;
-
-&lt;p&gt;後來回想，其實最早她約我多次也是被我婉拒了，直到最後一次拒絕。&lt;/p&gt;
-
-&lt;h2 id=&quot;肆&quot;&gt;肆&lt;/h2&gt;
-
-&lt;p&gt;「那些猶太人都做著這種生意」&lt;/p&gt;
-
-&lt;p&gt;這是有一次跟一個朋友聊項目的時候說的一些題外話，她應該算是個老紐約人了，「這種生意」就是說的投資地產。無獨有偶，那陣子我在讀 John Z. Sonmez 的 &lt;em&gt;Soft Skills: The Software Developer’s Life Manual&lt;/em&gt;&lt;sup id=&quot;fnref:5&quot;&gt;&lt;a href=&quot;#fn:5&quot; class=&quot;footnote&quot;&gt;5&lt;/a&gt;&lt;/sup&gt;。作者提到了很多我很認同的點，但跟這個小節有關的是地產投資。年頭和年中的兩次股市調整讓我覺得手頭的閒錢應該分散去一些更保險的去處，事實上後來的一些分析也不看好明年的走向，尤其是加息之後。這當然是個家庭決議，我們在快年底的時候就正式開始了房產投資。辦辦是這個過程的中堅力量。&lt;/p&gt;
-
-&lt;p&gt;說時遲那時快，年底的股票市場很糟，不過我的運氣不錯，一波騷操作躲過了聖誕前夜的大血崩，又及時調整，趕上了後來的一波漲勢。但是我們的 Wealthfront 和 Betterment 已經虧損了不少。雖說還是遲了一點，但我們的投資房產已經快接近過戶了，算是及時吧。&lt;/p&gt;
-
-&lt;h2 id=&quot;伍&quot;&gt;伍&lt;/h2&gt;
-
-&lt;p&gt;「Conan，資本只有兩個途徑獲取，繼承和槓桿」&lt;/p&gt;
-
-&lt;p&gt;這是我之前的一個老闆在股份問題上跟我說的一句話，他是個很精明的猶太人，「股份就是一種槓桿」。幾年前跳槽到這邊的動機完全是為了早些拿到 GC，但事與願違。可運氣好，公司被收購了，聽說母公司還有可能會上市，於是到手的股份就真的值錢了。Real talk，我希望公司發展得好，這樣我能更早達到「財富小自由」。&lt;/p&gt;
-
-&lt;h2 id=&quot;陸&quot;&gt;陸&lt;/h2&gt;
-
-&lt;p&gt;「我們合作一把」&lt;/p&gt;
-
-&lt;p&gt;這是父親跟我一次聊天時說的話。這不僅僅是一個合作意向，對我來說更是一個肯定。這一年我跟他的交流更多了，隨著我年紀和閱歷的增加，我意識到父親的很多商業決策都是正確的。他年輕時走過不少彎路起起落落，我很像從他那兒汲取經驗教訓。而且不知怎的，我也開始對他的領域更感興趣了。我們將會合作做一些事情，對此我很開心和激動。最近的一次談話，我們說到了「視野」問題，正巧那會兒我在讀 Ray Dalio 的書 &lt;em&gt;Principles: Life and Work&lt;/em&gt;&lt;sup id=&quot;fnref:6&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;，前 1/3 的傳記很有意思，我能意識到「視野」在他一生中的重要性，正巧提到，便買了一本送給了爸。&lt;/p&gt;
-
-&lt;h2 id=&quot;柒&quot;&gt;柒&lt;/h2&gt;
-
-&lt;p&gt;真實的感覺很好。&lt;/p&gt;
-
-&lt;p&gt;年頭重溫了一些王小波的雜文，很真實。讀 &lt;em&gt;Principles&lt;/em&gt; 的時候也看到很多關於真實的觀點。我很喜歡這些真實，但周遭並不是那樣，也許真輪到我了，我也不能那麼真實。不過這不影響我喜歡和嘗試去真實甚至去影響周圍的人真實。&lt;/p&gt;
-
-&lt;h2 id=&quot;2019--&quot;&gt;2019 -&lt;/h2&gt;
-
-&lt;p&gt;去年讓我意識到很多事情不會按照自己計畫地發展，我們只能去適應這些變化，我們可以選擇我們面對它們的心理，不論好壞，畢竟我們只是大時代下的小土豆。我們唯有踏實過活，真實對人對己才能減少讓我們頭痛的東西。所以在去年的那些對自己的要求的基礎上，我想加上&lt;strong&gt;對真實的追求&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;親人、朋友和推友中有很多博學而智慧的人，我想像他們一樣。首先我得讀更多類似牛津通識讀本那樣的書籍，我想，至少別太無知。我希望通過書本和交流，學習更多這個世界如何運作。&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2R0EUoC&quot; target=&quot;_blank&quot;&gt;Man’s Search for Meaning&lt;/a&gt; by Viktor E. Frankl &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2R2sxID&quot; target=&quot;_blank&quot;&gt;The Revenge of Analog: Real Things and Why They Matter&lt;/a&gt; by David Sax &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;北師大天文係的天文學講師高爽老師的一次線下分享：&lt;a href=&quot;https://mp.weixin.qq.com/s/oP-N3vIKIQME5MTytI_l_A&quot; target=&quot;_blank&quot;&gt;自大的基因：關於人類對地外文明的探索&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:4&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2RqnxNr&quot; target=&quot;_blank&quot;&gt;Big Magic: Creative Living Beyond Fear&lt;/a&gt; by Elizabeth Gilbert &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:5&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2VqOUpw&quot; target=&quot;_blank&quot;&gt;Soft Skills: The software developer’s life manual&lt;/a&gt; by John Sonmez &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:6&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;https://amzn.to/2SrXxyp&quot; target=&quot;_blank&quot;&gt;Principles: Life and Work&lt;/a&gt; by Ray Dalio &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">人生的故事不會按照我的設計發展，我唯一能做到的是適應它，但這不會改變我的固執。人生會在這種拔河中繼續，在這場比賽結束時，我希望結果會令人滿意。</summary></entry><entry><title type="html">讀書</title><link href="https://conanblog.me/blog/2018/06/22/reading_books/" rel="alternate" type="text/html" title="讀書" /><published>2018-06-22T00:00:00-04:00</published><updated>2018-06-22T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/06/22/reading_books</id><content type="html" xml:base="https://conanblog.me/blog/2018/06/22/reading_books/">&lt;blockquote&gt;
-  &lt;p&gt;It is what you read when you don’t have to that determines what you will be when you can’t help it.
-— Oscar Wilde&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;這是一篇我想到哪兒就寫到哪兒的讀書相關的心得和小竅門的筆記，這些有可能對其他人也有用，而且肯定還有更好的想法，所以寫下來拋磚引玉。🤓&lt;/p&gt;
-
-&lt;h2 id=&quot;書非借不能讀也&quot;&gt;書非借不能讀也&lt;/h2&gt;
-
-&lt;p&gt;大概我遇到的每個愛書的人都遇到過「買書如山倒，讀書如抽絲」的情況。我也花了好久才弄明白怎麼回事。這裏面其實有兩個問題：一個是你很努力，但是你讀不完所有的書；一個是你其實還沒有努力。前者是世界的問題，後者是自己的問題。&lt;/p&gt;
-
-&lt;p&gt;對於沒辦法改變的問題，你只能調整心態面對它。所以我告訴自己：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;我不需要讀所有的書籍。&lt;/li&gt;
-  &lt;li&gt;Pareto principle&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;在讀書/選書上也照樣適用。我可以選讀某些領域最有代表性的著作。&lt;/li&gt;
-  &lt;li&gt;難讀的書就暫時放下，我總是可以找到其它書來獲得類似的知識，又或是等心境對了重拾那本書。&lt;/li&gt;
-  &lt;li&gt;不要太挑剔，任何一本書都有它的價值。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;而第二個問題其實就是衆所周知的拖延症。古有黃生借書說，今有 Parkinson’s law&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;。其實這些都無不告訴我們一個道理，就是要給讀書設個期限。如果期限過了你還想繼續讀會很麻煩的話，你多半會爭取在期限內讀完。所以從去年開始我经常借書來看。&lt;/p&gt;
-
-&lt;p&gt;紐約公共圖書館的借書證是免費的，而且藏書量足夠大，即便是沒有的書你也可以申請讓圖書館引進。不過借的實體書可能破舊，而且你還不能在書上寫寫畫畫，所以我都借電子版。可以無縫銜接發送到 Kindle 上。讀書筆記會被自動存起來，即便書到期了，你還是能看到那些記錄供日後回味和參考。&lt;/p&gt;
-
-&lt;p&gt;但讀書效率高了並不意味著我應該讀更多書，我曾一度一整年業餘時間都在讀書，而計劃的其它事情都沒做。所以我覺得更高效地讀書應該服務其他更具創造性的活動。愛因斯坦這句話說得很對：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Reading, after a certain age, diverts the mind too much from its creative pursuits. Any man who reads too much and uses his own brain too little falls into lazy habits of thinking.
-— Albert Einstein&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;跳出語言學習模式&quot;&gt;跳出語言學習模式&lt;/h2&gt;
-
-&lt;p&gt;無論你是否在國外生活，讀原著總是能有方方面面的好處。語言是思考的工具，所以讀原著往往能幫助你更好地同步作者的想法，而如今很難有翻譯得像《集異壁》&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;那麼好的書了。另外有些國家引進翻譯的書會有刪減，這比糟糕的翻譯還要討厭，因為很多時候你並不知道一本譯製書有無刪減。而如果你在國外生活，額外的好處是你還能從中找到社交時的談資和詞彙。&lt;/p&gt;
-
-&lt;p&gt;所以高中開始我也讀英文原著了，不過這幾年讀得更多，一方面外語水平提高了，但最主要的還是因為得知上文提到的刪減問題。可是像我這種，語言能力一般的外語學習者，很容易在讀書時拘泥於詞彙的學習。而事實上大部分時候，尤其在掃讀階段，詞彙並不重要。我意識到這一點還是因為聽有聲書，書的內容一模一樣，聽的時候就能聽到主旨和綱領，看的時候在無意識間就會迷失了方向。而事實上，那些你不懂的詞彙不會因為你停止閱讀而記得更牢，反而是因為在很多情境下讀到或聽到而記得更牢。&lt;/p&gt;
-
-&lt;h2 id=&quot;有聲書&quot;&gt;有聲書&lt;/h2&gt;
-
-&lt;p&gt;剛剛提到了有聲書，其實另一個提高自己閱讀效率的方式就是它。不過用好有聲書並不像想像的那麼直接了當。有段時間，我對聽有聲書特別困惑，因為我聽著聽著就神遊了，等意識到的時候就已經不知道在說啥了。後來請教了推友 @gttnnn，她的方法是用軟件給有聲書定時暫停，暫停時自己需要紀錄或回想剛剛那一段講了什麼。後來我自己也試了一下，能很好地減少走神的問題。（可以直接用 iOS 自帶的鬧鈴功能，它當中有一個選項是到時間自動停止當前播放。）&lt;/p&gt;
-
-&lt;p&gt;再後來，我發現了對我讀英文原著更加有效的辦法，就是對照文字版同時聽書。這樣做的好處是：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;迫使自己跳出情不自禁的語言學習模式&lt;/li&gt;
-  &lt;li&gt;學習正確的發音&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;不過有聲書並不便宜，畢竟是需要播音藝術家表演的。好在很多也能從圖書館借到。&lt;/p&gt;
-
-&lt;h2 id=&quot;書源&quot;&gt;書源&lt;/h2&gt;
-
-&lt;p&gt;有好些省錢買書的途徑，中國大陸的買書網站我就不用多說了，每年很多促銷活動，抓住時機下手就好了，我一般都是在&lt;a href=&quot;https://amazon.cn&quot;&gt;中亞&lt;/a&gt;買。中文書的話還有一個是台灣的 &lt;a href=&quot;https://readmoo.com&quot;&gt;Readmoo&lt;/a&gt;，他們只賣繁體書，但是內容上應該是沒有刪減的，時常也有折扣。&lt;/p&gt;
-
-&lt;p&gt;英文書的話我主要還是在亞馬遜買，或者從圖書館借。經常從&lt;a href=&quot;https://amazon.com&quot;&gt;美亞&lt;/a&gt;買書的朋友可能知道，他們平時並沒有很多官方發起的大促銷活動。但事實上，作者和出版社每年都會不定期地在各平台打折，而很多時候這些消息並不是廣而告之的。後來我找到了一個服務 &lt;a href=&quot;https://www.bookbub.com&quot;&gt;BookBub&lt;/a&gt;，他們會把你感興趣的書的打折信息及時發給你。所以近期我基本上所有的英文書籍都是以 1.99 ～ 2.99 刀的價格買的。&lt;/p&gt;
-
-&lt;p&gt;而圖書館的話我還想多說兩句，其實北美這邊圖書館基本都是這樣，不一定非得在紐約。其他地方的朋友也可以去查查當地的情況，但我相信很多地方都有類似的設施。&lt;/p&gt;
-
-&lt;p&gt;有聲書的話我現在基本還是依賴圖書館，但是最近越發想要找個性價比高的聽書服務了。因為借閱一些比較流行的書的時候經常要等上好幾個禮拜甚至數月。&lt;/p&gt;
-
-&lt;p&gt;很多時候讀書的狀態和慾望是可遇不可求的，上面的一些辦法雖然省錢，但是作為讀者來說是很被動的。所以不要一味追求省錢，遇到想讀又能立即讀的書就買吧，不要浪費了自己的衝動 😁&lt;/p&gt;
-
-&lt;h2 id=&quot;筆記&quot;&gt;筆記&lt;/h2&gt;
-
-&lt;p&gt;我的筆記多半為隨想，直接寫在 Kindle 裡。看紙質書的話之前用過一些掃描文本的工具 App 做筆記，不過並不是很方便。而且這些筆記散落在各處，別說管理了，連回顧都難。所以一直蠻頭痛這個的，這才打算寫個 App 來解決自己讀書筆記難的各種痛點⋯目前我有個腳本可以自動把接入電腦的 Kindle 裡的筆記錄入 ElasticSearch，算能湊合用。我開源了其中的一部分， Kindle clipping 的 parser，有需要的朋友可以拿去玩：&lt;a href=&quot;https://clojars.org/kce-clj&quot;&gt;&lt;img src=&quot;https://img.shields.io/clojars/v/kce-clj.svg&quot; alt=&quot;Clojars Project&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;大概就先這樣，路過看到這篇的朋友你們有什麼好方法嗎？或者遇到過什麼問題？不妨分享一下，看看大家有沒有辦法一起解決 🤪&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;即 80/20 法則。&lt;a href=&quot;https://en.wikipedia.org/wiki/Pareto_principle&quot;&gt;wiki&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;work expands so as to fill the time available for its completion. &lt;a href=&quot;https://en.wikipedia.org/wiki/Parkinson's_law&quot;&gt;wiki&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;&lt;em&gt;Gödel, Escher, Bach&lt;/em&gt; (GEB). &lt;a href=&quot;https://en.wikipedia.org/wiki/Gödel,_Escher,_Bach&quot;&gt;wiki&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Conan</name></author><summary type="html">It is what you read when you don’t have to that determines what you will be when you can’t help it. — Oscar Wilde</summary></entry><entry><title type="html">我也看了老羅的發佈會</title><link href="https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/" rel="alternate" type="text/html" title="我也看了老羅的發佈會" /><published>2018-05-17T00:00:00-04:00</published><updated>2018-05-17T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf</id><content type="html" xml:base="https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/">&lt;p&gt;一個高中同學忽然給我留言，說老羅這次糗大了。跟我算不上熟，他大概以為混跡科技圈的人都在黑老羅，因為很多自媒體黑，以為我也會不看好老羅吧。&lt;/p&gt;
-
-&lt;p&gt;其實我挺喜歡老羅的，不算粉，但至少欣賞他的風格。他敢做敢言，最要命的是他的自嘲。所以不知不覺，雖然人在國外，也不用他們的產品，我竟每年會收看他的單口相聲。&lt;/p&gt;
-
-&lt;p&gt;去年 WWDC 的時候有推友表示不需要浪費時間看發佈會，完了之後看看新聞即可。我表態過我能看發佈會就一定會看，因為我不要別人咀嚼過的信息，我要有自己的判斷。所以我回道，我還沒看老羅的發佈會。之後，花了一晚上看了一遍。&lt;/p&gt;
-
-&lt;p&gt;講真的並沒有那麼糟，是可以看出來準備倉促。但當我看到很多人對他們提出的 TNT 有質疑和嘲笑時，我倒反而放心了許多。從歷史數據來看，大多數好想法在當時看來都是愚蠢可笑的。但好想法都有一個共性，就是從 first principle 推導，是合乎邏輯的。&lt;/p&gt;
-
-&lt;p&gt;Google Assistant，在語音識別技術已經非常成熟的今天，做到 context awareness 依然花了多年，事實上到底效果有多好我們還得測，畢竟是前兩天 Google IO 剛剛公佈的。Elon Musk 去年宣布啟動的人腦接口項目還很久遠。在這樣一個背景下，TNT 巧妙地繞過了很高很大的技術障礙。畢竟你想，他們沒有 Google 的技術積累，用巧勁是唯一的出路。&lt;/p&gt;
-
-&lt;p&gt;從 Siri 和 Amazon Echo 開始，各家大廠都爭相研發語音助手。但我們平心而論，這些語音助手們，沒有一個 killer app，事實上大多數都非常雞肋。那既然如今的 AI 輔助還沒有那麼聰明，人觸摸屏幕又那麼自然，那為什麼人不能向前邁一步來做一下引導呢？&lt;/p&gt;
-
-&lt;p&gt;想法是一方面，執行是另一方面。錘子手機已經做了六年了，十年是個檻。我不太擔心他們的執行力，但依然希望他們能做好。因為我希望看到中國也能有更多有匠人情懷的公司，和一些精心打磨過的產品。&lt;/p&gt;
-
-&lt;p&gt;And FYI,&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Haters are confused fans.   by @JackPaul&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Conan</name></author><summary type="html">一個高中同學忽然給我留言，說老羅這次糗大了。跟我算不上熟，他大概以為混跡科技圈的人都在黑老羅，因為很多自媒體黑，以為我也會不看好老羅吧。</summary></entry><entry><title type="html">Life 3.0 筆記，的一部分</title><link href="https://conanblog.me/blog/2018/05/16/life-3-0-notes/" rel="alternate" type="text/html" title="Life 3.0 筆記，的一部分" /><published>2018-05-16T00:00:00-04:00</published><updated>2018-05-16T00:00:00-04:00</updated><id>https://conanblog.me/blog/2018/05/16/life-3-0-notes</id><content type="html" xml:base="https://conanblog.me/blog/2018/05/16/life-3-0-notes/">&lt;p&gt;2017 年底，終於斷斷續續啃完了這本書——《 Life 3.0 》。我從中學到不少東西，覺得值得一讀。作者是 Max Tegmark，宇宙學家，現在是 MIT 的教授。同時他還跟其他人一起成立了兩個科研機構，一個是 Foundational Questions Institute，一個是 Future of Life Institute (FLI)。前者是為基礎物理學和宇宙學服務的，而後者則是為 AI 安全領域服務的。而之所以有這本書，還是因為後者的成功創立。我也是從 Elon Musk 的 twitter 上知道了這本書，Elon 曾資助了 FLI 1千萬美元。正是 Max 對未來人工智能的種種擔憂，他決定要為此做點什麼，才有了後來的這些故事。我在&lt;a href=&quot;/blog/2018/01/01/2017-2018/&quot;&gt;前一篇日誌&lt;/a&gt;裡提到過，我應當向 Max 學習。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;書的開篇就講了一個假想的科技公司 Omega 開發了一個名叫 Prometheus 的人工智能編程系統的故事，由此作者引出了英國數學家 Irving Good 在 1965 年關於 intelligence explosion 的討論：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Let an ultraintelligent machine be defined as a machine that can far surpass all the intellectual activities of any man however clever. Since the design of machines is one of these intellectual activities, an ultraintelligent machine could design even better machines; there would then unquestionably be an ‘intelligence explosion,’ and the intelligence of man would be left far behind. Thus the first ultraintelligent machine is the last invention that man need ever make, provided that the machine is docile enough to tell us how to keep it under control.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;簡言之，當一個超智機器被創造出來後，人類就不再需要其他發明，因為這個超智機器可以設計出比人類設計得更好的機器。而此 Prometheus 的命名意謂深刻，它將會像神話中描述的那樣，給人類帶來“火種”。&lt;/p&gt;
-
-&lt;p&gt;當然這個故事只是一個美好的願想。接著作者就開始進入正題了，第一章點題並澄清討論詞彙定義和範疇。基本上所有嚴肅的科學類讀物都是這個套路吧。作者闡明了對生命的定義，進而有了像 1.0、2.0、3.0 這樣的階段。就像寫 LISP 的人一樣，研究物理/數學的人非常喜歡抽象和昇華概念，從而更加接近問題的本質，Max 認為我們對生命的定義應該寬泛一點，他認為生命的本質一種能在保持自身的複雜度（即信息）的同時進行繁衍或複製的行程。 &lt;strong&gt;1.0，軟硬件都得靠演化；2.0，硬件靠演化，但軟件可以通過學習來設計，我們人類就處於這一階段；3.0，可想而知，軟硬件都能被設計&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;從物質到智能&quot;&gt;從物質到智能&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Hydrogen…, given enough time, turns into people. 
-– Edward Robert Harrison, 1995&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;一些簡單的物質是如何 &lt;em&gt;記憶&lt;/em&gt;、 &lt;em&gt;計算&lt;/em&gt; 甚至 &lt;em&gt;學習&lt;/em&gt;，進而產生智力的。雖然我是計算機科學專業畢業的，但講真的我在看這本書之前都一直有這些模糊的疑問，存儲記憶、計算和學習的本質到底又是什麼。看了這一章後我覺得茅塞頓開。&lt;/p&gt;
-
-&lt;h3 id=&quot;智力&quot;&gt;智力&lt;/h3&gt;
-
-&lt;p&gt;作者對智力的定義非常寬泛，這樣有助於我們理解智力：&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;intelligence = ability\ to\ accomplish\ complex\ goals&lt;/script&gt;
-
-&lt;p&gt;如今的人工智能傾向於狹窄領域的智能，而人類的卻很廣博。從 AI 到 AGI (Artificial General Intelligence) 還有很長的路。&lt;/p&gt;
-
-&lt;h3 id=&quot;記憶&quot;&gt;記憶&lt;/h3&gt;
-
-&lt;p&gt;記憶的本質是記錄某種狀態，所以只要某種物質能夠保持一些穩定狀態，就可以用來作為記憶體。沙盤、石板、紙張、電開關、RNA、大腦等等，這些都是可被用作記憶的東西。而 &lt;strong&gt;信息本身也是獨立於物質的&lt;/strong&gt;。值得一提的是人腦記憶的獲取方式有別於我們現在的計算機存儲設備，我們獲取記憶是根據「what」，而計算機的是根據「where」，即尋址。我們這種獲取記憶的方式是自動關聯的，有點像搜索引擎，我們想一個東西，相關聯的信息會自己冒出來。這種獲取記憶的方式其實並不僅僅只有人腦有，物理學家 John Hopfield 在他 1982 的一篇著名論文裡就展示了互聯的神經元也具有這種特性。作者說這種特性在任何多狀態的物理記憶體上都能重現，舉的例子是有兩個谷的平面，一個在 \(\sqrt{2}\) 的位置，而另一個在 \(\pi\) 的位置。這時如果放一個小球在 3 的位置，它會滾落到 \(\pi\) 的位置，於是自動關聯的獲取方式就湧現出來了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/35475776-27c759d0-0372-11e8-858d-c634e161706c.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;為此我還專門找來了&lt;a href=&quot;http://www.pnas.org/content/79/8/2554.full.pdf&quot; target=&quot;_blank&quot;&gt;那篇論文&lt;/a&gt;， &lt;strong&gt;其本質就是在存在多個局部極值的函數上，以輸入值查詢最接近的局部極值&lt;/strong&gt;。很多物理系統有這個特性，而互聯神經恰好也具備這種特性，具體的數學模型可見論文的等式 3 和 4。&lt;/p&gt;
-
-&lt;h3 id=&quot;計算&quot;&gt;計算&lt;/h3&gt;
-
-&lt;p&gt;這些理解起來很簡單，那計算呢？計算就是把某個信息或狀態轉化成另一個信息或狀態的過程。計算這種過程對物質的要求就是既不能太死板也不能太靈動，太死板了沒法產生狀態的改變，而太靈動了又沒法穩定狀態。作者提到 &lt;em&gt;计算素&lt;/em&gt; 这个概念，一种假想的可编程的物质材料，計算的最小單位，用以构建计算。在計算機裡就有符合這種條件的東西，比如 NAND 門。你可以用 NAND 構建一個正經計算機，而事實上 Noam Nisan 和 Shimon Schocken 就在&lt;a href=&quot;http://nand2tetris.org&quot; target=&quot;_blank&quot;&gt;一門公開課上教你怎麼做&lt;/a&gt;，或者你也可以用 NOR 門。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/35475754-85b50caa-0371-11e8-9b97-e72955fe6549.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;除了這些實例，Stephen Wolfram 和 Alan Turing 都曾提出不同的計算模型。所以另一個很重要的事實是，&lt;strong&gt;計算也是獨立於物質的&lt;/strong&gt;。因而我們也逐漸看到了 &lt;strong&gt;計算的本質，或計算和物質的關係：計算是物質在時空中排列的模式&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;h3 id=&quot;學習&quot;&gt;學習&lt;/h3&gt;
-
-&lt;p&gt;講完記憶和計算，就該講學習了。有了上面的理解，學習就變得直截了當了，學習就是我們重複地將某種信息輸入到可塑性記憶體裡，直到記住。比上說一個平面軟土，如果我們不斷在一些地方放置小鐵球，那塊地方就會凹進去，於是下次我們把小鐵球放在一個靠近小坑的地方，小球會因為重力滾落到曾經放了好多次小鐵球的位置，於是這個軟土平面就學會了這些位置。而類似的 John Hopfield 論文裡的互聯神經網也具備這種特性。而如今留下的機器學習其實原理就類似。只是用了更加簡單的一個模型，即非互聯神經網絡，而是單向分層互聯網絡。每個節點對輸入點加權平均，有時還加一些常量，最後再通過一個激活函數把自己的結果轉化後傳送給下一層的節點們。局部的計算是很簡單的，但是整個網絡缺呈現出了一種學習能力。而更神奇的是單層網計算 \(n\) 個數相乘需要 \(2^n\) 個節點，而如果是深網的話只需要 \(4n\) 個節點。所以可想而知我們的大腦是有多麼驚人的計算能力，神經元不光互聯，而且信息流不是單向的。人腦的機制要複雜得多，目前我們還只是一知半解。&lt;/p&gt;
-
-&lt;p&gt;經過上面三個部分的論述，我們知道了 &lt;strong&gt;記憶、計算和學習都是獨立於物質的，也就是說生物組織不是必要的&lt;/strong&gt;。想到這兒，那我們離 Life 3.0 還遠嗎？&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;接下來作者用三章討論了近期的挑戰，智能大爆炸以及其後果。基本上作者概述了方方面面的可能性。經過這三章的洗禮，作者的腦洞已經是填不上了，可能是數學、物理學家的職業習慣，在接下來的一章他開始討論生命的極限，進而談及人類的星際遷徙、星際關係等。這些討論中，都閃爍著這個時代思考者們的先進思想，在讀的時候你彷彿能看見精神矍鑠的長者眼睛裡睿智的光。但我並不打算花更多篇幅寫，這些都是開放性的討論，我還是想從知識性的角度去總結這本書。當然這幾章裡面也有很多 facts 可以說，但是離主旨還是遠了點。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;終極目的&quot;&gt;終極目的&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The mystery of human existence lies not in just staying alive , but in finding something to live for. 
-– Fyodor Dostoyevsky, The Brothers Karamazov&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;對目的的討論很重要，因為我們幾乎可以肯定，智能爆炸後，人類的境遇如何完全取決於人類和超智能生物的終極目的的匹配程度。如果相左，可想而知超智能生物會跟三體文明一樣“我消滅你，與你何干”。&lt;/p&gt;
-
-&lt;p&gt;說到目的性，&lt;strong&gt;所有的經典物理定律都表現出了目的性，大自然發生的每個事件基本都可歸納為最大化或最小化某個量。而從數學的角度來描述物理，要麼是預測未來，要麼是最大化某些東西。&lt;/strong&gt;此前我從沒有注意到這個規律，可能只是潛意識裡有痕跡，所以當讀到作者用白底黑字的話明明白白寫出來是，還是不禁拍案叫絕。那這個宇宙的終極目的是什麼？我們會自然而然地想到熱寂吧，想到這樣一個結局，就像作者說的，確實著實令人抑鬱。更令人沮喪和意外的是，我原以為生命的存在可以讓熵減小，但是作者分析其實宇宙產生生命有助於讓熵增大。不然你家為什麼會變亂，地球上的石油為什麼會被開採進而變成散落在各處的石油製品？而人類呢，最終會消失，但卻幫助了宇宙加快了熱寂過程。絕望之時，作者筆鋒一轉，但是我們還有萬有引力——讓這個宇宙不那麼無聊；而且作者的同事 Jeremy England 還有另一個好消息，就是物熱力學除了有熱寂這個傾向性，還有一個叫做 dissipation-driven adaption 的傾向性，是說粒子有對自身編排以最大化能量吸收的傾向。沒有太糟糕。所以大自然/物理學展現出了這種目的性，它是目的性的根源。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;粒子的這種自編排最大化吸收能量的傾向會衍生出另一種宏觀傾向性，即對自身的複製，在這種傾向性的影響下一段時間後，有一些物質的編排能很好地複製自身，我們稱這種類似的編排為生命。&lt;/strong&gt;生命的出現將物理定律世界簡單的逆熵目的性轉化成了複製和生育，然而逆熵的目標並沒有消失，生命本身就是達成逆熵的一種手段。讀到這兒我意識到熱寂的終點不會改變，逆熵、生命、自組織的物質都有生命期限，但我們的意識讓這個世界“變得”有趣美好。&lt;/p&gt;
-
-&lt;p&gt;生命的演化向著越來越複雜的方向發展，於是生命最早的自我複製的目的性就被一些有助益自我複製的簡單規則代替了，這些規則就是我們說的&lt;em&gt;感覺&lt;/em&gt;。在寫這篇文章的時候，我正好在讀《自私的基因》，基因便是那個自我複製體，而我們根據感覺是為了更快的反應速度。當基因將主控權交給大腦後，大部分時候大腦雖然會根據感覺完成複製的基因的使命，但是大腦也有違背基因賦予的使命的時候，比如我們使用節育技術。這個違背並不是我們選擇如此，而是設計使然，因為&lt;strong&gt;感覺才是我們身體的主人，而不是基因&lt;/strong&gt;。事實上 Robert Wright 的 &lt;em&gt;Why Buddhism is True&lt;/em&gt; 也是對這個觀點的佐證。於是我們離開了物理學，穿過了生物學，走進了心理學。&lt;/p&gt;
-
-&lt;h2 id=&quot;本不该有的结语&quot;&gt;本不该有的结语&lt;/h2&gt;
-
-&lt;p&gt;這稿子已經躺在我草稿箱裡快發霉了。書也看完很久了也還沒寫完，就先放這些吧。如果將來我又回來複習，或許會回來填坑。除此之外，如果你對目前我所講述的內容還感興趣的話，應該去看看這本書。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Done is better than good.
-  ― Elizabeth Gilbert, Big Magic: Creative Living Beyond Fear&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Conan</name></author><summary type="html">2017 年底，終於斷斷續續啃完了這本書——《 Life 3.0 》。我從中學到不少東西，覺得值得一讀。作者是 Max Tegmark，宇宙學家，現在是 MIT 的教授。同時他還跟其他人一起成立了兩個科研機構，一個是 Foundational Questions Institute，一個是 Future of Life Institute (FLI)。前者是為基礎物理學和宇宙學服務的，而後者則是為 AI 安全領域服務的。而之所以有這本書，還是因為後者的成功創立。我也是從 Elon Musk 的 twitter 上知道了這本書，Elon 曾資助了 FLI 1千萬美元。正是 Max 對未來人工智能的種種擔憂，他決定要為此做點什麼，才有了後來的這些故事。我在前一篇日誌裡提到過，我應當向 Max 學習。</summary></entry><entry><title type="html">2017 -&amp;gt; 2018</title><link href="https://conanblog.me/blog/2018/01/01/2017-2018/" rel="alternate" type="text/html" title="2017 -&gt; 2018" /><published>2018-01-01T00:00:00-05:00</published><updated>2018-01-01T00:00:00-05:00</updated><id>https://conanblog.me/blog/2018/01/01/2017-2018</id><content type="html" xml:base="https://conanblog.me/blog/2018/01/01/2017-2018/">&lt;p&gt;&lt;img src=&quot;/images/20151231/hpny.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;今年，2017，我的狀態有過波動。感覺做了很多無用功，但仔細想想也並非如此。&lt;/p&gt;
-
-&lt;h2 id=&quot;生活&quot;&gt;生活&lt;/h2&gt;
-
-&lt;p&gt;今年我們去了好幾個地方，年初去了 DC，看望辦辦的好友，我也順便散散心，到處逛逛。這趟旅行倒是有一點我一個人的時間。因為天太冷，我也就找了個碰頭方便的星巴克寫代碼，當然是寫自己的東西，不然跟上班有啥區別呢。不過還是 on call 了一會兒。倒並沒有因此不開心。畢竟是換了一個環境，有那麼幾個瞬間我覺得做自由職業者挺好的。至少不用回到我的坑，陪伴我的只有左邊整天嗡嗡的服務器機架。（我懷疑我的情緒不穩定是不是因為這噪音，我也甚至很擔心我很在意的聽力）&lt;/p&gt;
-
-&lt;p&gt;夏天我們去了路易斯安那，第一天就被淋成落湯雞，兩人相依趟著洪水走了好幾個小時才回到賓館。我們笑說著，也算是共患難過了。我很喜歡辦辦的一點就是她是清醒樂觀派，對，不是那種無腦樂觀派。我們去那裡是為了辦辦找了很久的 Cajun 菜，當然去了之後才了解到還有別的說法。知道了不少當地的地理歷史知識。總的來說應該算是一趟有意思的旅行。我們在大概一大半的時間就基本把能玩的都玩遍了，不過也好，留下一些時間休息。&lt;/p&gt;
-
-&lt;p&gt;秋天我們還去了三番，沒找到太多好吃的東西，不過倒是好好體會了一下自然風貌和人文氣息。我最鍾意的還是 Amoeba 音像店和 City Lights 書店。這個習慣可能從小就養成了，去得最多的地方就是書店和音像店。從並不富足的零花錢裡省出 1.27 元買口袋書，應該是從那時開始的。Strand 書店可以媲美 City Lights，不過還沒有在紐約看到像 Amoeba 收藏量這麼大的音像店。&lt;/p&gt;
-
-&lt;p&gt;我們的小家算是弄得差不多了。辦辦在裝飾/裝修家的理念上跟我的還是蠻一致的，我們也都很開放思維，即便有細微的分歧也都能商量出共識。具體細節就不多說了，不過有一個理念我覺得值得一提，我們都不喜歡電視，就像 Daft Punk 的曲子說的一樣 Television Rules the Nation，它只會把你的思考關掉，被動信息接收是一件很恐怖的事情。我們認為書和音樂才應該是主宰客廳的東西，所以我們家沒有電視，只有書櫃、黑膠和音響。&lt;/p&gt;
-
-&lt;h2 id=&quot;工作&quot;&gt;工作&lt;/h2&gt;
-
-&lt;p&gt;年初時其實狀態還可以，那時候永強還沒有離職。我們協力將公司的數據庫換了。那段時間學習/做了很多事情。他鐵了心要離開也是沒有辦法的事情，我也知道原委，我只能盡力挽留，但同時也盡可能能多多地把他積攢的經驗學過來。那段時間還是蠻充實的，其中有段時間因為太忙，都沒有去 Gym。可到了快年底的時候，由於雇主在身份問題配合上的拖拉，引發了我再次對自己不自由狀態的清醒意識，於是情緒很不穩定。好在後來跟辦辦說說後，被疏通了不少。年底漸漸又拉回了狀態。不過在此期間，該幹的活兒還是一如既往完成的。我想這是該有的職業素養。&lt;/p&gt;
-
-&lt;p&gt;從各方面講，我都不算是一個經驗老道的架構師。更何況在創業公司，所謂架構師就意味著你啥事都得做。而且就目前公司的情況看，每個人都要能獨當好幾面，不能掉鏈子。所以壓力還是挺大的。2018 要更多地學習。更關鍵的是要積極思考，不能被問題牽著鼻子走。當然有些東西是來自經驗的，沒有經驗就只能多讀書學習了。公司的創始人也是資源豐富，我也希望新的一年能多多和公司的同事和顧問們學習。當然最重要的一點，我會在文末說，因為這一點不僅僅侷限於工作方面。&lt;/p&gt;
-
-&lt;h2 id=&quot;學習&quot;&gt;學習&lt;/h2&gt;
-
-&lt;p&gt;今年學習的東西主要分三塊，除了編程相關的，還有音樂和讀書。&lt;/p&gt;
-
-&lt;h3 id=&quot;編程&quot;&gt;編程&lt;/h3&gt;
-
-&lt;p&gt;前半年有在做那個項目，用了 ClojureScript 和 Electron。寫起來還是不太習慣，畢竟這是我第一次用 FP 寫大項目，而且 Electron 的世界我也很陌生，往往一個問題要先去了解 Electron JS 版，然後再想 ClojureScript 的解決方案。不過這就是學習邊緣技術的代價吧，挺好。&lt;/p&gt;
-
-&lt;p&gt;年末的時候有個想法就是希望用用戶手機端做爬蟲，測了一下 iOS WebKit，可以訪問 DOM，也跟 JS 交互，感覺這條路還是可行的。至於我之前抱怨的 Cookie 問題，我總覺得是我代碼寫得有問題。所以打算真正做的時候再好好 debug。&lt;/p&gt;
-
-&lt;h3 id=&quot;書&quot;&gt;書&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/480759/34470814-ffa2a0a0-ef07-11e7-84eb-80ea728e8f11.png&quot; alt=&quot;2017books&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;今年讀的書不多，但感覺總體質量還是不錯的。上圖中我用黃框標出的書都是我心中的前三名，也是花了最長時間讀的書。留下了不少筆記和想法。&lt;/p&gt;
-
-&lt;p&gt;此外我想把訂閱的 WIRED 和 nautil.us 也算進來。在一個讀書群裡我看到一個很受啟發的觀點，不必在意讀的媒介，期刊也好書也好，我們是不是能用“能否引發思考“類似的問題來作為判定“讀書”的標準。&lt;/p&gt;
-
-&lt;h3 id=&quot;音樂&quot;&gt;音樂&lt;/h3&gt;
-
-&lt;p&gt;今年感覺最大的收穫就是意識到音樂的學習就像學習外語一樣，要聽要練，帶腦子的那種。即便現在的科技已經可以讓不會樂器的人也能做音樂，但是要寫出好的作品還是需要紮實的基礎。所以今年一方面慢慢學習（爵士）樂理，一方面在鋼琴上練習爵士音階。音樂製作方面，我在看一本關於鼓的書，節奏和韻律在流行樂裡非常重要。年末的時候我又重新訂閱了 Computer Music 和 Future Music 兩本雜誌，不求緊跟潮流，只希望能學到更多音樂編寫和製作上的技巧。&lt;/p&gt;
-
-&lt;h2 id=&quot;2018&quot;&gt;2018&lt;/h2&gt;
-
-&lt;p&gt;我要感謝兩個給我啟發的人，一個是辦辦，一個是 Life 3.0 的作者 Max Tegmark。從 2018 開始，我希望培養兩個習慣：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;記錄未知，並及時調研，花適當時間搞到適當明白的程度&lt;/li&gt;
-  &lt;li&gt;在仔細想過我如何做能夠改善狀況前，不再抱怨任何事情&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;辦辦有個習慣，她有個 ToDo List，記錄了各種她想要搞明白的事情。有空時她就會挑一個徹查，直到弄得差不多明白了。當然這個也是按照她自己的興趣愛好來記錄的。這個行為讓我很慚愧，我這才意識到我已經很久沒有這麼好奇心驅動了。這是一個警鐘。我不能再這樣下去了。&lt;/p&gt;
-
-&lt;p&gt;Max Tegmark 在 2014 年有個新年願望：&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;I was no longer allowed to complain about anything without putting some serious thought into what I could personally do about it&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;我覺得這是一個非常睿智的願望，是人成熟後才會意識到這價值的願望。而這一點就是我前文提到的“不僅僅侷限於工作”的重要一點。&lt;/p&gt;
-
-&lt;p&gt;另外，我想回一趟家，看望多年沒見的父母和長輩。&lt;/p&gt;</content><author><name>Conan</name></author><summary type="html"></summary></entry></feed>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Conan's Notes</title>
+    <description>Programming Language, Open Source, Design, Music, and everything in between.
+</description>
+    <link>https://conanblog.me/</link>
+    <atom:link href="https://conanblog.me/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 08 Mar 2021 23:47:08 -0500</pubDate>
+    <lastBuildDate>Mon, 08 Mar 2021 23:47:08 -0500</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
+    
+    
+      <item>
+        <title>「透明盒子計畫」網站設計時的一些考慮</title>
+        <pubDate>Mon, 08 Feb 2021 00:00:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2021/02/08/tldr-ink/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2021/02/08/tldr-ink/</guid>
+        
+        
+        <category>tech</category>
+        
+        <category>side-project</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>2020 ⇝ 2021</title>
+        <pubDate>Thu, 31 Dec 2020 00:00:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2020/12/31/2020-2021/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2020/12/31/2020-2021/</guid>
+        
+        
+        <category>life</category>
+        
+        <category>thought</category>
+        
+        <category>summary</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>一個月挑戰——作曲</title>
+        <pubDate>Sat, 18 Apr 2020 00:00:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2020/04/18/30-day-challenge-music/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2020/04/18/30-day-challenge-music/</guid>
+        
+        
+        <category>music</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>2010 ⇝ 2020</title>
+        <pubDate>Tue, 31 Dec 2019 00:00:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2019/12/31/2010-2020/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2019/12/31/2010-2020/</guid>
+        
+        
+        <category>life</category>
+        
+        <category>thought</category>
+        
+        <category>summary</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>寫給幫助測試 AutoTheme 的你們</title>
+        <pubDate>Fri, 25 Jan 2019 00:00:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/</guid>
+        
+        
+        <category>macOS</category>
+        
+        <category>side-project</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>2018 ⇝ 2019</title>
+        <pubDate>Tue, 01 Jan 2019 00:00:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2019/01/01/2018-2019/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2019/01/01/2018-2019/</guid>
+        
+        
+        <category>life</category>
+        
+        <category>thought</category>
+        
+        <category>summary</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>讀書</title>
+        <pubDate>Fri, 22 Jun 2018 00:00:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2018/06/22/reading_books/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2018/06/22/reading_books/</guid>
+        
+        
+        <category>book</category>
+        
+        <category>reading</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>我也看了老羅的發佈會</title>
+        <pubDate>Thu, 17 May 2018 00:00:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/</guid>
+        
+        
+        <category>tech</category>
+        
+        <category>news</category>
+        
+        <category>thought</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Life 3.0 筆記，的一部分</title>
+        <pubDate>Wed, 16 May 2018 00:00:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2018/05/16/life-3-0-notes/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2018/05/16/life-3-0-notes/</guid>
+        
+        
+        <category>book</category>
+        
+        <category>reading</category>
+        
+        <category>thought</category>
+        
+        <category>summary</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>2017 -&gt; 2018</title>
+        <pubDate>Mon, 01 Jan 2018 00:00:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2018/01/01/2017-2018/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2018/01/01/2017-2018/</guid>
+        
+        
+        <category>life</category>
+        
+        <category>thought</category>
+        
+        <category>summary</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Electron + ClojureScript + Reagent  + nREPL</title>
+        <pubDate>Sat, 10 Jun 2017 00:00:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/</guid>
+        
+        
+        <category>tech</category>
+        
+        <category>clojurescript</category>
+        
+        <category>clojure</category>
+        
+        <category>electron</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Serverless</title>
+        <pubDate>Wed, 31 May 2017 00:00:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2017/05/31/serverless/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2017/05/31/serverless/</guid>
+        
+        
+        <category>tech</category>
+        
+        <category>serverless</category>
+        
+        <category>architecture</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>最近在學 Swift</title>
+        <pubDate>Mon, 06 Feb 2017 00:26:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2017/02/06/learning_swift/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2017/02/06/learning_swift/</guid>
+        
+        
+        <category>tech</category>
+        
+        <category>coding</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>2016 -&gt; 2017</title>
+        <pubDate>Sat, 31 Dec 2016 21:50:38 -0500</pubDate>
+        <link>https://conanblog.me/blog/2016/12/31/2016-2017/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2016/12/31/2016-2017/</guid>
+        
+        
+        <category>life</category>
+        
+        <category>thought</category>
+        
+        <category>summary</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>音樂筆記 070116</title>
+        <pubDate>Fri, 08 Jul 2016 22:17:34 -0400</pubDate>
+        <link>https://conanblog.me/blog/2016/07/08/music-notes-070116/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2016/07/08/music-notes-070116/</guid>
+        
+        
+        <category>music</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>當音樂遇上開源</title>
+        <pubDate>Sun, 03 Apr 2016 00:03:27 -0400</pubDate>
+        <link>https://conanblog.me/blog/2016/04/03/music-meets-open-source/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2016/04/03/music-meets-open-source/</guid>
+        
+        
+        <category>music</category>
+        
+        <category>open-source</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Reagent 的 Figwheel REPL 方案</title>
+        <pubDate>Sun, 06 Mar 2016 11:42:03 -0500</pubDate>
+        <link>https://conanblog.me/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/</guid>
+        
+        
+        <category>clojure</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>談民科</title>
+        <pubDate>Sat, 20 Feb 2016 11:54:51 -0500</pubDate>
+        <link>https://conanblog.me/blog/2016/02/20/crank-and-autodidacticism/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2016/02/20/crank-and-autodidacticism/</guid>
+        
+        
+        <category>thought</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>一些關於假新聞和標題黨的想法</title>
+        <pubDate>Sun, 03 Jan 2016 11:03:16 -0500</pubDate>
+        <link>https://conanblog.me/blog/2016/01/03/we-media-fake-news/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2016/01/03/we-media-fake-news/</guid>
+        
+        
+        <category>thought</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>2015 -&gt; 2016</title>
+        <pubDate>Thu, 31 Dec 2015 13:53:55 -0500</pubDate>
+        <link>https://conanblog.me/blog/2015/12/31/2015-2016/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2015/12/31/2015-2016/</guid>
+        
+        
+        <category>life</category>
+        
+        <category>thought</category>
+        
+        <category>summary</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Ableton Live 9 Automation How-To</title>
+        <pubDate>Sun, 30 Aug 2015 15:53:32 -0400</pubDate>
+        <link>https://conanblog.me/blog/2015/08/30/ableton-live-9-automation-how-to/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2015/08/30/ableton-live-9-automation-how-to/</guid>
+        
+        
+        <category>music</category>
+        
+        <category>mooc</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Recording MIDI</title>
+        <pubDate>Sat, 22 Aug 2015 14:06:50 -0400</pubDate>
+        <link>https://conanblog.me/blog/2015/08/22/recording-midi/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2015/08/22/recording-midi/</guid>
+        
+        
+        <category>music</category>
+        
+        <category>mooc</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Visualizing Sound</title>
+        <pubDate>Sat, 15 Aug 2015 23:18:33 -0400</pubDate>
+        <link>https://conanblog.me/blog/2015/08/15/visualizing-sound/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2015/08/15/visualizing-sound/</guid>
+        
+        
+        <category>music</category>
+        
+        <category>mooc</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>不是格子人生</title>
+        <pubDate>Mon, 20 Jul 2015 12:08:48 -0400</pubDate>
+        <link>https://conanblog.me/blog/2015/07/20/to-do-or-not-to-do/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2015/07/20/to-do-or-not-to-do/</guid>
+        
+        
+        <category>life</category>
+        
+        <category>hack</category>
+        
+        <category>thought</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>格子人生</title>
+        <pubDate>Mon, 01 Sep 2014 00:18:33 -0400</pubDate>
+        <link>https://conanblog.me/blog/2014/09/01/900-months/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2014/09/01/900-months/</guid>
+        
+        
+        <category>life</category>
+        
+        <category>hack</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>蟒之惰性</title>
+        <pubDate>Mon, 10 Jun 2013 18:06:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2013/06/10/laziness-in-python/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2013/06/10/laziness-in-python/</guid>
+        
+        
+        <category>python</category>
+        
+        <category>tech</category>
+        
+        <category>coding</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>勤與懶</title>
+        <pubDate>Sun, 09 Jun 2013 22:02:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2013/06/09/just-in-case-vs-just-in-time/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2013/06/09/just-in-case-vs-just-in-time/</guid>
+        
+        
+        <category>thought</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>也談編程工具</title>
+        <pubDate>Sun, 21 Apr 2013 18:09:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2013/04/21/programming-tools/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2013/04/21/programming-tools/</guid>
+        
+        
+        <category>thought</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>道不明，術不精</title>
+        <pubDate>Sat, 20 Apr 2013 01:20:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2013/04/20/dao-bu-ming-shu-bu-jing/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2013/04/20/dao-bu-ming-shu-bu-jing/</guid>
+        
+        
+        <category>thought</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Raspberry Pi 下載盒</title>
+        <pubDate>Wed, 20 Feb 2013 17:03:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box/</guid>
+        
+        
+        <category>raspberry-pi</category>
+        
+        <category>linux</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Raspberry Pi + Arch + WiFi + Sound + Go 簡記</title>
+        <pubDate>Sun, 17 Feb 2013 17:11:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2013/02/17/play-with-raspberry-pi/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2013/02/17/play-with-raspberry-pi/</guid>
+        
+        
+        <category>raspberry-pi</category>
+        
+        <category>hack</category>
+        
+        <category>linux</category>
+        
+        <category>go</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Python 調優筆記·經驗主義調優</title>
+        <pubDate>Sun, 26 Aug 2012 14:56:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/</guid>
+        
+        
+        <category>python</category>
+        
+        <category>serial</category>
+        
+        <category>coding</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Python 調優筆記·理性主義調優</title>
+        <pubDate>Sun, 26 Aug 2012 00:10:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2012/08/26/python-optimization-3-disassembling/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/26/python-optimization-3-disassembling/</guid>
+        
+        
+        <category>python</category>
+        
+        <category>serial</category>
+        
+        <category>coding</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>用另一臺計算機寫 Octopress</title>
+        <pubDate>Thu, 23 Aug 2012 23:26:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2012/08/23/write-octopress-in-another-box/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/23/write-octopress-in-another-box/</guid>
+        
+        
+        <category>blog</category>
+        
+        <category>hack</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>用 Python 的「神奇方法」元編程</title>
+        <pubDate>Tue, 21 Aug 2012 22:41:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2012/08/21/python-metaprogramming-with-magic-methods/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/21/python-metaprogramming-with-magic-methods/</guid>
+        
+        
+        <category>python</category>
+        
+        <category>coding</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>簡單粗暴解決 Zsh Home 和 End 按鍵問題</title>
+        <pubDate>Mon, 20 Aug 2012 22:21:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2012/08/20/resolve-zsh-home-and-end-key-problem/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/20/resolve-zsh-home-and-end-key-problem/</guid>
+        
+        
+        <category>linux</category>
+        
+        <category>tech</category>
+        
+        <category>hack</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>關於編程，對我最有用的建議</title>
+        <pubDate>Mon, 20 Aug 2012 15:58:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2012/08/20/the-best-programming-advice-i-ever-got/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/20/the-best-programming-advice-i-ever-got/</guid>
+        
+        
+        <category>coding</category>
+        
+        <category>thought</category>
+        
+        <category>tech</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Python 調優筆記·代碼造影</title>
+        <pubDate>Wed, 25 Jul 2012 00:14:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2012/07/25/python-optimization-2-profiling/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2012/07/25/python-optimization-2-profiling/</guid>
+        
+        
+        <category>python</category>
+        
+        <category>tech</category>
+        
+        <category>serial</category>
+        
+        <category>coding</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>Python 調優筆記·序</title>
+        <pubDate>Mon, 23 Jul 2012 01:19:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2012/07/23/python-optimization-1/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2012/07/23/python-optimization-1/</guid>
+        
+        
+        <category>python</category>
+        
+        <category>tech</category>
+        
+        <category>serial</category>
+        
+        <category>coding</category>
+        
+      </item>
+      
+    
+    
+      <item>
+        <title>touch log</title>
+        <pubDate>Sat, 21 Jul 2012 02:05:00 -0400</pubDate>
+        <link>https://conanblog.me/blog/2012/07/21/touch-log/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2012/07/21/touch-log/</guid>
+        
+        
+        <category>routine</category>
+        
+      </item>
+      
+    
+  </channel>
+</rss>
