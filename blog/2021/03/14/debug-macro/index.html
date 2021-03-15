@@ -102,9 +102,9 @@
 <p>Debug macro 首先還是得從語言的元編程機制開始。和不少 Lisp 編譯過程類似，Elixir 編譯過程大致是這樣的：</p>
 
 <ol>
-  <li>源碼首先被初步變異成語法樹 AST_1</li>
-  <li>AST_1 被進一步擴展，此時 macro 會被調用，進而生產最終的 AST</li>
-  <li>最後將 AST 編譯成字節碼</li>
+  <li>源碼首先被初步編譯成語法樹 AST_1</li>
+  <li>AST_1 被進一步擴展，此時 macro 會被調用，進而生成最終的 AST</li>
+  <li>最後，將最終的 AST 編譯成字節碼</li>
 </ol>
 
 <p>也就是說 Elixir 的 macro 發生在編譯時、而非運行時<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>。</p>
@@ -112,7 +112,7 @@
 <p>知道了 macro 的編譯原理，就可以寫一個小工具幫助我們 debug 了：</p>
 
 <div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">DebugMacro</span> <span class="k">do</span>
-  <span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>                <span class="c1"># `use`時被自動調用，以注入`final_code/1`</span>
+  <span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>  <span class="c1"># `use`時被調用，以將`final_code/1`注入目標 module</span>
     <span class="kn">quote</span> <span class="k">do</span>
       <span class="k">defmacro</span> <span class="n">final_code</span><span class="p">(</span><span class="n">ast</span><span class="p">)</span> <span class="k">do</span>
         <span class="n">ast</span>
@@ -183,7 +183,7 @@
 </code></pre>
 </div>
 
-<p>我們假設這個例子沒那麼容易一眼看出問題，這個時候就可以請出剛剛的工具了，先加入工具：</p>
+<p>我們假設這個例子沒那麼容易一眼看出問題🙃，這個時候就可以請出剛剛的工具了，先加入工具：</p>
 
 <div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
   <span class="kn">use</span> <span class="no">DebugMacro</span> <span class="c1"># &lt;- 加入這一行</span>
@@ -206,19 +206,19 @@
 
 <p>在 iex 裡我們就可以這樣查看最終生成的代碼了：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>iex(14)&gt; 1 in 0..9 |&gt; Example.exam |&gt; Example.final_code
-AST_1: ...
-FINAL AST: ...
-(
-  result = ast
-  Example.print("1 in 0..9", result)
-  result
-)
-:ok
+<div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="p">(</span><span class="m">14</span><span class="p">)</span><span class="o">&gt;</span> <span class="m">1</span> <span class="ow">in</span> <span class="m">0</span><span class="o">..</span><span class="m">9</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">final_code</span>
+<span class="ss">AST_1:</span> <span class="o">...</span>
+<span class="no">FINAL</span> <span class="ss">AST:</span> <span class="o">...</span>
+<span class="p">(</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">ast</span>
+  <span class="no">Example</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sd">"</span><span class="s2">1 in 0..9"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+  <span class="n">result</span>
+<span class="p">)</span>
+<span class="ss">:ok</span>
 </code></pre>
 </div>
 
-<p>為了減少雜訊，我將<code class="highlighter-rouge">AST_1</code>和<code class="highlighter-rouge">FINAL AST</code>都審略了，我們更關心的還是最終代碼的部分。問題現在清晰多了，因為我們期盼的生成代碼應該是：</p>
+<p>為了減少雜訊，我將<code class="highlighter-rouge">AST_1</code>和<code class="highlighter-rouge">FINAL AST</code>都省略了，我們更關心的還是最終代碼的部分。問題現在清晰多了，因為我們期盼的生成代碼應該是：</p>
 
 <div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="p">(</span>
   <span class="n">result</span> <span class="o">=</span> <span class="m">1</span> <span class="ow">in</span> <span class="m">0</span><span class="o">..</span><span class="m">9</span>
@@ -249,7 +249,7 @@ FINAL AST: ...
 
 <h2 id="結語">結語</h2>
 
-<p>這可能是我探索 Elixir 元編程系列的開始——很顯然我還有很多東西沒有探知，比如腳註2。再比如今天本來想實現一個 <code class="highlighter-rouge">**</code> 運算 macro 來作為案例的，很湊巧地發現無法定義，於是又發現原來還有個叫“functional pattern matching”的概念。慢慢來吧，很有趣不是嗎？</p>
+<p>這可能是我探索 Elixir 元編程系列博客的開始——很顯然我還有很多東西沒有探知，比如腳註2提到的問題。再比如今天本來想實現一個 <code class="highlighter-rouge">**</code> 乘方運算 macro 來作為案例的，很湊巧地發現<a href="https://stackoverflow.com/questions/30007655/elixir-macro-power-function">無法定義</a>，這才發現原來還有個叫“functional pattern matching”的概念。慢慢來吧，很有趣不是嗎？</p>
 
 <div class="footnotes">
   <ol>
