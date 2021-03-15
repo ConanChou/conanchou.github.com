@@ -6,9 +6,26 @@
 </description>
     <link>https://conanblog.me/</link>
     <atom:link href="https://conanblog.me/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 08 Mar 2021 23:47:08 -0500</pubDate>
-    <lastBuildDate>Mon, 08 Mar 2021 23:47:08 -0500</lastBuildDate>
+    <pubDate>Sun, 14 Mar 2021 21:51:15 -0400</pubDate>
+    <lastBuildDate>Sun, 14 Mar 2021 21:51:15 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+    
+      <item>
+        <title>如何驗證 Elixir macro 是否書寫正確</title>
+        <pubDate>Sun, 14 Mar 2021 00:00:00 -0500</pubDate>
+        <link>https://conanblog.me/blog/2021/03/14/debug-macro/</link>
+        <guid isPermaLink="true">https://conanblog.me/blog/2021/03/14/debug-macro/</guid>
+        
+        
+        <category>tech</category>
+        
+        <category>coding</category>
+        
+        <category>elixir</category>
+        
+      </item>
+      
     
     
       <item>
