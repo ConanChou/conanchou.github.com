@@ -46,7 +46,7 @@
     display: none;
   }
 
-  .page-link {
+  .page-link, .page-link-ext {
     color: $text-color;
     line-height: $base-line-height;
 
@@ -57,7 +57,7 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    .page-link {
+    .page-link, .page-link-ext {
       color: $text-color-dark;
     }
   }
@@ -96,7 +96,7 @@
       padding-right: 0.5em;
     }
 
-    .page-link {
+    .page-link, .page-link-ext {
       display: block;
       padding: 5px 10px;
 
@@ -389,6 +389,10 @@
     line-height: 1em;
   }
 
+  .highlight {
+    line-height: 1.2em;
+  }
+
   a {
     color: $text-color;
     text-decoration: underline;
@@ -531,6 +535,12 @@ table {
 
   p {
     margin-bottom: 0.3em;
+    vertical-align: baseline;
+  }
+
+  .reversefootnote {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: $base-font-size * 1.1;
   }
 }
 

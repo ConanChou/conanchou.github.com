@@ -21,6 +21,7 @@
   <meta name="twitter:image" content="{{ site.url }}/assets/logo@3x.png" />
   <meta property="og:image" content="{{ site.url }}/assets/logo@3x.png" />
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <base target="_blank">
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
