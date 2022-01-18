@@ -13,7 +13,7 @@ order: 1
 業餘時間我喜歡[看書](https://www.goodreads.com/user/show/18814676-conan)，試著做一些[音樂](https://soundcloud.com/conanchou)，或者拍拍[照片](https://www.instagram.com/conanchou/)。當然也會搗鼓[代碼](https://github.com/ConanChou)。
 
 我對大部分科技、視覺藝術、音樂和書相關的話題感興趣，喜歡跟志同道合的朋友交流。
-我會在推特潛水，歡迎來找我（[@ConanChou](http://twitter.com/conanchou)）。喔對了，我把博客的 disqus 留言系統關掉了，因為我覺得醜⋯⋯所以有什麼想留言的也可以在推上跟我說，或者跟我[小窗](https://keybase.io/conanchou)。
+我會在推特潛水，歡迎來找我（[@ConanChou](http://twitter.com/conanchou)）。喔對了，我把博客的 disqus 留言系統關掉了，因為我覺得醜，換成了一套自己 hack 的方案⋯⋯所以有什麼想留言的也可以在推上跟我說，或者跟我[小窗](https://keybase.io/conanchou)。
 
 
 ## 關於本站
