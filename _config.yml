@@ -33,9 +33,10 @@ sass:
 # Build settings
 markdown: kramdown
 theme: minima
-gems:
+plugins:
   - jekyll-feed
   - jekyll-assets
+  - kramdown-parser-gfm
 exclude:
   - Gemfile
   - Gemfile.lock
