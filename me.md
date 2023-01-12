@@ -7,14 +7,11 @@ order: 1
 
 
 
-我是 Conan，現擔任創業公司 NimbleDroid 的架構師，常居紐約。
-在加入這次冒險之前，我曾創業過數次，是 GitCafe 和 Artlans 的 Partner。
+我是 Conan，喜歡看書、聽/做音樂、攝影和寫代碼。對很多東西好奇，努力有生之年能學習和了解[更多的領域](https://cbp.tldr.ink/#/notes/lifetime.html){:target="_blank"}。創業過數次，很幸運賣了其中兩個。
 
-業餘時間我喜歡[看書](https://www.goodreads.com/user/show/18814676-conan)，試著做一些[音樂](https://soundcloud.com/conanchou)，或者拍拍[照片](https://www.instagram.com/conanchou/)。當然也會搗鼓[代碼](https://github.com/ConanChou)。
-
-我對大部分科技、視覺藝術、音樂和書相關的話題感興趣，喜歡跟志同道合的朋友交流。
-我會在推特潛水，歡迎來找我（[@ConanChou](http://twitter.com/conanchou)）。喔對了，我把博客的 disqus 留言系統關掉了，因為我覺得醜，換成了一套自己 hack 的方案⋯⋯所以有什麼想留言的也可以在推上跟我說，或者跟我[小窗](https://keybase.io/conanchou)。
-
+## 鏈接：
+- [Mastodon](https://qoto.org/@conan){:target="_blank"}
+- [Twitter](https://twitter.com/ConanChou){:target="_blank"}
 
 ## 關於本站
 
