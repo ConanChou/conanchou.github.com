@@ -42,19 +42,6 @@
   <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
   <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
   
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-33556525-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-  
-
-  
 </head>
   <div id="wx_pic" style="margin:0 auto;display:none;">
     <img src="/assets/logo@3x.png" />
@@ -110,7 +97,7 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>不少現代編程語言裡都有 REPL，我們用它來快速驗證想法。普通代碼的驗證過程很簡單——輸入 REPL，回車、看結果。但如果是元編程呢？雖然我們還是可以輸入後檢查最終結果，但如果出錯了要想找到 macro 哪個地方有問題，就沒那麼容易了——或者說沒那麼直接，畢竟最後一層代碼是用代碼生成的。我時常在腦中推演代碼時弄不清自己是在 macro 層還是最終層，尤其有多層 <code class="highlighter-rouge">quote</code> 的時候。如果我能看到最終生成的代碼，或許就更容易推演了。</p>
+    <p>不少現代編程語言裡都有 REPL，我們用它來快速驗證想法。普通代碼的驗證過程很簡單——輸入 REPL，回車、看結果。但如果是元編程呢？雖然我們還是可以輸入後檢查最終結果，但如果出錯了要想找到 macro 哪個地方有問題，就沒那麼容易了——或者說沒那麼直接，畢竟最後一層代碼是用代碼生成的。我時常在腦中推演代碼時弄不清自己是在 macro 層還是最終層，尤其有多層 <code class="language-plaintext highlighter-rouge">quote</code> 的時候。如果我能看到最終生成的代碼，或許就更容易推演了。</p>
 
 <p>Debug macro 首先還是得從語言的元編程機制開始。和不少 Lisp 編譯過程類似，Elixir 編譯過程大致是這樣的：</p>
 
@@ -120,55 +107,53 @@
   <li>最後，將最終的 AST 編譯成字節碼</li>
 </ol>
 
-<p>也就是說 Elixir 的 macro 發生在編譯時、而非運行時<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>。</p>
+<p>也就是說 Elixir 的 macro 發生在編譯時、而非運行時<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>。</p>
 
 <p>知道了 macro 的編譯原理，就可以寫一個小工具幫助我們 debug 了：</p>
 
-<div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">DebugMacro</span> <span class="k">do</span>
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">DebugMacro</span> <span class="k">do</span>
   <span class="k">defmacro</span> <span class="n">__using__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">do</span>  <span class="c1"># `use`時被調用，以將`final_code/1`注入目標 module</span>
     <span class="kn">quote</span> <span class="k">do</span>
       <span class="k">defmacro</span> <span class="n">final_code</span><span class="p">(</span><span class="n">ast</span><span class="p">)</span> <span class="k">do</span>
         <span class="n">ast</span>
-        <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="ss">label:</span> <span class="sd">"</span><span class="s2">AST_1"</span><span class="p">)</span>     <span class="c1"># 打印 AST_1</span>
+        <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="ss">label:</span> <span class="s2">"AST_1"</span><span class="p">)</span>     <span class="c1"># 打印 AST_1</span>
         <span class="o">|&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">__ENV__</span><span class="p">)</span>          <span class="c1"># 對 AST_1 做擴展</span>
-        <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="ss">label:</span> <span class="sd">"</span><span class="s2">FINAL AST"</span><span class="p">)</span> <span class="c1"># 打印最終版 AST</span>
+        <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">inspect</span><span class="p">(</span><span class="ss">label:</span> <span class="s2">"FINAL AST"</span><span class="p">)</span> <span class="c1"># 打印最終版 AST</span>
         <span class="o">|&gt;</span> <span class="no">Macro</span><span class="o">.</span><span class="n">to_string</span>                <span class="c1"># 將最終版 AST 轉化成字符串</span>
         <span class="o">|&gt;</span> <span class="no">IO</span><span class="o">.</span><span class="n">puts</span>                        <span class="c1"># 打印轉譯宏後的最終代碼</span>
       <span class="k">end</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>我們可以用它來查看代碼的最終形態。用法是這樣的：在需要調試 macro 的 module 裡加入<code class="highlighter-rouge">use DebugMacro</code><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>，接著在 iex 裡就可以使用注入的<code class="highlighter-rouge">final_code/1</code>了。</p>
+<p>我們可以用它來查看代碼的最終形態。用法是這樣的：在需要調試 macro 的 module 裡加入<code class="language-plaintext highlighter-rouge">use DebugMacro</code><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>，接著在 iex 裡就可以使用注入的<code class="language-plaintext highlighter-rouge">final_code/1</code>了。</p>
 
 <p>有幾件事我認為有必要紀錄：</p>
 <ul>
-  <li>被傳進<code class="highlighter-rouge">defmacro/2</code>的表達式會被自動<code class="highlighter-rouge">quote</code></li>
-  <li><code class="highlighter-rouge">defmacro/2</code>返回值會被<code class="highlighter-rouge">unquote</code>，即被執行</li>
-  <li>如果想讓<code class="highlighter-rouge">defmacro/2</code>返回一段代碼，你得返回這段代碼的 AST，也就是<code class="highlighter-rouge">quote</code>版</li>
+  <li>被傳進<code class="language-plaintext highlighter-rouge">defmacro/2</code>的表達式會被自動<code class="language-plaintext highlighter-rouge">quote</code></li>
+  <li><code class="language-plaintext highlighter-rouge">defmacro/2</code>返回值會被<code class="language-plaintext highlighter-rouge">unquote</code>，即被執行</li>
+  <li>如果想讓<code class="language-plaintext highlighter-rouge">defmacro/2</code>返回一段代碼，你得返回這段代碼的 AST，也就是<code class="language-plaintext highlighter-rouge">quote</code>版</li>
 </ul>
 
 <h2 id="使用案例">使用案例</h2>
 
-<p>假設我們正在做一個類似於<code class="highlighter-rouge">IO.inspect/2</code>的 macro，意圖是打印出輸入語句以及它的執行結果，並返回執行結果（以便後續程序使用），我們期盼這樣使用它：</p>
+<p>假設我們正在做一個類似於<code class="language-plaintext highlighter-rouge">IO.inspect/2</code>的 macro，意圖是打印出輸入語句以及它的執行結果，並返回執行結果（以便後續程序使用），我們期盼這樣使用它：</p>
 
-<div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="p">(</span><span class="m">8</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span><span class="p">(</span><span class="m">1</span><span class="o">+</span><span class="m">2</span><span class="o">+</span><span class="m">5</span><span class="p">)</span>
-<span class="m">1</span> <span class="o">+</span> <span class="m">2</span> <span class="o">+</span> <span class="m">5</span> <span class="o">=</span> <span class="m">8</span>
-<span class="m">8</span>
-<span class="n">iex</span><span class="p">(</span><span class="m">9</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span><span class="p">(</span><span class="m">1</span> <span class="ow">in</span> <span class="m">0</span><span class="o">..</span><span class="m">9</span><span class="p">)</span>
-<span class="m">1</span> <span class="ow">in</span> <span class="m">0</span><span class="o">..</span><span class="m">9</span> <span class="o">=</span> <span class="no">true</span>
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">iex</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
+<span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="mi">8</span>
+<span class="n">iex</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="o">&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span><span class="p">(</span><span class="mi">1</span> <span class="ow">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">9</span><span class="p">)</span>
+<span class="mi">1</span> <span class="ow">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">9</span> <span class="o">=</span> <span class="no">true</span>
 <span class="no">true</span>
-<span class="n">iex</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="o">&gt;</span> <span class="m">9</span> <span class="ow">in</span> <span class="m">0</span><span class="o">..</span><span class="m">9</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span>
-<span class="m">9</span> <span class="ow">in</span> <span class="m">0</span><span class="o">..</span><span class="m">9</span> <span class="o">=</span> <span class="no">true</span>
+<span class="n">iex</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">9</span> <span class="ow">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">9</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span>
+<span class="mi">9</span> <span class="ow">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">9</span> <span class="o">=</span> <span class="no">true</span>
 <span class="no">true</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>現在假設我們一開始寫了如下代碼：</p>
 
-<div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
   <span class="k">defmacro</span> <span class="n">exam</span><span class="p">(</span><span class="n">ast</span><span class="p">)</span> <span class="k">do</span>
     <span class="n">ast_str</span> <span class="o">=</span> <span class="no">Macro</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">ast</span><span class="p">)</span>
     <span class="kn">quote</span> <span class="k">do</span>
@@ -179,26 +164,24 @@
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="n">print</span><span class="p">(</span><span class="n">ast_str</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="k">do</span>
-    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="si">#{</span><span class="n">ast_str</span><span class="si">}</span><span class="s2"> = </span><span class="si">#{</span><span class="n">inspect</span> <span class="n">result</span><span class="si">}</span><span class="s2">"</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">ast_str</span><span class="si">}</span><span class="s2"> = </span><span class="si">#{</span><span class="n">inspect</span> <span class="n">result</span><span class="si">}</span><span class="s2">"</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>運行時會出現：</p>
 
-<div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="p">(</span><span class="m">14</span><span class="p">)</span><span class="o">&gt;</span> <span class="m">1</span> <span class="ow">in</span> <span class="m">0</span><span class="o">..</span><span class="m">9</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span>
-<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="ss">iex:</span><span class="m">14</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">function</span> <span class="n">ast</span><span class="o">/</span><span class="m">0</span>
-    <span class="p">(</span><span class="n">macro_checker</span> <span class="m">0.1</span><span class="o">.</span><span class="m">0</span><span class="p">)</span> <span class="n">expanding</span> <span class="ss">macro:</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span><span class="o">/</span><span class="m">1</span>
-    <span class="ss">iex:</span><span class="m">14</span><span class="p">:</span> <span class="p">(</span><span class="n">file</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">elixir</span> <span class="m">1.11</span><span class="o">.</span><span class="m">3</span><span class="p">)</span> <span class="n">expanding</span> <span class="ss">macro:</span> <span class="no">Kernel</span><span class="o">.|&gt;/</span><span class="m">2</span>
-    <span class="ss">iex:</span><span class="m">14</span><span class="p">:</span> <span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</code></pre>
-</div>
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">iex</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">9</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span>
+<span class="o">**</span> <span class="p">(</span><span class="no">CompileError</span><span class="p">)</span> <span class="ss">iex:</span><span class="mi">14</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">function</span> <span class="n">ast</span><span class="o">/</span><span class="mi">0</span>
+    <span class="p">(</span><span class="n">macro_checker</span> <span class="mf">0.1</span><span class="o">.</span><span class="mi">0</span><span class="p">)</span> <span class="n">expanding</span> <span class="ss">macro:</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span><span class="o">/</span><span class="mi">1</span>
+    <span class="ss">iex:</span><span class="mi">14</span><span class="p">:</span> <span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">elixir</span> <span class="mf">1.11</span><span class="o">.</span><span class="mi">3</span><span class="p">)</span> <span class="n">expanding</span> <span class="ss">macro:</span> <span class="no">Kernel</span><span class="o">.|&gt;/</span><span class="mi">2</span>
+    <span class="ss">iex:</span><span class="mi">14</span><span class="p">:</span> <span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>我們假設這個例子沒那麼容易一眼看出問題🙃，這個時候就可以請出剛剛的工具了，先加入工具：</p>
 
-<div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
   <span class="kn">use</span> <span class="no">DebugMacro</span> <span class="c1"># &lt;- 加入這一行</span>
 
   <span class="k">defmacro</span> <span class="n">exam</span><span class="p">(</span><span class="n">ast</span><span class="p">)</span> <span class="k">do</span>
@@ -211,39 +194,36 @@
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="n">print</span><span class="p">(</span><span class="n">ast_str</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="k">do</span>
-    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="si">#{</span><span class="n">ast_str</span><span class="si">}</span><span class="s2"> = </span><span class="si">#{</span><span class="n">inspect</span> <span class="n">result</span><span class="si">}</span><span class="s2">"</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">ast_str</span><span class="si">}</span><span class="s2"> = </span><span class="si">#{</span><span class="n">inspect</span> <span class="n">result</span><span class="si">}</span><span class="s2">"</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>在 iex 裡我們就可以這樣查看最終生成的代碼了：</p>
 
-<div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="n">iex</span><span class="p">(</span><span class="m">14</span><span class="p">)</span><span class="o">&gt;</span> <span class="m">1</span> <span class="ow">in</span> <span class="m">0</span><span class="o">..</span><span class="m">9</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">final_code</span>
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">iex</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">9</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">exam</span> <span class="o">|&gt;</span> <span class="no">Example</span><span class="o">.</span><span class="n">final_code</span>
 <span class="ss">AST_1:</span> <span class="o">...</span>
 <span class="no">FINAL</span> <span class="ss">AST:</span> <span class="o">...</span>
 <span class="p">(</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">ast</span>
-  <span class="no">Example</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sd">"</span><span class="s2">1 in 0..9"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+  <span class="no">Example</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">"1 in 0..9"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
   <span class="n">result</span>
 <span class="p">)</span>
 <span class="ss">:ok</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>為了減少雜訊，我將<code class="highlighter-rouge">AST_1</code>和<code class="highlighter-rouge">FINAL AST</code>都省略了，我們更關心的還是最終代碼的部分。問題現在清晰多了，因為我們期盼的生成代碼應該是：</p>
+<p>為了減少雜訊，我將<code class="language-plaintext highlighter-rouge">AST_1</code>和<code class="language-plaintext highlighter-rouge">FINAL AST</code>都省略了，我們更關心的還是最終代碼的部分。問題現在清晰多了，因為我們期盼的生成代碼應該是：</p>
 
-<div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="p">(</span>
-  <span class="n">result</span> <span class="o">=</span> <span class="m">1</span> <span class="ow">in</span> <span class="m">0</span><span class="o">..</span><span class="m">9</span>
-  <span class="no">Example</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sd">"</span><span class="s2">1 in 0..9"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="ow">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">9</span>
+  <span class="no">Example</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">"1 in 0..9"</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
   <span class="n">result</span>
 <span class="p">)</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>所以正確的代碼是：</p>
 
-<div class="language-elixir highlighter-rouge"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
+<div class="language-elixir highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">defmodule</span> <span class="no">Example</span> <span class="k">do</span>
   <span class="k">defmacro</span> <span class="n">exam</span><span class="p">(</span><span class="n">ast</span><span class="p">)</span> <span class="k">do</span>
     <span class="n">ast_str</span> <span class="o">=</span> <span class="no">Macro</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">ast</span><span class="p">)</span>
     <span class="kn">quote</span> <span class="k">do</span>
@@ -254,23 +234,22 @@
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="n">print</span><span class="p">(</span><span class="n">ast_str</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span> <span class="k">do</span>
-    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="sd">"</span><span class="si">#{</span><span class="n">ast_str</span><span class="si">}</span><span class="s2"> = </span><span class="si">#{</span><span class="n">inspect</span> <span class="n">result</span><span class="si">}</span><span class="s2">"</span>
+    <span class="no">IO</span><span class="o">.</span><span class="n">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">ast_str</span><span class="si">}</span><span class="s2"> = </span><span class="si">#{</span><span class="n">inspect</span> <span class="n">result</span><span class="si">}</span><span class="s2">"</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="結語">結語</h2>
 
-<p>這可能是我探索 Elixir 元編程系列博客的開始——很顯然我還有很多東西沒有探知，比如腳註2提到的問題。再比如今天本來想實現一個 <code class="highlighter-rouge">**</code> 乘方運算 macro 來作為案例的，很湊巧地發現<a href="https://stackoverflow.com/questions/30007655/elixir-macro-power-function">無法定義</a>，這才發現原來還有個叫“functional pattern matching”的概念。慢慢來吧，很有趣不是嗎？</p>
+<p>這可能是我探索 Elixir 元編程系列博客的開始——很顯然我還有很多東西沒有探知，比如腳註2提到的問題。再比如今天本來想實現一個 <code class="language-plaintext highlighter-rouge">**</code> 乘方運算 macro 來作為案例的，很湊巧地發現<a href="https://stackoverflow.com/questions/30007655/elixir-macro-power-function">無法定義</a>，這才發現原來還有個叫“functional pattern matching”的概念。慢慢來吧，很有趣不是嗎？</p>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>這使編碼人員相對更容易推演代碼，也使得像 dialyzer 這樣的靜態分析工具能正常工作。運行時的性能當然也不會因為元編程有任何折損，畢竟代碼在進入上面第三步的時候就已經是最終形態了。 <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>這使編碼人員相對更容易推演代碼，也使得像 dialyzer 這樣的靜態分析工具能正常工作。運行時的性能當然也不會因為元編程有任何折損，畢竟代碼在進入上面第三步的時候就已經是最終形態了。 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>我本想做無需有代碼改動、直接呼叫的版本，可是<code class="highlighter-rouge">final_code/1</code>是一個針對 macro 的工具，就必須先<code class="highlighter-rouge">require</code>。我目前還不知道如何在多層<code class="highlighter-rouge">quote</code>下保持初始 AST，所以我想與其在<code class="highlighter-rouge">final_code/1</code>裡動態加載其他含有 macro 的 module，還不如把這點代碼注入到需要的 module 裡。不過如果你知道怎麼實現第一種，請一定告訴我。 <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>我本想做無需有代碼改動、直接呼叫的版本，可是<code class="language-plaintext highlighter-rouge">final_code/1</code>是一個針對 macro 的工具，就必須先<code class="language-plaintext highlighter-rouge">require</code>。我目前還不知道如何在多層<code class="language-plaintext highlighter-rouge">quote</code>下保持初始 AST，所以我想與其在<code class="language-plaintext highlighter-rouge">final_code/1</code>裡動態加載其他含有 macro 的 module，還不如把這點代碼注入到需要的 module 裡。不過如果你知道怎麼實現第一種，請一定告訴我。 <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -312,6 +291,10 @@
 </div>
 
 
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
 
       </div>
     </main>
@@ -346,7 +329,7 @@
       </div> -->
 
       <div class="footer-col footer-col-2">
-        <p>Programming Language, Open Source, Design, Music, and everything in between.
+        <p>Programming, Design, Music, and everything in between.
 </p>
       </div>
     </div>
@@ -356,18 +339,12 @@
   <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
 </footer>
 
-<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_s2t-376676e21aed86333cd20b4168774d379cc2a96c8f13548c66deeb4bd7f95fed.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_t2s-b96ecb25a8af193cd4d12b34f5acdae7fc0cfd4c3532eadbce7534e1ced33f64.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_ps2t-b13b15cb0b005254b3f1a4530771725c18767d2434da6f351c504edfebc1dd55.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
-<script type="text/javascript" src="/assets/main-8b2e32e9df6089a8735b34396b525556cce992c71f1e98ff62443592276a807d.js"></script>
-<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script language="JavaScript" src="/javascripts/main.js"></script>
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 

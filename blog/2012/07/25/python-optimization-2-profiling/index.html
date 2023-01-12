@@ -42,19 +42,6 @@
   <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
   <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
   
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-33556525-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-  
-
-  
 </head>
   <div id="wx_pic" style="margin:0 auto;display:none;">
     <img src="/assets/logo@3x.png" />
@@ -112,13 +99,12 @@
   <div class="post-content" itemprop="articleBody">
     <p>在序中，我提到了熱門語言的運行速度比較，比較效率的前提是 benchmark 程序的質量必須相當。這也就是說，優化運行速度、比別人的跑得快，前提是你的代碼也足夠好。足夠好自然是沒有個標準，不過我認爲，效率高的代碼必須是將瓶頸消除化，或者說是將瓶頸代碼拉得越快越好。經驗再老道的程序員也有可能沒法看出代碼瓶頸的時候。這個時候我們就需要利用一些工具來幫助我們檢查代碼，看看每個部分的運行時長，這便是 Profiling，我用醫學詞彙來說便是「代碼造影」。<!-- more --></p>
 
-<p>Python 是自帶造影工具的，從 <a href="http://docs.python.org/library/profile.html">官方文檔</a> 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 <code lang="python" class="highlighter-rouge">cProfile</code> 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 <a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">小腳本</a>。</p>
+<p>Python 是自帶造影工具的，從 <a href="http://docs.python.org/library/profile.html">官方文檔</a> 看，有三款。但是一款太慢（profile），一款欠維護（hotshot），所以只剩下 <code lang="python" class="language-plaintext highlighter-rouge">cProfile</code> 可用。爲了演示方便，我必須找一個不大不複雜又 CPU intensive 的小程序。於是我找來了 Ian Ozsvald 在 PyCon 上使用的案例 —— 一個畫分形的 <a href="https://raw.github.com/ianozsvald/HighPerformancePython_PyCon2012/master/mandelbrot/pure_python/pure_python_slow.py">小腳本</a>。</p>
 
 <p>我們不妨先來運行一下該腳本：</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>python pure_python_slow.py
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python pure_python_slow.py
+</code></pre></div></div>
 
 <p>運行結果是會生成這張圖片：</p>
 
@@ -126,88 +112,83 @@
 
 <p>命令行下的運行結果輸出則是：</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>Main took 0:00:17.247938
-Total sum of elements <span class="o">(</span><span class="k">for </span>validation<span class="o">)</span>: 1148485
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Main took 0:00:17.247938
+Total <span class="nb">sum </span>of elements <span class="o">(</span><span class="k">for </span>validation<span class="o">)</span>: 1148485
+</code></pre></div></div>
 
 <p>下面我們來用 cProfile 看看哪些地方用的時間比較長：</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>python -m cProfile -o rep.prof pure_python_slow.py
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python <span class="nt">-m</span> cProfile <span class="nt">-o</span> rep.prof pure_python_slow.py
+</code></pre></div></div>
 
-<p>用這種方法可以對整個腳本進行 profiling，然後把結果輸出到 <code lang="python" class="highlighter-rouge">rep.prof</code> 中。當然對於一些較大的項目，這麼做是不恰當的，因爲一些大的項目往往有人機交互，所以使用這樣的方式來獲取運行時長顯然不可行。所以 <code lang="python" class="highlighter-rouge">cProfile</code> 也提供了 function 方式的調用，也就是說可以在代碼裏使用它。而事實上官網的文檔就是這樣用的。使用 Django
+<p>用這種方法可以對整個腳本進行 profiling，然後把結果輸出到 <code lang="python" class="language-plaintext highlighter-rouge">rep.prof</code> 中。當然對於一些較大的項目，這麼做是不恰當的，因爲一些大的項目往往有人機交互，所以使用這樣的方式來獲取運行時長顯然不可行。所以 <code lang="python" class="language-plaintext highlighter-rouge">cProfile</code> 也提供了 function 方式的調用，也就是說可以在代碼裏使用它。而事實上官網的文檔就是這樣用的。使用 Django
 的同學可以試試<a href="http://djangosnippets.org/snippets/727/">這樣的代碼</a>。</p>
 
 <p>接着我們來分析一下所得的 profile，在與生成的 profile 文件同目錄下打開 Python 交互命令行：</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pstats</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pstats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span><span class="s">'rep.prof'</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">sort_stats</span><span class="p">(</span><span class="s">'cumulative'</span><span class="p">)</span><span class="o">.</span><span class="n">print_stats</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">Sun</span> <span class="n">May</span> <span class="mi">13</span> <span class="mi">20</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">47</span> <span class="mi">2012</span>    <span class="n">rep</span><span class="o">.</span><span class="n">prof</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pstats</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pstats</span><span class="p">.</span><span class="n">Stats</span><span class="p">(</span><span class="s">'rep.prof'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">sort_stats</span><span class="p">(</span><span class="s">'cumulative'</span><span class="p">).</span><span class="n">print_stats</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">Sun</span> <span class="n">May</span> <span class="mi">13</span> <span class="mi">20</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">47</span> <span class="mi">2012</span>    <span class="n">rep</span><span class="p">.</span><span class="n">prof</span>
 
          <span class="mi">52166198</span> <span class="n">function</span> <span class="n">calls</span> <span class="p">(</span><span class="mi">52166197</span> <span class="n">primitive</span> <span class="n">calls</span><span class="p">)</span> <span class="ow">in</span> <span class="mf">20.844</span> <span class="n">seconds</span>
 
    <span class="n">Ordered</span> <span class="n">by</span><span class="p">:</span> <span class="n">cumulative</span> <span class="n">time</span>
-   <span class="n">List</span> <span class="n">reduced</span> <span class="kn">from</span> <span class="err">182</span> <span class="nn">to</span> <span class="err">10</span> <span class="nn">due</span> <span class="nn">to</span> <span class="nn">restriction</span> <span class="err">&lt;10&gt;
+   <span class="n">List</span> <span class="n">reduced</span> <span class="k">from</span> <span class="mi">182</span> <span class="n">to</span> <span class="mi">10</span> <span class="n">due</span> <span class="n">to</span> <span class="n">restriction</span> <span class="o">&lt;</span><span class="mi">10</span><span class="o">&gt;</span>
 
-</span>   <span class="nn">ncalls</span>  <span class="nn">tottime</span>  <span class="nn">percall</span>  <span class="nn">cumtime</span>  <span class="nn">percall</span> <span class="nn">filename</span><span class="err">:</span><span class="nn">lineno</span><span class="err">(</span><span class="nn">function</span><span class="err">)
-</span>        <span class="err">1</span>    <span class="err">0</span><span class="nn">.026</span>    <span class="err">0</span><span class="nn">.026</span>   <span class="err">20</span><span class="nn">.844</span>   <span class="err">20</span><span class="nn">.844</span> <span class="nn">pure_python_slow.py</span><span class="err">:1(&lt;</span><span class="nn">module</span><span class="err">&gt;)
-</span>        <span class="err">1</span>    <span class="err">0</span><span class="nn">.066</span>    <span class="err">0</span><span class="nn">.066</span>   <span class="err">20</span><span class="nn">.818</span>   <span class="err">20</span><span class="nn">.818</span> <span class="nn">pure_python_slow.py</span><span class="err">:40(</span><span class="nn">calc_pure_python</span><span class="err">)
-</span>        <span class="err">1</span>   <span class="err">16</span><span class="nn">.048</span>   <span class="err">16</span><span class="nn">.048</span>   <span class="err">20</span><span class="nn">.602</span>   <span class="err">20</span><span class="nn">.602</span> <span class="nn">pure_python_slow.py</span><span class="err">:25(</span><span class="nn">calculate_z_serial_purepython</span><span class="err">)
-</span> <span class="err">51414419</span>    <span class="err">3</span><span class="nn">.588</span>    <span class="err">0</span><span class="nn">.000</span>    <span class="err">3</span><span class="nn">.588</span>    <span class="err">0</span><span class="nn">.000</span> <span class="err">{</span><span class="nn">abs</span><span class="err">}
-</span>   <span class="err">250001</span>    <span class="err">0</span><span class="nn">.966</span>    <span class="err">0</span><span class="nn">.000</span>    <span class="err">0</span><span class="nn">.966</span>    <span class="err">0</span><span class="nn">.000</span> <span class="err">{</span><span class="nn">range</span><span class="err">}
-</span>        <span class="err">1</span>    <span class="err">0</span><span class="nn">.035</span>    <span class="err">0</span><span class="nn">.035</span>    <span class="err">0</span><span class="nn">.136</span>    <span class="err">0</span><span class="nn">.136</span> <span class="nn">pure_python_slow.py</span><span class="err">:8(</span><span class="nn">show</span><span class="err">)
-</span>   <span class="err">250001</span>    <span class="err">0</span><span class="nn">.042</span>    <span class="err">0</span><span class="nn">.000</span>    <span class="err">0</span><span class="nn">.042</span>    <span class="err">0</span><span class="nn">.000</span> <span class="nn">pure_python_slow.py</span><span class="err">:14(&lt;</span><span class="nn">genexpr</span><span class="err">&gt;)
-</span>        <span class="err">1</span>    <span class="err">0</span><span class="nn">.018</span>    <span class="err">0</span><span class="nn">.018</span>    <span class="err">0</span><span class="nn">.038</span>    <span class="err">0</span><span class="nn">.038</span> <span class="err">/</span><span class="nn">usr</span><span class="err">/</span><span class="nn">lib</span><span class="err">/</span><span class="nn">python2.7</span><span class="err">/</span><span class="nn">dist</span><span class="err">-</span><span class="nn">packages</span><span class="err">/</span><span class="nn">PIL</span><span class="err">/</span><span class="nn">Image.py</span><span class="err">:27(&lt;</span><span class="nn">module</span><span class="err">&gt;)
-</span>      <span class="err">3/2</span>    <span class="err">0</span><span class="nn">.009</span>    <span class="err">0</span><span class="nn">.003</span>    <span class="err">0</span><span class="nn">.020</span>    <span class="err">0</span><span class="nn">.010</span> <span class="err">{</span><span class="nn">apply</span><span class="err">}
-</span>        <span class="err">1</span>    <span class="err">0</span><span class="nn">.000</span>    <span class="err">0</span><span class="nn">.000</span>    <span class="err">0</span><span class="nn">.019</span>    <span class="err">0</span><span class="nn">.019</span> <span class="err">{</span><span class="nn">__import__</span><span class="err">}
+   <span class="n">ncalls</span>  <span class="n">tottime</span>  <span class="n">percall</span>  <span class="n">cumtime</span>  <span class="n">percall</span> <span class="n">filename</span><span class="p">:</span><span class="n">lineno</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+        <span class="mi">1</span>    <span class="mf">0.026</span>    <span class="mf">0.026</span>   <span class="mf">20.844</span>   <span class="mf">20.844</span> <span class="n">pure_python_slow</span><span class="p">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span><span class="p">(</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">)</span>
+        <span class="mi">1</span>    <span class="mf">0.066</span>    <span class="mf">0.066</span>   <span class="mf">20.818</span>   <span class="mf">20.818</span> <span class="n">pure_python_slow</span><span class="p">.</span><span class="n">py</span><span class="p">:</span><span class="mi">40</span><span class="p">(</span><span class="n">calc_pure_python</span><span class="p">)</span>
+        <span class="mi">1</span>   <span class="mf">16.048</span>   <span class="mf">16.048</span>   <span class="mf">20.602</span>   <span class="mf">20.602</span> <span class="n">pure_python_slow</span><span class="p">.</span><span class="n">py</span><span class="p">:</span><span class="mi">25</span><span class="p">(</span><span class="n">calculate_z_serial_purepython</span><span class="p">)</span>
+ <span class="mi">51414419</span>    <span class="mf">3.588</span>    <span class="mf">0.000</span>    <span class="mf">3.588</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="nb">abs</span><span class="p">}</span>
+   <span class="mi">250001</span>    <span class="mf">0.966</span>    <span class="mf">0.000</span>    <span class="mf">0.966</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="nb">range</span><span class="p">}</span>
+        <span class="mi">1</span>    <span class="mf">0.035</span>    <span class="mf">0.035</span>    <span class="mf">0.136</span>    <span class="mf">0.136</span> <span class="n">pure_python_slow</span><span class="p">.</span><span class="n">py</span><span class="p">:</span><span class="mi">8</span><span class="p">(</span><span class="n">show</span><span class="p">)</span>
+   <span class="mi">250001</span>    <span class="mf">0.042</span>    <span class="mf">0.000</span>    <span class="mf">0.042</span>    <span class="mf">0.000</span> <span class="n">pure_python_slow</span><span class="p">.</span><span class="n">py</span><span class="p">:</span><span class="mi">14</span><span class="p">(</span><span class="o">&lt;</span><span class="n">genexpr</span><span class="o">&gt;</span><span class="p">)</span>
+        <span class="mi">1</span>    <span class="mf">0.018</span>    <span class="mf">0.018</span>    <span class="mf">0.038</span>    <span class="mf">0.038</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="p">.</span><span class="mi">7</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">PIL</span><span class="o">/</span><span class="n">Image</span><span class="p">.</span><span class="n">py</span><span class="p">:</span><span class="mi">27</span><span class="p">(</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">)</span>
+      <span class="mi">3</span><span class="o">/</span><span class="mi">2</span>    <span class="mf">0.009</span>    <span class="mf">0.003</span>    <span class="mf">0.020</span>    <span class="mf">0.010</span> <span class="p">{</span><span class="nb">apply</span><span class="p">}</span>
+        <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.019</span>    <span class="mf">0.019</span> <span class="p">{</span><span class="nb">__import__</span><span class="p">}</span>
 
-</span></code></pre>
-</div>
+</code></pre></div></div>
 
-<p>這裏我們可以看出，加了 <code lang="python" class="highlighter-rouge">cProfile</code> 原來的程序會運行得略慢一些。這也是意料之中的。</p>
+<p>這裏我們可以看出，加了 <code lang="python" class="language-plaintext highlighter-rouge">cProfile</code> 原來的程序會運行得略慢一些。這也是意料之中的。</p>
 
 <p>下面我們來仔細看一下造影報告，也就是從第十一行開始的表格。
-表格第一行是總時間，第二行是 <code lang="python" class="highlighter-rouge">calc_pure_python</code> 所用時間，而第三行是 <code lang="python" class="highlighter-rouge">calculate_z_serial_purepython</code> 所用時間，以此類推。從以上的這個表格我們至少可以判斷：大部分時間都花在了 <code lang="python" class="highlighter-rouge">calculate_z_serial_purepython</code> 上。</p>
+表格第一行是總時間，第二行是 <code lang="python" class="language-plaintext highlighter-rouge">calc_pure_python</code> 所用時間，而第三行是 <code lang="python" class="language-plaintext highlighter-rouge">calculate_z_serial_purepython</code> 所用時間，以此類推。從以上的這個表格我們至少可以判斷：大部分時間都花在了 <code lang="python" class="language-plaintext highlighter-rouge">calculate_z_serial_purepython</code> 上。</p>
 
-<p>可能這個表格並不是很直觀。那下面我再介紹一種更加直觀的方式 —— <code lang="sh" class="highlighter-rouge">runsnake</code>。我們回到命令行，用 <code lang="sh" class="highlighter-rouge">runsnake</code> 跑剛剛生成的造影文件（<code lang="python" class="highlighter-rouge">rep.prof</code>）:</p>
+<p>可能這個表格並不是很直觀。那下面我再介紹一種更加直觀的方式 —— <code lang="sh" class="language-plaintext highlighter-rouge">runsnake</code>。我們回到命令行，用 <code lang="sh" class="language-plaintext highlighter-rouge">runsnake</code> 跑剛剛生成的造影文件（<code lang="python" class="language-plaintext highlighter-rouge">rep.prof</code>）:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>runsnake res.prof
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>runsnake res.prof
+</code></pre></div></div>
 
 <p>運行後你會看到這個窗口：</p>
 
 <p><img src="https://xiil8w.blu.livefilestore.com/y1p-S46t388afLR5WALVXfzfgc36A_zh3jlEMbbjm3ouwkI1KEl7CRTPE8OS9mmtW7MZBCkujoUHT19OkiolKb1Dvd37IW8WMd-/runsnake.png?psid=1" alt="RunSnake 運行結果" title="RunSnake 運行結果" /></p>
 
-<p>現在顯而易見了吧， <code lang="python" class="highlighter-rouge">calculate_z_serial_purepython</code> 就是花時間最多的。可是到底是什麼使得它花這麼久，還是不能從上圖中找到原因。很顯然不是因爲 <code class="highlighter-rouge">&lt;abs&gt;</code> 和 <code class="highlighter-rouge">&lt;range&gt;</code>。于是我们定位到这个 function：</p>
+<p>現在顯而易見了吧， <code lang="python" class="language-plaintext highlighter-rouge">calculate_z_serial_purepython</code> 就是花時間最多的。可是到底是什麼使得它花這麼久，還是不能從上圖中找到原因。很顯然不是因爲 <code class="language-plaintext highlighter-rouge">&lt;abs&gt;</code> 和 <code class="language-plaintext highlighter-rouge">&lt;range&gt;</code>。于是我们定位到这个 function：</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">calculate_z_serial_purepython</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">calculate_z_serial_purepython</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
     <span class="s">"""Pure python with complex datatype, iterating over list of q and z"""</span>
     <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c"># print out some progress info since it is so slow...</span>
-            <span class="k">print</span> <span class="s">"</span><span class="si">%0.2</span><span class="s">f</span><span class="si">%% </span><span class="s">complete"</span> <span class="o">%</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="c1"># print out some progress info since it is so slow...
+</span>            <span class="k">print</span> <span class="s">"%0.2f%% complete"</span> <span class="o">%</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
             <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">2.0</span><span class="p">:</span>
                 <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">iteration</span>
                 <span class="k">break</span>
     <span class="k">return</span> <span class="n">output</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>有經驗的 Python 程序員可能已經知道問題出在哪裏了，但是我先賣個關子。當然目的是爲了介紹下面的一個造影工具 —— <code class="highlighter-rouge">kernprof.py</code>，line profiling，行造影工具。</p>
+<p>有經驗的 Python 程序員可能已經知道問題出在哪裏了，但是我先賣個關子。當然目的是爲了介紹下面的一個造影工具 —— <code class="language-plaintext highlighter-rouge">kernprof.py</code>，line profiling，行造影工具。</p>
 
-<p>相比之下，使用 <code class="highlighter-rouge">kernprof.py</code> 略麻煩一點。你得在需要做“行造影”的 function 前面加一個 decorator <code lang="python" class="highlighter-rouge">@profile</code>，然后运行：</p>
+<p>相比之下，使用 <code class="language-plaintext highlighter-rouge">kernprof.py</code> 略麻煩一點。你得在需要做“行造影”的 function 前面加一個 decorator <code lang="python" class="language-plaintext highlighter-rouge">@profile</code>，然后运行：</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kernprof.py -l -v pure_python_slow_lineprof.py
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>kernprof.py <span class="nt">-l</span> <span class="nt">-v</span> pure_python_slow_lineprof.py
 <span class="c">#...略去部分無關輸出</span>
 Main took 0:03:38.140994
-Total sum of elements <span class="o">(</span><span class="k">for </span>validation<span class="o">)</span>: 1148485
+Total <span class="nb">sum </span>of elements <span class="o">(</span><span class="k">for </span>validation<span class="o">)</span>: 1148485
 Wrote profile results to pure_python_slow_lineprof.py.lprof
 Timer unit: 1e-06 s
 
@@ -227,14 +208,13 @@ Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents</
     31       250         5943     23.8      0.0              print <span class="s2">"%0.2f%% complete"</span> % <span class="o">(</span>1.0/len<span class="o">(</span>q<span class="o">)</span> <span class="k">*</span> i <span class="k">*</span> 100<span class="o">)</span>
     32  51464485     31971119      0.6     28.5          <span class="k">for </span>iteration <span class="k">in </span>range<span class="o">(</span>maxiter<span class="o">)</span>:
     33  51414419     40896082      0.8     36.5              z[i] <span class="o">=</span> z[i]<span class="k">*</span>z[i] + q[i]
-    34  51414419     38095052      0.7     34.0              <span class="k">if </span>abs<span class="o">(</span>z[i]<span class="o">)</span> &gt; 2.0:
+    34  51414419     38095052      0.7     34.0              <span class="k">if </span>abs<span class="o">(</span>z[i]<span class="o">)</span> <span class="o">&gt;</span> 2.0:
     35    199934       128641      0.6      0.1                  output[i] <span class="o">=</span> iteration
     36    199934       714362      3.6      0.6                  <span class="nb">break
     </span>37         1            4      4.0      0.0      <span class="k">return </span>output
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>這裏我爲了不弄亂之前的文件裏的代碼，就直接另存爲了 <code class="highlighter-rouge">pure_python_slow_lineprof.py</code>。</p>
+<p>這裏我爲了不弄亂之前的文件裏的代碼，就直接另存爲了 <code class="language-plaintext highlighter-rouge">pure_python_slow_lineprof.py</code>。</p>
 
 <p>如果你剛剛也跟我一起運行的話，你可能會首先注意到，運行速度非常之慢。所以我分享一則小技巧，就是想辦法讓運行的腳本縮小運行 scope。比方說你在做一個 1TB 數據的分析，在做優化的時候可以將目標數據減少到 1GB 之類的，數據量的減小不會對我們的行造影結果產生影響。在我們的這個例子裏，我們可以在運行的命令行末加上 ` 300 300`，這樣腳本就只會算一個 300*300 的分形圖，計算量相對要小很多。</p>
 
@@ -243,34 +223,33 @@ Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents</
 <p>這三行裏就有兩個小問題。</p>
 
 <ul>
-  <li>首先是 32 行，在 Python 3.x 之前，<code lang="python" class="highlighter-rouge">range()</code> 和 <code lang="python" class="highlighter-rouge">xrange()</code> 還是有區別的。前者會在內存中真的生成 <code lang="python" class="highlighter-rouge">list</code>，而後者只是返回一個類似的 object （我們會在<a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">第四篇</a>中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
-  <li>33、34 行一直在直接從 <code lang="python" class="highlighter-rouge">list</code> 裏查詢數據，而雖然查詢時間複雜度是 <script type="math/tex">O(1)</script>，但是代碼一遍又一遍地 <code lang="python" class="highlighter-rouge">get</code> 和 <code lang="python" class="highlighter-rouge">set</code>，這樣做勢必會消耗更多時間。</li>
+  <li>首先是 32 行，在 Python 3.x 之前，<code lang="python" class="language-plaintext highlighter-rouge">range()</code> 和 <code lang="python" class="language-plaintext highlighter-rouge">xrange()</code> 還是有區別的。前者會在內存中真的生成 <code lang="python" class="language-plaintext highlighter-rouge">list</code>，而後者只是返回一個類似的 object （我們會在<a href="/blog/python/optimization/serial/programming/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/">第四篇</a>中詳細討論到這個問題）。性能上略有提升，但是並不顯著，從運行時間上來說，區別不大。</li>
+  <li>33、34 行一直在直接從 <code lang="python" class="language-plaintext highlighter-rouge">list</code> 裏查詢數據，而雖然查詢時間複雜度是 \(O(1)\)，但是代碼一遍又一遍地 <code lang="python" class="language-plaintext highlighter-rouge">get</code> 和 <code lang="python" class="language-plaintext highlighter-rouge">set</code>，這樣做勢必會消耗更多時間。</li>
 </ul>
 
-<p>所以通過分析，我們知道就以上的第一點而言，我們即使改用成 <code lang="python" class="highlighter-rouge">xrange()</code>，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：</p>
+<p>所以通過分析，我們知道就以上的第一點而言，我們即使改用成 <code lang="python" class="language-plaintext highlighter-rouge">xrange()</code>，在速度上我們也不會得到很大的提升。而就第二點，我們可以做如下修改：</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">calculate_z_serial_purepython</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">calculate_z_serial_purepython</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">maxiter</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
     <span class="s">"""Pure python with complex datatype, iterating over list of q and z"""</span>
     <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)):</span>
         <span class="n">zi</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="n">qi</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c"># print out some progress info since it is so slow...</span>
-            <span class="k">print</span> <span class="s">"</span><span class="si">%0.2</span><span class="s">f</span><span class="si">%% </span><span class="s">complete"</span> <span class="o">%</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="c1"># print out some progress info since it is so slow...
+</span>            <span class="k">print</span> <span class="s">"%0.2f%% complete"</span> <span class="o">%</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
-            <span class="c">#z[i] = z[i]*z[i] + q[i]</span>
-            <span class="n">zi</span> <span class="o">=</span> <span class="n">zi</span> <span class="o">*</span> <span class="n">zi</span> <span class="o">+</span> <span class="n">qi</span>
+            <span class="c1">#z[i] = z[i]*z[i] + q[i]
+</span>            <span class="n">zi</span> <span class="o">=</span> <span class="n">zi</span> <span class="o">*</span> <span class="n">zi</span> <span class="o">+</span> <span class="n">qi</span>
             <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">zi</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">2.0</span><span class="p">:</span>
                 <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">iteration</span>
                 <span class="k">break</span>
     <span class="k">return</span> <span class="n">output</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>修改後我們再運行一遍行造影：</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>File: pure_python_improved_lineprof.py
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File: pure_python_improved_lineprof.py
 Function: calculate_z_serial_purepython at line 24
 Total <span class="nb">time</span>: 110.898 s
 
@@ -289,16 +268,15 @@ Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents</
     34  51464485     31790147      0.6     28.7          <span class="k">for </span>iteration <span class="k">in </span>xrange<span class="o">(</span>maxiter<span class="o">)</span>:
     35                                                       <span class="c">#z[i] = z[i]*z[i] + q[i]</span>
     36  51414419     37946710      0.7     34.2              zi <span class="o">=</span> zi <span class="k">*</span> zi + qi
-    37  51414419     40239095      0.8     36.3              <span class="k">if </span>abs<span class="o">(</span>zi<span class="o">)</span> &gt; 2.0:
+    37  51414419     40239095      0.8     36.3              <span class="k">if </span>abs<span class="o">(</span>zi<span class="o">)</span> <span class="o">&gt;</span> 2.0:
     38    199934       138030      0.7      0.1                  output[i] <span class="o">=</span> iteration
     39    199934       123589      0.6      0.1                  <span class="nb">break
     </span>40         1            4      4.0      0.0      <span class="k">return </span>output
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>看似沒有多大提升？確實，就每行時間上來看確實沒有多大提升，但是從總時間看，有了差不多兩秒的提升。而且如果我把行造影去掉，裸跑的話，速度的提升更加顯著一些（大約 6 秒）。有人說這樣的提升要不要都也無所謂，其實不然。我剛剛說到 scope，如果放大 scope，原先兩秒的優勢可能會被放大到 20 分鐘甚至更多。</p>
 
-<p>大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，<code lang="python" class="highlighter-rouge">cProfile</code> 可用於造影模塊的運行，<code lang="sh" class="highlighter-rouge">RunSnake</code> 可以幫助可視化造影結果，而 <code class="highlighter-rouge">kernprof.py</code> 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。</p>
+<p>大致總結下，代碼造影工具可以有效地幫助你找到代碼運行速度上的癥結，<code lang="python" class="language-plaintext highlighter-rouge">cProfile</code> 可用於造影模塊的運行，<code lang="sh" class="language-plaintext highlighter-rouge">RunSnake</code> 可以幫助可視化造影結果，而 <code class="language-plaintext highlighter-rouge">kernprof.py</code> 可以對代碼進行更加精準的行造影。另外，在使用這些造影工具的同時，我們還要注意學習前人的經驗，知道如何寫更好的代碼。</p>
 
 <p>最後我要說，代碼層面的優化是很有限的，只要運行機制層面不改變，可能最好的代碼都會很慢，所以本系列之後的文章裏我會談一談優化「運行機制」。</p>
 
@@ -353,6 +331,10 @@ Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents</
 </div>
 
 
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
 
       </div>
     </main>
@@ -387,7 +369,7 @@ Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents</
       </div> -->
 
       <div class="footer-col footer-col-2">
-        <p>Programming Language, Open Source, Design, Music, and everything in between.
+        <p>Programming, Design, Music, and everything in between.
 </p>
       </div>
     </div>
@@ -397,18 +379,12 @@ Line <span class="c">#      Hits         Time  Per Hit   % Time  Line Contents</
   <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
 </footer>
 
-<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_s2t-376676e21aed86333cd20b4168774d379cc2a96c8f13548c66deeb4bd7f95fed.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_t2s-b96ecb25a8af193cd4d12b34f5acdae7fc0cfd4c3532eadbce7534e1ced33f64.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_ps2t-b13b15cb0b005254b3f1a4530771725c18767d2434da6f351c504edfebc1dd55.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
-<script type="text/javascript" src="/assets/main-8b2e32e9df6089a8735b34396b525556cce992c71f1e98ff62443592276a807d.js"></script>
-<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script language="JavaScript" src="/javascripts/main.js"></script>
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 

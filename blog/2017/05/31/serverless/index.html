@@ -42,19 +42,6 @@
   <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
   <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
   
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-33556525-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-  
-
-  
 </head>
   <div id="wx_pic" style="margin:0 auto;display:none;">
     <img src="/assets/logo@3x.png" />
@@ -114,11 +101,11 @@
 
 <h2 id="起源和發展">起源和發展</h2>
 
-<p>Serverless 又是一個類似 NoSQL 一樣誤導人的名字。其實把它叫做 FaaS（Function as a Service）更合適，私以為這是函數式編程對當今計算世界的另一個餽贈（手裡是錘子，看啥都是釘子）。不過言歸正傳，從一定距離看最近這十多年軟件行業，我意識到一個規律：<strong>一切能用軟件完成的事情，人們會不惜一切代價把它變成軟件</strong>。硬件也逃離不了這個命運，像各種虛擬機，從編程語言運行環境的虛擬化，到 OS 虛擬化，再到通信連路的虛擬化，它們實際上都是在模擬硬件。這種事情初聽起來像是脫褲子放屁，何況這類技術初期都有很多性能問題，可為什麼人們還是孜孜不倦地繼續注入智力呢？多年前淺薄如我，沒有看到短週期快速迭代的魅力，習慣 REPL<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> 之後有一天頓悟了，這不就是硬件軟件化所帶來的最大優勢嘛。隨之而來還有非常吸引人的自動化／可編程化。所以當我看到 OpenAI 在遊戲裡練習自動駕駛，我就非常確信這個領域的發展會再加速。當然，可能當時人們並沒有意識到這些利好，當時眼下要做的事情只是多加一個間接層，因為“所有計算機領域的問題都可以通過加間接層來解決”，當初問題可能是跨平台。</p>
+<p>Serverless 又是一個類似 NoSQL 一樣誤導人的名字。其實把它叫做 FaaS（Function as a Service）更合適，私以為這是函數式編程對當今計算世界的另一個餽贈（手裡是錘子，看啥都是釘子）。不過言歸正傳，從一定距離看最近這十多年軟件行業，我意識到一個規律：<strong>一切能用軟件完成的事情，人們會不惜一切代價把它變成軟件</strong>。硬件也逃離不了這個命運，像各種虛擬機，從編程語言運行環境的虛擬化，到 OS 虛擬化，再到通信連路的虛擬化，它們實際上都是在模擬硬件。這種事情初聽起來像是脫褲子放屁，何況這類技術初期都有很多性能問題，可為什麼人們還是孜孜不倦地繼續注入智力呢？多年前淺薄如我，沒有看到短週期快速迭代的魅力，習慣 REPL<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> 之後有一天頓悟了，這不就是硬件軟件化所帶來的最大優勢嘛。隨之而來還有非常吸引人的自動化／可編程化。所以當我看到 OpenAI 在遊戲裡練習自動駕駛，我就非常確信這個領域的發展會再加速。當然，可能當時人們並沒有意識到這些利好，當時眼下要做的事情只是多加一個間接層，因為“所有計算機領域的問題都可以通過加間接層來解決”，當初問題可能是跨平台。</p>
 
 <p>回到 FaaS，我們不得不提比它早出現一些時間的 DevOps 運動和 Microservice。當然這兩件事情都是站在了虛擬化技術這個巨人的肩膀上。前者講求<strong>開發、測試、運維人員身份統一，或至少能界線模糊</strong>；後者講求<strong>將業務邏輯切分成近乎可丟棄的小型網絡服務</strong>。雖然 DevOps 運動沒有明確提倡 Microservice，但這幾乎成為標配，原因很簡單，開發人員盤子裡的菜更多了，能吃的量有限，縮小規模有助於有效迭代，又或不迭代、直接重寫。這兩件事隨後產生了一系列有趣的反應。</p>
 
-<p>首先職責界線模糊會迫使軟件開發者和運維人員更多的溝通協作，這催熟了很多運維工具鏈和服務平台。多年來在很多公司裡，運維人員的工作相對沒那麼多變——一旦初期平台搭建穩定後，便不需要做太多事情，之後的工作僅僅是監測和維護。但是越來越多以科技為主導的公司無法滿足於一塵不變的硬件基礎設施，運維要跟得上開發的日新月異。讓我認識到這個現狀的還是不久前的一段小插曲。我之前所在公司的老上司加入了一家管理著300～400億美元的對衝基金，主管架構／基礎設施。我幫他做過一個數據中心 SDN 項目，當時 SDN 的版圖還不明朗，我們算是第一批吃螃蟹的人，最後項目很成功，合作很愉快，他便邀請我加入他的新冒險。在交流<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>過程中我得知，因為他們的體量大，計算資源一方面短缺，一方面也不夠靈活。常常出現一個小組的資源不夠用，而另一個小組有富餘；又或是一天收到十多個小組的架構變更需求。他們原先的運維團隊還比較傳統，有大量對網絡協議、Linux 內核了解透徹卻缺乏大型軟件開發經驗的人員。但是新的需求已經不僅僅是搭建並維護起基礎設施供各個模型團隊用，更多的是要基礎設施更具彈性和靈活性。要做到這一點，開發者和運維人員就需要有足夠的信息交流，無論是人與人間的還是代碼層面的。因此架構代碼化和可被代碼化（自動化）的架構在這個情境下變得至關重要，代碼是這種信息交流的精確媒介。而這也是為什麼在他們公司傳統運維工程師需要更多軟件技能，而軟件工程師也同樣需要了解必要的架構知識。</p>
+<p>首先職責界線模糊會迫使軟件開發者和運維人員更多的溝通協作，這催熟了很多運維工具鏈和服務平台。多年來在很多公司裡，運維人員的工作相對沒那麼多變——一旦初期平台搭建穩定後，便不需要做太多事情，之後的工作僅僅是監測和維護。但是越來越多以科技為主導的公司無法滿足於一塵不變的硬件基礎設施，運維要跟得上開發的日新月異。讓我認識到這個現狀的還是不久前的一段小插曲。我之前所在公司的老上司加入了一家管理著300～400億美元的對衝基金，主管架構／基礎設施。我幫他做過一個數據中心 SDN 項目，當時 SDN 的版圖還不明朗，我們算是第一批吃螃蟹的人，最後項目很成功，合作很愉快，他便邀請我加入他的新冒險。在交流<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>過程中我得知，因為他們的體量大，計算資源一方面短缺，一方面也不夠靈活。常常出現一個小組的資源不夠用，而另一個小組有富餘；又或是一天收到十多個小組的架構變更需求。他們原先的運維團隊還比較傳統，有大量對網絡協議、Linux 內核了解透徹卻缺乏大型軟件開發經驗的人員。但是新的需求已經不僅僅是搭建並維護起基礎設施供各個模型團隊用，更多的是要基礎設施更具彈性和靈活性。要做到這一點，開發者和運維人員就需要有足夠的信息交流，無論是人與人間的還是代碼層面的。因此架構代碼化和可被代碼化（自動化）的架構在這個情境下變得至關重要，代碼是這種信息交流的精確媒介。而這也是為什麼在他們公司傳統運維工程師需要更多軟件技能，而軟件工程師也同樣需要了解必要的架構知識。</p>
 
 <p>其次是 Microservice，它的進展不只如此，新的 FaaS 外衣讓它脫胎換骨。坦白說，它跟多年前討論的 SOA 沒有什麼本質區別。只是服務更小巧專精，但該有的還是都有——麻雀雖小五臟俱全。不難想像，一個網絡服務開發者不得不開始學習和考慮CAP、負載均衡、SDP（service discovery protocol）等等，當然也或者是運維團隊寫好 boilerplate code 或配置模板。但我們不難發現這底下藏著不少 overhead。且不說重複的架構組件，就光是那些架構代碼就很不 DRY，扔給哪個有理想的軟件工程師會受得了呢。更何況，此前我也跟很多朋友交流過這個問題，我們即便很願意學習架構知識，但是真正做起產品來，我們能外包多少非核心業務就外包多少，這些基礎設施／架構尤其如此。另一方面，Microservice 的推行需要全團隊的支持，尤其在現存代碼很 monolithic 的團隊，但凡有異議，這件事就很難推行，反對者會輕易把經驗積累的試錯過程看成是 Microservice 的弊端。所以我認為從開發者角度看， Microservice 終將是過度性的，它當然不會消失，也許它會成為眾多 Serverless 平台的基石，但對開發者是透明的。Serverless／FaaS 有可能是目前最好的答案。</p>
 
@@ -126,7 +113,7 @@
 
 <p>做過 Microservice 項目的朋友知道，其實核心代碼只佔非常少的量，外圍有大量的 boilerplate code。架構相關的暫且不提，它還有像處理 API／RPC 之類的代碼。而 FaaS 的亮點之一就在於它將這些 boilerplate code 推到了服務提供商／運維團隊，而開發者可以集中精力寫業務邏輯，寫更接近於計算本質的代碼。然而這並非意味著開發者又回到了之前工作方式，因為 FaaS 會問開發者兩個很重要的問題，最多用多少內存，最長跑多長時間。這是兩個很聰明的問題，開發者即便在開發時就要對運行資源和財務做出決定，並對決定做出相應的優化。這樣一來 DevOps 的代價就很低了。</p>
 
-<p>FaaS 的另一個優勢就是真正意義上的按使用收費，Function 不跑就不用給錢。當年 Cloud Computing 剛成為 buzz word 的時候，我看到有種解釋是“像自來水一樣使用計算資源”，不過事實上，雖然相比較傳統的服務器購買和租用，它確實降低了運維成本，但事實上我們還是需要，比方說，預付資源以降低單位成本。而且所謂彈性架構其實也是有一定的顆粒度的。FaaS 更接近這種自來水的解釋。而企業也真正有望將運維開銷從 CAPEX<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>（資本支出）轉化為 OPEX<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup>（運營支出）。</p>
+<p>FaaS 的另一個優勢就是真正意義上的按使用收費，Function 不跑就不用給錢。當年 Cloud Computing 剛成為 buzz word 的時候，我看到有種解釋是“像自來水一樣使用計算資源”，不過事實上，雖然相比較傳統的服務器購買和租用，它確實降低了運維成本，但事實上我們還是需要，比方說，預付資源以降低單位成本。而且所謂彈性架構其實也是有一定的顆粒度的。FaaS 更接近這種自來水的解釋。而企業也真正有望將運維開銷從 CAPEX<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>（資本支出）轉化為 OPEX<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>（運營支出）。</p>
 
 <h3 id="潛在問題">潛在問題</h3>
 
@@ -141,19 +128,19 @@
 
 <p>FaaS 會有坑，但我對它的走向很樂觀。</p>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p><a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">Read–eval–print loop</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">Read–eval–print loop</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>因為老上司邀請太多次，還特別安排我跟他們 CTO 吃飯見面，我不得不答應去公司聊聊項目，但其實就是連蒙帶騙走了一遍面試流程，見了來自多個部門十多個人。加此標注特別說明對目前雇主表忠心，並非我想跳槽。雖然他們要解決的問題很誘人，可因為跟我的職業計劃和理想不相符，所以我還是婉拒了他們。 <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>因為老上司邀請太多次，還特別安排我跟他們 CTO 吃飯見面，我不得不答應去公司聊聊項目，但其實就是連蒙帶騙走了一遍面試流程，見了來自多個部門十多個人。加此標注特別說明對目前雇主表忠心，並非我想跳槽。雖然他們要解決的問題很誘人，可因為跟我的職業計劃和理想不相符，所以我還是婉拒了他們。 <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3">
-      <p><a href="https://en.wikipedia.org/wiki/Capital_expenditure">Capital expenditure</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://en.wikipedia.org/wiki/Capital_expenditure">Capital expenditure</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:4">
-      <p><a href="https://en.wikipedia.org/wiki/Operating_expense">Operating expense</a> <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:4" role="doc-endnote">
+      <p><a href="https://en.wikipedia.org/wiki/Operating_expense">Operating expense</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -195,6 +182,10 @@
 </div>
 
 
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
 
       </div>
     </main>
@@ -229,7 +220,7 @@
       </div> -->
 
       <div class="footer-col footer-col-2">
-        <p>Programming Language, Open Source, Design, Music, and everything in between.
+        <p>Programming, Design, Music, and everything in between.
 </p>
       </div>
     </div>
@@ -239,18 +230,12 @@
   <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
 </footer>
 
-<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_s2t-376676e21aed86333cd20b4168774d379cc2a96c8f13548c66deeb4bd7f95fed.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_t2s-b96ecb25a8af193cd4d12b34f5acdae7fc0cfd4c3532eadbce7534e1ced33f64.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_ps2t-b13b15cb0b005254b3f1a4530771725c18767d2434da6f351c504edfebc1dd55.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
-<script type="text/javascript" src="/assets/main-8b2e32e9df6089a8735b34396b525556cce992c71f1e98ff62443592276a807d.js"></script>
-<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script language="JavaScript" src="/javascripts/main.js"></script>
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 

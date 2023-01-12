@@ -42,19 +42,6 @@
   <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
   <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
   
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-33556525-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-  
-
-  
 </head>
   <div id="wx_pic" style="margin:0 auto;display:none;">
     <img src="/assets/logo@3x.png" />
@@ -114,11 +101,10 @@
 <a href="https://github.com/reagent-project/reagent">reagent</a>
 做這個項目。我是直接用了 reagent 的默認模板：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>lein new reagent myproject
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lein new reagent myproject
+</code></pre></div></div>
 
-<p>開發的時候用 <code class="highlighter-rouge">lein figwheel</code> 運行，當瀏覽器指向默認的開發地址 <code class="highlighter-rouge">http://localhost:3449</code>
+<p>開發的時候用 <code class="language-plaintext highlighter-rouge">lein figwheel</code> 運行，當瀏覽器指向默認的開發地址 <code class="language-plaintext highlighter-rouge">http://localhost:3449</code>
 時，Figwheel 的
 <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>
 就會出現，然後調試起來簡直不能更爽。不過這個 Figwheel REPL 有個問題，就是不支持歷史回溯，
@@ -131,36 +117,33 @@
 如果是直接用 Figwheel Leiningen 模板的，可以按照
 <a href="https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl">這份 wiki</a>
 配置壹下。如果是用 reagent 的默認模板，其實這些配置是已經配置好了的。
-我也是看了 <code class="highlighter-rouge">project.clj</code> 的配置才意識到的，壹開始還改了半天配置，走了些彎路，直到看到這壹段：</p>
+我也是看了 <code class="language-plaintext highlighter-rouge">project.clj</code> 的配置才意識到的，壹開始還改了半天配置，走了些彎路，直到看到這壹段：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>:figwheel {:http-server-root "public"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:figwheel {:http-server-root "public"
            :server-port 3449
            :nrepl-port 7002
            :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"
                               ]
            :css-dirs ["resources/public/css"]
            :ring-handler khm-clj.handler/app}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>有 nREPL 相關的配置，看來是 reagent 已經配置了 nREPL，其實啟動後仔細看 STDOUT 也能看到：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Figwheel: Starting nREPL server on port: 7002
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Figwheel: Starting nREPL server on port: 7002
+</code></pre></div></div>
 
 <p>接下來只需要連上 nREPL 就好了。<a href="https://cursive-ide.com">Cursive</a> 的話可以參考
 <a href="https://cursive-ide.com/userguide/repl.html">這份文檔</a> 配置遠程 nREPL，
 我在文末的動圖裏也會演示。而純命令行的就更簡單了，直接</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>lein repl :connect 7002
-</code></pre>
-</div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lein repl :connect 7002
+</code></pre></div></div>
 
-<p>連接成功就已經成功壹半了，最後還剩兩條命令，壹是加載 <code class="highlighter-rouge">figwheel-sidecar.repl-api</code>，
-壹是調用 <code class="highlighter-rouge">cljs-repl</code>，調用之後 <code class="highlighter-rouge">namespace</code> 會被自動從 <code class="highlighter-rouge">user</code> 換到 <code class="highlighter-rouge">cljs.user</code>：</p>
+<p>連接成功就已經成功壹半了，最後還剩兩條命令，壹是加載 <code class="language-plaintext highlighter-rouge">figwheel-sidecar.repl-api</code>，
+壹是調用 <code class="language-plaintext highlighter-rouge">cljs-repl</code>，調用之後 <code class="language-plaintext highlighter-rouge">namespace</code> 會被自動從 <code class="language-plaintext highlighter-rouge">user</code> 換到 <code class="language-plaintext highlighter-rouge">cljs.user</code>：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>conan@crmbp ~/workspace/khm-clj $ lein repl :connect 7002
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conan@crmbp ~/workspace/khm-clj $ lein repl :connect 7002
 Connecting to nREPL at 127.0.0.1:7002
 REPL-y 0.3.7, nREPL 0.2.12
 Clojure 1.8.0
@@ -195,8 +178,7 @@ Prompt will show when Figwheel connects to your application
 To quit, type: :cljs/quit
 nil
 cljs.user=&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>最後我們來測試壹下：</p>
 
@@ -239,6 +221,10 @@ cljs.user=&gt;
 </div>
 
 
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
 
       </div>
     </main>
@@ -273,7 +259,7 @@ cljs.user=&gt;
       </div> -->
 
       <div class="footer-col footer-col-2">
-        <p>Programming Language, Open Source, Design, Music, and everything in between.
+        <p>Programming, Design, Music, and everything in between.
 </p>
       </div>
     </div>
@@ -283,18 +269,12 @@ cljs.user=&gt;
   <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
 </footer>
 
-<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_s2t-376676e21aed86333cd20b4168774d379cc2a96c8f13548c66deeb4bd7f95fed.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_t2s-b96ecb25a8af193cd4d12b34f5acdae7fc0cfd4c3532eadbce7534e1ced33f64.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_ps2t-b13b15cb0b005254b3f1a4530771725c18767d2434da6f351c504edfebc1dd55.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
-<script type="text/javascript" src="/assets/main-8b2e32e9df6089a8735b34396b525556cce992c71f1e98ff62443592276a807d.js"></script>
-<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script language="JavaScript" src="/javascripts/main.js"></script>
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 

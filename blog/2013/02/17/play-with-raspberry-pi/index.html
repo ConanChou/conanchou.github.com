@@ -42,19 +42,6 @@
   <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
   <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
   
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-33556525-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-  
-
-  
 </head>
   <div id="wx_pic" style="margin:0 auto;display:none;">
     <img src="/assets/logo@3x.png" />
@@ -149,33 +136,29 @@
 
 <p>下載好鏡像後先檢查下 checksum：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sha1sum ~/Downloads/archlinux-hf-2013-02-11.zip
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sha1sum</span> ~/Downloads/archlinux-hf-2013-02-11.zip
+</code></pre></div></div>
 
 <p>解壓：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>unzip ~/Downloads/archlinux-hf-2013-02-11.zip
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>unzip ~/Downloads/archlinux-hf-2013-02-11.zip
+</code></pre></div></div>
 
-<p>在插入SD卡之前，用 <code lang="bash" class="highlighter-rouge">df -h</code> 查看當前掛載的磁盤，再插入SD卡再查看。找出你的SD卡名字，就是像 <code class="highlighter-rouge">/dev/mmcblk0p1</code> 或 <code class="highlighter-rouge">/dev/sdd1</code> 這樣的盤符。記住名字並卸載該盤符（如果這個SD卡裏有多個分區，保證卸載該SD卡下的所有盤符）,這裏我們假設是<code class="highlighter-rouge">mmcblk0p1</code>这个盘：</p>
+<p>在插入SD卡之前，用 <code lang="bash" class="language-plaintext highlighter-rouge">df -h</code> 查看當前掛載的磁盤，再插入SD卡再查看。找出你的SD卡名字，就是像 <code class="language-plaintext highlighter-rouge">/dev/mmcblk0p1</code> 或 <code class="language-plaintext highlighter-rouge">/dev/sdd1</code> 這樣的盤符。記住名字並卸載該盤符（如果這個SD卡裏有多個分區，保證卸載該SD卡下的所有盤符）,這裏我們假設是<code class="language-plaintext highlighter-rouge">mmcblk0p1</code>这个盘：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>unmount /dev/mmcblk0p1
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>unmount /dev/mmcblk0p1
+</code></pre></div></div>
 
 <p>卸载后就可以将镜像拷贝到刚刚的SD卡裏了：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo dd <span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span>/path/to/your/image/arch-linux.img <span class="nv">of</span><span class="o">=</span>/dev/mmcblk0p1
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo dd </span><span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span>/path/to/your/image/arch-linux.img <span class="nv">of</span><span class="o">=</span>/dev/mmcblk0p1
+</code></pre></div></div>
 
 <h3 id="分區擴容">分區擴容</h3>
 
 <p>OS 的安裝其實到這裏就算結束了，但是因爲原鏡像是2GB的，如果你的SD卡大於2GB，其他的空間就用不到了，要用就得對SD卡上的分區擴容。擴容的工具很多，有命令行的也有圖形界面的。GParted 就挺好用的，如果對命令行工具不太熟悉，它是個很好的選擇。不過在這篇簡記裏我要裝個逼：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo fdisk -uc /dev/mmcblk0
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>fdisk <span class="nt">-uc</span> /dev/mmcblk0
 
 <span class="c"># 打印分區表</span>
 Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>: p
@@ -214,23 +197,21 @@ The partition table has been altered!
 
 Calling ioctl<span class="o">()</span> to re-read partition table.
 Syncing disks.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>檢查下磁盤，然後再擴容：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo e2fsck -f /dev/mmcblk0p2
-<span class="gp">$ </span>sudo resize2fs -p /dev/mmcblk0p2
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>e2fsck <span class="nt">-f</span> /dev/mmcblk0p2
+<span class="nv">$ </span><span class="nb">sudo </span>resize2fs <span class="nt">-p</span> /dev/mmcblk0p2
+</code></pre></div></div>
 
 <h3 id="系統常規設置">系統常規設置</h3>
 
 <p>Arch 起來之後裏面基本上啥都沒有，所以得根據自己的喜好調教一下。本着極簡主義的原則，我做了如下調整。先以 root 身份登錄。</p>
 
-<p>Pi 用 SD 卡做主盤，其實就相當與 SSD 了，爲了延長 SD 卡的壽命，我把系統的<code class="highlighter-rouge">atime</code>記錄取消掉了，只要修改<code class="highlighter-rouge">/etc/fstab</code>:</p>
+<p>Pi 用 SD 卡做主盤，其實就相當與 SSD 了，爲了延長 SD 卡的壽命，我把系統的<code class="language-plaintext highlighter-rouge">atime</code>記錄取消掉了，只要修改<code class="language-plaintext highlighter-rouge">/etc/fstab</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#
 # /etc/fstab: static file system information
 #
 # &lt;file system&gt;        &lt;dir&gt;         &lt;type&gt;    &lt;options&gt;          &lt;dump&gt; &lt;pass&gt;
@@ -239,120 +220,104 @@ shm                    /dev/shm      tmpfs     nodev,nosuid        0      0
 /dev/mmcblk0p1  /boot           vfat    defaults        0       0
 /dev/mmcblk0p2  /               ext4    defaults,noatime        0       0
 tmpfs           /var/log        tmpfs   defaults,noatime,mode=0755,size=5%      0       0
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>升級系統：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pacman -Syu
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-Syu</span>
+</code></pre></div></div>
 
-<p>如果它說要先升級<code class="highlighter-rouge">pacman</code>，就讓它升，升完後再來一次，這樣整個系統都更新了。</p>
+<p>如果它說要先升級<code class="language-plaintext highlighter-rouge">pacman</code>，就讓它升，升完後再來一次，這樣整個系統都更新了。</p>
 
 <p>修改默認 root 的密碼：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>passwd root
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>passwd root
+</code></pre></div></div>
 
-<p>修改默認主機名，默認是叫<code class="highlighter-rouge">alarmpi</code>，你可以修改<code class="highlighter-rouge">/etc/hostname</code>裏的此默認值。</p>
+<p>修改默認主機名，默認是叫<code class="language-plaintext highlighter-rouge">alarmpi</code>，你可以修改<code class="language-plaintext highlighter-rouge">/etc/hostname</code>裏的此默認值。</p>
 
-<p>Arch 默認是沒有<code class="highlighter-rouge">sudo</code>的，安一個：</p>
+<p>Arch 默認是沒有<code class="language-plaintext highlighter-rouge">sudo</code>的，安一個：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pacman -S sudo
-<span class="gp">$ </span>visudo
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> <span class="nb">sudo</span>
+<span class="nv">$ </span>visudo
+</code></pre></div></div>
 
-<p>爲了只讓<code class="highlighter-rouge">sudo</code>用戶組的用戶有執行<code class="highlighter-rouge">sudo</code>的權限，我們還得修改一下 <code class="highlighter-rouge">/etc/sudoers</code>文件，用你最喜歡的文本編輯器打開，並去掉<code class="highlighter-rouge">%sudo ALL=(ALL) ALL</code>這一行前面的註釋，保存並關閉。</p>
+<p>爲了只讓<code class="language-plaintext highlighter-rouge">sudo</code>用戶組的用戶有執行<code class="language-plaintext highlighter-rouge">sudo</code>的權限，我們還得修改一下 <code class="language-plaintext highlighter-rouge">/etc/sudoers</code>文件，用你最喜歡的文本編輯器打開，並去掉<code class="language-plaintext highlighter-rouge">%sudo ALL=(ALL) ALL</code>這一行前面的註釋，保存並關閉。</p>
 
 <p>創建新用戶並設置密碼：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>useradd -m -g users -s /bin/bash conan
-<span class="gp">$ </span>passwd conan
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>useradd <span class="nt">-m</span> <span class="nt">-g</span> <span class="nb">users</span> <span class="nt">-s</span> /bin/bash conan
+<span class="nv">$ </span>passwd conan
+</code></pre></div></div>
 
-<p>将新用户加入到<code class="highlighter-rouge">sudo</code>用戶組：</p>
+<p>将新用户加入到<code class="language-plaintext highlighter-rouge">sudo</code>用戶組：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo usermod -aG sudo conan
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>usermod <span class="nt">-aG</span> <span class="nb">sudo </span>conan
+</code></pre></div></div>
 
-<p>禁止<code class="highlighter-rouge">root</code>通過ssh登錄，打開<code class="highlighter-rouge">/etc/ssh/sshd_config</code>，找到<code class="highlighter-rouge">PermitRootLogin</code>並把它的值改成‘no’。重啓<code class="highlighter-rouge">sshd</code>:</p>
+<p>禁止<code class="language-plaintext highlighter-rouge">root</code>通過ssh登錄，打開<code class="language-plaintext highlighter-rouge">/etc/ssh/sshd_config</code>，找到<code class="language-plaintext highlighter-rouge">PermitRootLogin</code>並把它的值改成‘no’。重啓<code class="language-plaintext highlighter-rouge">sshd</code>:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>systemctl restart sshd
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl restart sshd
+</code></pre></div></div>
 
 <p>修改時區設置：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>tzselect
-<span class="gp">$ </span><span class="nb">export </span><span class="nv">TZ</span><span class="o">=</span><span class="s1">'America/New_York'</span>
-<span class="gp">$ </span><span class="nb">source</span> /etc/profile
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>tzselect
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">TZ</span><span class="o">=</span><span class="s1">'America/New_York'</span>
+<span class="nv">$ </span><span class="nb">source</span> /etc/profile
+</code></pre></div></div>
 
-<p>安裝<code class="highlighter-rouge">Vim</code>和<code class="highlighter-rouge">python2</code>：</p>
+<p>安裝<code class="language-plaintext highlighter-rouge">Vim</code>和<code class="language-plaintext highlighter-rouge">python2</code>：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pacman -S vim python2
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> vim python2
+</code></pre></div></div>
 
 <p>常規設置這樣就差不多了，更新並重啓一下系統（再次更新是以防因爲以上變動之後有些包找不到）：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pacman -Syu
-<span class="gp">$ </span>reboot
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-Syu</span>
+<span class="nv">$ </span>reboot
+</code></pre></div></div>
 
 <h3 id="聲音">聲音</h3>
 
-<p>安裝<code class="highlighter-rouge">alsa</code>相關包：</p>
+<p>安裝<code class="language-plaintext highlighter-rouge">alsa</code>相關包：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo su
-<span class="gp">$ </span>pacman -S alsa-firmware alsa-lib alsa-plugins alsa-utils mpg123
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>su
+<span class="nv">$ </span>pacman <span class="nt">-S</span> alsa-firmware alsa-lib alsa-plugins alsa-utils mpg123
+</code></pre></div></div>
 
 <p>掛載聲音模塊：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>modprobe snd_bcm2835
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>modprobe snd_bcm2835
+</code></pre></div></div>
 
 <p>將聲音模塊放進內核模塊，這樣它會自啓動：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>vi /etc/modules-load.d/snd_bcm2835.conf
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vi /etc/modules-load.d/snd_bcm2835.conf
+</code></pre></div></div>
 
 <p>文件裏寫：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Put snd_bcm2835.ko in kernel modules</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Put snd_bcm2835.ko in kernel modules</span>
 snd_bcm2835
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>因爲 Pi 的音頻可以從 analog 和 HDMI 兩個通道出來，所以我們可以做個選擇，從<a href="http://www.raspberrypi-spy.co.uk/2012/06/raspberry-pi-speakers-analog-sound-test/">官網的信息</a>看，你可以用 <code class="highlighter-rouge">amixer cset numid=3 &lt;n&gt;</code> 這個命令來制定通道，其中<code class="highlighter-rouge">&lt;n&gt;</code>可以是 0、1、2，意思是：0=auto, 1=analog, 2=hdmi。</p>
+<p>因爲 Pi 的音頻可以從 analog 和 HDMI 兩個通道出來，所以我們可以做個選擇，從<a href="http://www.raspberrypi-spy.co.uk/2012/06/raspberry-pi-speakers-analog-sound-test/">官網的信息</a>看，你可以用 <code class="language-plaintext highlighter-rouge">amixer cset numid=3 &lt;n&gt;</code> 這個命令來制定通道，其中<code class="language-plaintext highlighter-rouge">&lt;n&gt;</code>可以是 0、1、2，意思是：0=auto, 1=analog, 2=hdmi。</p>
 
 <p>測試一下是否有效：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>speaker-test -c 2
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>speaker-test <span class="nt">-c</span> 2
+</code></pre></div></div>
 
 <p>沒問題的話你應該可以聽到一些噪音。當然你也可以通過官網的方法測試：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>wget http://www.freespecialeffects.co.uk/soundfx/sirens/police_s.wav
-<span class="gp">$ </span>aplay police_s.wav
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget http://www.freespecialeffects.co.uk/soundfx/sirens/police_s.wav
+<span class="nv">$ </span>aplay police_s.wav
+</code></pre></div></div>
 
 <p>如果遇到這樣的報錯：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ALSA lib confmisc.c:768:<span class="o">(</span>parse_card<span class="o">)</span> cannot find card <span class="s1">'0'</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ALSA lib confmisc.c:768:<span class="o">(</span>parse_card<span class="o">)</span> cannot find card <span class="s1">'0'</span>
 ALSA lib conf.c:4246:<span class="o">(</span>_snd_config_evaluate<span class="o">)</span> <span class="k">function </span>snd_func_card_driver returned error: No such file or directory
 ALSA lib confmisc.c:392:<span class="o">(</span>snd_func_concat<span class="o">)</span> error evaluating strings
 ALSA lib conf.c:4246:<span class="o">(</span>_snd_config_evaluate<span class="o">)</span> <span class="k">function </span>snd_func_concat returned error: No such file or directory
@@ -361,221 +326,195 @@ ALSA lib conf.c:4246:<span class="o">(</span>_snd_config_evaluate<span class="o"
 ALSA lib conf.c:4725:<span class="o">(</span>snd_config_expand<span class="o">)</span> Evaluate error: No such file or directory
 ALSA lib pcm.c:2217:<span class="o">(</span>snd_pcm_open_noupdate<span class="o">)</span> Unknown PCM default
 aplay: main:696: audio open error: No such file or directory
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>你需要把用戶加到<code class="highlighter-rouge">audio</code>用戶組裏：</p>
+<p>你需要把用戶加到<code class="language-plaintext highlighter-rouge">audio</code>用戶組裏：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>usermod -G audio -a conan
-<span class="gp">$ </span>su -l conan
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>usermod <span class="nt">-G</span> audio <span class="nt">-a</span> conan
+<span class="nv">$ </span>su <span class="nt">-l</span> conan
+</code></pre></div></div>
 
 <h4 id="vlc">VLC</h4>
 
-<p>安裝 VLC 純粹是因爲我<code class="highlighter-rouge">scp</code>了一份「白金迪斯科」到 Pi，發現居然解碼失敗了……以及 VLC 有個網頁端的控制接口，挺方便，可惜就是太 heavy 了。</p>
+<p>安裝 VLC 純粹是因爲我<code class="language-plaintext highlighter-rouge">scp</code>了一份「白金迪斯科」到 Pi，發現居然解碼失敗了……以及 VLC 有個網頁端的控制接口，挺方便，可惜就是太 heavy 了。</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pacman -S vlc pulseaudio pulseaudio-alsa libao
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> vlc pulseaudio pulseaudio-alsa libao
+</code></pre></div></div>
 
-<p>安裝完後把<code class="highlighter-rouge">/etc/libao.conf</code>裏的<code class="highlighter-rouge">alsa</code>換成<code class="highlighter-rouge">pulse</code>。之後再跑，你可能會遇到一些錯誤，那是因爲有些包還沒裝，仔細看下錯誤信息再補上就好了。上面的安裝我也不是一次到位的，也是跑跑補補，只是在寫簡記的時候重新 compile 了命令記錄。</p>
+<p>安裝完後把<code class="language-plaintext highlighter-rouge">/etc/libao.conf</code>裏的<code class="language-plaintext highlighter-rouge">alsa</code>換成<code class="language-plaintext highlighter-rouge">pulse</code>。之後再跑，你可能會遇到一些錯誤，那是因爲有些包還沒裝，仔細看下錯誤信息再補上就好了。上面的安裝我也不是一次到位的，也是跑跑補補，只是在寫簡記的時候重新 compile 了命令記錄。</p>
 
-<p>爲了使用網頁控制接口，你得在<code class="highlighter-rouge">/usr/share/vlc/lua/http/.hosts</code>裏加上可訪問的 IP，在這裏我就開放了本地網絡的訪問權：</p>
+<p>爲了使用網頁控制接口，你得在<code class="language-plaintext highlighter-rouge">/usr/share/vlc/lua/http/.hosts</code>裏加上可訪問的 IP，在這裏我就開放了本地網絡的訪問權：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># local network</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># local network</span>
 192.168.2.0/24
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>這樣應該就好了，來聽首歌試試：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>vlc --intf http --http-host 192.168.2.11 --http-port 8080 /home/conan/hikari-loveletter.mp3
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vlc <span class="nt">--intf</span> http <span class="nt">--http-host</span> 192.168.2.11 <span class="nt">--http-port</span> 8080 /home/conan/hikari-loveletter.mp3
+</code></pre></div></div>
 
 <p>打開 Web Interface 就只需要：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>vlc --extraintf<span class="o">=</span>http
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>vlc <span class="nt">--extraintf</span><span class="o">=</span>http
+</code></pre></div></div>
 
 <h3 id="wifi">WiFi</h3>
 
-<p>Edimax EW-7811Un 是基於 Realtek 8192CU 的 WiFi 網卡。這一款在 Raspberry Pi 社区里非常有人气，因为它能被 Pi 的小電力驅動。不過貌似它的驅動程序卻還沒有成爲 alarmpi 的標配，我聽說它的驅動已經成爲 Raspbian 的標配（基於 debian 的 Pi Linux 分支），估計 alarmpi 也快了吧。不過在此之前還是得自己擼。擼之前我建議參考這篇簡記的同學先用<code class="highlighter-rouge">lsmod</code>查看一下當前已經掛載的模塊，如果有叫<code class="highlighter-rouge">8192cu</code>的，那麼恭喜你，你不用自己擼了，直接跳過本章節吧！</p>
+<p>Edimax EW-7811Un 是基於 Realtek 8192CU 的 WiFi 網卡。這一款在 Raspberry Pi 社区里非常有人气，因为它能被 Pi 的小電力驅動。不過貌似它的驅動程序卻還沒有成爲 alarmpi 的標配，我聽說它的驅動已經成爲 Raspbian 的標配（基於 debian 的 Pi Linux 分支），估計 alarmpi 也快了吧。不過在此之前還是得自己擼。擼之前我建議參考這篇簡記的同學先用<code class="language-plaintext highlighter-rouge">lsmod</code>查看一下當前已經掛載的模塊，如果有叫<code class="language-plaintext highlighter-rouge">8192cu</code>的，那麼恭喜你，你不用自己擼了，直接跳過本章節吧！</p>
 
 <p>安裝前還是先更新、安裝一些必要的工具：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo su
-<span class="gp">$ </span>pacman -Syu
-<span class="gp">$ </span>pacman -S util-linux base-devel unzip
-<span class="gp">$ </span>reboot
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>su
+<span class="nv">$ </span>pacman <span class="nt">-Syu</span>
+<span class="nv">$ </span>pacman <span class="nt">-S</span> util-linux base-devel unzip
+<span class="nv">$ </span>reboot
+</code></pre></div></div>
 
-<p><code class="highlighter-rouge">util-linux</code>包其實是已經安裝過的了，但是在這裏我們或許得重裝一下，這是爲了避免<code class="highlighter-rouge">util-linux</code>的c重啓後不能登錄的小 bug，如果重啓後不能登錄了，就<code class="highlighter-rouge">ssh</code>上，再重裝<code class="highlighter-rouge">util-linux</code>。</p>
+<p><code class="language-plaintext highlighter-rouge">util-linux</code>包其實是已經安裝過的了，但是在這裏我們或許得重裝一下，這是爲了避免<code class="language-plaintext highlighter-rouge">util-linux</code>的c重啓後不能登錄的小 bug，如果重啓後不能登錄了，就<code class="language-plaintext highlighter-rouge">ssh</code>上，再重裝<code class="language-plaintext highlighter-rouge">util-linux</code>。</p>
 
 <p>從另一臺機子下載 <a href="http://218.210.127.131/downloads/downloadsView.aspx?Langid=1&amp;PNid=21&amp;PFid=48&amp;Level=5&amp;Conn=4&amp;DownTypeID=3&amp;GetDown=false&amp;Downloads=true#2772">RTL8192CU 驅動源碼</a>(因爲這個極品的網站裏源碼是js搞的，不太容易弄直接下載地址，所以得有個有圖形界面的機子來下)。將下載好的 zip 包上傳到 Pi 裏：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>scp ~/Downloads/RTL8192xC_USB_linux_v3.4.3_4369.20120622.zip conan@192.168.2.11:/home/conan/
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>scp ~/Downloads/RTL8192xC_USB_linux_v3.4.3_4369.20120622.zip conan@192.168.2.11:/home/conan/
+</code></pre></div></div>
 
 <p>下面再次回到 Pi 裏，解壓源碼：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo su
-<span class="gp">$ </span>unzip RTL819xC_USB_linux_v3.4.3_4369.20120622.zip
-<span class="gp">$ </span><span class="nb">cd </span>RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/
-<span class="gp">$ </span>tar -xvf rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622.tar.gz
-<span class="gp">$ </span><span class="nb">cd </span>rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622
-<span class="gp">$ </span>vim Makefile
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>su
+<span class="nv">$ </span>unzip RTL819xC_USB_linux_v3.4.3_4369.20120622.zip
+<span class="nv">$ </span><span class="nb">cd </span>RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/
+<span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-xvf</span> rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622
+<span class="nv">$ </span>vim Makefile
+</code></pre></div></div>
 
-<p>這裏我們要修改一下編譯所基於的架構，首先找到<code class="highlighter-rouge">CONFIG_PLATFORM_I386_PC = y</code>，將‘y’改成‘n’；加上<code class="highlighter-rouge">CONFIG_PLATFORM_ARM_BCM2708 = y</code>，在架構配置區塊下面加上下面的代碼：</p>
+<p>這裏我們要修改一下編譯所基於的架構，首先找到<code class="language-plaintext highlighter-rouge">CONFIG_PLATFORM_I386_PC = y</code>，將‘y’改成‘n’；加上<code class="language-plaintext highlighter-rouge">CONFIG_PLATFORM_ARM_BCM2708 = y</code>，在架構配置區塊下面加上下面的代碼：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>ifeq <span class="o">(</span><span class="k">$(</span>CONFIG_PLATFORM_ARM_BCM2708<span class="k">)</span>, y<span class="o">)</span>
-EXTRA_CFLAGS +<span class="o">=</span> -DCONFIG_LITTLE_ENDIAN
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ifeq <span class="o">(</span><span class="si">$(</span>CONFIG_PLATFORM_ARM_BCM2708<span class="si">)</span>, y<span class="o">)</span>
+EXTRA_CFLAGS +<span class="o">=</span> <span class="nt">-DCONFIG_LITTLE_ENDIAN</span>
 ARCH :<span class="o">=</span> arm
 CROSS_COMPILE :<span class="o">=</span>
-KVER  :<span class="o">=</span> <span class="k">$(</span>shell uname -r<span class="k">)</span>
-KSRC :<span class="o">=</span> /lib/modules/<span class="k">$(</span>KVER<span class="k">)</span>/build
+KVER  :<span class="o">=</span> <span class="si">$(</span>shell <span class="nb">uname</span> <span class="nt">-r</span><span class="si">)</span>
+KSRC :<span class="o">=</span> /lib/modules/<span class="si">$(</span>KVER<span class="si">)</span>/build
 endif
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>保存後就可以出來編譯了：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>make
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>make
+</code></pre></div></div>
 
-<p>不出意外，這裏應該就編譯成功了，我第一次跑的時候失敗了，原因是我下錯了源代碼包……成功後在一坨新生成的文件裏有個叫<code class="highlighter-rouge">8192cu.ko</code>的。這就是那個將要被掛載到內核的新模塊。</p>
+<p>不出意外，這裏應該就編譯成功了，我第一次跑的時候失敗了，原因是我下錯了源代碼包……成功後在一坨新生成的文件裏有個叫<code class="language-plaintext highlighter-rouge">8192cu.ko</code>的。這就是那個將要被掛載到內核的新模塊。</p>
 
-<p>按理說這裏只要再<code class="highlighter-rouge">make install</code>就好了，可是官方的 install 腳本好像有點問題，不過還是有參考意義的，至少它描述了你大概要做哪些事情來安裝新的組件。</p>
+<p>按理說這裏只要再<code class="language-plaintext highlighter-rouge">make install</code>就好了，可是官方的 install 腳本好像有點問題，不過還是有參考意義的，至少它描述了你大概要做哪些事情來安裝新的組件。</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>cp 8192cu.ko /lib/modules/<span class="k">$(</span>uname -r<span class="k">)</span>/kernel/net/wireless
-<span class="gp">$ </span>depmod -a
-<span class="gp">$ </span>insmod 8192cu.ko
-<span class="gp">$ </span>install -p -m 644 ~/RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622/8192cu.ko /lib/modules/<span class="o">(</span><span class="nv">$uname</span> -r<span class="o">)</span>/kernel/drivers/net/wireless/
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cp </span>8192cu.ko /lib/modules/<span class="si">$(</span><span class="nb">uname</span> <span class="nt">-r</span><span class="si">)</span>/kernel/net/wireless
+<span class="nv">$ </span>depmod <span class="nt">-a</span>
+<span class="nv">$ </span>insmod 8192cu.ko
+<span class="nv">$ </span><span class="nb">install</span> <span class="nt">-p</span> <span class="nt">-m</span> 644 ~/RTL8188C_8192C_USB_linux_v3.4.3_4369.20120622/driver/rtl8188C_8192C_usb_linux_v3.4.3_4369.20120622/8192cu.ko /lib/modules/<span class="o">(</span><span class="nv">$uname</span> <span class="nt">-r</span><span class="o">)</span>/kernel/drivers/net/wireless/
+</code></pre></div></div>
 
-<p>驅動裝完後我們還得看看有沒有衝突的驅動，用<code class="highlighter-rouge">mkinitcpio -M</code>查看。如果发现列表里有<code class="highlighter-rouge">rtl8192cu</code>，我們得禁用它才能保證新的驅動正常工作：</p>
+<p>驅動裝完後我們還得看看有沒有衝突的驅動，用<code class="language-plaintext highlighter-rouge">mkinitcpio -M</code>查看。如果发现列表里有<code class="language-plaintext highlighter-rouge">rtl8192cu</code>，我們得禁用它才能保證新的驅動正常工作：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s2">"blacklist rtl8192cu"</span> &gt; /etc/modprobe.d/blacklist-rtl8192cu.conf
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"blacklist rtl8192cu"</span> <span class="o">&gt;</span> /etc/modprobe.d/blacklist-rtl8192cu.conf
+</code></pre></div></div>
 
 <p>重啓並登錄後先看看驱动模块能不能用，如果有問題就再回到之前的部分仔細走一遍：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo su
-<span class="gp">$ </span>rmmod 8192cu
-<span class="gp">$ </span>modprobe 8192cu
-<span class="gp">$ </span>ip link <span class="nb">set </span>wlan0 up
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>su
+<span class="nv">$ </span>rmmod 8192cu
+<span class="nv">$ </span>modprobe 8192cu
+<span class="nv">$ </span>ip <span class="nb">link set </span>wlan0 up
+</code></pre></div></div>
 
-<p>接着就可以裝網絡管理軟件來自動化鏈接 WiFi 了，我用的是<code class="highlighter-rouge">netcfg</code>，先安裝必要的工具：</p>
+<p>接着就可以裝網絡管理軟件來自動化鏈接 WiFi 了，我用的是<code class="language-plaintext highlighter-rouge">netcfg</code>，先安裝必要的工具：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pacman -S wireless_tools netcfg
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> wireless_tools netcfg
+</code></pre></div></div>
 
 <p>安裝好後有些文件要配置一下，首先是創建 profile 文件：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>cp /etc/network.d/examples/wireless-wpa /etc/network.d/conan_wireless
-<span class="gp">$ </span>vim /etc/network.d/conan_wireless
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cp</span> /etc/network.d/examples/wireless-wpa /etc/network.d/conan_wireless
+<span class="nv">$ </span>vim /etc/network.d/conan_wireless
+</code></pre></div></div>
 
-<p>更具自己網絡的情況填寫好相應信息，當然這裏我用的是wpa方式連的，其他模式都在<code class="highlighter-rouge">examples</code>目錄下，具體信息可以看 <a href="https://wiki.archlinux.org/index.php/Netcfg#Configuration">Arch wiki</a>。</p>
+<p>更具自己網絡的情況填寫好相應信息，當然這裏我用的是wpa方式連的，其他模式都在<code class="language-plaintext highlighter-rouge">examples</code>目錄下，具體信息可以看 <a href="https://wiki.archlinux.org/index.php/Netcfg#Configuration">Arch wiki</a>。</p>
 
-<p><code class="highlighter-rouge">/etc/conf.d/netcfg</code>也要做些修改，因爲 WiFi 的 DHCP 可能有些慢，所以最好把等待時間設置長一點，加一句<code class="highlighter-rouge">DHCP_TIMEOUT=30</code>；其他的配置可以更具自己的喜好自由調整。</p>
+<p><code class="language-plaintext highlighter-rouge">/etc/conf.d/netcfg</code>也要做些修改，因爲 WiFi 的 DHCP 可能有些慢，所以最好把等待時間設置長一點，加一句<code class="language-plaintext highlighter-rouge">DHCP_TIMEOUT=30</code>；其他的配置可以更具自己的喜好自由調整。</p>
 
 <p>最後終於可以連 WiFi 了：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>netcfg /etc/network.d/conan_wireless
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>netcfg /etc/network.d/conan_wireless
+</code></pre></div></div>
 
-<p>這個過程中可能會看到錯誤，但是之後如果出現了‘Done’，那就應該是連上了，可以<code class="highlighter-rouge">ifconfig</code>看一下。</p>
+<p>這個過程中可能會看到錯誤，但是之後如果出現了‘Done’，那就應該是連上了，可以<code class="language-plaintext highlighter-rouge">ifconfig</code>看一下。</p>
 
 <p>最後我們要把 WiFi 鏈接自動化：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>systemctl <span class="nb">enable </span>net-auto-wireless.service
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemctl <span class="nb">enable </span>net-auto-wireless.service
+</code></pre></div></div>
 
 <h3 id="go">Go</h3>
 
 <p>在 arm 上編譯 Go 我純粹是吃飽了撐着，因爲發現在 Pi 上编译还比较 tricky，所以記錄一下。先裝上必要的軟件：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>pacman -S mercurial gcc
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pacman <span class="nt">-S</span> mercurial gcc
+</code></pre></div></div>
 
 <p>下載源碼：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>hg clone -u release https://code.google.com/p/go /usr/local/go
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>hg clone <span class="nt">-u</span> release https://code.google.com/p/go /usr/local/go
+</code></pre></div></div>
 
 <p>編譯流程跟<a href="http://golang.org/doc/install/source">官網說的</a>差不多，只是在編譯之前要設置一些環境變量：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">export </span><span class="nv">GOARCH</span><span class="o">=</span><span class="s2">"arm"</span>
-<span class="gp">$ </span><span class="nb">export </span><span class="nv">GOARM</span><span class="o">=</span><span class="s2">"5"</span>
-<span class="gp">$ </span><span class="nb">export </span><span class="nv">GOOS</span><span class="o">=</span><span class="s2">"linux"</span>
-<span class="gp">$ </span><span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="s2">"/usr/local/go/bin"</span>
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">GOARCH</span><span class="o">=</span><span class="s2">"arm"</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">GOARM</span><span class="o">=</span><span class="s2">"5"</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">GOOS</span><span class="o">=</span><span class="s2">"linux"</span>
+<span class="nv">$ </span><span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="s2">"/usr/local/go/bin"</span>
+</code></pre></div></div>
 
 <p>下面接着正常編譯流程：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd</span> /usr/local/go/src
-<span class="gp">$ </span>./all.bash
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /usr/local/go/src
+<span class="nv">$ </span>./all.bash
+</code></pre></div></div>
 
 <p>跑完后應該會有類似這樣的信息：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ALL TESTS PASSED
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ALL TESTS PASSED
 
 ---
 Installed Go for linux/amd64 in /home/you/go.
 Installed commands in /home/you/go/bin.
 *** You need to add /home/you/go/bin to your $PATH. ***
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<p>當然也有可能測試沒有完全通過的，我就遇到過，但是 bin 已經編譯成功了。這時候只需要把環境變量裏的<code class="highlighter-rouge">PATH</code>更新一下就可以了：</p>
+<p>當然也有可能測試沒有完全通過的，我就遇到過，但是 bin 已經編譯成功了。這時候只需要把環境變量裏的<code class="language-plaintext highlighter-rouge">PATH</code>更新一下就可以了：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+</code></pre></div></div>
 
-<p>最後跑個「喂世界」程序測試下。建一個<code class="highlighter-rouge">hello.go</code>：</p>
+<p>最後跑個「喂世界」程序測試下。建一個<code class="language-plaintext highlighter-rouge">hello.go</code>：</p>
 
-<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">main</span>
 
-</span><span class="k">import</span><span class="x"> </span><span class="s">"fmt"</span><span class="x">
+<span class="k">import</span> <span class="s">"fmt"</span>
 
-</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
-    </span><span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre>
-</div>
+<span class="k">func</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">fmt</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"hello, world</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <p>走起：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>go run hello.go
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>go run hello.go
 hello, world
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="後記">後記</h2>
 
-<p>這篇簡記基本只是一個關於 Raspberry Pi 的 setup，可能明睿更多的是希望看到各種性能相關的測評。我想性能什麼的是在預料之中的，肯定跟我們的本本沒法比啦，在編譯 Go 的時候連<code class="highlighter-rouge">rand</code>的測試都超時了。但是作爲一個玩具，還是挺不錯的。有了它我現在可以更節能了，下載不用整夜開着能跑「暗黑3」和「星際爭霸2」的 Linux 主機了。聽個音樂和有聲讀物也不用特意開電腦，手機還能方便操控。連着硬盤做文件stream或分享也挺方便。其實最好的一點是換SD卡方便。現在一個卡是 Arch，回頭再做張卡弄媒體中心，要用什麼就換什麼。</p>
+<p>這篇簡記基本只是一個關於 Raspberry Pi 的 setup，可能明睿更多的是希望看到各種性能相關的測評。我想性能什麼的是在預料之中的，肯定跟我們的本本沒法比啦，在編譯 Go 的時候連<code class="language-plaintext highlighter-rouge">rand</code>的測試都超時了。但是作爲一個玩具，還是挺不錯的。有了它我現在可以更節能了，下載不用整夜開着能跑「暗黑3」和「星際爭霸2」的 Linux 主機了。聽個音樂和有聲讀物也不用特意開電腦，手機還能方便操控。連着硬盤做文件stream或分享也挺方便。其實最好的一點是換SD卡方便。現在一個卡是 Arch，回頭再做張卡弄媒體中心，要用什麼就換什麼。</p>
 
 <p>至於麪包板以及擴展的一些 Hack 我還沒玩得起來，材料還在路上，不過我已經有些想法了。比如做些指示燈和語音輸出，把平時需要關注的信息用這些媒介傳遞給我，簡單說就是把以前的 pull 換成 push。</p>
 
@@ -622,6 +561,10 @@ hello, world
 </div>
 
 
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
 
       </div>
     </main>
@@ -656,7 +599,7 @@ hello, world
       </div> -->
 
       <div class="footer-col footer-col-2">
-        <p>Programming Language, Open Source, Design, Music, and everything in between.
+        <p>Programming, Design, Music, and everything in between.
 </p>
       </div>
     </div>
@@ -666,18 +609,12 @@ hello, world
   <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
 </footer>
 
-<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_s2t-376676e21aed86333cd20b4168774d379cc2a96c8f13548c66deeb4bd7f95fed.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_t2s-b96ecb25a8af193cd4d12b34f5acdae7fc0cfd4c3532eadbce7534e1ced33f64.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_ps2t-b13b15cb0b005254b3f1a4530771725c18767d2434da6f351c504edfebc1dd55.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
-<script type="text/javascript" src="/assets/main-8b2e32e9df6089a8735b34396b525556cce992c71f1e98ff62443592276a807d.js"></script>
-<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script language="JavaScript" src="/javascripts/main.js"></script>
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 

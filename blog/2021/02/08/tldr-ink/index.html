@@ -42,19 +42,6 @@
   <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
   <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
   
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-33556525-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-  
-
-  
 </head>
   <div id="wx_pic" style="margin:0 auto;display:none;">
     <img src="/assets/logo@3x.png" />
@@ -114,7 +101,7 @@
 
 <h2 id="後端">後端</h2>
 
-<p>因為一年前才開始使用 Zettelkasten 方法做筆記<sup id="fnref:0"><a href="#fn:0" class="footnote">1</a></sup>，這當中倒騰了很多方法/流程/系統/軟件，我甚至還有用紙筆記錄的系統。最近才慢慢穩定下來，目前的筆記都是記錄在 markdown 文本文件裡的，用 <a href="https://en.wikipedia.org/wiki/Help:Link">wikilink</a> 互連，使用的工具是 <a href="https://obsidian.md">Obsidian</a>。當然，因為是純文本，我偶爾也會用 Vim（Vimwiki）。</p>
+<p>因為一年前才開始使用 Zettelkasten 方法做筆記<sup id="fnref:0" role="doc-noteref"><a href="#fn:0" class="footnote" rel="footnote">1</a></sup>，這當中倒騰了很多方法/流程/系統/軟件，我甚至還有用紙筆記錄的系統。最近才慢慢穩定下來，目前的筆記都是記錄在 markdown 文本文件裡的，用 <a href="https://en.wikipedia.org/wiki/Help:Link">wikilink</a> 互連，使用的工具是 <a href="https://obsidian.md">Obsidian</a>。當然，因為是純文本，我偶爾也會用 Vim（Vimwiki）。</p>
 
 <p>Vimwiki 和 Obsidian 應該算是我心中最接近完美的筆記方案，即便它們都還有很多可提升的空間。但軟件而非服務、純文本、超鏈接和反向鏈結，這幾個是必不可少的。</p>
 
@@ -124,10 +111,10 @@
   <li>超鏈接和反向鏈結，想法本就是互連的，非線性的。將想法轉換成文字，只會損失掉一些信息。</li>
 </ul>
 
-<p>所以從網站的功能性來說，就是要將我的那些有很多超連結的 markdown 文本轉化成可用於瀏覽的 HTML 文件。這似乎不難，我很快就找到一個叫 obsidian-html 的開源軟件（現已改名為 obeo），它基本可以勝任這項工作，但因為是一個非常小眾又年輕的項目，有很多 bug 和設計不周的地方，所以我 fork 了一份改出了一個<a href="https://github.com/ConanChou/obsidian-html">我需要的版本</a>。跟原版比比較大的不同是<sup id="fnref:1"><a href="#fn:1" class="footnote">2</a></sup>：</p>
+<p>所以從網站的功能性來說，就是要將我的那些有很多超連結的 markdown 文本轉化成可用於瀏覽的 HTML 文件。這似乎不難，我很快就找到一個叫 obsidian-html 的開源軟件（現已改名為 obeo），它基本可以勝任這項工作，但因為是一個非常小眾又年輕的項目，有很多 bug 和設計不周的地方，所以我 fork 了一份改出了一個<a href="https://github.com/ConanChou/obsidian-html">我需要的版本</a>。跟原版比比較大的不同是<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup>：</p>
 
 <ul>
-  <li>生成的 HTML 文件內用 <code class="highlighter-rouge">class</code> 而非 <code class="highlighter-rouge">id</code>，原因我會在後面說</li>
+  <li>生成的 HTML 文件內用 <code class="language-plaintext highlighter-rouge">class</code> 而非 <code class="language-plaintext highlighter-rouge">id</code>，原因我會在後面說</li>
   <li>增加子目錄的支持</li>
   <li>增加內嵌圖片等多媒體文件的支持</li>
   <li>增加對子目錄生成排序目錄的支持</li>
@@ -146,9 +133,9 @@
 
 <h3 id="形式">形式</h3>
 
-<p>紙質 Zettelkasten 的一個好處是你可以將卡片排在桌上，一目了然。在電腦裡，最接近的體驗可能也只有 <a href="https://en.wikipedia.org/wiki/Tiling_window_manager">Tiling window manager</a> 了。所以我想實現的就是近似的那種多列 tile 板式。為什麼是多列式？因為我們人類的掃視寬度是有限的，恰當的列寬有更好的閱讀體驗<sup id="fnref:2"><a href="#fn:2" class="footnote">3</a></sup>。有了寬度限制，那我們能一次看多個文檔的方法就只有多列式了。</p>
+<p>紙質 Zettelkasten 的一個好處是你可以將卡片排在桌上，一目了然。在電腦裡，最接近的體驗可能也只有 <a href="https://en.wikipedia.org/wiki/Tiling_window_manager">Tiling window manager</a> 了。所以我想實現的就是近似的那種多列 tile 板式。為什麼是多列式？因為我們人類的掃視寬度是有限的，恰當的列寬有更好的閱讀體驗<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">3</a></sup>。有了寬度限制，那我們能一次看多個文檔的方法就只有多列式了。</p>
 
-<p>然而多列板式有極限，也就是屏幕的寬度，以我的16吋筆電為例，我最多只能看到三個文檔，而以我紙質卡片筆記系統的經驗，我通常需要同時查看3-10個卡片。正在我為此犯愁的時候我看到了 <a href="https://notes.andymatuschak.org/About_these_notes">Andy Matuschak 的筆記頁</a>，他巧妙地將頁面重疊，但露出豎列的標題欄。這種做法雖依舊無法跟紙質卡片相比，但標題大多數時候是可以給大腦的緩存一些 hint 的，前提是標題起得比較能概括筆記（事實上 Andy 也在他的筆記裡<a href="https://notes.andymatuschak.org/z3KmNj3oKKSTJfqdfSEBzTQiCVGoC4GfK3rYW">提到了這一點</a>），我便借鑑了這樣的處理方式。這也是為什麼我要將 oboe 生成 HTML 裡的 <code class="highlighter-rouge">id</code> 都換成 <code class="highlighter-rouge">class</code>。</p>
+<p>然而多列板式有極限，也就是屏幕的寬度，以我的16吋筆電為例，我最多只能看到三個文檔，而以我紙質卡片筆記系統的經驗，我通常需要同時查看3-10個卡片。正在我為此犯愁的時候我看到了 <a href="https://notes.andymatuschak.org/About_these_notes">Andy Matuschak 的筆記頁</a>，他巧妙地將頁面重疊，但露出豎列的標題欄。這種做法雖依舊無法跟紙質卡片相比，但標題大多數時候是可以給大腦的緩存一些 hint 的，前提是標題起得比較能概括筆記（事實上 Andy 也在他的筆記裡<a href="https://notes.andymatuschak.org/z3KmNj3oKKSTJfqdfSEBzTQiCVGoC4GfK3rYW">提到了這一點</a>），我便借鑑了這樣的處理方式。這也是為什麼我要將 oboe 生成 HTML 裡的 <code class="language-plaintext highlighter-rouge">id</code> 都換成 <code class="language-plaintext highlighter-rouge">class</code>。</p>
 
 <p><img src="https://user-images.githubusercontent.com/480759/107266421-7ed8ea80-6a13-11eb-9c77-a9926bb82bb8.png" alt="bright" /></p>
 
@@ -171,25 +158,25 @@
 
 <h3 id="動效">動效</h3>
 
-<p>之前在做一個習作<sup id="fnref:3"><a href="#fn:3" class="footnote">4</a></sup>的時候，有個設計師朋友吐槽說變化沒有 transition/animation。其實我也想加，只是真不知道哪個 macOS API 可以實現切換動效。這次的是網站，相對實現起來也容易很多。</p>
+<p>之前在做一個習作<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">4</a></sup>的時候，有個設計師朋友吐槽說變化沒有 transition/animation。其實我也想加，只是真不知道哪個 macOS API 可以實現切換動效。這次的是網站，相對實現起來也容易很多。</p>
 
 <h3 id="私心">私心</h3>
 
 <p>喔對了，說到這我才想起來，我設想的網站使用者僅是我自己。我知道大部分人並不會把網上的誰當回事，假想服務遊客很可能是空轉，所以服務好我是第一位的。當然我也比較挑剔，能讓我滿足的設計多少也能滿足大多數遊客吧。網站中的一些資源鏈接是指向我的內網服務器的，又或者是指向我的 Kindle app 內部地址的，所以這些鏈接可能對訪客並沒有幫助，但頁面內也有足夠多的信息去手動獲取相關的書文。</p>
 
-<p>網站的另一個討好自己的功能就是快捷鍵，我的日常工作基本都在小黑窗裡完成，習慣用鍵盤 navigate。所以網站裡也做了簡易的快捷鍵<sup id="fnref:4"><a href="#fn:4" class="footnote">5</a></sup>：</p>
+<p>網站的另一個討好自己的功能就是快捷鍵，我的日常工作基本都在小黑窗裡完成，習慣用鍵盤 navigate。所以網站裡也做了簡易的快捷鍵<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">5</a></sup>：</p>
 
 <ul>
-  <li><code class="highlighter-rouge">tab</code> 選取鏈接或關閉卡片按鈕</li>
-  <li><code class="highlighter-rouge">return</code> 點擊</li>
-  <li>左右箭頭鍵或<code class="highlighter-rouge">h</code>、<code class="highlighter-rouge">l</code>向前或向後滾動卡片</li>
+  <li><code class="language-plaintext highlighter-rouge">tab</code> 選取鏈接或關閉卡片按鈕</li>
+  <li><code class="language-plaintext highlighter-rouge">return</code> 點擊</li>
+  <li>左右箭頭鍵或<code class="language-plaintext highlighter-rouge">h</code>、<code class="language-plaintext highlighter-rouge">l</code>向前或向後滾動卡片</li>
 </ul>
 
 <p>最後一個我私人的小喜好就是字體排印符號的使用。比如：</p>
 
 <p><img src="https://user-images.githubusercontent.com/480759/107266622-c790a380-6a13-11eb-91df-ca598f9d18e2.png" alt="divider" /></p>
 
-<p><code class="highlighter-rouge">§</code> 和 <code class="highlighter-rouge">※</code> 分別是分節符號<sup id="fnref:5"><a href="#fn:5" class="footnote">6</a></sup>和參考符號<sup id="fnref:6"><a href="#fn:6" class="footnote">7</a></sup>，我用它們來分割文章章節，以及主體和腳註。</p>
+<p><code class="language-plaintext highlighter-rouge">§</code> 和 <code class="language-plaintext highlighter-rouge">※</code> 分別是分節符號<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">6</a></sup>和參考符號<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">7</a></sup>，我用它們來分割文章章節，以及主體和腳註。</p>
 
 <h2 id="自動化">自動化</h2>
 
@@ -199,7 +186,7 @@
 
 <p>跟「透明盒子計畫」相關的收穫且不說，就說技術本身的吧。我的本職工作並不涉及設計與前端開發，只是我一直對它們保持一定程度的關注。借此機會，我正好把玩了一下一直想學的 VueJS 和 TypeScript，還發現了超級適合我這種不怎麼寫 CSS 的人的工具——TailwindCSS。要感謝這些工具，我才能在短短一週多的時間裡把想法實現出來。</p>
 
-<p>除此之外，就像汽車製造商會把參加 F1 學到的技術下放到大眾產品上一樣，我也在摳細節的時候學到了一些新東西，可以挪用到我的博客上。比如這個符號 <code class="highlighter-rouge">↩</code>，在手機上查看時會顯示成跟周圍格格不入的 emoji ↩。後來我發現有兩種方法可以強制顯示字符，一種方法是在這個字符後面加一個空 Unicode 字符 <code class="highlighter-rouge">\uFE0E</code>；另一個方法就是限制這個字符的 Font-Family，排除 iOS 系統含有 emoji 的字體。</p>
+<p>除此之外，就像汽車製造商會把參加 F1 學到的技術下放到大眾產品上一樣，我也在摳細節的時候學到了一些新東西，可以挪用到我的博客上。比如這個符號 <code class="language-plaintext highlighter-rouge">↩</code>，在手機上查看時會顯示成跟周圍格格不入的 emoji ↩。後來我發現有兩種方法可以強制顯示字符，一種方法是在這個字符後面加一個空 Unicode 字符 <code class="language-plaintext highlighter-rouge">\uFE0E</code>；另一個方法就是限制這個字符的 Font-Family，排除 iOS 系統含有 emoji 的字體。</p>
 
 <hr />
 
@@ -214,28 +201,28 @@
   <li>Python</li>
 </ul>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:0">
-      <p><a href="https://cbp.tldr.ink/#/essays/透明盒子计划.html">Zettelkasten 簡介</a> <a href="#fnref:0" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:0" role="doc-endnote">
+      <p><a href="https://cbp.tldr.ink/#/essays/透明盒子计划.html">Zettelkasten 簡介</a> <a href="#fnref:0" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:1">
-      <p>因為我的使用目的跟原作者的想法不同，我就不去提交 PR 了，不過我還是會盡可能把上游的修改並進來。所以如果妳恰好也有類似的需求，可以使用我的版本。 <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>因為我的使用目的跟原作者的想法不同，我就不去提交 PR 了，不過我還是會盡可能把上游的修改並進來。所以如果妳恰好也有類似的需求，可以使用我的版本。 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>The Elements of Typographic Style Applied to the Web, 2.1.2 <a href="http://webtypography.net/2.1.2">Choose a comfortable measure</a> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>The Elements of Typographic Style Applied to the Web, 2.1.2 <a href="http://webtypography.net/2.1.2">Choose a comfortable measure</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3">
-      <p><a href="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/">AutoTheme</a> <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/">AutoTheme</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:4">
-      <p>Safari 需要在其設置內打開相應的 Accessibility 選項 <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:4" role="doc-endnote">
+      <p>Safari 需要在其設置內打開相應的 Accessibility 選項 <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:5">
-      <p><a href="https://en.wikipedia.org/wiki/Section_sign">Section sign</a> <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:5" role="doc-endnote">
+      <p><a href="https://en.wikipedia.org/wiki/Section_sign">Section sign</a> <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:6">
-      <p><a href="https://en.wikipedia.org/wiki/Reference_mark">Reference mark</a> <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:6" role="doc-endnote">
+      <p><a href="https://en.wikipedia.org/wiki/Reference_mark">Reference mark</a> <a href="#fnref:6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -275,6 +262,10 @@
 </div>
 
 
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
 
       </div>
     </main>
@@ -309,7 +300,7 @@
       </div> -->
 
       <div class="footer-col footer-col-2">
-        <p>Programming Language, Open Source, Design, Music, and everything in between.
+        <p>Programming, Design, Music, and everything in between.
 </p>
       </div>
     </div>
@@ -319,18 +310,12 @@
   <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
 </footer>
 
-<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_s2t-376676e21aed86333cd20b4168774d379cc2a96c8f13548c66deeb4bd7f95fed.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_t2s-b96ecb25a8af193cd4d12b34f5acdae7fc0cfd4c3532eadbce7534e1ced33f64.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_ps2t-b13b15cb0b005254b3f1a4530771725c18767d2434da6f351c504edfebc1dd55.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
-<script type="text/javascript" src="/assets/main-8b2e32e9df6089a8735b34396b525556cce992c71f1e98ff62443592276a807d.js"></script>
-<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script language="JavaScript" src="/javascripts/main.js"></script>
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 

@@ -42,19 +42,6 @@
   <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
   <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
   
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-33556525-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-  
-
-  
 </head>
   <div id="wx_pic" style="margin:0 auto;display:none;">
     <img src="/assets/logo@3x.png" />
@@ -116,45 +103,39 @@
 
 <p>OS 環境就跟上一篇日誌說的一樣，應用程序我隨便挑了個 Transmission。它有 daemon 模式跑，有簡單好用的 Web UI，最主要的是它也支持 Private Tracker（在國外下載東西還是這種類型的比較安全）：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>sudo su
-<span class="gp">$ </span>pacman -S transmission-cli
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>su
+<span class="nv">$ </span>pacman <span class="nt">-S</span> transmission-cli
+</code></pre></div></div>
 
 <p>daemon 模式執行：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>cp /usr/lib/systemd/system/transmission.service /etc/systemd/system/
-<span class="gp">$ </span>cp /usr/lib/tmpfiles.d/transmission.conf /etc/tmpfiles.d/
-<span class="gp">$ </span>groupadd transmission
-<span class="gp">$ </span>gpasswd -a conan transmission
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cp</span> /usr/lib/systemd/system/transmission.service /etc/systemd/system/
+<span class="nv">$ </span><span class="nb">cp</span> /usr/lib/tmpfiles.d/transmission.conf /etc/tmpfiles.d/
+<span class="nv">$ </span>groupadd transmission
+<span class="nv">$ </span>gpasswd <span class="nt">-a</span> conan transmission
+</code></pre></div></div>
 
-<p>修改<code class="highlighter-rouge">/etc/tmpfiles.d/transmission.conf</code>，將<code class="highlighter-rouge">user</code>和<code class="highlighter-rouge">group</code>替換成我們剛剛設置的‘conan’和‘transmission’。接着啓用剛剛的配置：</p>
+<p>修改<code class="language-plaintext highlighter-rouge">/etc/tmpfiles.d/transmission.conf</code>，將<code class="language-plaintext highlighter-rouge">user</code>和<code class="language-plaintext highlighter-rouge">group</code>替換成我們剛剛設置的‘conan’和‘transmission’。接着啓用剛剛的配置：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>systemd-tmpfiles --create transmission.conf
-<span class="gp">$ </span>systemctl daemon-reload
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>systemd-tmpfiles <span class="nt">--create</span> transmission.conf
+<span class="nv">$ </span>systemctl daemon-reload
+</code></pre></div></div>
 
-<p>別忘了把<code class="highlighter-rouge">/run/transmission</code>的權限設置成<code class="highlighter-rouge">777</code>：</p>
+<p>別忘了把<code class="language-plaintext highlighter-rouge">/run/transmission</code>的權限設置成<code class="language-plaintext highlighter-rouge">777</code>：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>chmod 777 /run/transmission
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">chmod </span>777 /run/transmission
+</code></pre></div></div>
 
-<p>硬件方面，我不可能往我4GB的小SD卡裏面存儲，所以我用了一塊自供電的外接硬盤。將它<code class="highlighter-rouge">mount</code>起來，其方法很多，可以手動mount也可以修改<code class="highlighter-rouge">/etc/fstab</code>自動化mount。這個示例裏我就從簡，手動添加了（因爲這塊硬盤是NTFS的，之後我需要格式化一下，所以只是暫時使用）：</p>
+<p>硬件方面，我不可能往我4GB的小SD卡裏面存儲，所以我用了一塊自供電的外接硬盤。將它<code class="language-plaintext highlighter-rouge">mount</code>起來，其方法很多，可以手動mount也可以修改<code class="language-plaintext highlighter-rouge">/etc/fstab</code>自動化mount。這個示例裏我就從簡，手動添加了（因爲這塊硬盤是NTFS的，之後我需要格式化一下，所以只是暫時使用）：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>mkdir /mnt/disk500
-<span class="gp">$ </span>mount /dev/sda1 /mnt/disk500
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir</span> /mnt/disk500
+<span class="nv">$ </span>mount /dev/sda1 /mnt/disk500
+</code></pre></div></div>
 
-<p>將<code class="highlighter-rouge">disk500</code>裏的「Downloads」軟連接到<code class="highlighter-rouge">~/Downloads</code>：</p>
+<p>將<code class="language-plaintext highlighter-rouge">disk500</code>裏的「Downloads」軟連接到<code class="language-plaintext highlighter-rouge">~/Downloads</code>：</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ln -s /mnt/disk500/Downloads/ ~/Downloads
-</code></pre>
-</div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ln</span> <span class="nt">-s</span> /mnt/disk500/Downloads/ ~/Downloads
+</code></pre></div></div>
 
 <h2 id="使用情況">使用情況</h2>
 
@@ -209,6 +190,10 @@
 </div>
 
 
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
 
       </div>
     </main>
@@ -243,7 +228,7 @@
       </div> -->
 
       <div class="footer-col footer-col-2">
-        <p>Programming Language, Open Source, Design, Music, and everything in between.
+        <p>Programming, Design, Music, and everything in between.
 </p>
       </div>
     </div>
@@ -253,18 +238,12 @@
   <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
 </footer>
 
-<script type="text/javascript" src="/assets/tongwen_core-05fcb44647b0825eb2e5663b6bc0d99ab6dd914dc3ea5f2fc9cd64a5fc48861e.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_s2t-376676e21aed86333cd20b4168774d379cc2a96c8f13548c66deeb4bd7f95fed.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_t2s-b96ecb25a8af193cd4d12b34f5acdae7fc0cfd4c3532eadbce7534e1ced33f64.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_ps2t-b13b15cb0b005254b3f1a4530771725c18767d2434da6f351c504edfebc1dd55.js"></script>
-<script type="text/javascript" src="/assets/tongwen_table_pt2s-4404d2d104a72ecd8753bfb9851a51cdcffb9dde63b1bf2ea153dd67a73afe91.js"></script>
-<script type="text/javascript" src="/assets/main-8b2e32e9df6089a8735b34396b525556cce992c71f1e98ff62443592276a807d.js"></script>
-<!-- <script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
 <script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
-<script language="JavaScript" src="/javascripts/main.js"></script> -->
+<script language="JavaScript" src="/javascripts/main.js"></script>
 <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
