@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <script type="text/javascript">
+    var host = "conanblog.me";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+    window.location.protocol = "https";
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="description" content="">
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/" />
+  <meta property="og:title" content="寫給幫助測試 AutoTheme 的你們" />
+  <meta property="og:description" content="" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@ConanChou" />
+  <meta name="twitter:title" content="寫給幫助測試 AutoTheme 的你們" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="https://conanblog.me/assets/logo@3x.png" />
+  <meta property="og:image" content="https://conanblog.me/assets/logo@3x.png" />
+  <title>寫給幫助測試 AutoTheme 的你們</title>
+  <base target="_blank">
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/">
+  <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
+  <link href="/stylesheets/switchery.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/logo@3x.png">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/jquery.color-animation/1/mainfile"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-lazyload-any/0.3.0/jquery.lazyload-any.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script>
+  <script type="text/javascript" src="/javascripts/switchery.min.js"></script>
+  <!-- <script type="text/javascript" src="/javascripts/disqus_loader.min.js"></script> -->
+  <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
+  <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
+  
+</head>
+  <div id="wx_pic" style="margin:0 auto;display:none;">
+    <img src="/assets/logo@3x.png" />
+  </div>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/" title="conan@notes:~/">Conan&#39;s Notes</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon" onclick = "void(0)">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/me/">Me</a>
+          
+        
+        <a class="page-link-ext" href="https://cbp.tldr.ink/#/notes/now.html" target="_blank">/now</a>
+        <a class="page-link-ext" href="https://conanblog.me/Unix-as-IDE--Chinese-/" target="_blank">Unix as IDE</a>
+      </div>
+    </nav>
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">寫給幫助測試 AutoTheme 的你們</h1>
+    <p class="post-meta"><time datetime="2019-01-25T00:00:00-05:00" itemprop="datePublished">Jan 25, 2019</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><img src="https://user-images.githubusercontent.com/480759/51755901-b58e7300-208d-11e9-84e6-b8ce2dd36246.png" alt="AutoTheme Poster" /></p>
+
+<p>非常感謝你們的熱心幫助！</p>
+
+<p>這篇文章主要是想告訴首批測試朋友現在 App 開發到什麼程度，有哪些已知問題，當然還有如何安裝。</p>
+
+<h2 id="這個-app-有什麼用">這個 App 有什麼用</h2>
+
+<p>首先這是一個餐單欄應用。菜單裡有個很直接的切換主題的功能，用於在深/淺主題間切換。就像上面做的圖一樣，事實上那張圖是兩張截屏。從 Preferences 裡，你可以預設深/淺兩種主題的 Highlight 和 Accent 兩個的顏色。切換主題時，這兩種顏色配置會自動被切換。</p>
+
+<h2 id="如何安裝">如何安裝</h2>
+
+<p>我還沒有買蘋果開發者帳號，因此現在的測試版還沒有 sign。所以測試的朋友安裝就要麻煩一點了。下載後如果直接打開 App 的話可能會看到這個：</p>
+
+<p><img src="https://user-images.githubusercontent.com/480759/51755893-b1faec00-208d-11e9-8b10-cfde9edd8c3f.png" alt="install issue" /></p>
+
+<p>需要先关掉一下 macOS Gatekeeper<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>。在 Terminal 下輸入：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo spctl --master-disable
+</code></pre></div></div>
+
+<p>把 App 放進 Applications 文件夾後再打開應該就可以用了。此時可以再把 Gatekeeper 開啟：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo spctl --master-enable
+</code></pre></div></div>
+
+<p>考慮到這一步可能讓一些同學不是很舒服，所以不勉強哈。</p>
+
+<h2 id="已知問題">已知問題</h2>
+
+<p>在開發過程中，我意識到蘋果官方似乎在糾結這兩種顏色的設計，包括顏色本身和 API 的設計，我所使用的 API 在macOS 10.14（也許更早一點的版本）之前 <code class="language-plaintext highlighter-rouge">yellow</code> 是可以用的，但是最近的系統版本不能用了，而 API 裡 <code class="language-plaintext highlighter-rouge">yellow</code> 被取消了，新加了 <code class="language-plaintext highlighter-rouge">gold</code>，然而新加的這個也不能用。所以想了一個 fallback 方案，就是用 AppleScript 操作系統設置，但是缺點是換黃色的時候會有個選擇顏色的下拉菜單閃現⋯⋯目前還不知道怎麼解決，如果大家有啥想法歡迎來信討論 😅</p>
+
+<h2 id="roadmap">Roadmap</h2>
+
+<p>理想狀況下我想繼續做以下功能：</p>
+
+<ul>
+  <li>根據當地地理位置的日落時間自動更換深/淺主題</li>
+  <li>I18N</li>
+  <li>快捷鍵</li>
+  <li>讓用戶自訂義 Highlight color？</li>
+</ul>
+
+<p>同學們如果有啥想法也可以給我來信！</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://en.wikipedia.org/wiki/Gatekeeper_(macOS)">Gatekeeper</a>，以及<a href="http://osxdaily.com/2016/09/27/allow-apps-from-anywhere-macos-gatekeeper/">如何關閉和開啓它</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <ul class="categories">
+    
+    <li><a class="page-link" href="/?category=macOS">#macOS</a></li>
+    
+    <li><a class="page-link" href="/?category=side-project">#side-project</a></li>
+    
+    <li><a class="page-link" href="/?category=tech">#tech</a></li>
+    
+  </ul>
+
+</article>
+
+<div class="ending">
+  
+  <div id="discussion-btn-group">
+    
+    <a title="Discuss on Twitter" href="https://twitter.com/intent/tweet?in_reply_to=1088831495844872192"
+      target="_blank" class="discussion-btn">Discuss on Twitter ▶</a>
+    <a title="View Discussions" href="https://twitter.com/avc/status/1088831495844872192" target="_blank"
+      class="discussion-btn">View Discussions ▶</a>
+    
+  </div>
+  
+  <!--  -->
+  <div class="post-nav">
+    <div>
+      
+      <a title="Previous Post: 2018 ⇝ 2019" href="/blog/2019/01/01/2018-2019/">◀<span id="prev-span">2018 ⇝ 2019</span></a>
+      
+    </div>
+    <div class="post-nav-next">
+      
+      <a title="Next Post: 2010 ⇝ 2020" href="/blog/2019/12/31/2010-2020/"> <span id="next-span">2010 ⇝ 2020</span>▶</a>
+      
+    </div>
+  </div>
+
+</div>
+
+<div id="promotion">
+  <div>
+    <a href="https://apps.apple.com/app/apple-store/id6478060940?pt=126889244&ct=blog&mt=8" class="app-card" target="_blank">
+      <div class="app-card-content">
+        <img src="/images/256@2x.png" alt="Quotes App Icon" class="app-icon">
+        <div class="app-info">
+          <span class="app-from">歡迎使用 blurrr.studio 作品</span>
+          <h3>Quotes - 您的閱讀引文管理工具</h3>
+          <p>引文快速擷取、自動獲取 Kindle/Apple Book 書本信息、導入 Kindle 筆記、一鍵生成文字圖片、桌面小組件等。</p>
+        </div>
+        <div class="chevron">
+          <svg width="14" height="44" viewBox="0 0 14 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.02344 41.5352C5.77344 42.0977 5.40625 42.5508 4.92188 42.8945C4.45312 43.2539 3.92188 43.4336 3.32812 43.4336C2.34375 43.4336 1.53906 43.1211 0.914062 42.4961C0.304688 41.8711 0 41.1211 0 40.2461C0 39.7617 0.109375 39.2461 0.328125 38.6992C0.546875 38.1367 0.757812 37.6133 0.960938 37.1289L7.78125 20.6289V23.3711L0.960938 6.87109C0.757812 6.40234 0.546875 5.88672 0.328125 5.32422C0.109375 4.74609 0 4.22266 0 3.75391C0 2.86328 0.304688 2.11328 0.914062 1.50391C1.53906 0.878906 2.34375 0.566406 3.32812 0.566406C3.92188 0.566406 4.45312 0.746094 4.92188 1.10547C5.40625 1.44922 5.77344 1.90234 6.02344 2.46484L12.5625 18.1445C12.8438 18.8164 13.0938 19.4648 13.3125 20.0898C13.5312 20.7148 13.6406 21.3477 13.6406 21.9883C13.6406 22.6289 13.5312 23.2617 13.3125 23.8867C13.0938 24.4961 12.8438 25.1445 12.5625 25.832L6.02344 41.5352Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="banner-container">
+    <img src="/images/blog banner.png" alt="blurrr.studio banner">
+  </div>
+</div>
+
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Made by <a href="https://twitter.com/conanchou" target="_blank">Conan</a>, with love and curiosity.
+      </div>
+
+      <!-- <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/conanchou"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/conanchou"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+        </ul>
+      </div> -->
+
+      <div class="footer-col footer-col-2">
+        <p>Programming, Design, Music, and everything in between.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+</footer>
+
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
+<script language="JavaScript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  </body>
+
+</html>

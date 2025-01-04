@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <script type="text/javascript">
+    var host = "conanblog.me";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+    window.location.protocol = "https";
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="description" content="在朋友們在 Clubhouse 衝浪的時候，我為「透明盒子計畫」做了一個網站—— TLDR.ink。網站不光是她的網絡 ID，這也將使「盒子」變得更透明。我想在不久的將來做一些獨立研究，研究進程可以在這個網站上展現。就像人們在 twitch 上看直播一樣，只是這個會被用來直播文獻閱讀和思考。">
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://conanblog.me/blog/2021/02/08/tldr-ink/" />
+  <meta property="og:title" content="「透明盒子計畫」網站設計時的一些考慮" />
+  <meta property="og:description" content="在朋友們在 Clubhouse 衝浪的時候，我為「透明盒子計畫」做了一個網站—— TLDR.ink。網站不光是她的網絡 ID，這也將使「盒子」變得更透明。我想在不久的將來做一些獨立研究，研究進程可以在這個網站上展現。就像人們在 twitch 上看直播一樣，只是這個會被用來直播文獻閱讀和思考。" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@ConanChou" />
+  <meta name="twitter:title" content="「透明盒子計畫」網站設計時的一些考慮" />
+  <meta name="twitter:description" content="在朋友們在 Clubhouse 衝浪的時候，我為「透明盒子計畫」做了一個網站—— TLDR.ink。網站不光是她的網絡 ID，這也將使「盒子」變得更透明。我想在不久的將來做一些獨立研究，研究進程可以在這個網站上展現。就像人們在 twitch 上看直播一樣，只是這個會被用來直播文獻閱讀和思考。" />
+  <meta name="twitter:image" content="https://conanblog.me/assets/logo@3x.png" />
+  <meta property="og:image" content="https://conanblog.me/assets/logo@3x.png" />
+  <title>「透明盒子計畫」網站設計時的一些考慮</title>
+  <base target="_blank">
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://conanblog.me/blog/2021/02/08/tldr-ink/">
+  <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
+  <link href="/stylesheets/switchery.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/logo@3x.png">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/jquery.color-animation/1/mainfile"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-lazyload-any/0.3.0/jquery.lazyload-any.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script>
+  <script type="text/javascript" src="/javascripts/switchery.min.js"></script>
+  <!-- <script type="text/javascript" src="/javascripts/disqus_loader.min.js"></script> -->
+  <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
+  <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
+  
+</head>
+  <div id="wx_pic" style="margin:0 auto;display:none;">
+    <img src="/assets/logo@3x.png" />
+  </div>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/" title="conan@notes:~/">Conan&#39;s Notes</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon" onclick = "void(0)">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/me/">Me</a>
+          
+        
+        <a class="page-link-ext" href="https://cbp.tldr.ink/#/notes/now.html" target="_blank">/now</a>
+        <a class="page-link-ext" href="https://conanblog.me/Unix-as-IDE--Chinese-/" target="_blank">Unix as IDE</a>
+      </div>
+    </nav>
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">「透明盒子計畫」網站設計時的一些考慮</h1>
+    <p class="post-meta"><time datetime="2021-02-08T00:00:00-05:00" itemprop="datePublished">Feb 8, 2021</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>在朋友們在 Clubhouse 衝浪的時候，我為「透明盒子計畫」做了一個網站—— <a href="https://tldr.ink">TLDR.ink</a>。網站不光是她的網絡 ID，這也將使「盒子」變得更透明。我想在不久的將來做一些獨立研究，研究進程可以在這個網站上展現。就像人們在 twitch 上看直播一樣，只是這個會被用來直播文獻閱讀和思考。</p>
+
+<h2 id="後端">後端</h2>
+
+<p>因為一年前才開始使用 Zettelkasten 方法做筆記<sup id="fnref:0" role="doc-noteref"><a href="#fn:0" class="footnote" rel="footnote">1</a></sup>，這當中倒騰了很多方法/流程/系統/軟件，我甚至還有用紙筆記錄的系統。最近才慢慢穩定下來，目前的筆記都是記錄在 markdown 文本文件裡的，用 <a href="https://en.wikipedia.org/wiki/Help:Link">wikilink</a> 互連，使用的工具是 <a href="https://obsidian.md">Obsidian</a>。當然，因為是純文本，我偶爾也會用 Vim（Vimwiki）。</p>
+
+<p>Vimwiki 和 Obsidian 應該算是我心中最接近完美的筆記方案，即便它們都還有很多可提升的空間。但軟件而非服務、純文本、超鏈接和反向鏈結，這幾個是必不可少的。</p>
+
+<ul>
+  <li>「軟件而非服務」的好處顯而易見，妳不會被服務商挾持，也不會有那些 creepy 的隱私問題。</li>
+  <li>純文本，這意味著內容與樣式的脫離，也就意味著後續的可擴展性很強。妳可以輕鬆寫一些小腳本將它們轉化成妳想要的格式。</li>
+  <li>超鏈接和反向鏈結，想法本就是互連的，非線性的。將想法轉換成文字，只會損失掉一些信息。</li>
+</ul>
+
+<p>所以從網站的功能性來說，就是要將我的那些有很多超連結的 markdown 文本轉化成可用於瀏覽的 HTML 文件。這似乎不難，我很快就找到一個叫 obsidian-html 的開源軟件（現已改名為 obeo），它基本可以勝任這項工作，但因為是一個非常小眾又年輕的項目，有很多 bug 和設計不周的地方，所以我 fork 了一份改出了一個<a href="https://github.com/ConanChou/obsidian-html">我需要的版本</a>。跟原版比比較大的不同是<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup>：</p>
+
+<ul>
+  <li>生成的 HTML 文件內用 <code class="language-plaintext highlighter-rouge">class</code> 而非 <code class="language-plaintext highlighter-rouge">id</code>，原因我會在後面說</li>
+  <li>增加子目錄的支持</li>
+  <li>增加內嵌圖片等多媒體文件的支持</li>
+  <li>增加對子目錄生成排序目錄的支持</li>
+  <li>增加對文件 front matter metadata 的支持，生成同名 JSON 文件</li>
+  <li>修正了反向鏈結探測的 bug</li>
+</ul>
+
+<p>這樣我就有了一堆靜態文件，這些靜態文件並非完整是 HTML，只是局部。而網站的邏輯就很簡單了——按需獲取文件並展示在用戶面前。這種方式也是 DHH 的 RoR 社區和 Phoenix 社區正在嘗試的一個 Web 發展「新方向」。</p>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">React is so 2019. HTML + minimum JS is 2020 😄✌️</p>&mdash; DHH (@dhh) <a href="https://twitter.com/dhh/status/1275902566719610880?ref_src=twsrc%5Etfw">June 24, 2020</a></blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="網站設計">網站設計</h2>
+
+<p>既然邏輯並不複雜，我就把更多的精力放在了交互設計和優化細節上。</p>
+
+<h3 id="形式">形式</h3>
+
+<p>紙質 Zettelkasten 的一個好處是你可以將卡片排在桌上，一目了然。在電腦裡，最接近的體驗可能也只有 <a href="https://en.wikipedia.org/wiki/Tiling_window_manager">Tiling window manager</a> 了。所以我想實現的就是近似的那種多列 tile 板式。為什麼是多列式？因為我們人類的掃視寬度是有限的，恰當的列寬有更好的閱讀體驗<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">3</a></sup>。有了寬度限制，那我們能一次看多個文檔的方法就只有多列式了。</p>
+
+<p>然而多列板式有極限，也就是屏幕的寬度，以我的16吋筆電為例，我最多只能看到三個文檔，而以我紙質卡片筆記系統的經驗，我通常需要同時查看3-10個卡片。正在我為此犯愁的時候我看到了 <a href="https://notes.andymatuschak.org/About_these_notes">Andy Matuschak 的筆記頁</a>，他巧妙地將頁面重疊，但露出豎列的標題欄。這種做法雖依舊無法跟紙質卡片相比，但標題大多數時候是可以給大腦的緩存一些 hint 的，前提是標題起得比較能概括筆記（事實上 Andy 也在他的筆記裡<a href="https://notes.andymatuschak.org/z3KmNj3oKKSTJfqdfSEBzTQiCVGoC4GfK3rYW">提到了這一點</a>），我便借鑑了這樣的處理方式。這也是為什麼我要將 oboe 生成 HTML 裡的 <code class="language-plaintext highlighter-rouge">id</code> 都換成 <code class="language-plaintext highlighter-rouge">class</code>。</p>
+
+<p><img src="https://user-images.githubusercontent.com/480759/107266421-7ed8ea80-6a13-11eb-9c77-a9926bb82bb8.png" alt="bright" /></p>
+
+<p>考慮到之後我會將單張卡片或序列卡片分享到<a href="https://twitter.com/ReadThinkShare">官方 Twitter</a>。所以需要兩個功能：</p>
+
+<ul>
+  <li>網址必須跟內容一一對應，即網址要能重現我所看到的卡片排列順序</li>
+  <li>我應能方便去掉不想在序列中的卡片，當然這也會更新網址，反映最新的序列</li>
+</ul>
+
+<p>之後我或許也會做方便分享的隱藏功能。</p>
+
+<h3 id="暗夜模式">暗夜模式</h3>
+
+<p>再來就是暗夜模式，我現在還是沒有自由身的社畜，所以經常只有等到晚上才有一點時間寫點東西、做點像這樣的 side project。所以暗夜模式是一個必需品。因為偶爾混跡設計圈，見不少人對非純黑有批評。我就嘗試了用純黑做背景，但是效果不好，主要是對比度讓我的眼睛不適。所以最終我還是改用了某種深灰。</p>
+
+<p>我繪製的大多數插畫都是以淺色為背景的。我很快就意識到在暗夜模式下格外刺眼。於是我都將這些插圖做了處理，在暗夜模式下自動降低對比度。</p>
+
+<p><img src="https://user-images.githubusercontent.com/480759/107266481-957f4180-6a13-11eb-9fc0-b2dd1a515eec.png" alt="dark" /></p>
+
+<h3 id="動效">動效</h3>
+
+<p>之前在做一個習作<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">4</a></sup>的時候，有個設計師朋友吐槽說變化沒有 transition/animation。其實我也想加，只是真不知道哪個 macOS API 可以實現切換動效。這次的是網站，相對實現起來也容易很多。</p>
+
+<h3 id="私心">私心</h3>
+
+<p>喔對了，說到這我才想起來，我設想的網站使用者僅是我自己。我知道大部分人並不會把網上的誰當回事，假想服務遊客很可能是空轉，所以服務好我是第一位的。當然我也比較挑剔，能讓我滿足的設計多少也能滿足大多數遊客吧。網站中的一些資源鏈接是指向我的內網服務器的，又或者是指向我的 Kindle app 內部地址的，所以這些鏈接可能對訪客並沒有幫助，但頁面內也有足夠多的信息去手動獲取相關的書文。</p>
+
+<p>網站的另一個討好自己的功能就是快捷鍵，我的日常工作基本都在小黑窗裡完成，習慣用鍵盤 navigate。所以網站裡也做了簡易的快捷鍵<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">5</a></sup>：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">tab</code> 選取鏈接或關閉卡片按鈕</li>
+  <li><code class="language-plaintext highlighter-rouge">return</code> 點擊</li>
+  <li>左右箭頭鍵或<code class="language-plaintext highlighter-rouge">h</code>、<code class="language-plaintext highlighter-rouge">l</code>向前或向後滾動卡片</li>
+</ul>
+
+<p>最後一個我私人的小喜好就是字體排印符號的使用。比如：</p>
+
+<p><img src="https://user-images.githubusercontent.com/480759/107266622-c790a380-6a13-11eb-91df-ca598f9d18e2.png" alt="divider" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">§</code> 和 <code class="language-plaintext highlighter-rouge">※</code> 分別是分節符號<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">6</a></sup>和參考符號<sup id="fnref:6" role="doc-noteref"><a href="#fn:6" class="footnote" rel="footnote">7</a></sup>，我用它們來分割文章章節，以及主體和腳註。</p>
+
+<h2 id="自動化">自動化</h2>
+
+<p>筆記即思考，既然是思考，我如果還老是惦記著保存、推送至網站這些無關的操作，勢必會影響筆記和效率。所以我寫了腳本監聽筆記文件的改動，每過一段時間便會自動推送至網站。所以如果看到有寫了半句話的筆記，那多半並非是我馬虎，只是妳看「直播」時畫面定格在了半睜眼。</p>
+
+<h2 id="收穫">收穫</h2>
+
+<p>跟「透明盒子計畫」相關的收穫且不說，就說技術本身的吧。我的本職工作並不涉及設計與前端開發，只是我一直對它們保持一定程度的關注。借此機會，我正好把玩了一下一直想學的 VueJS 和 TypeScript，還發現了超級適合我這種不怎麼寫 CSS 的人的工具——TailwindCSS。要感謝這些工具，我才能在短短一週多的時間裡把想法實現出來。</p>
+
+<p>除此之外，就像汽車製造商會把參加 F1 學到的技術下放到大眾產品上一樣，我也在摳細節的時候學到了一些新東西，可以挪用到我的博客上。比如這個符號 <code class="language-plaintext highlighter-rouge">↩</code>，在手機上查看時會顯示成跟周圍格格不入的 emoji ↩。後來我發現有兩種方法可以強制顯示字符，一種方法是在這個字符後面加一個空 Unicode 字符 <code class="language-plaintext highlighter-rouge">\uFE0E</code>；另一個方法就是限制這個字符的 Font-Family，排除 iOS 系統含有 emoji 的字體。</p>
+
+<hr />
+
+<p>還有一些東西沒有提，那些基本都是從我的博客帶過去的想法，比如腳註跳轉的細節之類的。再比如前文提到的分享功能，多半會借鑑本站的方式。之後肯定也會有進一步的改動和優化，如果值得寫一下的話會再寫一篇更新。</p>
+
+<p>最後說一下用到的技術，以免有同學好奇：</p>
+
+<ul>
+  <li>VueJS 3 with TypeScript</li>
+  <li>TailwindCSS</li>
+  <li>bash</li>
+  <li>Python</li>
+</ul>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:0" role="doc-endnote">
+      <p><a href="https://cbp.tldr.ink/#/essays/透明盒子计划.html">Zettelkasten 簡介</a> <a href="#fnref:0" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:1" role="doc-endnote">
+      <p>因為我的使用目的跟原作者的想法不同，我就不去提交 PR 了，不過我還是會盡可能把上游的修改並進來。所以如果妳恰好也有類似的需求，可以使用我的版本。 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>The Elements of Typographic Style Applied to the Web, 2.1.2 <a href="http://webtypography.net/2.1.2">Choose a comfortable measure</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/">AutoTheme</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>Safari 需要在其設置內打開相應的 Accessibility 選項 <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:5" role="doc-endnote">
+      <p><a href="https://en.wikipedia.org/wiki/Section_sign">Section sign</a> <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:6" role="doc-endnote">
+      <p><a href="https://en.wikipedia.org/wiki/Reference_mark">Reference mark</a> <a href="#fnref:6" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <ul class="categories">
+    
+    <li><a class="page-link" href="/?category=tech">#tech</a></li>
+    
+    <li><a class="page-link" href="/?category=side-project">#side-project</a></li>
+    
+  </ul>
+
+</article>
+
+<div class="ending">
+  
+  <div id="discussion-btn-group">
+    
+    <a title="Discuss on Twitter" href="https://twitter.com/intent/tweet?in_reply_to=1358977113332809733"
+      target="_blank" class="discussion-btn">Discuss on Twitter ▶</a>
+    <a title="View Discussions" href="https://twitter.com/avc/status/1358977113332809733" target="_blank"
+      class="discussion-btn">View Discussions ▶</a>
+    
+  </div>
+  
+  <!--  -->
+  <div class="post-nav">
+    <div>
+      
+      <a title="Previous Post: 2020 ⇝ 2021" href="/blog/2020/12/31/2020-2021/">◀<span id="prev-span">2020 ⇝ 2021</span></a>
+      
+    </div>
+    <div class="post-nav-next">
+      
+      <a title="Next Post: 如何驗證 Elixir macro 是否書寫正確" href="/blog/2021/03/14/debug-macro/"> <span id="next-span">如何驗證 Elixir macro 是否書寫正確</span>▶</a>
+      
+    </div>
+  </div>
+
+</div>
+
+<div id="promotion">
+  <div>
+    <a href="https://apps.apple.com/app/apple-store/id6478060940?pt=126889244&ct=blog&mt=8" class="app-card" target="_blank">
+      <div class="app-card-content">
+        <img src="/images/256@2x.png" alt="Quotes App Icon" class="app-icon">
+        <div class="app-info">
+          <span class="app-from">歡迎使用 blurrr.studio 作品</span>
+          <h3>Quotes - 您的閱讀引文管理工具</h3>
+          <p>引文快速擷取、自動獲取 Kindle/Apple Book 書本信息、導入 Kindle 筆記、一鍵生成文字圖片、桌面小組件等。</p>
+        </div>
+        <div class="chevron">
+          <svg width="14" height="44" viewBox="0 0 14 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.02344 41.5352C5.77344 42.0977 5.40625 42.5508 4.92188 42.8945C4.45312 43.2539 3.92188 43.4336 3.32812 43.4336C2.34375 43.4336 1.53906 43.1211 0.914062 42.4961C0.304688 41.8711 0 41.1211 0 40.2461C0 39.7617 0.109375 39.2461 0.328125 38.6992C0.546875 38.1367 0.757812 37.6133 0.960938 37.1289L7.78125 20.6289V23.3711L0.960938 6.87109C0.757812 6.40234 0.546875 5.88672 0.328125 5.32422C0.109375 4.74609 0 4.22266 0 3.75391C0 2.86328 0.304688 2.11328 0.914062 1.50391C1.53906 0.878906 2.34375 0.566406 3.32812 0.566406C3.92188 0.566406 4.45312 0.746094 4.92188 1.10547C5.40625 1.44922 5.77344 1.90234 6.02344 2.46484L12.5625 18.1445C12.8438 18.8164 13.0938 19.4648 13.3125 20.0898C13.5312 20.7148 13.6406 21.3477 13.6406 21.9883C13.6406 22.6289 13.5312 23.2617 13.3125 23.8867C13.0938 24.4961 12.8438 25.1445 12.5625 25.832L6.02344 41.5352Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="banner-container">
+    <img src="/images/blog banner.png" alt="blurrr.studio banner">
+  </div>
+</div>
+
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Made by <a href="https://twitter.com/conanchou" target="_blank">Conan</a>, with love and curiosity.
+      </div>
+
+      <!-- <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/conanchou"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/conanchou"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+        </ul>
+      </div> -->
+
+      <div class="footer-col footer-col-2">
+        <p>Programming, Design, Music, and everything in between.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+</footer>
+
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
+<script language="JavaScript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  </body>
+
+</html>

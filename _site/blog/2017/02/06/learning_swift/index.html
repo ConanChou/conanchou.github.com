@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+  <head>
+  <script type="text/javascript">
+    var host = "conanblog.me";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+    window.location.protocol = "https";
+  </script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="description" content="最近在學習 Swift，一開始我以為它像目前的一些支持 OOP 和 FP 的多範式語言一樣，可猝不及防它居然引入了一種新的範式，這種範式基於 Java 的 interface，但加了更多靈活的創新。我覺得學習語言不搞明白它的範式等於是沒學。畢竟語法是形，範式才是神。這才有了這篇文章。">
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://conanblog.me/blog/2017/02/06/learning_swift/" />
+  <meta property="og:title" content="最近在學 Swift" />
+  <meta property="og:description" content="最近在學習 Swift，一開始我以為它像目前的一些支持 OOP 和 FP 的多範式語言一樣，可猝不及防它居然引入了一種新的範式，這種範式基於 Java 的 interface，但加了更多靈活的創新。我覺得學習語言不搞明白它的範式等於是沒學。畢竟語法是形，範式才是神。這才有了這篇文章。" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@ConanChou" />
+  <meta name="twitter:title" content="最近在學 Swift" />
+  <meta name="twitter:description" content="最近在學習 Swift，一開始我以為它像目前的一些支持 OOP 和 FP 的多範式語言一樣，可猝不及防它居然引入了一種新的範式，這種範式基於 Java 的 interface，但加了更多靈活的創新。我覺得學習語言不搞明白它的範式等於是沒學。畢竟語法是形，範式才是神。這才有了這篇文章。" />
+  <meta name="twitter:image" content="https://conanblog.me/assets/logo@3x.png" />
+  <meta property="og:image" content="https://conanblog.me/assets/logo@3x.png" />
+  <title>最近在學 Swift</title>
+  <base target="_blank">
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="https://conanblog.me/blog/2017/02/06/learning_swift/">
+  <link rel="alternate" type="application/rss+xml" title="Conan&#39;s Notes" href="/feed.xml">
+  <link href="/stylesheets/switchery.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/logo@3x.png">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/jquery.color-animation/1/mainfile"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-lazyload-any/0.3.0/jquery.lazyload-any.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled/html4+html5/jquery.history.min.js"></script>
+  <script type="text/javascript" src="/javascripts/switchery.min.js"></script>
+  <!-- <script type="text/javascript" src="/javascripts/disqus_loader.min.js"></script> -->
+  <script type="text/javascript" src="/javascripts/instafeed.min.js"></script>
+  <script src="https://use.fontawesome.com/ffe82a55e8.js"></script>
+  
+</head>
+  <div id="wx_pic" style="margin:0 auto;display:none;">
+    <img src="/assets/logo@3x.png" />
+  </div>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/" title="conan@notes:~/">Conan&#39;s Notes</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon" onclick = "void(0)">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+        
+          
+        
+          
+        
+          
+        
+          
+          <a class="page-link" href="/me/">Me</a>
+          
+        
+        <a class="page-link-ext" href="https://cbp.tldr.ink/#/notes/now.html" target="_blank">/now</a>
+        <a class="page-link-ext" href="https://conanblog.me/Unix-as-IDE--Chinese-/" target="_blank">Unix as IDE</a>
+      </div>
+    </nav>
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">最近在學 Swift</h1>
+    <p class="post-meta"><time datetime="2017-02-06T00:26:00-05:00" itemprop="datePublished">Feb 6, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>最近在學習 Swift，一開始我以為它像目前的一些支持 <a href="https://en.wikipedia.org/wiki/Object-oriented%5C_programming">OOP</a> 和 <a href="https://en.wikipedia.org/wiki/Functional%5C_programming">FP</a> 的多範式語言一樣，可猝不及防它居然引入了一種新的範式，這種範式基於 Java 的 <code class="language-plaintext highlighter-rouge">interface</code>，但加了更多靈活的創新。我覺得學習語言不搞明白它的範式等於是沒學。畢竟語法是形，範式才是神。這才有了這篇文章。</p>
+
+<p>給沒有耐心讀完的同學一句話概括一下，Swift 的設計基本就鼓勵更多地使用值類型，為了使值類型的應用更具可行性，它引入了比 Java <code class="language-plaintext highlighter-rouge">interface</code> 更加靈活的 <code class="language-plaintext highlighter-rouge">protocol</code> 機制。</p>
+
+<h2 id="swift-的時代背景">Swift 的時代背景</h2>
+
+<p>Swift 可以說是 <a href="https://en.wikipedia.org/wiki/Chris_Lattner">Chris Lattner</a> 或 Apple 給現代操作系統和編程範式的一個答案。從它的歷史來說，根據最近 ATP 對 Chris 做的一個訪談<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>，Apple 內部做了很多努力讓 Objective-C 更好，包括引進 <a href="https://en.wikipedia.org/wiki/Automatic%5C_Reference%5C_Counting">ARC</a> 增強內存管理。強推一個新語言肯定是萬不得已的選擇。Objective-C 有個問題沒法根除，就是它並不是一個足夠安全的語言，它構建與 C 語言，C 用指針、可定義未初始化的變量、以及數組溢出的問題等等。而從 Objective-C 中剝離 C 又不太現實，最後這才有了 Swift。</p>
+
+<p>Swift 跟其他現代編程語言一樣，有著很多吸引人的語法糖，其精髓也藏在這一大堆語法糖裏。2015 和 2016 年的 WWDC 有三個 Keynotes 對其做了揭示：</p>
+
+<ul>
+  <li><a href="https://developer.apple.com/videos/play/wwdc2015/408/">Protocol-Oriented Programming in Swift</a></li>
+  <li><a href="https://developer.apple.com/videos/play/wwdc2015/414/">Building Better Apps with Value Types in Swift</a></li>
+  <li><a href="https://developer.apple.com/videos/play/wwdc2016/419/">Protocol and Value Oriented Programming in UIKit Apps</a></li>
+</ul>
+
+<p>不難看出，它的核心就是 Value 和 Protocol。當然從語法的角度來說，另一個我很讚賞的特徵就是它是一個非常顯式的（explicit）語言。但我不打算在這篇文章裏聊這個，我們還是先來看看 Value 和 Protocol，在聊這倆話題之前，我們先看看我們現在所處的編程語言／範式在歷史裏的位置。</p>
+
+<h3 id="fauxo">FauxO</h3>
+
+<p>OOP 是很優秀的一種編程範式，它很大程度的幫助我們復用代碼，而 OO 的模型也很好地減小了我們大腦對複雜世界構建時的負擔。不過 OOP 並非完美，隨著我們對世界建模的深入，複雜性也隨之增加。其實 Gary Bernhardt 曾在演講 <a href="https://www.destroyallsoftware.com/talks/boundaries">Boundaries</a> 裏就總結過我們如何從 PP 到 OOP，再從 OOP 到 FP 的趨勢。這張表格我記憶深刻：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Mutation</th>
+      <th>Data &amp; Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Procedural</td>
+      <td>Yes</td>
+      <td>Separated</td>
+    </tr>
+    <tr>
+      <td>OO</td>
+      <td>Yes</td>
+      <td>Combined</td>
+    </tr>
+    <tr>
+      <td>Functional</td>
+      <td>No</td>
+      <td>Separated</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>從 PP 到 OOP，我們隱藏了一些不必要的內部結構，但作為補償，我們不得不把數據和代碼（業務邏輯）合併在一起；而數據本身在 PP 和 OOP 裏，是可變的（mutable），即變量的傳遞是以引用（reference）。這就意味著數據是非顯式分享（implicit sharing），當我們構建的系統越來越複雜時可變性數據會讓我們更難去推理（reasoning）系統的狀態，而數據代碼的不分離又使得我們沒法更好得分離核心業務代碼和外圍代碼，依賴會越來越多，從而使單元測試更困難。這也是為什麼現在越來越多的語言和框架社區開始思考 FP 的原因之一。不過就像 Gary 說的一樣，FP 往往在建模方面沒有 OOP 來得更接近人們的思維方式，尤其是在用一個並非為 FP 所設計的編程語言的時候。而另一個考慮 FP 的原因是因為數據的可變性使得多線程程序很難保證沒有 bug。這個理由是人們經常提到的，但是我不認為它是真正的痛點。一些好的併發模型其實也是可以減少併發所致的潛在 bug 的。</p>
+
+<p>如果你看了 Gary 的演講（非常推薦），他其實也提到了經典範式之外的第四種，即沒有 Mutation 但同時邏輯和相關數據是在一起的。他稱它為 FauxO。而恰好，今天我們要聊的範式就跟這 FauxO 相似，至少一部分相似。</p>
+
+<h3 id="oo-的難點">OO 的難點</h3>
+
+<p>多態和繼承是支持 OOP 語言必有的語言特性。就像《<em>松本行弘的程序世界</em>》裏總結的那樣，目前編程語言有多種繼承方式，優劣可以簡單概括為下表：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>種類</th>
+      <th>優</th>
+      <th>劣</th>
+      <th>代表語言</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>单一继承</td>
+      <td>继承关系為簡單树结构</td>
+      <td>無法通過繼承來共享實現（implementation）</td>
+      <td>Smalltalk</td>
+    </tr>
+    <tr>
+      <td>多重继承</td>
+      <td>可用繼承分享實現</td>
+      <td>類關係複雜，繼承的優先順序和功能可能存在衝突</td>
+      <td>C++, Python</td>
+    </tr>
+    <tr>
+      <td>單繼承 + 接口（Interface）</td>
+      <td>類規範定義了方法聲明，從而使類接口相關的編程跟多重繼承一樣</td>
+      <td>無法共享實現</td>
+      <td>Java</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>其實我還想補充一下 Ruby 裏作為一個賣點的 Mix-in，坦率地說它只是一個較特殊的多重繼承，很大程度地減小了多重繼承的複雜類關係，但是依然存在繼承優先和衝突問題，而一旦衝突發生，它會以非顯式的方式發生。</p>
+
+<p>我們是否能做得跟好呢？我覺得 Chris 的答案很棒。</p>
+
+<h2 id="value-和-protocol">Value 和 Protocol</h2>
+
+<h3 id="value">Value</h3>
+
+<p>Swift 裏有除了所有原始類型（primitive type），<code class="language-plaintext highlighter-rouge">enum</code> 和 <code class="language-plaintext highlighter-rouge">struct</code> 也都是值類型。所謂值類型，就是這些數據類型不可變（immutable），傳遞進函數或方法的時候，是直接傳入值，即拷貝。跟其相對的是引用類型（reference type），其特徵是可變（mutable），引用式傳遞。前面提過引用類型的問題，那我們似乎就只能更多地使用值類型來規避引用類型的風險了。所以 Swift 將 <code class="language-plaintext highlighter-rouge">enum</code> 和 <code class="language-plaintext highlighter-rouge">struct</code> 升級為一等公民，這意味著你也可以對它們進行函數定義，對 <code class="language-plaintext highlighter-rouge">struct</code> 你還可以定義其內部變量和常量。所以這樣一來，我們幾乎完全可以用它們來代替 <code class="language-plaintext highlighter-rouge">class</code>。不過看得出來，蘋果官方文檔對於何時使用 <code class="language-plaintext highlighter-rouge">struct</code> 而非 <code class="language-plaintext highlighter-rouge">class</code> 的問題還是很克制的，而事實上 Swift 的很多原始類型都是用 <code class="language-plaintext highlighter-rouge">struct</code> 寫的。我們在寫 Java 代碼時不是經常手動寫不可變類嗎？其實 <code class="language-plaintext highlighter-rouge">struct</code> 是這種類的語法糖。當然因為它們是 Swift 的設計基礎，所以它不僅僅是語法糖，一般情況下性能方面比我們自己手寫不可變類要好。有了它們，我們這不是離 FauxO 更近了？</p>
+
+<h3 id="protocol">Protocol</h3>
+
+<p>Swift 依然是一個面向對象編程語言，不過這幾年的 WWDC 都強調它的 <code class="language-plaintext highlighter-rouge">protocol</code>。其实 <code class="language-plaintext highlighter-rouge">protocol</code> 跟 Java 的 <code class="language-plaintext highlighter-rouge">interface</code> 很像，主要區別在於:</p>
+
+<ul>
+  <li>可定義字段／屬性，即 <em>field</em></li>
+  <li>可用 <code class="language-plaintext highlighter-rouge">mutating</code> 定義方法是否會修改實現主</li>
+  <li>可被多元組合（<em> protocol composition</em>）</li>
+  <li>可定義可選方法</li>
+  <li>可被擴展（<em> protocol extensions</em>），從而<strong>共享實現</strong></li>
+</ul>
+
+<p>當然不一樣的地方很多，我這裡列舉的只是我覺得會導致整個語言地貌不一樣的點。而其中我覺得最重要的就是最後一點。因為它解決了上一章節留下的一個問題，即如何愉快地使用類多重繼承，但同時又可以最大程度上減小多重繼承帶來的問題。Java 的 <code class="language-plaintext highlighter-rouge">interface</code> 開了個好頭，在此基礎上只要加上實現共享即可。雖然最新的 Java 可以在 <code class="language-plaintext highlighter-rouge">interface</code> 裏加默認實現，但是它並不像 Swift <code class="language-plaintext highlighter-rouge">protocol</code> 那樣支持追加式建模（retroactive modeling）。可以說 <code class="language-plaintext highlighter-rouge">protocol</code> 在加以限制的基礎上最大限度地開放了自由度。默認實現方面可能唯一需要注意的是 <code class="language-plaintext highlighter-rouge">protocal</code> 裏定義的方法並不具有 <code class="language-plaintext highlighter-rouge">class</code> 的多態性。畢竟它可能會被 <code class="language-plaintext highlighter-rouge">enum</code> 或 <code class="language-plaintext highlighter-rouge">struct</code> 使用。</p>
+
+<p>那我來再加一行：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>種類</th>
+      <th>優</th>
+      <th>劣</th>
+      <th>代表語言</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>单一继承</td>
+      <td>继承关系為簡單树结构</td>
+      <td>無法通過繼承來共享實現（implementation）</td>
+      <td>Smalltalk</td>
+    </tr>
+    <tr>
+      <td>多重继承</td>
+      <td>可用繼承分享實現</td>
+      <td>類關係複雜，繼承的優先順序和功能可能存在衝突</td>
+      <td>C++, Python</td>
+    </tr>
+    <tr>
+      <td>單繼承 + 接口（Interface）</td>
+      <td>定義了方法簽名，從而使類接口相關的編程跟多重繼承一樣</td>
+      <td>無法共享實現</td>
+      <td>Java</td>
+    </tr>
+    <tr>
+      <td>單繼承 + 協議（Protocol）</td>
+      <td>定義了方法簽名或聲明，從而使類接口相關的編程跟多重繼承一樣</td>
+      <td>暫時未發現，請發現的朋友賜教</td>
+      <td>Swift</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="例子">例子</h3>
+
+<p>我本想自己寫一些例子，不過我覺得<a href="https://developer.apple.com/videos/play/wwdc2015/408/">Protocol-Oriented Programming in Swift</a>的例子其實很到位，尤其是他提供的 Playground 文件裏，有詳細的解說。所以這讓我原先寫個案例分析的安排顯得多餘，或許在之後我的項目裏有些心得我會專門寫一寫吧。不過原版的是 Swift 2 的，新版 Swift 不兼容，改一下並不困難，但網上也可以找到有別人改好的版本。</p>
+
+<p>下面貼一下我改過的例子，你可以直接用 Playground 跑這些代碼。</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">CoreGraphics</span>
+<span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">PlaygroundSupport</span>
+<span class="k">let</span> <span class="nv">twoPi</span> <span class="o">=</span> <span class="kt">CGFloat</span><span class="p">(</span><span class="kt">M_PI</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">//: 先創建一個 protocol 類型來定義一些基本圖形命令</span>
+<span class="kd">protocol</span> <span class="kt">Renderer</span> <span class="p">{</span>
+    <span class="c1">// 移動畫筆位置，但並不會在畫布上添加任何像素</span>
+    <span class="kd">func</span> <span class="nf">move</span><span class="p">(</span><span class="n">to</span> <span class="nv">position</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span>
+
+    <span class="c1">// 從當前點畫一條直線到參數點，並把畫筆位置更像至參數點位置</span>
+    <span class="kd">func</span> <span class="nf">addLine</span><span class="p">(</span><span class="n">to</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span>
+
+    <span class="c1">// 畫圓弧</span>
+    <span class="kd">func</span> <span class="nf">addArc</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+                <span class="nv">startAngle</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">//: 測試用 `Renderer`</span>
+<span class="c1">//:</span>
+<span class="c1">//: 它並不會真的 render 圖像，而是在命令行裏輸出作圖過程。這在開發時很管用，</span>
+<span class="c1">//: 而且很多時候光從圖像上是看不出是否有問題的，比如下面嵌套圖形的例子。</span>
+<span class="kd">struct</span> <span class="kt">TestRenderer</span> <span class="p">:</span> <span class="kt">Renderer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">move</span><span class="p">(</span><span class="n">to</span> <span class="nv">p</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="s">"moveTo(</span><span class="se">\(</span><span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="se">)</span><span class="s">, </span><span class="se">\(</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="se">)</span><span class="s">)"</span><span class="p">)</span> <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">addLine</span><span class="p">(</span><span class="n">to</span> <span class="nv">p</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="p">{</span> <span class="nf">print</span><span class="p">(</span><span class="s">"lineTo(</span><span class="se">\(</span><span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="se">)</span><span class="s">, </span><span class="se">\(</span><span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="se">)</span><span class="s">)"</span><span class="p">)</span> <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">addArc</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+                <span class="nv">startAngle</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"arcAt(</span><span class="se">\(</span><span class="n">center</span><span class="se">)</span><span class="s">, radius: </span><span class="se">\(</span><span class="n">radius</span><span class="se">)</span><span class="s">,"</span> <span class="o">+</span>
+            <span class="s">" startAngle: </span><span class="se">\(</span><span class="n">startAngle</span><span class="se">)</span><span class="s">, endAngle: </span><span class="se">\(</span><span class="n">endAngle</span><span class="se">)</span><span class="s">)"</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//: 下面我們來構建圖形</span>
+<span class="kd">protocol</span> <span class="kt">Drawable</span> <span class="p">{</span>
+    <span class="c1">// 將 `self` 傳給 `renderer` 使其顯示</span>
+    <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">renderer</span><span class="p">:</span> <span class="kt">Renderer</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">//: 定義多邊形和圓形</span>
+<span class="kd">struct</span> <span class="kt">Polygon</span> <span class="p">:</span> <span class="kt">Drawable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">renderer</span><span class="p">:</span> <span class="kt">Renderer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">renderer</span><span class="o">.</span><span class="nf">move</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="n">corners</span><span class="o">.</span><span class="n">last</span><span class="o">!</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="k">in</span> <span class="n">corners</span> <span class="p">{</span> <span class="n">renderer</span><span class="o">.</span><span class="nf">addLine</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="n">p</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">corners</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGPoint</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">Circle</span> <span class="p">:</span> <span class="kt">Drawable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">renderer</span><span class="p">:</span> <span class="kt">Renderer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">renderer</span><span class="o">.</span><span class="nf">addArc</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="n">center</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="n">radius</span><span class="p">,</span>
+                        <span class="nv">startAngle</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="n">twoPi</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">center</span><span class="p">:</span> <span class="kt">CGPoint</span>
+    <span class="k">var</span> <span class="nv">radius</span><span class="p">:</span> <span class="kt">CGFloat</span>
+<span class="p">}</span>
+
+<span class="c1">//: 定義 `Diagram`，其本質是一對 `Drawable`s</span>
+<span class="kd">struct</span> <span class="kt">Diagram</span> <span class="p">:</span> <span class="kt">Drawable</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">renderer</span><span class="p">:</span> <span class="kt">Renderer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="k">in</span> <span class="n">elements</span> <span class="p">{</span>
+            <span class="n">f</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="n">renderer</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nv">other</span><span class="p">:</span> <span class="kt">Drawable</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">elements</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">var</span> <span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="kt">Drawable</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="p">}</span>
+
+<span class="c1">//: ## 追加式建模（Retroactive Modeling）</span>
+<span class="c1">//:</span>
+<span class="c1">//: 這裏我們對 `CGContext` 進行擴展使其成為 `Renderer`。</span>
+<span class="c1">//: 如果我們一開始沒有用 `protocol` 而是 `class` 的話，這裏是沒法擴展的</span>
+<span class="kd">extension</span> <span class="kt">CGContext</span> <span class="p">:</span> <span class="kt">Renderer</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">addArc</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">startAngle</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+                <span class="nv">endAngle</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">arc</span> <span class="o">=</span> <span class="kt">CGMutablePath</span><span class="p">()</span>
+        <span class="n">arc</span><span class="o">.</span><span class="nf">addArc</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="n">center</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="n">radius</span><span class="p">,</span> <span class="nv">startAngle</span><span class="p">:</span> <span class="n">startAngle</span><span class="p">,</span>
+                   <span class="nv">endAngle</span><span class="p">:</span> <span class="n">endAngle</span><span class="p">,</span> <span class="nv">clockwise</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="nf">addPath</span><span class="p">(</span><span class="n">arc</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">var</span> <span class="nv">circle</span> <span class="o">=</span> <span class="kt">Circle</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">187.5</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">333.5</span><span class="p">),</span> <span class="nv">radius</span><span class="p">:</span> <span class="mf">93.75</span><span class="p">)</span>
+
+<span class="k">var</span> <span class="nv">triangle</span> <span class="o">=</span> <span class="kt">Polygon</span><span class="p">(</span><span class="nv">corners</span><span class="p">:</span> <span class="p">[</span>
+    <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">187.5</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">427.25</span><span class="p">),</span>
+    <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">268.69</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">286.625</span><span class="p">),</span>
+    <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">106.31</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">286.625</span><span class="p">)])</span>
+
+<span class="k">var</span> <span class="nv">diagram</span> <span class="o">=</span> <span class="kt">Diagram</span><span class="p">(</span><span class="nv">elements</span><span class="p">:</span> <span class="p">[</span><span class="n">circle</span><span class="p">,</span> <span class="n">triangle</span><span class="p">])</span>
+
+<span class="c1">//: ## 嵌套圖形</span>
+<span class="c1">//:</span>
+<span class="c1">//: 如果 `Diagram` 是引用式傳遞的話，嵌套會導致無限遞歸。而值傳入就沒問題。</span>
+<span class="c1">//: 這裏為了能夠在圖形界面看出兩次作圖，我們將嵌入的圖縮小顯示。</span>
+<span class="kd">struct</span> <span class="kt">ScaledRenderer</span> <span class="p">:</span> <span class="kt">Renderer</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">Renderer</span>
+    <span class="k">let</span> <span class="nv">scale</span><span class="p">:</span> <span class="kt">CGFloat</span>
+
+    <span class="kd">func</span> <span class="nf">move</span><span class="p">(</span><span class="n">to</span> <span class="nv">p</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">base</span><span class="o">.</span><span class="nf">move</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scale</span><span class="p">))</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">addLine</span><span class="p">(</span><span class="n">to</span> <span class="nv">p</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">base</span><span class="o">.</span><span class="nf">addLine</span><span class="p">(</span><span class="nv">to</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scale</span><span class="p">))</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">addArc</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+                <span class="nv">startAngle</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">scaledCenter</span> <span class="o">=</span> <span class="kt">CGPoint</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="n">center</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="n">center</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">scale</span><span class="p">)</span>
+        <span class="n">base</span><span class="o">.</span><span class="nf">addArc</span><span class="p">(</span><span class="nv">center</span><span class="p">:</span> <span class="n">scaledCenter</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span>
+                    <span class="nv">startAngle</span><span class="p">:</span> <span class="n">startAngle</span><span class="p">,</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="n">endAngle</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 定義一個可以縮放 `Base` 實例的 `Drawable`，而 `Base` 也是一個 Drawable</span>
+<span class="kd">struct</span> <span class="kt">Scaled</span><span class="o">&lt;</span><span class="kt">Base</span><span class="p">:</span> <span class="kt">Drawable</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Drawable</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">scale</span><span class="p">:</span> <span class="kt">CGFloat</span>
+    <span class="k">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">Base</span>
+
+    <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">renderer</span><span class="p">:</span> <span class="kt">Renderer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">subject</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="kt">ScaledRenderer</span><span class="p">(</span><span class="nv">base</span><span class="p">:</span> <span class="n">renderer</span><span class="p">,</span> <span class="nv">scale</span><span class="p">:</span> <span class="n">scale</span><span class="p">))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="c1">// 定義畫布</span>
+<span class="k">let</span> <span class="nv">drawingArea</span> <span class="o">=</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mf">375.0</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mf">667.0</span><span class="p">)</span>
+
+<span class="c1">// `CoreGraphicsDiagramView` 是 `UIView`。</span>
+<span class="c1">// 它會調用用戶定義的方法來在 `CGContext` 上生成淺藍色筆觸圖形。</span>
+<span class="kd">class</span> <span class="kt">CoreGraphicsDiagramView</span> <span class="p">:</span> <span class="kt">UIView</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="k">let</span> <span class="nv">context</span> <span class="o">=</span> <span class="kt">UIGraphicsGetCurrentContext</span><span class="p">(){</span>
+            <span class="n">context</span><span class="o">.</span><span class="nf">saveGState</span><span class="p">()</span>
+            <span class="nf">draw</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+
+            <span class="k">let</span> <span class="nv">lightBlue</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mf">0.222</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mf">0.617</span><span class="p">,</span>
+                                    <span class="nv">blue</span><span class="p">:</span> <span class="mf">0.976</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">cgColor</span>
+            <span class="n">context</span><span class="o">.</span><span class="nf">setStrokeColor</span><span class="p">(</span><span class="n">lightBlue</span><span class="p">)</span>
+            <span class="n">context</span><span class="o">.</span><span class="nf">setLineWidth</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">context</span><span class="o">.</span><span class="nf">strokePath</span><span class="p">()</span>
+            <span class="n">context</span><span class="o">.</span><span class="nf">restoreGState</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">var</span> <span class="nv">draw</span><span class="p">:</span> <span class="p">(</span><span class="kt">CGContext</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">()</span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span> <span class="nf">in</span> <span class="p">()</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 在 playgroud 裏添加 `CoreGraphicsDiagramView`</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">showCoreGraphicsDiagram</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                                    <span class="nv">draw</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">CGContext</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">diagramView</span> <span class="o">=</span> <span class="kt">CoreGraphicsDiagramView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="n">drawingArea</span><span class="p">)</span>
+    <span class="n">diagramView</span><span class="o">.</span><span class="n">draw</span> <span class="o">=</span> <span class="n">draw</span>
+    <span class="n">diagramView</span><span class="o">.</span><span class="nf">setNeedsDisplay</span><span class="p">()</span>
+    <span class="kt">PlaygroundPage</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">liveView</span> <span class="o">=</span> <span class="n">diagramView</span>
+<span class="p">}</span>
+
+
+<span class="c1">// 現在我們把 `diagram` 自己添加進自己</span>
+<span class="n">diagram</span><span class="o">.</span><span class="n">elements</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="kt">Scaled</span><span class="p">(</span><span class="nv">scale</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="nv">subject</span><span class="p">:</span> <span class="n">diagram</span><span class="p">))</span>
+
+<span class="c1">// 按 shift-cmd-Y 看命令行輸出</span>
+<span class="n">diagram</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="kt">TestRenderer</span><span class="p">())</span>
+
+<span class="c1">// 按 opt-cmd-Return 看圖形輸出</span>
+<span class="nf">showCoreGraphicsDiagram</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="s">"Diagram"</span><span class="p">)</span> <span class="p">{</span> <span class="n">diagram</span><span class="o">.</span><span class="nf">draw</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>原先的 playground 裏，作者其實把跟定義畫布相關的那部分代碼藏在了一個單獨的文件裏。我在上面的例子裏把它搬了出來，這樣一方面讀者可以直接複製粘貼這段代碼就可以把玩，另一方面它也很好地展示了在一個並非純淨的 POP 世界裏，POP 如何跟 OOP 交互。</p>
+
+<h2 id="結語">結語</h2>
+
+<p>Swift 是一門設計精良的語言，它的設計初衷就是引導程序員寫出更好的代碼，使代碼更加顯式，更少模稜兩可。Andy Matuschak 在他的演講<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>裏也提到了，我們寫 Swift 代碼就是一個遊戲，每個程序都有 Object 層和 Value 層，我們能放越多東西進 Value 層越好。Value 和 Protocol，這就是 Swift 給我們的最具價值的東西。</p>
+
+<p>另外，文中提到的各種演講視頻都非常有價值，比看我這篇文章值 100 倍。</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="http://atp.fm/episodes/205">205: PEOPLE DON’T USE THE WEIRD PARTS</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://realm.io/news/andy-matuschak-controlling-complexity/">Controlling Complexity in Swift — or — Making Friends with Value Types</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <ul class="categories">
+    
+    <li><a class="page-link" href="/?category=tech">#tech</a></li>
+    
+    <li><a class="page-link" href="/?category=coding">#coding</a></li>
+    
+  </ul>
+
+</article>
+
+<div class="ending">
+  
+  <div id="discussion-btn-group">
+    
+    <a title="Discuss on Twitter"
+      href="https://twitter.com/intent/tweet?url=https://conanblog.me/blog/2017/02/06/learning_swift/&text=@ConanChou" target="_blank"
+      class="discussion-btn">Discuss on Twitter ▶</a>
+    <a title="View Discussions" href="https://twitter.com/search?q=https://conanblog.me/blog/2017/02/06/learning_swift/" target="_blank"
+      class="discussion-btn">View Discussions ▶</a>
+    
+  </div>
+  
+  <!--  -->
+  <div class="post-nav">
+    <div>
+      
+      <a title="Previous Post: 2016 -> 2017" href="/blog/2016/12/31/2016-2017/">◀<span id="prev-span">2016 -> 2017</span></a>
+      
+    </div>
+    <div class="post-nav-next">
+      
+      <a title="Next Post: Serverless" href="/blog/2017/05/31/serverless/"> <span id="next-span">Serverless</span>▶</a>
+      
+    </div>
+  </div>
+
+</div>
+
+<div id="promotion">
+  <div>
+    <a href="https://apps.apple.com/app/apple-store/id6478060940?pt=126889244&ct=blog&mt=8" class="app-card" target="_blank">
+      <div class="app-card-content">
+        <img src="/images/256@2x.png" alt="Quotes App Icon" class="app-icon">
+        <div class="app-info">
+          <span class="app-from">歡迎使用 blurrr.studio 作品</span>
+          <h3>Quotes - 您的閱讀引文管理工具</h3>
+          <p>引文快速擷取、自動獲取 Kindle/Apple Book 書本信息、導入 Kindle 筆記、一鍵生成文字圖片、桌面小組件等。</p>
+        </div>
+        <div class="chevron">
+          <svg width="14" height="44" viewBox="0 0 14 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.02344 41.5352C5.77344 42.0977 5.40625 42.5508 4.92188 42.8945C4.45312 43.2539 3.92188 43.4336 3.32812 43.4336C2.34375 43.4336 1.53906 43.1211 0.914062 42.4961C0.304688 41.8711 0 41.1211 0 40.2461C0 39.7617 0.109375 39.2461 0.328125 38.6992C0.546875 38.1367 0.757812 37.6133 0.960938 37.1289L7.78125 20.6289V23.3711L0.960938 6.87109C0.757812 6.40234 0.546875 5.88672 0.328125 5.32422C0.109375 4.74609 0 4.22266 0 3.75391C0 2.86328 0.304688 2.11328 0.914062 1.50391C1.53906 0.878906 2.34375 0.566406 3.32812 0.566406C3.92188 0.566406 4.45312 0.746094 4.92188 1.10547C5.40625 1.44922 5.77344 1.90234 6.02344 2.46484L12.5625 18.1445C12.8438 18.8164 13.0938 19.4648 13.3125 20.0898C13.5312 20.7148 13.6406 21.3477 13.6406 21.9883C13.6406 22.6289 13.5312 23.2617 13.3125 23.8867C13.0938 24.4961 12.8438 25.1445 12.5625 25.832L6.02344 41.5352Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="banner-container">
+    <img src="/images/blog banner.png" alt="blurrr.studio banner">
+  </div>
+</div>
+
+<script type="text/javascript" src="/javascripts/qrcode.min.js"></script>
+<div id="qrcode"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        Made by <a href="https://twitter.com/conanchou" target="_blank">Conan</a>, with love and curiosity.
+      </div>
+
+      <!-- <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/conanchou"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/conanchou"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">conanchou</span></a>
+
+          </li>
+          
+        </ul>
+      </div> -->
+
+      <div class="footer-col footer-col-2">
+        <p>Programming, Design, Music, and everything in between.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="ts-div"><input type="checkbox" id="ts-switch" checked /><span id="side-label">繁</span></div>
+</footer>
+
+<script language="JavaScript" src="/javascripts/tongwen_core.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_s2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_t2s.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_ps2t.js"></script>
+<script language="JavaScript" src="/javascripts/tongwen_table_pt2s.js"></script>
+<script language="JavaScript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  </body>
+
+</html>
