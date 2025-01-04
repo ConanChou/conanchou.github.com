@@ -4,18 +4,18 @@
     <title>Conan's Notes</title>
     <description>Programming, Design, Music, and everything in between.
 </description>
-    <link>https://conanblog.me/</link>
-    <atom:link href="https://conanblog.me/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 04 Jan 2025 00:07:46 -0500</pubDate>
-    <lastBuildDate>Sat, 04 Jan 2025 00:07:46 -0500</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 04 Jan 2025 01:09:28 -0500</pubDate>
+    <lastBuildDate>Sat, 04 Jan 2025 01:09:28 -0500</lastBuildDate>
     <generator>Jekyll v4.3.1</generator>
     
     
       <item>
         <title>2024 ⇝ 2025</title>
         <pubDate>Tue, 31 Dec 2024 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2024/12/31/2024-2025/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2024/12/31/2024-2025/</guid>
+        <link>http://localhost:4000/blog/2024/12/31/2024-2025/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2024/12/31/2024-2025/</guid>
         
         
         <category>life</category>
@@ -31,8 +31,8 @@
       <item>
         <title>2023 ⇝ 2024</title>
         <pubDate>Mon, 01 Jan 2024 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2024/01/01/2023-2024/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2024/01/01/2023-2024/</guid>
+        <link>http://localhost:4000/blog/2024/01/01/2023-2024/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2024/01/01/2023-2024/</guid>
         
         
         <category>life</category>
@@ -48,8 +48,8 @@
       <item>
         <title>2022 ⇝ 2023</title>
         <pubDate>Wed, 11 Jan 2023 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2023/01/11/2022-2023/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2023/01/11/2022-2023/</guid>
+        <link>http://localhost:4000/blog/2023/01/11/2022-2023/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2023/01/11/2022-2023/</guid>
         
         
         <category>life</category>
@@ -65,8 +65,8 @@
       <item>
         <title>2021 ⇝ 2022</title>
         <pubDate>Mon, 03 Jan 2022 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2022/01/03/2021-2022/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2022/01/03/2021-2022/</guid>
+        <link>http://localhost:4000/blog/2022/01/03/2021-2022/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2022/01/03/2021-2022/</guid>
         
         
         <category>life</category>
@@ -82,8 +82,8 @@
       <item>
         <title>如何驗證 Elixir macro 是否書寫正確</title>
         <pubDate>Sun, 14 Mar 2021 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2021/03/14/debug-macro/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2021/03/14/debug-macro/</guid>
+        <link>http://localhost:4000/blog/2021/03/14/debug-macro/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2021/03/14/debug-macro/</guid>
         
         
         <category>tech</category>
@@ -99,8 +99,8 @@
       <item>
         <title>「透明盒子計畫」網站設計時的一些考慮</title>
         <pubDate>Mon, 08 Feb 2021 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2021/02/08/tldr-ink/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2021/02/08/tldr-ink/</guid>
+        <link>http://localhost:4000/blog/2021/02/08/tldr-ink/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2021/02/08/tldr-ink/</guid>
         
         
         <category>tech</category>
@@ -114,8 +114,8 @@
       <item>
         <title>2020 ⇝ 2021</title>
         <pubDate>Thu, 31 Dec 2020 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2020/12/31/2020-2021/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2020/12/31/2020-2021/</guid>
+        <link>http://localhost:4000/blog/2020/12/31/2020-2021/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/12/31/2020-2021/</guid>
         
         
         <category>life</category>
@@ -131,8 +131,8 @@
       <item>
         <title>一個月挑戰——作曲</title>
         <pubDate>Sat, 18 Apr 2020 00:00:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2020/04/18/30-day-challenge-music/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2020/04/18/30-day-challenge-music/</guid>
+        <link>http://localhost:4000/blog/2020/04/18/30-day-challenge-music/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2020/04/18/30-day-challenge-music/</guid>
         
         
         <category>music</category>
@@ -144,8 +144,8 @@
       <item>
         <title>2010 ⇝ 2020</title>
         <pubDate>Tue, 31 Dec 2019 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2019/12/31/2010-2020/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2019/12/31/2010-2020/</guid>
+        <link>http://localhost:4000/blog/2019/12/31/2010-2020/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2019/12/31/2010-2020/</guid>
         
         
         <category>life</category>
@@ -161,8 +161,8 @@
       <item>
         <title>寫給幫助測試 AutoTheme 的你們</title>
         <pubDate>Fri, 25 Jan 2019 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2019/01/25/to-autotheme-alpha-testers/</guid>
+        <link>http://localhost:4000/blog/2019/01/25/to-autotheme-alpha-testers/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2019/01/25/to-autotheme-alpha-testers/</guid>
         
         
         <category>macOS</category>
@@ -178,8 +178,8 @@
       <item>
         <title>2018 ⇝ 2019</title>
         <pubDate>Tue, 01 Jan 2019 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2019/01/01/2018-2019/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2019/01/01/2018-2019/</guid>
+        <link>http://localhost:4000/blog/2019/01/01/2018-2019/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2019/01/01/2018-2019/</guid>
         
         
         <category>life</category>
@@ -195,8 +195,8 @@
       <item>
         <title>讀書</title>
         <pubDate>Fri, 22 Jun 2018 00:00:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2018/06/22/reading_books/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2018/06/22/reading_books/</guid>
+        <link>http://localhost:4000/blog/2018/06/22/reading_books/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/06/22/reading_books/</guid>
         
         
         <category>book</category>
@@ -210,8 +210,8 @@
       <item>
         <title>我也看了老羅的發佈會</title>
         <pubDate>Thu, 17 May 2018 00:00:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2018/05/17/i-also-watched-smartisan-conf/</guid>
+        <link>http://localhost:4000/blog/2018/05/17/i-also-watched-smartisan-conf/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/05/17/i-also-watched-smartisan-conf/</guid>
         
         
         <category>tech</category>
@@ -227,8 +227,8 @@
       <item>
         <title>Life 3.0 筆記，的一部分</title>
         <pubDate>Wed, 16 May 2018 00:00:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2018/05/16/life-3-0-notes/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2018/05/16/life-3-0-notes/</guid>
+        <link>http://localhost:4000/blog/2018/05/16/life-3-0-notes/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/05/16/life-3-0-notes/</guid>
         
         
         <category>book</category>
@@ -246,8 +246,8 @@
       <item>
         <title>2017 -&gt; 2018</title>
         <pubDate>Mon, 01 Jan 2018 00:00:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2018/01/01/2017-2018/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2018/01/01/2017-2018/</guid>
+        <link>http://localhost:4000/blog/2018/01/01/2017-2018/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/01/01/2017-2018/</guid>
         
         
         <category>life</category>
@@ -263,8 +263,8 @@
       <item>
         <title>Electron + ClojureScript + Reagent  + nREPL</title>
         <pubDate>Sat, 10 Jun 2017 00:00:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2017/06/10/electron-clojurescript-reagent-nrepl/</guid>
+        <link>http://localhost:4000/blog/2017/06/10/electron-clojurescript-reagent-nrepl/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/06/10/electron-clojurescript-reagent-nrepl/</guid>
         
         
         <category>tech</category>
@@ -282,8 +282,8 @@
       <item>
         <title>Serverless</title>
         <pubDate>Wed, 31 May 2017 00:00:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2017/05/31/serverless/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2017/05/31/serverless/</guid>
+        <link>http://localhost:4000/blog/2017/05/31/serverless/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/05/31/serverless/</guid>
         
         
         <category>tech</category>
@@ -299,8 +299,8 @@
       <item>
         <title>最近在學 Swift</title>
         <pubDate>Mon, 06 Feb 2017 00:26:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2017/02/06/learning_swift/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2017/02/06/learning_swift/</guid>
+        <link>http://localhost:4000/blog/2017/02/06/learning_swift/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2017/02/06/learning_swift/</guid>
         
         
         <category>tech</category>
@@ -314,8 +314,8 @@
       <item>
         <title>2016 -&gt; 2017</title>
         <pubDate>Sat, 31 Dec 2016 21:50:38 -0500</pubDate>
-        <link>https://conanblog.me/blog/2016/12/31/2016-2017/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2016/12/31/2016-2017/</guid>
+        <link>http://localhost:4000/blog/2016/12/31/2016-2017/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/12/31/2016-2017/</guid>
         
         
         <category>life</category>
@@ -331,8 +331,8 @@
       <item>
         <title>音樂筆記 070116</title>
         <pubDate>Fri, 08 Jul 2016 22:17:34 -0400</pubDate>
-        <link>https://conanblog.me/blog/2016/07/08/music-notes-070116/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2016/07/08/music-notes-070116/</guid>
+        <link>http://localhost:4000/blog/2016/07/08/music-notes-070116/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/07/08/music-notes-070116/</guid>
         
         
         <category>music</category>
@@ -344,8 +344,8 @@
       <item>
         <title>當音樂遇上開源</title>
         <pubDate>Sun, 03 Apr 2016 00:03:27 -0400</pubDate>
-        <link>https://conanblog.me/blog/2016/04/03/music-meets-open-source/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2016/04/03/music-meets-open-source/</guid>
+        <link>http://localhost:4000/blog/2016/04/03/music-meets-open-source/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/04/03/music-meets-open-source/</guid>
         
         
         <category>music</category>
@@ -359,8 +359,8 @@
       <item>
         <title>Reagent 的 Figwheel REPL 方案</title>
         <pubDate>Sun, 06 Mar 2016 11:42:03 -0500</pubDate>
-        <link>https://conanblog.me/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/</guid>
+        <link>http://localhost:4000/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/03/06/reagent-figwheel-repl-with-nrepl/</guid>
         
         
         <category>clojure</category>
@@ -374,8 +374,8 @@
       <item>
         <title>談民科</title>
         <pubDate>Sat, 20 Feb 2016 11:54:51 -0500</pubDate>
-        <link>https://conanblog.me/blog/2016/02/20/crank-and-autodidacticism/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2016/02/20/crank-and-autodidacticism/</guid>
+        <link>http://localhost:4000/blog/2016/02/20/crank-and-autodidacticism/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/02/20/crank-and-autodidacticism/</guid>
         
         
         <category>thought</category>
@@ -387,8 +387,8 @@
       <item>
         <title>一些關於假新聞和標題黨的想法</title>
         <pubDate>Sun, 03 Jan 2016 11:03:16 -0500</pubDate>
-        <link>https://conanblog.me/blog/2016/01/03/we-media-fake-news/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2016/01/03/we-media-fake-news/</guid>
+        <link>http://localhost:4000/blog/2016/01/03/we-media-fake-news/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2016/01/03/we-media-fake-news/</guid>
         
         
         <category>thought</category>
@@ -400,8 +400,8 @@
       <item>
         <title>2015 -&gt; 2016</title>
         <pubDate>Thu, 31 Dec 2015 13:53:55 -0500</pubDate>
-        <link>https://conanblog.me/blog/2015/12/31/2015-2016/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2015/12/31/2015-2016/</guid>
+        <link>http://localhost:4000/blog/2015/12/31/2015-2016/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/12/31/2015-2016/</guid>
         
         
         <category>life</category>
@@ -417,8 +417,8 @@
       <item>
         <title>Ableton Live 9 Automation How-To</title>
         <pubDate>Sun, 30 Aug 2015 15:53:32 -0400</pubDate>
-        <link>https://conanblog.me/blog/2015/08/30/ableton-live-9-automation-how-to/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2015/08/30/ableton-live-9-automation-how-to/</guid>
+        <link>http://localhost:4000/blog/2015/08/30/ableton-live-9-automation-how-to/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/08/30/ableton-live-9-automation-how-to/</guid>
         
         
         <category>music</category>
@@ -432,8 +432,8 @@
       <item>
         <title>Recording MIDI</title>
         <pubDate>Sat, 22 Aug 2015 14:06:50 -0400</pubDate>
-        <link>https://conanblog.me/blog/2015/08/22/recording-midi/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2015/08/22/recording-midi/</guid>
+        <link>http://localhost:4000/blog/2015/08/22/recording-midi/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/08/22/recording-midi/</guid>
         
         
         <category>music</category>
@@ -447,8 +447,8 @@
       <item>
         <title>Visualizing Sound</title>
         <pubDate>Sat, 15 Aug 2015 23:18:33 -0400</pubDate>
-        <link>https://conanblog.me/blog/2015/08/15/visualizing-sound/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2015/08/15/visualizing-sound/</guid>
+        <link>http://localhost:4000/blog/2015/08/15/visualizing-sound/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/08/15/visualizing-sound/</guid>
         
         
         <category>music</category>
@@ -462,8 +462,8 @@
       <item>
         <title>不是格子人生</title>
         <pubDate>Mon, 20 Jul 2015 12:08:48 -0400</pubDate>
-        <link>https://conanblog.me/blog/2015/07/20/to-do-or-not-to-do/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2015/07/20/to-do-or-not-to-do/</guid>
+        <link>http://localhost:4000/blog/2015/07/20/to-do-or-not-to-do/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2015/07/20/to-do-or-not-to-do/</guid>
         
         
         <category>life</category>
@@ -479,8 +479,8 @@
       <item>
         <title>格子人生</title>
         <pubDate>Mon, 01 Sep 2014 00:18:33 -0400</pubDate>
-        <link>https://conanblog.me/blog/2014/09/01/900-months/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2014/09/01/900-months/</guid>
+        <link>http://localhost:4000/blog/2014/09/01/900-months/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2014/09/01/900-months/</guid>
         
         
         <category>life</category>
@@ -494,8 +494,8 @@
       <item>
         <title>蟒之惰性</title>
         <pubDate>Mon, 10 Jun 2013 18:06:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2013/06/10/laziness-in-python/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2013/06/10/laziness-in-python/</guid>
+        <link>http://localhost:4000/blog/2013/06/10/laziness-in-python/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2013/06/10/laziness-in-python/</guid>
         
         
         <category>python</category>
@@ -511,8 +511,8 @@
       <item>
         <title>勤與懶</title>
         <pubDate>Sun, 09 Jun 2013 22:02:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2013/06/09/just-in-case-vs-just-in-time/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2013/06/09/just-in-case-vs-just-in-time/</guid>
+        <link>http://localhost:4000/blog/2013/06/09/just-in-case-vs-just-in-time/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2013/06/09/just-in-case-vs-just-in-time/</guid>
         
         
         <category>thought</category>
@@ -526,8 +526,8 @@
       <item>
         <title>也談編程工具</title>
         <pubDate>Sun, 21 Apr 2013 18:09:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2013/04/21/programming-tools/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2013/04/21/programming-tools/</guid>
+        <link>http://localhost:4000/blog/2013/04/21/programming-tools/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2013/04/21/programming-tools/</guid>
         
         
         <category>thought</category>
@@ -541,8 +541,8 @@
       <item>
         <title>道不明，術不精</title>
         <pubDate>Sat, 20 Apr 2013 01:20:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2013/04/20/dao-bu-ming-shu-bu-jing/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2013/04/20/dao-bu-ming-shu-bu-jing/</guid>
+        <link>http://localhost:4000/blog/2013/04/20/dao-bu-ming-shu-bu-jing/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2013/04/20/dao-bu-ming-shu-bu-jing/</guid>
         
         
         <category>thought</category>
@@ -554,8 +554,8 @@
       <item>
         <title>Raspberry Pi 下載盒</title>
         <pubDate>Wed, 20 Feb 2013 17:03:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box/</guid>
+        <link>http://localhost:4000/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2013/02/20/raspberry-pi-as-a-bittorrent-box/</guid>
         
         
         <category>raspberry-pi</category>
@@ -571,8 +571,8 @@
       <item>
         <title>Raspberry Pi + Arch + WiFi + Sound + Go 簡記</title>
         <pubDate>Sun, 17 Feb 2013 17:11:00 -0500</pubDate>
-        <link>https://conanblog.me/blog/2013/02/17/play-with-raspberry-pi/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2013/02/17/play-with-raspberry-pi/</guid>
+        <link>http://localhost:4000/blog/2013/02/17/play-with-raspberry-pi/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2013/02/17/play-with-raspberry-pi/</guid>
         
         
         <category>raspberry-pi</category>
@@ -592,8 +592,8 @@
       <item>
         <title>Python 調優筆記·經驗主義調優</title>
         <pubDate>Sun, 26 Aug 2012 14:56:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/</guid>
+        <link>http://localhost:4000/blog/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2012/08/26/python-optimization-4-high-performance-python-general-coding-tips/</guid>
         
         
         <category>python</category>
@@ -611,8 +611,8 @@
       <item>
         <title>Python 調優筆記·理性主義調優</title>
         <pubDate>Sun, 26 Aug 2012 00:10:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2012/08/26/python-optimization-3-disassembling/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/26/python-optimization-3-disassembling/</guid>
+        <link>http://localhost:4000/blog/2012/08/26/python-optimization-3-disassembling/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2012/08/26/python-optimization-3-disassembling/</guid>
         
         
         <category>python</category>
@@ -630,8 +630,8 @@
       <item>
         <title>用另一臺計算機寫 Octopress</title>
         <pubDate>Thu, 23 Aug 2012 23:26:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2012/08/23/write-octopress-in-another-box/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/23/write-octopress-in-another-box/</guid>
+        <link>http://localhost:4000/blog/2012/08/23/write-octopress-in-another-box/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2012/08/23/write-octopress-in-another-box/</guid>
         
         
         <category>blog</category>
@@ -647,8 +647,8 @@
       <item>
         <title>用 Python 的「神奇方法」元編程</title>
         <pubDate>Tue, 21 Aug 2012 22:41:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2012/08/21/python-metaprogramming-with-magic-methods/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/21/python-metaprogramming-with-magic-methods/</guid>
+        <link>http://localhost:4000/blog/2012/08/21/python-metaprogramming-with-magic-methods/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2012/08/21/python-metaprogramming-with-magic-methods/</guid>
         
         
         <category>python</category>
@@ -664,8 +664,8 @@
       <item>
         <title>簡單粗暴解決 Zsh Home 和 End 按鍵問題</title>
         <pubDate>Mon, 20 Aug 2012 22:21:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2012/08/20/resolve-zsh-home-and-end-key-problem/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/20/resolve-zsh-home-and-end-key-problem/</guid>
+        <link>http://localhost:4000/blog/2012/08/20/resolve-zsh-home-and-end-key-problem/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2012/08/20/resolve-zsh-home-and-end-key-problem/</guid>
         
         
         <category>linux</category>
@@ -681,8 +681,8 @@
       <item>
         <title>關於編程，對我最有用的建議</title>
         <pubDate>Mon, 20 Aug 2012 15:58:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2012/08/20/the-best-programming-advice-i-ever-got/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2012/08/20/the-best-programming-advice-i-ever-got/</guid>
+        <link>http://localhost:4000/blog/2012/08/20/the-best-programming-advice-i-ever-got/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2012/08/20/the-best-programming-advice-i-ever-got/</guid>
         
         
         <category>coding</category>
@@ -698,8 +698,8 @@
       <item>
         <title>Python 調優筆記·代碼造影</title>
         <pubDate>Wed, 25 Jul 2012 00:14:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2012/07/25/python-optimization-2-profiling/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2012/07/25/python-optimization-2-profiling/</guid>
+        <link>http://localhost:4000/blog/2012/07/25/python-optimization-2-profiling/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2012/07/25/python-optimization-2-profiling/</guid>
         
         
         <category>python</category>
@@ -717,8 +717,8 @@
       <item>
         <title>Python 調優筆記·序</title>
         <pubDate>Mon, 23 Jul 2012 01:19:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2012/07/23/python-optimization-1/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2012/07/23/python-optimization-1/</guid>
+        <link>http://localhost:4000/blog/2012/07/23/python-optimization-1/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2012/07/23/python-optimization-1/</guid>
         
         
         <category>python</category>
@@ -736,8 +736,8 @@
       <item>
         <title>touch log</title>
         <pubDate>Sat, 21 Jul 2012 02:05:00 -0400</pubDate>
-        <link>https://conanblog.me/blog/2012/07/21/touch-log/</link>
-        <guid isPermaLink="true">https://conanblog.me/blog/2012/07/21/touch-log/</guid>
+        <link>http://localhost:4000/blog/2012/07/21/touch-log/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2012/07/21/touch-log/</guid>
         
         
         <category>routine</category>
